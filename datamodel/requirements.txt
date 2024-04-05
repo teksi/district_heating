@@ -1,0 +1,3 @@
+pirogue>=1.4.2
+psycopg2
+pyyaml

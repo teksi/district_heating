@@ -2,7 +2,7 @@
 
 # This script will create a clean datastructure for the
 # TEKSI Distant heating
-# based on the Distand heating datamodel (see https://405.sia.ch/models/2015/)
+# based on the Distant heating datamodel (see https://405.sia.ch/models/2015/)
 # It will create new schemats tdh_* in a postgres database.
 
 set -e
@@ -20,7 +20,7 @@ psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ${DIR}/changelogs/0001/oid_gen
 
 psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ${DIR}/changelogs/0001/03_tdh_db_organisation.sql -v SRID=$SRID
 
-psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ${DIR}/changelogs/0001/03_tdh_db_dss.sql -v SRID=$SRID
+psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ${DIR}/changelogs/0001/03_tdh_db_sia405.sql -v SRID=$SRID
 
 psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ${DIR}/changelogs/0001/03_tdh_control_cable_db_sia405.sql -v SRID=$SRID
 

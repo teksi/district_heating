@@ -1,7 +1,7 @@
-Functional tests for the TEKSI Distant heating Datamodel
+Functional tests for the TEKSI Distance heating Data model
 =======================================
 
-Here are functional tests for the TEKSI distant heating datamodel.
+Here are functional tests for the TEKSI Distance heating datamodel.
 
 In utils.py there are methods to insert, update, select and check rows.
 

@@ -1,0 +1,8 @@
+[main]
+host = https://www.transifex.com
+
+[o:teksi:p:tdh-qgis-project:r:tdh-qgis-project]
+file_filter = teksi_distance_heating_<lang>.ts
+source_file = teksi_distance_heating.ts
+source_lang = fr
+type = QT

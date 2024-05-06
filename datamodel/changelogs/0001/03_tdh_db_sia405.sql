@@ -1,6 +1,6 @@
------- This file generates the VSA-DSS database (Modul fernwaerme (2020)) in en on QQIS
+------ This file generates the postgres database (Modul fernwaerme (based on SIA405_FERNWAERME_3D_2015_LV95 (Version 20.10.2021) in en for QQIS
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
------- version 10.04.2024 15:47:40
+------ version 06.05.2024 20:57:57
 ------ with 3D coordinates
 BEGIN;
 
@@ -8,152 +8,6 @@ BEGIN;
 
 
 
-CREATE TABLE tdh_od.hydraulic_node
-(
-   obj_id varchar(16) NOT NULL,
-   CONSTRAINT pkey_tdh_od_hydraulic_node_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE SEQUENCE tdh_od.seq_hydraulic_node_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.hydraulic_node ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','hydraulic_node');
-COMMENT ON COLUMN tdh_od.hydraulic_node.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
- ALTER TABLE tdh_od.hydraulic_node ADD COLUMN name_number text;
- ALTER TABLE tdh_od.hydraulic_node ADD CONSTRAINT hn_name_number_length_max_40 CHECK(char_length(name_number)<=40);
-COMMENT ON COLUMN tdh_od.hydraulic_node.name_number IS ' / z.B. Nummer des Knotens / par ex. numéro de noeud';
- ALTER TABLE tdh_od.hydraulic_node ADD COLUMN node_type  integer ;
-COMMENT ON COLUMN tdh_od.hydraulic_node.node_type IS '';
- ALTER TABLE tdh_od.hydraulic_node ADD COLUMN network_area text;
- ALTER TABLE tdh_od.hydraulic_node ADD CONSTRAINT hn_network_area_length_max_40 CHECK(char_length(network_area)<=40);
-COMMENT ON COLUMN tdh_od.hydraulic_node.network_area IS ' / désignation du lieu';
- ALTER TABLE tdh_od.hydraulic_node ADD COLUMN remark text;
- ALTER TABLE tdh_od.hydraulic_node ADD CONSTRAINT hn_remark_length_max_80 CHECK(char_length(remark)<=80);
-COMMENT ON COLUMN tdh_od.hydraulic_node.remark IS 'General remarks';
- ALTER TABLE tdh_od.hydraulic_node ADD COLUMN last_modification TIMESTAMP without time zone DEFAULT now();
-COMMENT ON COLUMN tdh_od.hydraulic_node.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE tdh_od.hydraulic_node ADD COLUMN fk_dataowner varchar(16);
-COMMENT ON COLUMN tdh_od.hydraulic_node.fk_dataowner IS 'Foreignkey to Metaattribute dataowner (as an organisation) - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE tdh_od.hydraulic_node ADD COLUMN fk_provider varchar(16);
-COMMENT ON COLUMN tdh_od.hydraulic_node.fk_provider IS 'Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données ';
--------
-CREATE TRIGGER
-update_last_modified_hydraulic_node
-BEFORE UPDATE OR INSERT ON
- tdh_od.hydraulic_node
-FOR EACH ROW EXECUTE PROCEDURE
- tdh_sys.update_last_modified();
-
--------
--------
-CREATE TABLE tdh_od.hydraulic_line_section
-(
-   obj_id varchar(16) NOT NULL,
-   CONSTRAINT pkey_tdh_od_hydraulic_line_section_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE SEQUENCE tdh_od.seq_hydraulic_line_section_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.hydraulic_line_section ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','hydraulic_line_section');
-COMMENT ON COLUMN tdh_od.hydraulic_line_section.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
- ALTER TABLE tdh_od.hydraulic_line_section ADD COLUMN name_number text;
- ALTER TABLE tdh_od.hydraulic_line_section ADD CONSTRAINT hl_name_number_length_max_40 CHECK(char_length(name_number)<=40);
-COMMENT ON COLUMN tdh_od.hydraulic_line_section.name_number IS '';
- ALTER TABLE tdh_od.hydraulic_line_section ADD COLUMN network_area text;
- ALTER TABLE tdh_od.hydraulic_line_section ADD CONSTRAINT hl_network_area_length_max_40 CHECK(char_length(network_area)<=40);
-COMMENT ON COLUMN tdh_od.hydraulic_line_section.network_area IS ' / Ortsbezeichnung / désignation du lieu';
- ALTER TABLE tdh_od.hydraulic_line_section ADD COLUMN remark text;
- ALTER TABLE tdh_od.hydraulic_line_section ADD CONSTRAINT hl_remark_length_max_80 CHECK(char_length(remark)<=80);
-COMMENT ON COLUMN tdh_od.hydraulic_line_section.remark IS 'General remarks';
- ALTER TABLE tdh_od.hydraulic_line_section ADD COLUMN last_modification TIMESTAMP without time zone DEFAULT now();
-COMMENT ON COLUMN tdh_od.hydraulic_line_section.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE tdh_od.hydraulic_line_section ADD COLUMN fk_dataowner varchar(16);
-COMMENT ON COLUMN tdh_od.hydraulic_line_section.fk_dataowner IS 'Foreignkey to Metaattribute dataowner (as an organisation) - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE tdh_od.hydraulic_line_section ADD COLUMN fk_provider varchar(16);
-COMMENT ON COLUMN tdh_od.hydraulic_line_section.fk_provider IS 'Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données ';
--------
-CREATE TRIGGER
-update_last_modified_hydraulic_line_section
-BEFORE UPDATE OR INSERT ON
- tdh_od.hydraulic_line_section
-FOR EACH ROW EXECUTE PROCEDURE
- tdh_sys.update_last_modified();
-
--------
--------
-CREATE TABLE tdh_od.static_node
-(
-   obj_id varchar(16) NOT NULL,
-   CONSTRAINT pkey_tdh_od_static_node_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE SEQUENCE tdh_od.seq_static_node_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.static_node ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','static_node');
-COMMENT ON COLUMN tdh_od.static_node.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
- ALTER TABLE tdh_od.static_node ADD COLUMN name_number text;
- ALTER TABLE tdh_od.static_node ADD CONSTRAINT sn_name_number_length_max_40 CHECK(char_length(name_number)<=40);
-COMMENT ON COLUMN tdh_od.static_node.name_number IS '';
- ALTER TABLE tdh_od.static_node ADD COLUMN node_type  integer ;
-COMMENT ON COLUMN tdh_od.static_node.node_type IS '';
- ALTER TABLE tdh_od.static_node ADD COLUMN network_area text;
- ALTER TABLE tdh_od.static_node ADD CONSTRAINT sn_network_area_length_max_40 CHECK(char_length(network_area)<=40);
-COMMENT ON COLUMN tdh_od.static_node.network_area IS '';
- ALTER TABLE tdh_od.static_node ADD COLUMN remark text;
- ALTER TABLE tdh_od.static_node ADD CONSTRAINT sn_remark_length_max_80 CHECK(char_length(remark)<=80);
-COMMENT ON COLUMN tdh_od.static_node.remark IS 'General remarks';
- ALTER TABLE tdh_od.static_node ADD COLUMN last_modification TIMESTAMP without time zone DEFAULT now();
-COMMENT ON COLUMN tdh_od.static_node.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE tdh_od.static_node ADD COLUMN fk_dataowner varchar(16);
-COMMENT ON COLUMN tdh_od.static_node.fk_dataowner IS 'Foreignkey to Metaattribute dataowner (as an organisation) - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE tdh_od.static_node ADD COLUMN fk_provider varchar(16);
-COMMENT ON COLUMN tdh_od.static_node.fk_provider IS 'Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données ';
--------
-CREATE TRIGGER
-update_last_modified_static_node
-BEFORE UPDATE OR INSERT ON
- tdh_od.static_node
-FOR EACH ROW EXECUTE PROCEDURE
- tdh_sys.update_last_modified();
-
--------
--------
-CREATE TABLE tdh_od.static_line_section
-(
-   obj_id varchar(16) NOT NULL,
-   CONSTRAINT pkey_tdh_od_static_line_section_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE SEQUENCE tdh_od.seq_static_line_section_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.static_line_section ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','static_line_section');
-COMMENT ON COLUMN tdh_od.static_line_section.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
- ALTER TABLE tdh_od.static_line_section ADD COLUMN name_number text;
- ALTER TABLE tdh_od.static_line_section ADD CONSTRAINT sl_name_number_length_max_40 CHECK(char_length(name_number)<=40);
-COMMENT ON COLUMN tdh_od.static_line_section.name_number IS ' / z.B. Nummer des Knotens / par ex. numéro de noeud';
- ALTER TABLE tdh_od.static_line_section ADD COLUMN network_area  integer ;
-COMMENT ON COLUMN tdh_od.static_line_section.network_area IS '';
- ALTER TABLE tdh_od.static_line_section ADD COLUMN remark text;
- ALTER TABLE tdh_od.static_line_section ADD CONSTRAINT sl_remark_length_max_80 CHECK(char_length(remark)<=80);
-COMMENT ON COLUMN tdh_od.static_line_section.remark IS 'General remarks';
- ALTER TABLE tdh_od.static_line_section ADD COLUMN last_modification TIMESTAMP without time zone DEFAULT now();
-COMMENT ON COLUMN tdh_od.static_line_section.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE tdh_od.static_line_section ADD COLUMN fk_dataowner varchar(16);
-COMMENT ON COLUMN tdh_od.static_line_section.fk_dataowner IS 'Foreignkey to Metaattribute dataowner (as an organisation) - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE tdh_od.static_line_section ADD COLUMN fk_provider varchar(16);
-COMMENT ON COLUMN tdh_od.static_line_section.fk_provider IS 'Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données ';
--------
-CREATE TRIGGER
-update_last_modified_static_line_section
-BEFORE UPDATE OR INSERT ON
- tdh_od.static_line_section
-FOR EACH ROW EXECUTE PROCEDURE
- tdh_sys.update_last_modified();
-
--------
 -------
 CREATE TABLE tdh_od.pipe_section
 (
@@ -169,7 +23,7 @@ COMMENT ON COLUMN tdh_od.pipe_section.obj_id IS 'INTERLIS STANDARD OID (with Pos
  ALTER TABLE tdh_od.pipe_section ADD COLUMN name_number text;
  ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT ps_name_number_length_max_40 CHECK(char_length(name_number)<=40);
 COMMENT ON COLUMN tdh_od.pipe_section.name_number IS '';
-ALTER TABLE tdh_od.pipe_section ADD COLUMN geometry_geometry geometry('COMPOUNDCURVE', 2056);
+ALTER TABLE tdh_od.pipe_section ADD COLUMN geometry_geometry geometry('COMPOUNDCURVE', :SRID);
 CREATE INDEX in_tdh_pipe_section_geometry_geometry ON tdh_od.pipe_section USING gist (geometry_geometry );
 COMMENT ON COLUMN tdh_od.pipe_section.geometry_geometry IS ' / avec points d’appuis en coordonnées nationales [mm]';
  ALTER TABLE tdh_od.pipe_section ADD COLUMN horizontal_positioning  integer ;
@@ -254,7 +108,7 @@ WITH (
 CREATE SEQUENCE tdh_od.seq_pipe_point_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
  ALTER TABLE tdh_od.pipe_point ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','pipe_point');
 COMMENT ON COLUMN tdh_od.pipe_point.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
-ALTER TABLE tdh_od.pipe_point ADD COLUMN geometry_geometry geometry('POINT', 2056);
+ALTER TABLE tdh_od.pipe_point ADD COLUMN geometry_geometry geometry('POINT', :SRID);
 CREATE INDEX in_tdh_pipe_point_geometry_geometry ON tdh_od.pipe_point USING gist (geometry_geometry );
 COMMENT ON COLUMN tdh_od.pipe_point.geometry_geometry IS '';
  ALTER TABLE tdh_od.pipe_point ADD COLUMN symbolori  decimal(4,1) ;
@@ -379,10 +233,10 @@ COMMENT ON COLUMN tdh_od.structure.obj_id IS 'INTERLIS STANDARD OID (with Postfi
  ALTER TABLE tdh_od.structure ADD COLUMN name_number text;
  ALTER TABLE tdh_od.structure ADD CONSTRAINT st_name_number_length_max_40 CHECK(char_length(name_number)<=40);
 COMMENT ON COLUMN tdh_od.structure.name_number IS ' / z.B. Bauwerksname / par ex. nom de l’ouvrage';
-ALTER TABLE tdh_od.structure ADD COLUMN geometry_geometry geometry('CURVEPOLYGON', 2056);
+ALTER TABLE tdh_od.structure ADD COLUMN geometry_geometry geometry('CURVEPOLYGON', :SRID);
 CREATE INDEX in_tdh_structure_geometry_geometry ON tdh_od.structure USING gist (geometry_geometry );
 COMMENT ON COLUMN tdh_od.structure.geometry_geometry IS ' / offener oder geschlossener Linienzug, Stützpunkte in Landeskoordinaten / polyligne ouverte ou fermée avec des points d’appui en coordonnées nationales';
-ALTER TABLE tdh_od.structure ADD COLUMN geometry3d_geometry geometry('CURVEPOLYGONZ', 2056);
+ALTER TABLE tdh_od.structure ADD COLUMN geometry3d_geometry geometry('CURVEPOLYGONZ', :SRID);
 CREATE INDEX in_tdh_structure_geometry3d_geometry ON tdh_od.structure USING gist (geometry3d_geometry );
 COMMENT ON COLUMN tdh_od.structure.geometry3d_geometry IS 'yyyy_geschlossener Linienzug, Stützpunkte in Landeskoordinaten / geschlossener Linienzug, Stützpunkte in Landeskoordinaten / polyligne fermée avec points d’appui en coordonnées nationales';
  ALTER TABLE tdh_od.structure ADD COLUMN horizontal_positioning  integer ;
@@ -420,9 +274,9 @@ COMMENT ON COLUMN tdh_od.structure.owner IS '';
 COMMENT ON COLUMN tdh_od.structure.construction_company IS '';
  ALTER TABLE tdh_od.structure ADD COLUMN schema_indication text;
  ALTER TABLE tdh_od.structure ADD CONSTRAINT st_schema_indication_length_max_40 CHECK(char_length(schema_indication)<=40);
-/* COMMENT ON COLUMN tdh_od.structure.schema_indication IS '';
- ALTER TABLE tdh_od.structure ADD COLUMN last_modification  timestamp without time zone ;
-COMMENT ON COLUMN tdh_od.structure.last_modification IS ''; */
+COMMENT ON COLUMN tdh_od.structure.schema_indication IS '';
+ ALTER TABLE tdh_od.structure ADD COLUMN last_maintenance timestamp without time zone ;
+COMMENT ON COLUMN tdh_od.structure.last_maintenance IS '';
  ALTER TABLE tdh_od.structure ADD COLUMN documentation text;
  ALTER TABLE tdh_od.structure ADD CONSTRAINT st_documentation_length_max_40 CHECK(char_length(documentation)<=40);
 COMMENT ON COLUMN tdh_od.structure.documentation IS ' / z.B. Dossiernummer / par ex. numéro de dossier';
@@ -471,10 +325,10 @@ COMMENT ON COLUMN tdh_od.trench.obj_id IS 'INTERLIS STANDARD OID (with Postfix/P
  ALTER TABLE tdh_od.trench ADD COLUMN name_number text;
  ALTER TABLE tdh_od.trench ADD CONSTRAINT tr_name_number_length_max_40 CHECK(char_length(name_number)<=40);
 COMMENT ON COLUMN tdh_od.trench.name_number IS ' / Eindeutige Bezeichnung / désignation univoque';
-ALTER TABLE tdh_od.trench ADD COLUMN geometry_geometry geometry('CURVEPOLYGON', 2056);
+ALTER TABLE tdh_od.trench ADD COLUMN geometry_geometry geometry('CURVEPOLYGON', :SRID);
 CREATE INDEX in_tdh_trench_geometry_geometry ON tdh_od.trench USING gist (geometry_geometry );
 COMMENT ON COLUMN tdh_od.trench.geometry_geometry IS 'yyy_offener oder geschlossener Linienzug, Stützpunkte in Landeskoordinaten / offener oder geschlossener Linienzug, Stützpunkte in Landeskoordinaten / polyligne ouverte ou fermée avec des points d’appui en coordonnées nationales';
-ALTER TABLE tdh_od.trench ADD COLUMN geometry3d_geometry geometry('CURVEPOLYGONZ', 2056);
+ALTER TABLE tdh_od.trench ADD COLUMN geometry3d_geometry geometry('CURVEPOLYGONZ', :SRID);
 CREATE INDEX in_tdh_trench_geometry3d_geometry ON tdh_od.trench USING gist (geometry3d_geometry );
 COMMENT ON COLUMN tdh_od.trench.geometry3d_geometry IS 'yyyy_offener oder geschlossener Linienzug, Stützpunkte in Landeskoordinaten / offener oder geschlossener Linienzug, Stützpunkte in Landeskoordinaten / polyligne fermée ou ouverte avec des points d’appui en coordonnées nationales';
  ALTER TABLE tdh_od.trench ADD COLUMN horizontal_positioning  integer ;
@@ -542,7 +396,7 @@ COMMENT ON COLUMN tdh_od.trench_point.obj_id IS 'INTERLIS STANDARD OID (with Pos
  ALTER TABLE tdh_od.trench_point ADD COLUMN name_number text;
  ALTER TABLE tdh_od.trench_point ADD CONSTRAINT tp_name_number_length_max_40 CHECK(char_length(name_number)<=40);
 COMMENT ON COLUMN tdh_od.trench_point.name_number IS ' / désignation univoque';
-ALTER TABLE tdh_od.trench_point ADD COLUMN geometry_geometry geometry('POINT', 2056);
+ALTER TABLE tdh_od.trench_point ADD COLUMN geometry_geometry geometry('POINT', :SRID);
 CREATE INDEX in_tdh_trench_point_geometry_geometry ON tdh_od.trench_point USING gist (geometry_geometry );
 COMMENT ON COLUMN tdh_od.trench_point.geometry_geometry IS '';
  ALTER TABLE tdh_od.trench_point ADD COLUMN horizontal_positioning  integer ;
@@ -584,219 +438,7 @@ FOR EACH ROW EXECUTE PROCEDURE
  tdh_sys.update_last_modified();
 
 -------
--------
-CREATE TABLE tdh_od.damage_pipe_section
-(
-   obj_id varchar(16) NOT NULL,
-   CONSTRAINT pkey_tdh_od_damage_pipe_section_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE SEQUENCE tdh_od.seq_damage_pipe_section_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.damage_pipe_section ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','damage_pipe_section');
-COMMENT ON COLUMN tdh_od.damage_pipe_section.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
- ALTER TABLE tdh_od.damage_pipe_section ADD COLUMN name_number text;
- ALTER TABLE tdh_od.damage_pipe_section ADD CONSTRAINT ds_name_number_length_max_40 CHECK(char_length(name_number)<=40);
-COMMENT ON COLUMN tdh_od.damage_pipe_section.name_number IS 'yyy_z.B. Protokollnummer / z.B. Protokollnummer / par ex. numéro du procès-verbal';
-ALTER TABLE tdh_od.damage_pipe_section ADD COLUMN geometry_geometry geometry('POINT', 2056);
-CREATE INDEX in_tdh_damage_pipe_section_geometry_geometry ON tdh_od.damage_pipe_section USING gist (geometry_geometry );
-COMMENT ON COLUMN tdh_od.damage_pipe_section.geometry_geometry IS '';
- ALTER TABLE tdh_od.damage_pipe_section ADD COLUMN fault_type  integer ;
-COMMENT ON COLUMN tdh_od.damage_pipe_section.fault_type IS '';
- ALTER TABLE tdh_od.damage_pipe_section ADD COLUMN trigger text;
- ALTER TABLE tdh_od.damage_pipe_section ADD CONSTRAINT ds_trigger_length_max_40 CHECK(char_length(trigger)<=40);
-COMMENT ON COLUMN tdh_od.damage_pipe_section.trigger IS '';
- ALTER TABLE tdh_od.damage_pipe_section ADD COLUMN survey  timestamp without time zone ;
-COMMENT ON COLUMN tdh_od.damage_pipe_section.survey IS '';
- ALTER TABLE tdh_od.damage_pipe_section ADD COLUMN remedy  timestamp without time zone ;
-COMMENT ON COLUMN tdh_od.damage_pipe_section.remedy IS '';
- ALTER TABLE tdh_od.damage_pipe_section ADD COLUMN remark text;
- ALTER TABLE tdh_od.damage_pipe_section ADD CONSTRAINT ds_remark_length_max_80 CHECK(char_length(remark)<=80);
-COMMENT ON COLUMN tdh_od.damage_pipe_section.remark IS 'General remarks';
- ALTER TABLE tdh_od.damage_pipe_section ADD COLUMN last_modification TIMESTAMP without time zone DEFAULT now();
-COMMENT ON COLUMN tdh_od.damage_pipe_section.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE tdh_od.damage_pipe_section ADD COLUMN fk_dataowner varchar(16);
-COMMENT ON COLUMN tdh_od.damage_pipe_section.fk_dataowner IS 'Foreignkey to Metaattribute dataowner (as an organisation) - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE tdh_od.damage_pipe_section ADD COLUMN fk_provider varchar(16);
-COMMENT ON COLUMN tdh_od.damage_pipe_section.fk_provider IS 'Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données ';
--------
-CREATE TRIGGER
-update_last_modified_damage_pipe_section
-BEFORE UPDATE OR INSERT ON
- tdh_od.damage_pipe_section
-FOR EACH ROW EXECUTE PROCEDURE
- tdh_sys.update_last_modified();
-
--------
--------
-CREATE TABLE tdh_od.damage_pipe_point
-(
-   obj_id varchar(16) NOT NULL,
-   CONSTRAINT pkey_tdh_od_damage_pipe_point_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE SEQUENCE tdh_od.seq_damage_pipe_point_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.damage_pipe_point ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','damage_pipe_point');
-COMMENT ON COLUMN tdh_od.damage_pipe_point.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
- ALTER TABLE tdh_od.damage_pipe_point ADD COLUMN name_number text;
- ALTER TABLE tdh_od.damage_pipe_point ADD CONSTRAINT dp_name_number_length_max_40 CHECK(char_length(name_number)<=40);
-COMMENT ON COLUMN tdh_od.damage_pipe_point.name_number IS ' / z.B. Protokollnummer / par ex. numéro du procès-verbal';
-ALTER TABLE tdh_od.damage_pipe_point ADD COLUMN geometry_geometry geometry('POINT', 2056);
-CREATE INDEX in_tdh_damage_pipe_point_geometry_geometry ON tdh_od.damage_pipe_point USING gist (geometry_geometry );
-COMMENT ON COLUMN tdh_od.damage_pipe_point.geometry_geometry IS '';
- ALTER TABLE tdh_od.damage_pipe_point ADD COLUMN fault_type  integer ;
-COMMENT ON COLUMN tdh_od.damage_pipe_point.fault_type IS '';
- ALTER TABLE tdh_od.damage_pipe_point ADD COLUMN trigger text;
- ALTER TABLE tdh_od.damage_pipe_point ADD CONSTRAINT dp_trigger_length_max_40 CHECK(char_length(trigger)<=40);
-COMMENT ON COLUMN tdh_od.damage_pipe_point.trigger IS '';
- ALTER TABLE tdh_od.damage_pipe_point ADD COLUMN survey  timestamp without time zone ;
-COMMENT ON COLUMN tdh_od.damage_pipe_point.survey IS '';
- ALTER TABLE tdh_od.damage_pipe_point ADD COLUMN remedy  timestamp without time zone ;
-COMMENT ON COLUMN tdh_od.damage_pipe_point.remedy IS '';
- ALTER TABLE tdh_od.damage_pipe_point ADD COLUMN remark text;
- ALTER TABLE tdh_od.damage_pipe_point ADD CONSTRAINT dp_remark_length_max_80 CHECK(char_length(remark)<=80);
-COMMENT ON COLUMN tdh_od.damage_pipe_point.remark IS 'General remarks';
- ALTER TABLE tdh_od.damage_pipe_point ADD COLUMN last_modification TIMESTAMP without time zone DEFAULT now();
-COMMENT ON COLUMN tdh_od.damage_pipe_point.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE tdh_od.damage_pipe_point ADD COLUMN fk_dataowner varchar(16);
-COMMENT ON COLUMN tdh_od.damage_pipe_point.fk_dataowner IS 'Foreignkey to Metaattribute dataowner (as an organisation) - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE tdh_od.damage_pipe_point ADD COLUMN fk_provider varchar(16);
-COMMENT ON COLUMN tdh_od.damage_pipe_point.fk_provider IS 'Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données ';
--------
-CREATE TRIGGER
-update_last_modified_damage_pipe_point
-BEFORE UPDATE OR INSERT ON
- tdh_od.damage_pipe_point
-FOR EACH ROW EXECUTE PROCEDURE
- tdh_sys.update_last_modified();
-
--------
--------
-CREATE TABLE tdh_od.damage_structure
-(
-   obj_id varchar(16) NOT NULL,
-   CONSTRAINT pkey_tdh_od_damage_structure_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE SEQUENCE tdh_od.seq_damage_structure_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.damage_structure ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','damage_structure');
-COMMENT ON COLUMN tdh_od.damage_structure.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
- ALTER TABLE tdh_od.damage_structure ADD COLUMN name_number text;
- ALTER TABLE tdh_od.damage_structure ADD CONSTRAINT da_name_number_length_max_40 CHECK(char_length(name_number)<=40);
-COMMENT ON COLUMN tdh_od.damage_structure.name_number IS ' / z.B. Protokollnummer / par ex. numéro du procès-verbal';
-ALTER TABLE tdh_od.damage_structure ADD COLUMN geometry_geometry geometry('POINT', 2056);
-CREATE INDEX in_tdh_damage_structure_geometry_geometry ON tdh_od.damage_structure USING gist (geometry_geometry );
-COMMENT ON COLUMN tdh_od.damage_structure.geometry_geometry IS '';
- ALTER TABLE tdh_od.damage_structure ADD COLUMN fault_type  integer ;
-COMMENT ON COLUMN tdh_od.damage_structure.fault_type IS '';
- ALTER TABLE tdh_od.damage_structure ADD COLUMN trigger text;
- ALTER TABLE tdh_od.damage_structure ADD CONSTRAINT da_trigger_length_max_40 CHECK(char_length(trigger)<=40);
-COMMENT ON COLUMN tdh_od.damage_structure.trigger IS '';
- ALTER TABLE tdh_od.damage_structure ADD COLUMN survey  timestamp without time zone ;
-COMMENT ON COLUMN tdh_od.damage_structure.survey IS '';
- ALTER TABLE tdh_od.damage_structure ADD COLUMN remedy  timestamp without time zone ;
-COMMENT ON COLUMN tdh_od.damage_structure.remedy IS '';
- ALTER TABLE tdh_od.damage_structure ADD COLUMN condition text;
- ALTER TABLE tdh_od.damage_structure ADD CONSTRAINT da_condition_length_max_40 CHECK(char_length(condition)<=40);
-COMMENT ON COLUMN tdh_od.damage_structure.condition IS '';
- ALTER TABLE tdh_od.damage_structure ADD COLUMN remark text;
- ALTER TABLE tdh_od.damage_structure ADD CONSTRAINT da_remark_length_max_80 CHECK(char_length(remark)<=80);
-COMMENT ON COLUMN tdh_od.damage_structure.remark IS '';
- ALTER TABLE tdh_od.damage_structure ADD COLUMN last_modification TIMESTAMP without time zone DEFAULT now();
-COMMENT ON COLUMN tdh_od.damage_structure.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE tdh_od.damage_structure ADD COLUMN fk_dataowner varchar(16);
-COMMENT ON COLUMN tdh_od.damage_structure.fk_dataowner IS 'Foreignkey to Metaattribute dataowner (as an organisation) - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE tdh_od.damage_structure ADD COLUMN fk_provider varchar(16);
-COMMENT ON COLUMN tdh_od.damage_structure.fk_provider IS 'Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données ';
--------
-CREATE TRIGGER
-update_last_modified_damage_structure
-BEFORE UPDATE OR INSERT ON
- tdh_od.damage_structure
-FOR EACH ROW EXECUTE PROCEDURE
- tdh_sys.update_last_modified();
-
--------
--------
-CREATE TABLE tdh_od.damage_trench
-(
-   obj_id varchar(16) NOT NULL,
-   CONSTRAINT pkey_tdh_od_damage_trench_obj_id PRIMARY KEY (obj_id)
-)
-WITH (
-   OIDS = False
-);
-CREATE SEQUENCE tdh_od.seq_damage_trench_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.damage_trench ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','damage_trench');
-COMMENT ON COLUMN tdh_od.damage_trench.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
- ALTER TABLE tdh_od.damage_trench ADD COLUMN name_number text;
- ALTER TABLE tdh_od.damage_trench ADD CONSTRAINT dt_name_number_length_max_40 CHECK(char_length(name_number)<=40);
-COMMENT ON COLUMN tdh_od.damage_trench.name_number IS ' / z.B. Protkollnummer / par ex. numéro du procès-verbal';
-ALTER TABLE tdh_od.damage_trench ADD COLUMN geometry_geometry geometry('POINT', 2056);
-CREATE INDEX in_tdh_damage_trench_geometry_geometry ON tdh_od.damage_trench USING gist (geometry_geometry );
-COMMENT ON COLUMN tdh_od.damage_trench.geometry_geometry IS '';
- ALTER TABLE tdh_od.damage_trench ADD COLUMN fault_type  integer ;
-COMMENT ON COLUMN tdh_od.damage_trench.fault_type IS '';
- ALTER TABLE tdh_od.damage_trench ADD COLUMN trigger text;
- ALTER TABLE tdh_od.damage_trench ADD CONSTRAINT dt_trigger_length_max_40 CHECK(char_length(trigger)<=40);
-COMMENT ON COLUMN tdh_od.damage_trench.trigger IS '';
- ALTER TABLE tdh_od.damage_trench ADD COLUMN survey  timestamp without time zone ;
-COMMENT ON COLUMN tdh_od.damage_trench.survey IS '';
- ALTER TABLE tdh_od.damage_trench ADD COLUMN remedy  timestamp without time zone ;
-COMMENT ON COLUMN tdh_od.damage_trench.remedy IS '';
- ALTER TABLE tdh_od.damage_trench ADD COLUMN remark text;
- ALTER TABLE tdh_od.damage_trench ADD CONSTRAINT dt_remark_length_max_80 CHECK(char_length(remark)<=80);
-COMMENT ON COLUMN tdh_od.damage_trench.remark IS 'General remarks';
- ALTER TABLE tdh_od.damage_trench ADD COLUMN last_modification TIMESTAMP without time zone DEFAULT now();
-COMMENT ON COLUMN tdh_od.damage_trench.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
- ALTER TABLE tdh_od.damage_trench ADD COLUMN fk_dataowner varchar(16);
-COMMENT ON COLUMN tdh_od.damage_trench.fk_dataowner IS 'Foreignkey to Metaattribute dataowner (as an organisation) - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l''organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe';
- ALTER TABLE tdh_od.damage_trench ADD COLUMN fk_provider varchar(16);
-COMMENT ON COLUMN tdh_od.damage_trench.fk_provider IS 'Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données ';
--------
-CREATE TRIGGER
-update_last_modified_damage_trench
-BEFORE UPDATE OR INSERT ON
- tdh_od.damage_trench
-FOR EACH ROW EXECUTE PROCEDURE
- tdh_sys.update_last_modified();
-
--------
 ------------ Relationships and Value Tables ----------- ;
-CREATE TABLE tdh_vl.hydraulic_node_node_type () INHERITS (tdh_vl.value_list_base);
-ALTER TABLE tdh_vl.hydraulic_node_node_type ADD CONSTRAINT pkey_tdh_vl_hydraulic_node_node_type_code PRIMARY KEY (code);
- INSERT INTO tdh_vl.hydraulic_node_node_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (7977,7977,'fiix','fix','fixe', 'zzz_fix', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.hydraulic_node_node_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (7978,7978,'variable','variabel','variable', 'zzz_variabel', 'rrr_variabel', '', '', '', '', '', 'true');
- ALTER TABLE tdh_od.hydraulic_node ADD CONSTRAINT fkey_vl_hydraulic_node_node_type FOREIGN KEY (node_type)
- REFERENCES tdh_vl.hydraulic_node_node_type (code) MATCH SIMPLE
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE tdh_od.hydraulic_line_section ADD COLUMN fk_from_node varchar(16);
-ALTER TABLE tdh_od.hydraulic_line_section ADD CONSTRAINT rel_hydraulic_line_section_from_node FOREIGN KEY (fk_from_node) REFERENCES tdh_od.hydraulic_node(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE tdh_od.hydraulic_line_section ADD COLUMN fk_to_node varchar(16);
-ALTER TABLE tdh_od.hydraulic_line_section ADD CONSTRAINT rel_hydraulic_line_section_to_node FOREIGN KEY (fk_to_node) REFERENCES tdh_od.hydraulic_node(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
-CREATE TABLE tdh_vl.static_node_node_type () INHERITS (tdh_vl.value_list_base);
-ALTER TABLE tdh_vl.static_node_node_type ADD CONSTRAINT pkey_tdh_vl_static_node_node_type_code PRIMARY KEY (code);
- INSERT INTO tdh_vl.static_node_node_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (7992,7992,'fix','fix','fixe', 'zzz_fix', 'rrr_fix', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.static_node_node_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (7991,7991,'variable','variabel','variable', 'zzz_variabel', 'rrr_variabel', '', '', '', '', '', 'true');
- ALTER TABLE tdh_od.static_node ADD CONSTRAINT fkey_vl_static_node_node_type FOREIGN KEY (node_type)
- REFERENCES tdh_vl.static_node_node_type (code) MATCH SIMPLE
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE tdh_od.static_line_section ADD COLUMN fk_from_node varchar(16);
-ALTER TABLE tdh_od.static_line_section ADD CONSTRAINT rel_static_line_section_from_node FOREIGN KEY (fk_from_node) REFERENCES tdh_od.static_node(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE tdh_od.static_line_section ADD COLUMN fk_to_node varchar(16);
-ALTER TABLE tdh_od.static_line_section ADD CONSTRAINT rel_static_line_section_to_node FOREIGN KEY (fk_to_node) REFERENCES tdh_od.static_node(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
-CREATE TABLE tdh_vl.static_line_section_network_area () INHERITS (tdh_vl.value_list_base);
-ALTER TABLE tdh_vl.static_line_section_network_area ADD CONSTRAINT pkey_tdh_vl_static_line_section_network_area_code PRIMARY KEY (code);
- INSERT INTO tdh_vl.static_line_section_network_area (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (7999,7999,'fix','fix','fixe', 'zzz_fix', 'rrr_fix', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.static_line_section_network_area (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (7998,7998,'variable','variabel','variable', 'zzz_variabel', 'rrr_variabel', '', '', '', '', '', 'true');
- ALTER TABLE tdh_od.static_line_section ADD CONSTRAINT fkey_vl_static_line_section_network_area FOREIGN KEY (network_area)
- REFERENCES tdh_vl.static_line_section_network_area (code) MATCH SIMPLE
- ON UPDATE RESTRICT ON DELETE RESTRICT;
 ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_hydraulic_line_section varchar(16);
 ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_pipe_section_hydraulic_line_section FOREIGN KEY (fk_hydraulic_line_section) REFERENCES tdh_od.hydraulic_line_section(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_static_line_section varchar(16);
@@ -1183,86 +825,10 @@ ALTER TABLE tdh_vl.trench_point_elevation_determination ADD CONSTRAINT pkey_tdh_
  ALTER TABLE tdh_od.trench_point ADD CONSTRAINT fkey_vl_trench_point_elevation_determination FOREIGN KEY (elevation_determination)
  REFERENCES tdh_vl.trench_point_elevation_determination (code) MATCH SIMPLE
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE tdh_od.damage_pipe_section ADD COLUMN fk_pipe_section varchar(16);
-ALTER TABLE tdh_od.damage_pipe_section ADD CONSTRAINT rel_damage_pipe_section_pipe_section FOREIGN KEY (fk_pipe_section) REFERENCES tdh_od.pipe_section(obj_id) ON UPDATE CASCADE ON DELETE cascade DEFERRABLE INITIALLY DEFERRED;
-CREATE TABLE tdh_vl.damage_pipe_section_fault_type () INHERITS (tdh_vl.value_list_base);
-ALTER TABLE tdh_vl.damage_pipe_section_fault_type ADD CONSTRAINT pkey_tdh_vl_damage_pipe_section_fault_type_code PRIMARY KEY (code);
- INSERT INTO tdh_vl.damage_pipe_section_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8401,8401,'wire_wire_contact','Draht_Drahtberuehrung','contact_entre_fils', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_pipe_section_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8402,8402,'wire_pipe_contact','Draht_Rohrberuehung','contact_avec_le_tube', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_pipe_section_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8400,8400,'wire_disruption','Drahtunterbruch','rupture_de_fil', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_pipe_section_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8404,8404,'faulty_manipulation_operation','Fehlmanipulation_Betrieb','erreur_de_manipulation_de_service', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_pipe_section_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8406,8406,'external_influence_trench_environment','Fremdeinwirkung_Trasseumfeld','intervention_de_tiers_dans_zone_trace', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_pipe_section_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8399,8399,'insulation_fault','Isolationsdefekt','isolation_defectueuse', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_pipe_section_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8398,8398,'insulation_sleeves_defect','Isolationsmuffen_defekt','soudure_defectueuse', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_pipe_section_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8395,8395,'corrosion','Korrosion','corrosion', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_pipe_section_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8394,8394,'material_fatigue','Materialermuedung','fatique_matiere', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_pipe_section_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8393,8393,'material_defect','Materialfehler','defaut_matiere', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_pipe_section_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8405,8405,'measurement_construction_error','Mess_Bautechnischer_Fehler','defaut_de_mesure_construction', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_pipe_section_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8396,8396,'wet_coupling_sleeve','nasse_Verbindungsmuffe','manchon_humide', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_pipe_section_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8407,8407,'third_parties_damage','Schaeden_durch_Dritte','degats_de_tiers', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_pipe_section_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8397,8397,'weld_seam_fault','Schweissnahtdefekt','manchon_defectueux', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_pipe_section_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8403,8403,'loose_contact','Wackelkontakt','contact_intermittent', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_pipe_section_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8408,8408,'others','weitere','autres', 'di_piu', 'rrr_weitere', '', '', '', '', '', 'true');
- ALTER TABLE tdh_od.damage_pipe_section ADD CONSTRAINT fkey_vl_damage_pipe_section_fault_type FOREIGN KEY (fault_type)
- REFERENCES tdh_vl.damage_pipe_section_fault_type (code) MATCH SIMPLE
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE tdh_od.damage_pipe_point ADD COLUMN fk_pipe_point varchar(16);
-ALTER TABLE tdh_od.damage_pipe_point ADD CONSTRAINT rel_damage_pipe_point_pipe_point FOREIGN KEY (fk_pipe_point) REFERENCES tdh_od.pipe_point(obj_id) ON UPDATE CASCADE ON DELETE cascade DEFERRABLE INITIALLY DEFERRED;
-CREATE TABLE tdh_vl.damage_pipe_point_fault_type () INHERITS (tdh_vl.value_list_base);
-ALTER TABLE tdh_vl.damage_pipe_point_fault_type ADD CONSTRAINT pkey_tdh_vl_damage_pipe_point_fault_type_code PRIMARY KEY (code);
- INSERT INTO tdh_vl.damage_pipe_point_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8422,8422,'wire_pipe_contact','Draht_Rohrberuehrung','contact_fil_tube', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_pipe_point_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8421,8421,'corrosion','Korrosion','corrosion', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_pipe_point_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8423,8423,'sleeve_leaking','Muffe_undicht','manchon_permeable', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_pipe_point_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8420,8420,'weld_seam_fault','Schweissnahtdefekt','soudure_defectueuse', '', '', '', '', '', '', '', 'true');
- ALTER TABLE tdh_od.damage_pipe_point ADD CONSTRAINT fkey_vl_damage_pipe_point_fault_type FOREIGN KEY (fault_type)
- REFERENCES tdh_vl.damage_pipe_point_fault_type (code) MATCH SIMPLE
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE tdh_od.damage_structure ADD COLUMN fk_structure varchar(16);
-ALTER TABLE tdh_od.damage_structure ADD CONSTRAINT rel_damage_structure_structure FOREIGN KEY (fk_structure) REFERENCES tdh_od.structure(obj_id) ON UPDATE CASCADE ON DELETE cascade DEFERRABLE INITIALLY DEFERRED;
-CREATE TABLE tdh_vl.damage_structure_fault_type () INHERITS (tdh_vl.value_list_base);
-ALTER TABLE tdh_vl.damage_structure_fault_type ADD CONSTRAINT pkey_tdh_vl_damage_structure_fault_type_code PRIMARY KEY (code);
- INSERT INTO tdh_vl.damage_structure_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8452,8452,'wire_pipe_contact','Draht_Rohrberuehrung','contact_fil_tube', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_structure_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8451,8451,'corrosion','Korrosion','corrosion', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_structure_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8453,8453,'sleeve_leaking','Muffe_undicht','manchon_permeable', 'zzz_Muffe_undicht', 'rrr_manson_undicht', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_structure_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8450,8450,'weld_seam_fault','Schweissnahtdefekt','soudure_defectueuse', '', '', '', '', '', '', '', 'true');
- ALTER TABLE tdh_od.damage_structure ADD CONSTRAINT fkey_vl_damage_structure_fault_type FOREIGN KEY (fault_type)
- REFERENCES tdh_vl.damage_structure_fault_type (code) MATCH SIMPLE
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE tdh_od.damage_trench ADD COLUMN fk_trench varchar(16);
-ALTER TABLE tdh_od.damage_trench ADD CONSTRAINT rel_damage_trench_trench FOREIGN KEY (fk_trench) REFERENCES tdh_od.trench(obj_id) ON UPDATE CASCADE ON DELETE cascade DEFERRABLE INITIALLY DEFERRED;
-CREATE TABLE tdh_vl.damage_trench_fault_type () INHERITS (tdh_vl.value_list_base);
-ALTER TABLE tdh_vl.damage_trench_fault_type ADD CONSTRAINT pkey_tdh_vl_damage_trench_fault_type_code PRIMARY KEY (code);
- INSERT INTO tdh_vl.damage_trench_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8484,8484,'humid','feucht','humidite', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_trench_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8482,8482,'settlement','Setzung','tassement', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_trench_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8481,8481,'unknown','unbekannt','inconnu', 'sconosciuto', 'necunoscuta', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.damage_trench_fault_type (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8483,8483,'water_penetration','Wassereintritt','arrivee_d_eau', '', '', '', '', '', '', '', 'true');
- ALTER TABLE tdh_od.damage_trench ADD CONSTRAINT fkey_vl_damage_trench_fault_type FOREIGN KEY (fault_type)
- REFERENCES tdh_vl.damage_trench_fault_type (code) MATCH SIMPLE
- ON UPDATE RESTRICT ON DELETE RESTRICT;
-
------------- Text and Symbol Tables ----------- ;
--------
-
--------
-
------------- Text and Symbol Tables Relationships ----------- ;
-
-
------------- Text and Symbol Tables Values ----------- ;
-
-
 
 
 --------- Relations to class organisation for dataowner and provider (new 3.11.2014);
 
-ALTER TABLE tdh_od.hydraulic_node ADD CONSTRAINT rel_od_hydraulic_node_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.hydraulic_node ADD CONSTRAINT rel_od_hydraulic_node_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.hydraulic_line_section ADD CONSTRAINT rel_od_hydraulic_line_section_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.hydraulic_line_section ADD CONSTRAINT rel_od_hydraulic_line_section_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.static_node ADD CONSTRAINT rel_od_static_node_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.static_node ADD CONSTRAINT rel_od_static_node_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.static_line_section ADD CONSTRAINT rel_od_static_line_section_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.static_line_section ADD CONSTRAINT rel_od_static_line_section_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id);
 ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_od_pipe_section_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id);
 ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_od_pipe_section_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id);
 ALTER TABLE tdh_od.pipe_point ADD CONSTRAINT rel_od_pipe_point_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id);
@@ -1273,28 +839,12 @@ ALTER TABLE tdh_od.trench ADD CONSTRAINT rel_od_trench_fk_dataowner FOREIGN KEY 
 ALTER TABLE tdh_od.trench ADD CONSTRAINT rel_od_trench_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id);
 ALTER TABLE tdh_od.trench_point ADD CONSTRAINT rel_od_trench_point_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id);
 ALTER TABLE tdh_od.trench_point ADD CONSTRAINT rel_od_trench_point_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.damage_pipe_section ADD CONSTRAINT rel_od_damage_pipe_section_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.damage_pipe_section ADD CONSTRAINT rel_od_damage_pipe_section_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.damage_pipe_point ADD CONSTRAINT rel_od_damage_pipe_point_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.damage_pipe_point ADD CONSTRAINT rel_od_damage_pipe_point_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.damage_structure ADD CONSTRAINT rel_od_damage_structure_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.damage_structure ADD CONSTRAINT rel_od_damage_structure_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.damage_trench ADD CONSTRAINT rel_od_damage_trench_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.damage_trench ADD CONSTRAINT rel_od_damage_trench_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id);
 
 ------ Indexes on identifiers
 
- CREATE UNIQUE INDEX in_od_hydraulic_node_name_number ON tdh_od.hydraulic_node USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
- CREATE UNIQUE INDEX in_od_hydraulic_line_section_name_number ON tdh_od.hydraulic_line_section USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
- CREATE UNIQUE INDEX in_od_static_node_name_number ON tdh_od.static_node USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
- CREATE UNIQUE INDEX in_od_static_line_section_name_number ON tdh_od.static_line_section USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
  CREATE UNIQUE INDEX in_od_pipe_section_name_number ON tdh_od.pipe_section USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
  CREATE UNIQUE INDEX in_od_structure_name_number ON tdh_od.structure USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
  CREATE UNIQUE INDEX in_od_trench_name_number ON tdh_od.trench USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
  CREATE UNIQUE INDEX in_od_trench_point_name_number ON tdh_od.trench_point USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
- CREATE UNIQUE INDEX in_od_damage_pipe_section_name_number ON tdh_od.damage_pipe_section USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
- CREATE UNIQUE INDEX in_od_damage_pipe_point_name_number ON tdh_od.damage_pipe_point USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
- CREATE UNIQUE INDEX in_od_damage_structure_name_number ON tdh_od.damage_structure USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
- CREATE UNIQUE INDEX in_od_damage_trench_name_number ON tdh_od.damage_trench USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
 
 COMMIT;

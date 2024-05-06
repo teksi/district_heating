@@ -1,0 +1,62 @@
+name: 🐘 Datamodel | Tests
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - datamodel/**
+      - '.github/workflows/datamodel-test.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - datamodel/**
+      - '.github/workflows/datamodel-test.yml'
+  workflow_dispatch:
+
+
+jobs:
+  datamodel-tests:
+    name: Run unit tests on datamodel
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        psycopg-version: [ 2, 3 ]
+      fail-fast: true
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Docker build
+        run: |
+          docker build \
+          --build-arg RUN_TEST=True \
+          --build-arg PSYCOPG_VERSION=${{ matrix.psycopg-version }} \
+          -f datamodel/.docker/Dockerfile \
+          --tag teksi/distance_heating:unstable .
+
+      - name: Initialize container
+        run: |
+          docker run -d -p 5432:5432 --name teksi-distance_heating teksi/distance_heating:unstable
+          docker exec teksi-distance_heating init_db.sh wait
+
+      - name: Run tests
+        run:  docker exec teksi-distance_heating pytest datamodel
+
+      - name: Docker logs
+        if: failure()
+        run: docker logs teksi-distance_heating
+
+  static-tests:
+    name: Run static tests on datamodel
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - run: ./datamodel/test/static_tests.sh

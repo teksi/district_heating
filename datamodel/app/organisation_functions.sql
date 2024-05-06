@@ -29,9 +29,9 @@ UNION
 SELECT UNNEST(ARRAY[fk_provider,fk_dataowner,fk_owner])
 FROM tww_od.trench
 UNION
-/* SELECT UNNEST(ARRAY[fk_provider,fk_dataowner,fk_owner])
+SELECT UNNEST(ARRAY[fk_provider,fk_dataowner,fk_owner])
 FROM tww_od.trench_point
-UNION */
+UNION
 /* SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
 FROM tww_od.damage_pipe_section
 UNION */

@@ -1,0 +1,7 @@
+plugin_path: plugin/teksi_distance_heating
+github_organization_slug: TEKSI
+project_slug: distance_heating
+
+transifex_organization: teksi
+transifex_project: tdh-plugin
+transifex_resource: tdh-plugin

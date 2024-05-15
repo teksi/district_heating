@@ -439,10 +439,11 @@ FOR EACH ROW EXECUTE PROCEDURE
 
 -------
 ------------ Relationships and Value Tables ----------- ;
-ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_hydraulic_line_section varchar(16);
-ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_pipe_section_hydraulic_line_section FOREIGN KEY (fk_hydraulic_line_section) REFERENCES tdh_od.hydraulic_line_section(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_static_line_section varchar(16);
-ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_pipe_section_static_line_section FOREIGN KEY (fk_static_line_section) REFERENCES tdh_od.static_line_section(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
+-- Relations to classes hydraulic_line_section and static_line_section that are not yet supported commented out
+-- ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_hydraulic_line_section varchar(16);
+-- ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_pipe_section_hydraulic_line_section FOREIGN KEY (fk_hydraulic_line_section) REFERENCES tdh_od.hydraulic_line_section(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
+-- ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_static_line_section varchar(16);
+-- ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_pipe_section_static_line_section FOREIGN KEY (fk_static_line_section) REFERENCES tdh_od.static_line_section(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_owner varchar(16);
 ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_pipe_section_owner FOREIGN KEY (fk_owner) REFERENCES tdh_od.organisation(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
 CREATE TABLE tdh_vl.pipe_section_horizontal_positioning () INHERITS (tdh_vl.value_list_base);
@@ -527,10 +528,11 @@ ALTER TABLE tdh_vl.pipe_section_pipeline_quality ADD CONSTRAINT pkey_tdh_vl_pipe
  ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT fkey_vl_pipe_section_pipeline_quality FOREIGN KEY (pipeline_quality)
  REFERENCES tdh_vl.pipe_section_pipeline_quality (code) MATCH SIMPLE
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-ALTER TABLE tdh_od.pipe_point ADD COLUMN fk_hydraulic_node varchar(16);
-ALTER TABLE tdh_od.pipe_point ADD CONSTRAINT rel_pipe_point_hydraulic_node FOREIGN KEY (fk_hydraulic_node) REFERENCES tdh_od.hydraulic_node(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE tdh_od.pipe_point ADD COLUMN fk_static_node varchar(16);
-ALTER TABLE tdh_od.pipe_point ADD CONSTRAINT rel_pipe_point_static_node FOREIGN KEY (fk_static_node) REFERENCES tdh_od.static_node(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
+ -- Relations to classes hydraulic_node and static_node that are not yet supported commented out
+--ALTER TABLE tdh_od.pipe_point ADD COLUMN fk_hydraulic_node varchar(16);
+--ALTER TABLE tdh_od.pipe_point ADD CONSTRAINT rel_pipe_point_hydraulic_node FOREIGN KEY (fk_hydraulic_node) REFERENCES tdh_od.hydraulic_node(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
+--ALTER TABLE tdh_od.pipe_point ADD COLUMN fk_static_node varchar(16);
+--ALTER TABLE tdh_od.pipe_point ADD CONSTRAINT rel_pipe_point_static_node FOREIGN KEY (fk_static_node) REFERENCES tdh_od.static_node(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE tdh_od.pipe_point ADD COLUMN fk_owner varchar(16);
 ALTER TABLE tdh_od.pipe_point ADD CONSTRAINT rel_pipe_point_owner FOREIGN KEY (fk_owner) REFERENCES tdh_od.organisation(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
 CREATE TABLE tdh_vl.pipe_point_horizontal_positioning () INHERITS (tdh_vl.value_list_base);

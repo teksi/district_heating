@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-LIBS_DIR="plugin/teksi_distance_heating/libs"
+LIBS_DIR="plugin/teksi_district_heating/libs"
 
 MODELBAKER_LIBRARY=("modelbaker" "1.6.0")
 

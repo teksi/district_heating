@@ -5,7 +5,7 @@ Info: java.version 11.0.10
 Info: User <Stefan>
 Info: Start date 2024-05-08 18:15
 Info: maxMemory 4147200 KB
-Info: dataFile <C:\Daten\QGEP\github\distance_heating\plugin\teksi_distance_heating\tests\data\minimal-dataset-SIA405-FERNWAERME.xtf>
+Info: dataFile <C:\Daten\QGEP\github\district_heating\plugin\teksi_district_heating\tests\data\minimal-dataset-SIA405-FERNWAERME.xtf>
 Info: modeldir <http://models.interlis.ch/;%JAR_DIR/ilimodels>
 Info: modelNames <SIA405_FERNWAERME_2015_LV95>
 Info: lookup model <SIA405_FERNWAERME_2015_LV95> 2.3 in repository <http://models.interlis.ch/>
@@ -62,11 +62,11 @@ Info: validate multiplicity of role SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerm
 Info: validate multiplicity of role SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme.Trasse_FlaecheAssoc.Flaeche...
 Info: validate multiplicity of role SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme.Trasse_TextAssoc.Text...
 Info: object count 5 (structured elements 5)
-Info: C:\Daten\QGEP\github\distance_heating\plugin\teksi_distance_heating\tests\data\minimal-dataset-SIA405-FERNWAERME.xtf: SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme BID=BASKET1
-Info:       1 objects in CLASS SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme.Bauwerk
-Info:       1 objects in CLASS SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme.Leitungsabschnitt
-Info:       1 objects in CLASS SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme.Leitungspunkt_Einspeisung
-Info:       1 objects in CLASS SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme.Leitungspunkt_normal
-Info:       1 objects in CLASS SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme.Trasse
+Info: C:\Daten\QGEP\github\district_heating\plugin\teksi_district_heating\tests\data\minimal-dataset-SIA405-FERNWAERME.xtf: SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme BID=BASKET1
+Info: ï¿½     1 objects in CLASS SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme.Bauwerk
+Info: ï¿½     1 objects in CLASS SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme.Leitungsabschnitt
+Info: ï¿½     1 objects in CLASS SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme.Leitungspunkt_Einspeisung
+Info: ï¿½     1 objects in CLASS SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme.Leitungspunkt_normal
+Info: ï¿½     1 objects in CLASS SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme.Trasse
 Info: ...validation done
 Info: End date 2024-05-08 18:15 validation took 00h:00m:00s.0197ms

@@ -37,12 +37,12 @@ done
 shift "$(($OPTIND -1))"
 
 if [[ $BUILD -eq 1 ]]; then
-  docker build --build-arg RUN_TEST=True -f datamodel/.docker/Dockerfile --tag teksi/distance_heating .
+  docker build --build-arg RUN_TEST=True -f datamodel/.docker/Dockerfile --tag teksi/district_heating .
 fi
 
-docker rm -f teksi-distance_heating
-docker run -d -p ${TDH_PG_PORT}:5432 -v $(pwd):/src  --name teksi-distance_heating teksi/distance_heating -c log_statement=all
-docker exec teksi-distance_heating init_db.sh wait
+docker rm -f teksi-district_heating
+docker run -d -p ${TDH_PG_PORT}:5432 -v $(pwd):/src  --name teksi-district_heating teksi/district_heating -c log_statement=all
+docker exec teksi-district_heating init_db.sh wait
 if [[ $DEMO_DATA -eq 1 ]]; then
-  docker exec teksi-distance_heating init_db.sh build -d
+  docker exec teksi-district_heating init_db.sh build -d
 fi

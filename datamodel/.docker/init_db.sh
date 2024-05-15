@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DB_BASE_NAME=teksi_distance_heating
+DB_BASE_NAME=teksi_district_heating
 
 set -e
 

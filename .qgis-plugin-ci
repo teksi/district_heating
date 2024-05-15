@@ -1,6 +1,6 @@
-plugin_path: plugin/teksi_distance_heating
+plugin_path: plugin/teksi_district_heating
 github_organization_slug: TEKSI
-project_slug: distance_heating
+project_slug: district_heating
 
 transifex_organization: teksi
 transifex_project: tdh-plugin

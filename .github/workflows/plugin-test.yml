@@ -56,10 +56,10 @@ jobs:
         run: docker-compose run qgis /usr/src/plugin/.docker/run-docker-tests.sh
 
       - name: Test command line import orgs
-        run: docker-compose run qgis sh -c 'xvfb-run /usr/src/plugin/tdh_cmd.py interlis_import --xtf_file /usr/src/plugin/teksi_distance_heating/tests/data/minimal-dataset-organisation-arbon-only.xtf --pghost db --pgdatabase tdh --pguser postgres --pgpass postgres --pgport 5432'
+        run: docker-compose run qgis sh -c 'xvfb-run /usr/src/plugin/tdh_cmd.py interlis_import --xtf_file /usr/src/plugin/teksi_district_heating/tests/data/minimal-dataset-organisation-arbon-only.xtf --pghost db --pgdatabase tdh --pguser postgres --pgpass postgres --pgport 5432'
 
       - name: Test command line import minimal sia405 Distance heating
-        run: docker-compose run qgis sh -c 'xvfb-run /usr/src/plugin/tdh_cmd.py interlis_import --xtf_file /usr/src/plugin/teksi_distance_heating/tests/data/minimal-dataset-SIA405-FERNWAERME.xtf --pghost db --pgdatabase tdh --pguser postgres --pgpass postgres --pgport 5432'
+        run: docker-compose run qgis sh -c 'xvfb-run /usr/src/plugin/tdh_cmd.py interlis_import --xtf_file /usr/src/plugin/teksi_district_heating/tests/data/minimal-dataset-SIA405-FERNWAERME.xtf --pghost db --pgdatabase tdh --pguser postgres --pgpass postgres --pgport 5432'
 
       - name: Test command line minimal export
         run: docker-compose run qgis sh -c 'xvfb-run /usr/src/plugin/tdh_cmd.py interlis_export --xtf_file "output.xtf" --pghost db --pgdatabase tdh --pguser postgres --pgpass postgres --pgport 5432'

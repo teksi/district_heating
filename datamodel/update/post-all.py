@@ -2,9 +2,9 @@
 
 
 try:
-    import psycopg
+    pass
 except ImportError:
-    import psycopg2 as psycopg
+    pass
 
 from pum.core.deltapy import DeltaPy
 from view.create_views import create_views

@@ -97,7 +97,7 @@ ALTER TABLE tdh_vl.organisation_status ADD CONSTRAINT pkey_tdh_vl_organisation_s
  ALTER TABLE tdh_od.organisation ADD CONSTRAINT fkey_vl_organisation_status FOREIGN KEY (status)
  REFERENCES tdh_vl.organisation_status (code) MATCH SIMPLE
  ON UPDATE RESTRICT ON DELETE RESTRICT;
- 
+
  --------- Relations to class organisation for dataowner and provider (new 3.11.2014);
 
 ALTER TABLE tdh_od.organisation ADD CONSTRAINT rel_od_organisation_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id) DEFERRABLE;
@@ -106,5 +106,5 @@ ALTER TABLE tdh_od.organisation ADD CONSTRAINT rel_od_organisation_fk_dataprovid
 ----- Indexes on identifiers
 
  CREATE UNIQUE INDEX in_od_organisation_identifier ON tdh_od.organisation USING btree (identifier ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
- 
+
  COMMIT;

@@ -9,10 +9,10 @@ try:
 except ImportError:
     import psycopg2 as psycopg
 
-from pirogue import MultipleInheritance, SimpleJoins, SingleInheritance
+from pirogue import SingleInheritance
+
 # from view.vw_tdh_reach import vw_tdh_reach
-#from view.vw_tdh_wastewater_structure import vw_tdh_wastewater_structure
-from yaml import safe_load
+# from view.vw_tdh_wastewater_structure import vw_tdh_wastewater_structure
 
 
 def run_sql_file(file_path: str, pg_service: str, variables: dict = None):
@@ -36,8 +36,8 @@ def create_app(
     srid: int = 2056,
     pg_service: str = "pg_tdh",
     drop_schema: Optional[bool] = False,
-#    tdh_reach_extra: Optional[Path] = None,
-#    tdh_wastewater_structure_extra: Optional[Path] = None,
+    #    tdh_reach_extra: Optional[Path] = None,
+    #    tdh_wastewater_structure_extra: Optional[Path] = None,
 ):
     """
     Creates the schema tdh_app for TEKSI Distance Heating
@@ -46,10 +46,10 @@ def create_app(
     :param pg_service: the PostgreSQL service, if not given it will be determined from environment variable in Pirogue
     """
 
-#    :param tdh_reach_extra: YAML file path of the definition of additional columns for vw_tdh_reach view
-#    :param tdh_wastewater_structure_extra: YAML file path of the definition of additional columns for vw_tdh_wastewater_structure_extra view
+    #    :param tdh_reach_extra: YAML file path of the definition of additional columns for vw_tdh_reach view
+    #    :param tdh_wastewater_structure_extra: YAML file path of the definition of additional columns for vw_tdh_wastewater_structure_extra view
 
-    cwd = Path(__file__).parent.resolve()
+    Path(__file__).parent.resolve()
     variables = {
         "SRID": psycopg.sql.SQL(f"{srid}")
     }  # when dropping psycopg2 support, we can use the srid var directly
@@ -59,17 +59,17 @@ def create_app(
 
     run_sql("CREATE SCHEMA tdh_app;", pg_service)
 
-# to do add symbology_function for TEKSI Distance heating
+    # to do add symbology_function for TEKSI Distance heating
 
-#    run_sql_file("symbology_functions.sql", pg_service)
-#    run_sql_file("reach_direction_change.sql", pg_service, variables)
-#    run_sql_file("14_geometry_functions.sql", pg_service, variables)
+    #    run_sql_file("symbology_functions.sql", pg_service)
+    #    run_sql_file("reach_direction_change.sql", pg_service, variables)
+    #    run_sql_file("14_geometry_functions.sql", pg_service, variables)
 
     # open YAML files
-#    if tdh_reach_extra:
-#        tdh_reach_extra = safe_load(open(tdh_reach_extra))
-#    if tdh_wastewater_structure_extra:
-#        tdh_wastewater_structure_extra = safe_load(open(tdh_wastewater_structure_extra))
+    #    if tdh_reach_extra:
+    #        tdh_reach_extra = safe_load(open(tdh_reach_extra))
+    #    if tdh_wastewater_structure_extra:
+    #        tdh_wastewater_structure_extra = safe_load(open(tdh_wastewater_structure_extra))
 
     run_sql_file("view/vw_dictionary_value_list.sql", pg_service, variables)
 
@@ -79,7 +79,6 @@ def create_app(
         # pipe_point (Leitungspunkt)
         "pipe_point_normal": "pipe_point",
         "pipe_point_feed": "pipe_point",
-
     }
 
     for key in SingleInheritances:
@@ -93,38 +92,36 @@ def create_app(
         ).create()
 
     # MultipleInheritance(
-        # safe_load(open(cwd / "view/vw_maintenance_event.yaml")),
-        # create_joins=True,
-        # drop=True,
-        # variables=variables,
-        # pg_service=pg_service,
+    # safe_load(open(cwd / "view/vw_maintenance_event.yaml")),
+    # create_joins=True,
+    # drop=True,
+    # variables=variables,
+    # pg_service=pg_service,
     # ).create()
 
     # MultipleInheritance(
-        # safe_load(open(cwd / "view/vw_damage.yaml")),
-        # drop=True,
-        # pg_service=pg_service,
+    # safe_load(open(cwd / "view/vw_damage.yaml")),
+    # drop=True,
+    # pg_service=pg_service,
     # ).create()
 
     # vw_tdh_wastewater_structure(
-        # srid, pg_service=pg_service, extra_definition=tdh_wastewater_structure_extra
+    # srid, pg_service=pg_service, extra_definition=tdh_wastewater_structure_extra
     # )
 
     # vw_tdh_reach(
-        # pg_service=pg_service, extra_definition=tdh_reach_extra
+    # pg_service=pg_service, extra_definition=tdh_reach_extra
     # )
 
     # run_sql_file("view/vw_file.sql", pg_service, variables)
 
     # MultipleInheritance(
-        # safe_load(open(cwd / "view/vw_oo_overflow.yaml")),
-        # create_joins=True,
-        # variables=variables,
-        # pg_service=pg_service,
-        # drop=True,
+    # safe_load(open(cwd / "view/vw_oo_overflow.yaml")),
+    # create_joins=True,
+    # variables=variables,
+    # pg_service=pg_service,
+    # drop=True,
     # ).create()
-
-
 
     # Recreate network views
     # run_sql_file("view/network/vw_network_node.sql", pg_service, variables)
@@ -134,11 +131,10 @@ def create_app(
     # to do add extensions if necessar
     # run_sql_file("swmm_views/02_vw_swmm_junctions.sql", pg_service, variables)
 
-
     # SimpleJoins(safe_load(open(cwd / "view/export/vw_export_reach.yaml")), pg_service).create()
     # SimpleJoins(
-        # safe_load(open(cwd / "view/export/vw_export_wastewater_structure.yaml")),
-        # pg_service,
+    # safe_load(open(cwd / "view/export/vw_export_wastewater_structure.yaml")),
+    # pg_service,
     # ).create()
 
     # run_sql_file("triggers/network.sql", pg_service)
@@ -153,12 +149,12 @@ if __name__ == "__main__":
         "-s", "--srid", help="SRID EPSG code, defaults to 2056", type=int, default=2056
     )
     # parser.add_argument(
-        # "--tdh_wastewater_structure_extra",
-        # help="YAML definition file path for additions to vw_tdh_wastewater_structure view",
+    # "--tdh_wastewater_structure_extra",
+    # help="YAML definition file path for additions to vw_tdh_wastewater_structure view",
     # )
     # parser.add_argument(
-        # "--tdh_reach_extra",
-        # help="YAML definition file path for additions to vw_tdh_reach view",
+    # "--tdh_reach_extra",
+    # help="YAML definition file path for additions to vw_tdh_reach view",
     # )
     parser.add_argument(
         "-d",

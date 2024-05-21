@@ -448,7 +448,7 @@ FOR EACH ROW EXECUTE PROCEDURE
 
 -------
 ------------ Relationships and Value Tables ----------- ;
--- Relations to classes hydraulic_line_section and static_line_section that are not yet supported commented out 
+-- Relations to classes hydraulic_line_section and static_line_section that are not yet supported commented out
 --  ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_hydraulic_line_section varchar(16);
 -- ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_pipe_section_hydraulic_line_section FOREIGN KEY (fk_hydraulic_line_section) REFERENCES tdh_od.hydraulic_line_section(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
 -- ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_static_line_section varchar(16);

@@ -1,6 +1,6 @@
 ------ This file generates the postgres database (Modul fernwaerme (based on SIA405_FERNWAERME_3D_2015_LV95 (Version 20.10.2021) in en for QQIS
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
------- version 06.05.2024 20:57:57
+------ version 21.05.2024 08:24:51
 ------ with 3D coordinates
 BEGIN;
 
@@ -23,9 +23,12 @@ COMMENT ON COLUMN tdh_od.pipe_section.obj_id IS 'INTERLIS STANDARD OID (with Pos
  ALTER TABLE tdh_od.pipe_section ADD COLUMN name_number text;
  ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT ps_name_number_length_max_40 CHECK(char_length(name_number)<=40);
 COMMENT ON COLUMN tdh_od.pipe_section.name_number IS '';
-ALTER TABLE tdh_od.pipe_section ADD COLUMN geometry_geometry geometry('COMPOUNDCURVE', :SRID);
-CREATE INDEX in_tdh_pipe_section_geometry_geometry ON tdh_od.pipe_section USING gist (geometry_geometry );
-COMMENT ON COLUMN tdh_od.pipe_section.geometry_geometry IS ' / avec points d’appuis en coordonnées nationales [mm]';
+-- ALTER TABLE tdh_od.pipe_section ADD COLUMN geometry_geometry geometry('COMPOUNDCURVE', :SRID);
+-- CREATE INDEX in_tdh_pipe_section_geometry_geometry ON tdh_od.pipe_section USING gist (geometry_geometry );
+-- COMMENT ON COLUMN tdh_od.pipe_section.geometry_geometry IS ' / avec points d’appuis en coordonnées nationales [mm]';
+ALTER TABLE tdh_od.pipe_section ADD COLUMN geometry3d_geometry geometry('COMPOUNDCURVEZ', :SRID);
+CREATE INDEX in_tdh_pipe_section_geometry3d_geometry ON tdh_od.pipe_section USING gist (geometry3d_geometry );
+COMMENT ON COLUMN tdh_od.pipe_section.geometry3d_geometry IS '';
  ALTER TABLE tdh_od.pipe_section ADD COLUMN horizontal_positioning  integer ;
 COMMENT ON COLUMN tdh_od.pipe_section.horizontal_positioning IS '';
  ALTER TABLE tdh_od.pipe_section ADD COLUMN status  integer ;
@@ -108,9 +111,12 @@ WITH (
 CREATE SEQUENCE tdh_od.seq_pipe_point_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
  ALTER TABLE tdh_od.pipe_point ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','pipe_point');
 COMMENT ON COLUMN tdh_od.pipe_point.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
-ALTER TABLE tdh_od.pipe_point ADD COLUMN geometry_geometry geometry('POINT', :SRID);
-CREATE INDEX in_tdh_pipe_point_geometry_geometry ON tdh_od.pipe_point USING gist (geometry_geometry );
-COMMENT ON COLUMN tdh_od.pipe_point.geometry_geometry IS '';
+--ALTER TABLE tdh_od.pipe_point ADD COLUMN geometry_geometry geometry('POINT', :SRID);
+-- CREATE INDEX in_tdh_pipe_point_geometry_geometry ON tdh_od.pipe_point USING gist (geometry_geometry );
+-- COMMENT ON COLUMN tdh_od.pipe_point.geometry_geometry IS '';
+ALTER TABLE tdh_od.pipe_point ADD COLUMN geometry3d_geometry geometry('COMPOUNDCURVEZ', :SRID);
+CREATE INDEX in_qgep_pipe_point_geometry3d_geometry ON tdh_od.pipe_point USING gist (geometry3d_geometry );
+COMMENT ON COLUMN tdh_od.pipe_point.geometry3d_geometry IS '';
  ALTER TABLE tdh_od.pipe_point ADD COLUMN symbolori  decimal(4,1) ;
 COMMENT ON COLUMN tdh_od.pipe_point.symbolori IS 'Default: 90 degree';
  ALTER TABLE tdh_od.pipe_point ADD COLUMN horizontal_positioning  integer ;
@@ -233,9 +239,9 @@ COMMENT ON COLUMN tdh_od.structure.obj_id IS 'INTERLIS STANDARD OID (with Postfi
  ALTER TABLE tdh_od.structure ADD COLUMN name_number text;
  ALTER TABLE tdh_od.structure ADD CONSTRAINT st_name_number_length_max_40 CHECK(char_length(name_number)<=40);
 COMMENT ON COLUMN tdh_od.structure.name_number IS ' / z.B. Bauwerksname / par ex. nom de l’ouvrage';
-ALTER TABLE tdh_od.structure ADD COLUMN geometry_geometry geometry('CURVEPOLYGON', :SRID);
-CREATE INDEX in_tdh_structure_geometry_geometry ON tdh_od.structure USING gist (geometry_geometry );
-COMMENT ON COLUMN tdh_od.structure.geometry_geometry IS ' / offener oder geschlossener Linienzug, Stützpunkte in Landeskoordinaten / polyligne ouverte ou fermée avec des points d’appui en coordonnées nationales';
+-- ALTER TABLE tdh_od.structure ADD COLUMN geometry_geometry geometry('CURVEPOLYGON', :SRID);
+-- CREATE INDEX in_tdh_structure_geometry_geometry ON tdh_od.structure USING gist (geometry_geometry );
+-- COMMENT ON COLUMN tdh_od.structure.geometry_geometry IS ' / offener oder geschlossener Linienzug, Stützpunkte in Landeskoordinaten / polyligne ouverte ou fermée avec des points d’appui en coordonnées nationales';
 ALTER TABLE tdh_od.structure ADD COLUMN geometry3d_geometry geometry('CURVEPOLYGONZ', :SRID);
 CREATE INDEX in_tdh_structure_geometry3d_geometry ON tdh_od.structure USING gist (geometry3d_geometry );
 COMMENT ON COLUMN tdh_od.structure.geometry3d_geometry IS 'yyyy_geschlossener Linienzug, Stützpunkte in Landeskoordinaten / geschlossener Linienzug, Stützpunkte in Landeskoordinaten / polyligne fermée avec points d’appui en coordonnées nationales';
@@ -275,7 +281,7 @@ COMMENT ON COLUMN tdh_od.structure.construction_company IS '';
  ALTER TABLE tdh_od.structure ADD COLUMN schema_indication text;
  ALTER TABLE tdh_od.structure ADD CONSTRAINT st_schema_indication_length_max_40 CHECK(char_length(schema_indication)<=40);
 COMMENT ON COLUMN tdh_od.structure.schema_indication IS '';
- ALTER TABLE tdh_od.structure ADD COLUMN last_maintenance timestamp without time zone ;
+ ALTER TABLE tdh_od.structure ADD COLUMN last_maintenance  timestamp without time zone ;
 COMMENT ON COLUMN tdh_od.structure.last_maintenance IS '';
  ALTER TABLE tdh_od.structure ADD COLUMN documentation text;
  ALTER TABLE tdh_od.structure ADD CONSTRAINT st_documentation_length_max_40 CHECK(char_length(documentation)<=40);
@@ -325,9 +331,9 @@ COMMENT ON COLUMN tdh_od.trench.obj_id IS 'INTERLIS STANDARD OID (with Postfix/P
  ALTER TABLE tdh_od.trench ADD COLUMN name_number text;
  ALTER TABLE tdh_od.trench ADD CONSTRAINT tr_name_number_length_max_40 CHECK(char_length(name_number)<=40);
 COMMENT ON COLUMN tdh_od.trench.name_number IS ' / Eindeutige Bezeichnung / désignation univoque';
-ALTER TABLE tdh_od.trench ADD COLUMN geometry_geometry geometry('CURVEPOLYGON', :SRID);
-CREATE INDEX in_tdh_trench_geometry_geometry ON tdh_od.trench USING gist (geometry_geometry );
-COMMENT ON COLUMN tdh_od.trench.geometry_geometry IS 'yyy_offener oder geschlossener Linienzug, Stützpunkte in Landeskoordinaten / offener oder geschlossener Linienzug, Stützpunkte in Landeskoordinaten / polyligne ouverte ou fermée avec des points d’appui en coordonnées nationales';
+-- ALTER TABLE tdh_od.trench ADD COLUMN geometry_geometry geometry('CURVEPOLYGON', :SRID);
+-- CREATE INDEX in_tdh_trench_geometry_geometry ON tdh_od.trench USING gist (geometry_geometry );
+-- COMMENT ON COLUMN tdh_od.trench.geometry_geometry IS 'yyy_offener oder geschlossener Linienzug, Stützpunkte in Landeskoordinaten / offener oder geschlossener Linienzug, Stützpunkte in Landeskoordinaten / polyligne ouverte ou fermée avec des points d’appui en coordonnées nationales';
 ALTER TABLE tdh_od.trench ADD COLUMN geometry3d_geometry geometry('CURVEPOLYGONZ', :SRID);
 CREATE INDEX in_tdh_trench_geometry3d_geometry ON tdh_od.trench USING gist (geometry3d_geometry );
 COMMENT ON COLUMN tdh_od.trench.geometry3d_geometry IS 'yyyy_offener oder geschlossener Linienzug, Stützpunkte in Landeskoordinaten / offener oder geschlossener Linienzug, Stützpunkte in Landeskoordinaten / polyligne fermée ou ouverte avec des points d’appui en coordonnées nationales';
@@ -396,9 +402,12 @@ COMMENT ON COLUMN tdh_od.trench_point.obj_id IS 'INTERLIS STANDARD OID (with Pos
  ALTER TABLE tdh_od.trench_point ADD COLUMN name_number text;
  ALTER TABLE tdh_od.trench_point ADD CONSTRAINT tp_name_number_length_max_40 CHECK(char_length(name_number)<=40);
 COMMENT ON COLUMN tdh_od.trench_point.name_number IS ' / désignation univoque';
-ALTER TABLE tdh_od.trench_point ADD COLUMN geometry_geometry geometry('POINT', :SRID);
-CREATE INDEX in_tdh_trench_point_geometry_geometry ON tdh_od.trench_point USING gist (geometry_geometry );
-COMMENT ON COLUMN tdh_od.trench_point.geometry_geometry IS '';
+--ALTER TABLE tdh_od.trench_point ADD COLUMN geometry_geometry geometry('POINT', :SRID);
+-- CREATE INDEX in_tdh_trench_point_geometry_geometry ON tdh_od.trench_point USING gist (geometry_geometry );
+-- COMMENT ON COLUMN tdh_od.trench_point.geometry_geometry IS '';
+ALTER TABLE tdh_od.trench_point ADD COLUMN geometry3d_geometry geometry('POINTZ', :SRID);
+CREATE INDEX in_tdh_trench_point_geometry3d_geometry ON tdh_od.trench_point USING gist (geometry3d_geometry );
+
  ALTER TABLE tdh_od.trench_point ADD COLUMN horizontal_positioning  integer ;
 COMMENT ON COLUMN tdh_od.trench_point.horizontal_positioning IS '';
  ALTER TABLE tdh_od.trench_point ADD COLUMN kind  integer ;
@@ -439,11 +448,11 @@ FOR EACH ROW EXECUTE PROCEDURE
 
 -------
 ------------ Relationships and Value Tables ----------- ;
--- Relations to classes hydraulic_line_section and static_line_section that are not yet supported commented out
--- ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_hydraulic_line_section varchar(16);
+-- Relations to classes hydraulic_line_section and static_line_section that are not yet supported commented out 
+--  ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_hydraulic_line_section varchar(16);
 -- ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_pipe_section_hydraulic_line_section FOREIGN KEY (fk_hydraulic_line_section) REFERENCES tdh_od.hydraulic_line_section(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
 -- ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_static_line_section varchar(16);
--- ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_pipe_section_static_line_section FOREIGN KEY (fk_static_line_section) REFERENCES tdh_od.static_line_section(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
+--ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_pipe_section_static_line_section FOREIGN KEY (fk_static_line_section) REFERENCES tdh_od.static_line_section(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_owner varchar(16);
 ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_pipe_section_owner FOREIGN KEY (fk_owner) REFERENCES tdh_od.organisation(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
 CREATE TABLE tdh_vl.pipe_section_horizontal_positioning () INHERITS (tdh_vl.value_list_base);
@@ -456,9 +465,9 @@ ALTER TABLE tdh_vl.pipe_section_horizontal_positioning ADD CONSTRAINT pkey_tdh_v
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE tdh_vl.pipe_section_status () INHERITS (tdh_vl.value_list_base);
 ALTER TABLE tdh_vl.pipe_section_status ADD CONSTRAINT pkey_tdh_vl_pipe_section_status_code PRIMARY KEY (code);
- INSERT INTO tdh_vl.pipe_section_status (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8010,8010,'inoperative.inoperative','ausser_Betrieb.ausser_Betrieb','hors_service.hors_service', 'fuori_servizio.fuori_servizio', 'rrr_ausser_Betrieb.ausser_Betrieb', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_section_status (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (9470,9470,'inoperative','ausser_Betrieb','hors_service', 'fuori_servizio', 'rrr_ausser_Betrieb', '', '', '', '', '', 'true');
  INSERT INTO tdh_vl.pipe_section_status (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8011,8011,'inoperative.reserve','ausser_Betrieb.Reserve','hors_service.en_reserve', 'fuori_servizio.riserva', 'rrr_ausser_Betrieb.Reserve', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_section_status (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8012,8012,'operational.operational','in_Betrieb.in_Betrieb','en_service.en_service', 'in_funzione.in_funzione', 'functionala.functionala', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_section_status (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (9471,9471,'operational','in_Betrieb','en_service', 'in_funzione', '', '', '', '', '', '', 'true');
  INSERT INTO tdh_vl.pipe_section_status (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8013,8013,'operational.tentative','in_Betrieb.provisorisch','en_service.provisoire', 'in_funzione.provvisorio', 'functionala.provizoriu', '', '', '', '', '', 'true');
  INSERT INTO tdh_vl.pipe_section_status (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8014,8014,'dead','tot','abandonne', 'zzz_tot', '', '', '', '', '', '', 'true');
  INSERT INTO tdh_vl.pipe_section_status (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8015,8015,'unknown','unbekannt','inconnu', 'sconosciuto', 'necunoscuta', '', '', '', '', '', 'true');
@@ -529,10 +538,10 @@ ALTER TABLE tdh_vl.pipe_section_pipeline_quality ADD CONSTRAINT pkey_tdh_vl_pipe
  REFERENCES tdh_vl.pipe_section_pipeline_quality (code) MATCH SIMPLE
  ON UPDATE RESTRICT ON DELETE RESTRICT;
  -- Relations to classes hydraulic_node and static_node that are not yet supported commented out
---ALTER TABLE tdh_od.pipe_point ADD COLUMN fk_hydraulic_node varchar(16);
---ALTER TABLE tdh_od.pipe_point ADD CONSTRAINT rel_pipe_point_hydraulic_node FOREIGN KEY (fk_hydraulic_node) REFERENCES tdh_od.hydraulic_node(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
---ALTER TABLE tdh_od.pipe_point ADD COLUMN fk_static_node varchar(16);
---ALTER TABLE tdh_od.pipe_point ADD CONSTRAINT rel_pipe_point_static_node FOREIGN KEY (fk_static_node) REFERENCES tdh_od.static_node(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
+-- ALTER TABLE tdh_od.pipe_point ADD COLUMN fk_hydraulic_node varchar(16);
+-- ALTER TABLE tdh_od.pipe_point ADD CONSTRAINT rel_pipe_point_hydraulic_node FOREIGN KEY (fk_hydraulic_node) REFERENCES tdh_od.hydraulic_node(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
+-- ALTER TABLE tdh_od.pipe_point ADD COLUMN fk_static_node varchar(16);
+-- ALTER TABLE tdh_od.pipe_point ADD CONSTRAINT rel_pipe_point_static_node FOREIGN KEY (fk_static_node) REFERENCES tdh_od.static_node(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE tdh_od.pipe_point ADD COLUMN fk_owner varchar(16);
 ALTER TABLE tdh_od.pipe_point ADD CONSTRAINT rel_pipe_point_owner FOREIGN KEY (fk_owner) REFERENCES tdh_od.organisation(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
 CREATE TABLE tdh_vl.pipe_point_horizontal_positioning () INHERITS (tdh_vl.value_list_base);
@@ -646,9 +655,9 @@ ALTER TABLE tdh_vl.structure_horizontal_positioning ADD CONSTRAINT pkey_tdh_vl_s
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 CREATE TABLE tdh_vl.structure_status () INHERITS (tdh_vl.value_list_base);
 ALTER TABLE tdh_vl.structure_status ADD CONSTRAINT pkey_tdh_vl_structure_status_code PRIMARY KEY (code);
- INSERT INTO tdh_vl.structure_status (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8209,8209,'inoperative.inoperative','ausser_Betrieb.ausser_Betrieb','hors_service.hors_service', 'fuori_servizio.fuori_servizio', 'rrr_ausser_Betrieb.ausser_Betrieb', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.structure_status (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (9468,9468,'inoperative','ausser_Betrieb','hors_service', 'fuori_servizio', 'rrr_ausser_Betrieb', '', '', '', '', '', 'true');
  INSERT INTO tdh_vl.structure_status (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8210,8210,'inoperative.reserve','ausser_Betrieb.Reserve','hors_service.en_reserve', 'fuori_servizio.riserva', 'rrr_ausser_Betrieb.Reserve', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.structure_status (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8211,8211,'operational.operational','in_Betrieb.in_Betrieb','en_service.en_service', 'in_funzione.in_funzione', 'functionala.functionala', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.structure_status (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (9469,9469,'operational','in_Betrieb','en_service', 'in_funzione', 'rrr_in_Betrieb', '', '', '', '', '', 'true');
  INSERT INTO tdh_vl.structure_status (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8212,8212,'operational.tentative','in_Betrieb.provisorisch','en_service.provisoire', 'in_funzione.provvisorio', 'functionala.provizoriu', '', '', '', '', '', 'true');
  INSERT INTO tdh_vl.structure_status (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8213,8213,'dead','tot','abandonne', 'zzz_tot', '', '', '', '', '', '', 'true');
  INSERT INTO tdh_vl.structure_status (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8214,8214,'unknown','unbekannt','inconnu', 'sconosciuto', 'necunoscuta', '', '', '', '', '', 'true');

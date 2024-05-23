@@ -1,6 +1,6 @@
 ------ This file generates the postgres database (Modul fernwaerme (based on SIA405_FERNWAERME_3D_2015_LV95 (Version 20.10.2021) in en for QQIS
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
------- version 21.05.2024 08:24:51
+------ version 23.05.2024 21:40:04
 ------ with 3D coordinates
 BEGIN;
 
@@ -69,12 +69,12 @@ COMMENT ON COLUMN tdh_od.pipe_section.pipe_brand IS '';
 COMMENT ON COLUMN tdh_od.pipe_section.pipeline_quality IS '';
  ALTER TABLE tdh_od.pipe_section ADD COLUMN installation_year  smallint ;
 COMMENT ON COLUMN tdh_od.pipe_section.installation_year IS '';
- ALTER TABLE tdh_od.pipe_section ADD COLUMN owner text;
- ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT ps_owner_length_max_255 CHECK(char_length(owner)<=255);
-COMMENT ON COLUMN tdh_od.pipe_section.owner IS '';
- ALTER TABLE tdh_od.pipe_section ADD COLUMN pipeline_company text;
- ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT ps_pipeline_company_length_max_40 CHECK(char_length(pipeline_company)<=40);
-COMMENT ON COLUMN tdh_od.pipe_section.pipeline_company IS '';
+ -- Attribute with relation to class organisation - relation will be added instead of text attribute
+ -- ALTER TABLE tdh_od.pipe_section ADD COLUMN owner text;
+-- COMMENT ON COLUMN tdh_od.pipe_section.owner IS '';
+ -- Attribute with relation to class organisation - relation will be added instead of text attribute
+ -- ALTER TABLE tdh_od.pipe_section ADD COLUMN pipeline_company text;
+-- COMMENT ON COLUMN tdh_od.pipe_section.pipeline_company IS '';
  ALTER TABLE tdh_od.pipe_section ADD COLUMN documentation text;
  ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT ps_documentation_length_max_40 CHECK(char_length(documentation)<=40);
 COMMENT ON COLUMN tdh_od.pipe_section.documentation IS 'yyy_Zeichnungsnummer / Dossiernummer / Zeichnungsnummer / Dossiernummer / numéro de dessin / numéro de dossier';
@@ -114,8 +114,8 @@ COMMENT ON COLUMN tdh_od.pipe_point.obj_id IS 'INTERLIS STANDARD OID (with Postf
 --ALTER TABLE tdh_od.pipe_point ADD COLUMN geometry_geometry geometry('POINT', :SRID);
 -- CREATE INDEX in_tdh_pipe_point_geometry_geometry ON tdh_od.pipe_point USING gist (geometry_geometry );
 -- COMMENT ON COLUMN tdh_od.pipe_point.geometry_geometry IS '';
-ALTER TABLE tdh_od.pipe_point ADD COLUMN geometry3d_geometry geometry('COMPOUNDCURVEZ', :SRID);
-CREATE INDEX in_qgep_pipe_point_geometry3d_geometry ON tdh_od.pipe_point USING gist (geometry3d_geometry );
+ALTER TABLE tdh_od.pipe_point ADD COLUMN geometry3d3d_geometry geometry('POINTZ', :SRID);
+CREATE INDEX in_tdh_pipe_point_geometry3d_geometry ON tdh_od.pipe_point USING gist (geometry3d_geometry );
 COMMENT ON COLUMN tdh_od.pipe_point.geometry3d_geometry IS '';
  ALTER TABLE tdh_od.pipe_point ADD COLUMN symbolori  decimal(4,1) ;
 COMMENT ON COLUMN tdh_od.pipe_point.symbolori IS 'Default: 90 degree';
@@ -127,9 +127,9 @@ COMMENT ON COLUMN tdh_od.pipe_point.altitude1 IS ' / OK Mantelrohr / bord supér
 COMMENT ON COLUMN tdh_od.pipe_point.altitude2 IS 'yyy_Rohrachse / Rohrachse / axe du tube';
  ALTER TABLE tdh_od.pipe_point ADD COLUMN elevation_determination  integer ;
 COMMENT ON COLUMN tdh_od.pipe_point.elevation_determination IS '';
- ALTER TABLE tdh_od.pipe_point ADD COLUMN owner text;
- ALTER TABLE tdh_od.pipe_point ADD CONSTRAINT pp_owner_length_max_255 CHECK(char_length(owner)<=255);
-COMMENT ON COLUMN tdh_od.pipe_point.owner IS '';
+ -- Attribute with relation to class organisation - relation will be added instead of text attribute
+ -- ALTER TABLE tdh_od.pipe_point ADD COLUMN owner text;
+-- COMMENT ON COLUMN tdh_od.pipe_point.owner IS '';
  ALTER TABLE tdh_od.pipe_point ADD COLUMN remark text;
  ALTER TABLE tdh_od.pipe_point ADD CONSTRAINT pp_remark_length_max_80 CHECK(char_length(remark)<=80);
 COMMENT ON COLUMN tdh_od.pipe_point.remark IS 'General remarks';
@@ -272,12 +272,12 @@ COMMENT ON COLUMN tdh_od.structure.power_connection IS '';
 COMMENT ON COLUMN tdh_od.structure.measuring_system IS '';
  ALTER TABLE tdh_od.structure ADD COLUMN condition  integer ;
 COMMENT ON COLUMN tdh_od.structure.condition IS '';
- ALTER TABLE tdh_od.structure ADD COLUMN owner text;
- ALTER TABLE tdh_od.structure ADD CONSTRAINT st_owner_length_max_255 CHECK(char_length(owner)<=255);
-COMMENT ON COLUMN tdh_od.structure.owner IS '';
- ALTER TABLE tdh_od.structure ADD COLUMN construction_company text;
- ALTER TABLE tdh_od.structure ADD CONSTRAINT st_construction_company_length_max_40 CHECK(char_length(construction_company)<=40);
-COMMENT ON COLUMN tdh_od.structure.construction_company IS '';
+ -- Attribute with relation to class organisation - relation will be added instead of text attribute
+ -- ALTER TABLE tdh_od.structure ADD COLUMN owner text;
+-- COMMENT ON COLUMN tdh_od.structure.owner IS '';
+ -- Attribute with relation to class organisation - relation will be added instead of text attribute
+ -- ALTER TABLE tdh_od.structure ADD COLUMN construction_company text;
+-- COMMENT ON COLUMN tdh_od.structure.construction_company IS '';
  ALTER TABLE tdh_od.structure ADD COLUMN schema_indication text;
  ALTER TABLE tdh_od.structure ADD CONSTRAINT st_schema_indication_length_max_40 CHECK(char_length(schema_indication)<=40);
 COMMENT ON COLUMN tdh_od.structure.schema_indication IS '';
@@ -351,9 +351,9 @@ COMMENT ON COLUMN tdh_od.trench.installation_year IS '';
 COMMENT ON COLUMN tdh_od.trench.embedding IS '';
  ALTER TABLE tdh_od.trench ADD COLUMN control_system  integer ;
 COMMENT ON COLUMN tdh_od.trench.control_system IS '';
- ALTER TABLE tdh_od.trench ADD COLUMN owner text;
- ALTER TABLE tdh_od.trench ADD CONSTRAINT tr_owner_length_max_255 CHECK(char_length(owner)<=255);
-COMMENT ON COLUMN tdh_od.trench.owner IS '';
+ -- Attribute with relation to class organisation - relation will be added instead of text attribute
+ -- ALTER TABLE tdh_od.trench ADD COLUMN owner text;
+-- COMMENT ON COLUMN tdh_od.trench.owner IS '';
  ALTER TABLE tdh_od.trench ADD COLUMN cable_conduits  integer ;
 COMMENT ON COLUMN tdh_od.trench.cable_conduits IS '';
  ALTER TABLE tdh_od.trench ADD COLUMN construction_company text;
@@ -422,9 +422,9 @@ COMMENT ON COLUMN tdh_od.trench_point.altitude_entry_cover IS '';
 COMMENT ON COLUMN tdh_od.trench_point.sur_plus_cover IS '';
  ALTER TABLE tdh_od.trench_point ADD COLUMN elevation_determination  integer ;
 COMMENT ON COLUMN tdh_od.trench_point.elevation_determination IS '';
- ALTER TABLE tdh_od.trench_point ADD COLUMN owner text;
- ALTER TABLE tdh_od.trench_point ADD CONSTRAINT tp_owner_length_max_255 CHECK(char_length(owner)<=255);
-COMMENT ON COLUMN tdh_od.trench_point.owner IS '';
+ -- Attribute with relation to class organisation - relation will be added instead of text attribute
+ -- ALTER TABLE tdh_od.trench_point ADD COLUMN owner text;
+-- COMMENT ON COLUMN tdh_od.trench_point.owner IS '';
  ALTER TABLE tdh_od.trench_point ADD COLUMN remark text;
  ALTER TABLE tdh_od.trench_point ADD CONSTRAINT tp_remark_length_max_80 CHECK(char_length(remark)<=80);
 COMMENT ON COLUMN tdh_od.trench_point.remark IS 'General remarks';
@@ -449,12 +449,14 @@ FOR EACH ROW EXECUTE PROCEDURE
 -------
 ------------ Relationships and Value Tables ----------- ;
 -- Relations to classes hydraulic_line_section and static_line_section that are not yet supported commented out
---  ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_hydraulic_line_section varchar(16);
+-- ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_hydraulic_line_section varchar(16);
 -- ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_pipe_section_hydraulic_line_section FOREIGN KEY (fk_hydraulic_line_section) REFERENCES tdh_od.hydraulic_line_section(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
 -- ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_static_line_section varchar(16);
---ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_pipe_section_static_line_section FOREIGN KEY (fk_static_line_section) REFERENCES tdh_od.static_line_section(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
+-- ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_pipe_section_static_line_section FOREIGN KEY (fk_static_line_section) REFERENCES tdh_od.static_line_section(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_owner varchar(16);
 ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_pipe_section_owner FOREIGN KEY (fk_owner) REFERENCES tdh_od.organisation(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_pipeline_company varchar(16);
+ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_pipe_section_pipeline_company FOREIGN KEY (fk_pipeline_company) REFERENCES tdh_od.organisation(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
 CREATE TABLE tdh_vl.pipe_section_horizontal_positioning () INHERITS (tdh_vl.value_list_base);
 ALTER TABLE tdh_vl.pipe_section_horizontal_positioning ADD CONSTRAINT pkey_tdh_vl_pipe_section_horizontal_positioning_code PRIMARY KEY (code);
  INSERT INTO tdh_vl.pipe_section_horizontal_positioning (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8008,8008,'accurate','genau','precise', 'precisa', 'precisa', '', '', '', '', '', 'true');
@@ -563,45 +565,45 @@ ALTER TABLE tdh_vl.pipe_point_elevation_determination ADD CONSTRAINT pkey_tdh_vl
 ALTER TABLE tdh_od.pipe_point_normal ADD CONSTRAINT oorel_od_pipe_point_normal_pipe_point FOREIGN KEY (obj_id) REFERENCES tdh_od.pipe_point(obj_id) ON DELETE CASCADE ON UPDATE CASCADE;
 CREATE TABLE tdh_vl.pipe_point_normal_kind () INHERITS (tdh_vl.value_list_base);
 ALTER TABLE tdh_vl.pipe_point_normal_kind ADD CONSTRAINT pkey_tdh_vl_pipe_point_normal_kind_code PRIMARY KEY (code);
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8122,8122,'armatures.bypass','Armaturen.Bypass','armatures.bypass', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8127,8127,'armatures.installations.seperator','Armaturen.Einbauten.Abscheider','armatures.equipements.separateur', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8128,8128,'armatures.installations.condensate_seperator','Armaturen.Einbauten.Kondensatabscheider','armatures.equipements.separateur_de_condensats', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8126,8126,'armatures.installations.condenser','Armaturen.Einbauten.Kondenser','armatures.equipements.condenseur', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8129,8129,'armatures.installations.metal_hose','Armaturen.Einbauten.Metallschlauch','armatures.equipements.tuyeau_metallique', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8130,8130,'armatures.installations.station_valve','Armaturen.Einbauten.Stationsventil','armatures.equipements.vanne_de_reglage', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8120,8120,'armatures.emptying','Armaturen.Entleerung','armatures.vidange', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8121,8121,'armatures.venting','Armaturen.Entlueftung','armatures.purge', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8125,8125,'armatures.shaped_piece.arc','Armaturen.Formstuecke.Bogen','armatures.pieces_moulees.coude', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8123,8123,'armatures.shaped_piece.reduction','Armaturen.Formstuecke.Reduktion','armatures.pieces_moulees.reduction', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8124,8124,'armatures.shaped_piece.t_piece','Armaturen.Formstuecke.T_Stueck','armatures.pieces_moulees.te', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8114,8114,'armatures.flap_with_motor.with_remote_control','Armaturen.Klappe_mit_Motor.mit_Fernsteuerung','armatures.clapet_motorise.avec_commande_a_distance', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8115,8115,'armatures.flap_with_motor.without_remote_control','Armaturen.Klappe_mit_Motor.ohne_Fernsteuerung','armatures.clapet_motorise.sans_commande_a_distance', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8113,8113,'armatures.without_motor','Armaturen.Klappe_ohne_Motor','armatures.clapet_non_motorise', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8135,8135,'armatures.pipe_point.','Armaturen.Leitungspunkt.Blende','armatures.point_de_conduite.diaphragme', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8131,8131,'armatures.pipe_point.geometry_point','Armaturen.Leitungspunkt.Geometriepunkt','armatures.point_de_conduite.point_de_geometrie', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8133,8133,'armatures.pipe_point.change_of_material','Armaturen.Leitungspunkt.Materialwechsel','armatures.point_de_conduite.changement_de_materiau', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8134,8134,'armatures.pipe_point.','Armaturen.Leitungspunkt.Muffe','armatures.point_de_conduite.manchon', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8132,8132,'armatures.pipe_point.','Armaturen.Leitungspunkt.Schweissnaht','armatures.point_de_conduite.soudure', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8116,8116,'armatures.','Armaturen.Rueckschlagklappe','armatures.clapet_anti_retour', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8111,8111,'armatures.','Armaturen.Schieber_mit_Motor.mit_Fernsteuerung','armatures.vanne_motorisee.avec_commande_a_distance', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8112,8112,'armatures.','Armaturen.Schieber_mit_Motor.ohne_Fernsteuerung','armatures.vanne_motorisee.sans_commande_a_distance', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8110,8110,'armatures.','Armaturen.Schieber_ohne_Motor','armatures.vanne_non_motorisee', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8139,8139,'armatures.static_point.','Armaturen.Statikpunkt.Aufhaengung','armatures.point_statique.suspension', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8137,8137,'armatures.static_point.','Armaturen.Statikpunkt.Auftriebssicherung','armatures.point_statique.butee_superieure', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8140,8140,'armatures.static_point.','Armaturen.Statikpunkt.Axialkompensator','armatures.point_statique.compensateur_axial', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8136,8136,'armatures.static_point.fixed_point','Armaturen.Statikpunkt.Fixpunkt','armatures.point_statique.point_fixe', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8144,8144,'armatures.static_point.','Armaturen.Statikpunkt.Fuehrungslager_eng_vor_Kompensatoren','armatures.point_statique.guidage_proche_des_compensateurs', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8145,8145,'armatures.static_point.','Armaturen.Statikpunkt.Fuehrungslager_weit_vor_LT_Bogen','armatures.point_statique.guidage_eloigne_du_coude_conduite', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8141,8141,'armatures.static_point.','Armaturen.Statikpunkt.Gelenkkompensator','armatures.point_statique.compensateur_articule', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8142,8142,'armatures.static_point.','Armaturen.Statikpunkt.Gleitrollenlager','armatures.point_statique.support_a_rouleaux', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8146,8146,'armatures.static_point.','Armaturen.Statikpunkt.Kompensator','armatures.point_statique.compensateur', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8143,8143,'armatures.static_point.','Armaturen.Statikpunkt.Kugelquerlager','armatures.point_statique.support_transversal_a_billes', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8138,8138,'armatures.static_point.','Armaturen.Statikpunkt.Querrollenlager','armatures.point_statique.guidage_lateral_a_rouleau', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8118,8118,'yyy_armatures.Ventil_mit_Motor.mit_Fernsteuerung','Armaturen.Ventil_mit_Motor.mit_Fernsteuerung','armatures.soupape_motorisee.avec_commande_a_distance', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8119,8119,'yyy_armatures.Ventil_mit_Motor.ohne_Fernsteuerung','Armaturen.Ventil_mit_Motor.ohne_Fernsteuerung','armatures.soupape_motorisee.sans_commande_a_distance', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8117,8117,'yyy_armatures.Ventil_ohne_Motor','Armaturen.Ventil_ohne_Motor','armatures.soupape_non_motorisee', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8109,8109,'yyy_network.Leckortung_Endbuechse','Netz.Leckortung_Endbuechse','reseau.detection_de_fuites_boite_terminale', '', '', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8108,8108,'yyy_network.Leckortung_Messbuechse','Netz.Leckortung_Messbuechse','reseau.boite_de_mesure_et_detection_de_fuites', '', '', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8122,8122,'armatures.bypass','Armaturen.Bypass','armatures.bypass', 'zzz_Armaturen.Bypass', 'rrr_Armaturen.Bypass', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8127,8127,'armatures.installations.seperator','Armaturen.Einbauten.Abscheider','armatures.equipements.separateur', 'zzz_Armaturen.Einbauten.Abscheider', 'rrr_Armaturen.Einbauten.Abscheider', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8128,8128,'armatures.installations.condensate_seperator','Armaturen.Einbauten.Kondensatabscheider','armatures.equipements.separateur_de_condensats', 'zzz_Armaturen.Einbauten.Kondensatabscheider', 'rrr_Armaturen.Einbauten.Kondensatabscheider', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8126,8126,'armatures.installations.condenser','Armaturen.Einbauten.Kondenser','armatures.equipements.condenseur', 'zzz_Armaturen.Einbauten.Kondenser', 'rrr_Armaturen.Einbauten.Kondenser', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8129,8129,'armatures.installations.metal_hose','Armaturen.Einbauten.Metallschlauch','armatures.equipements.tuyeau_metallique', 'zzz_Armaturen.Einbauten.Metallschlauch', 'rrr_Armaturen.Einbauten.Metallschlauch', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8130,8130,'armatures.installations.station_valve','Armaturen.Einbauten.Stationsventil','armatures.equipements.vanne_de_reglage', 'zzz_Armaturen.Einbauten.Stationsventil', 'rrr_Armaturen.Einbauten.Stationsventil', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8120,8120,'armatures.emptying','Armaturen.Entleerung','armatures.vidange', 'zzz_Armaturen.Entleerung', 'rrr_Armaturen.Entleerung', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8121,8121,'armatures.venting','Armaturen.Entlueftung','armatures.purge', 'zzz_Armaturen.Entlueftung', 'rrr_Armaturen.Entlueftung', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8125,8125,'armatures.shaped_piece.arc','Armaturen.Formstuecke.Bogen','armatures.pieces_moulees.coude', 'zzz_Armaturen.Formstuecke.Bogen', 'rrr_Armaturen.Formstuecke.Bogen', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8123,8123,'armatures.shaped_piece.reduction','Armaturen.Formstuecke.Reduktion','armatures.pieces_moulees.reduction', 'zzz_Armaturen.Formstuecke.Reduktion', 'rrr_Armaturen.Formstuecke.Reduktion', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8124,8124,'armatures.shaped_piece.t_piece','Armaturen.Formstuecke.T_Stueck','armatures.pieces_moulees.te', 'zzz_Armaturen.Formstuecke.T_Stueck', 'rrr_Armaturen.Formstuecke.T_Stueck', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8114,8114,'armatures.flap_with_motor.with_remote_control','Armaturen.Klappe_mit_Motor.mit_Fernsteuerung','armatures.clapet_motorise.avec_commande_a_distance', 'zzz_Armaturen.Klappe_mit_Motor.mit_Fernsteuerung', 'rrr_Armaturen.Klappe_mit_Motor.mit_Fernsteuerung', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8115,8115,'armatures.flap_with_motor.without_remote_control','Armaturen.Klappe_mit_Motor.ohne_Fernsteuerung','armatures.clapet_motorise.sans_commande_a_distance', 'zzz_Armaturen.Klappe_mit_Motor.ohne_Fernsteuerung', 'rrr_Armaturen.Klappe_mit_Motor.ohne_Fernsteuerung', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8113,8113,'armatures.flap_without_motor','Armaturen.Klappe_ohne_Motor','armatures.clapet_non_motorise', 'zzz_Armaturen.Klappe_ohne_Motor', 'rrr_Armaturen.Klappe_ohne_Motor', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8135,8135,'armatures.pipe_point.orifice','Armaturen.Leitungspunkt.Blende','armatures.point_de_conduite.diaphragme', 'zzz_Armaturen.Leitungspunkt.Blende', 'rrr_Armaturen.Leitungspunkt.Blende', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8131,8131,'armatures.pipe_point.geometry_point','Armaturen.Leitungspunkt.Geometriepunkt','armatures.point_de_conduite.point_de_geometrie', 'zzz_Armaturen.Leitungspunkt.Geometriepunkt', 'rrr_Armaturen.Leitungspunkt.Geometriepunkt', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8133,8133,'armatures.pipe_point.change_of_material','Armaturen.Leitungspunkt.Materialwechsel','armatures.point_de_conduite.changement_de_materiau', 'zzz_Armaturen.Leitungspunkt.Materialwechsel', 'rrr_Armaturen.Leitungspunkt.Materialwechsel', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8134,8134,'armatures.pipe_point.sleeve','Armaturen.Leitungspunkt.Muffe','armatures.point_de_conduite.manchon', 'zzz_Armaturen.Leitungspunkt.Muffe', 'rrr_Armaturen.Leitungspunkt.Muffe', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8132,8132,'armatures.pipe_point.weld_seam','Armaturen.Leitungspunkt.Schweissnaht','armatures.point_de_conduite.soudure', 'zzz_Armaturen.Leitungspunkt.Schweissnaht', 'rrr_Armaturen.Leitungspunkt.Schweissnaht', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8116,8116,'armatures.backflow_flap','Armaturen.Rueckschlagklappe','armatures.clapet_anti_retour', 'zzz_Armaturen.Rueckschlagklappe', 'rrr_Armaturen.Rueckschlagklappe', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8111,8111,'armatures.valve_with_motor.with_remote_control','Armaturen.Schieber_mit_Motor.mit_Fernsteuerung','armatures.vanne_motorisee.avec_commande_a_distance', 'zzz_Armaturen.Schieber_mit_Motor.mit_Fernsteuerung', 'rrr_Armaturen.Schieber_mit_Motor.mit_Fernsteuerung', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8112,8112,'armatures.valve_with_motor.without_remote_control','Armaturen.Schieber_mit_Motor.ohne_Fernsteuerung','armatures.vanne_motorisee.sans_commande_a_distance', 'zzz_Armaturen.Schieber_mit_Motor.ohne_Fernsteuerung', 'rrr_Armaturen.Schieber_mit_Motor.ohne_Fernsteuerung', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8110,8110,'armatures.valve_without_motor','Armaturen.Schieber_ohne_Motor','armatures.vanne_non_motorisee', 'zzz_Armaturen.Schieber_ohne_Motor', 'rrr_Armaturen.Schieber_ohne_Motor', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8139,8139,'armatures.static_point.suspension','Armaturen.Statikpunkt.Aufhaengung','armatures.point_statique.suspension', 'zzz_Armaturen.Statikpunkt.Aufhaengung', 'rrr_Armaturen.Statikpunkt.Aufhaengung', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8137,8137,'armatures.static_point.uplift_protection','Armaturen.Statikpunkt.Auftriebssicherung','armatures.point_statique.butee_superieure', 'zzz_Armaturen.Statikpunkt.Auftriebssicherung', 'rrr_Armaturen.Statikpunkt.Auftriebssicherung', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8140,8140,'armatures.static_point.axial_compensator','Armaturen.Statikpunkt.Axialkompensator','armatures.point_statique.compensateur_axial', 'zzz_Armaturen.Statikpunkt.Axialkompensator', 'rrr_Armaturen.Statikpunkt.Axialkompensator', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8136,8136,'armatures.static_point.fixed_point','Armaturen.Statikpunkt.Fixpunkt','armatures.point_statique.point_fixe', 'zzz_Armaturen.Statikpunkt.Fixpunkt', 'rrr_Armaturen.Statikpunkt.Fixpunkt', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8144,8144,'armatures.static_point.guide_bearing_close_before_compensators','Armaturen.Statikpunkt.Fuehrungslager_eng_vor_Kompensatoren','armatures.point_statique.guidage_proche_des_compensateurs', 'zzz_Armaturen.Statikpunkt.Fuehrungslager_eng_vor_Kompensatoren', 'rrr_Armaturen.Statikpunkt.Fuehrungslager_eng_vor_Kompensatoren', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8145,8145,'armatures.static_point.guide_bearing_far_in_front_of_bend','Armaturen.Statikpunkt.Fuehrungslager_weit_vor_LT_Bogen','armatures.point_statique.guidage_eloigne_du_coude_conduite', 'zzz_Armaturen.Statikpunkt.Fuehrungslager_weit_vor_LT_Bogen', 'rrr_Armaturen.Statikpunkt.Fuehrungslager_weit_vor_LT_Bogen', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8141,8141,'armatures.static_point.joint_compensator','Armaturen.Statikpunkt.Gelenkkompensator','armatures.point_statique.compensateur_articule', 'zz_Armaturen.Statikpunkt.Gelenkkompensator', 'rrr_Armaturen.Statikpunkt.Gelenkkompensator', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8142,8142,'armatures.static_point.plain_roller_bearings','Armaturen.Statikpunkt.Gleitrollenlager','armatures.point_statique.support_a_rouleaux', 'zzz_Armaturen.Statikpunkt.Gleitrollenlager', 'rrr_Armaturen.Statikpunkt.Gleitrollenlager', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8146,8146,'armatures.static_point.compensator','Armaturen.Statikpunkt.Kompensator','armatures.point_statique.compensateur', 'zzz_Armaturen.Statikpunkt.Kompensator', 'rrr_Armaturen.Statikpunkt.Kompensator', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8143,8143,'armatures.static_point.transverse_ball_bearings','Armaturen.Statikpunkt.Kugelquerlager','armatures.point_statique.support_transversal_a_billes', 'zzz_Armaturen.Statikpunkt.Kugelquerlager', 'rrr_Armaturen.Statikpunkt.Kugelquerlager', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8138,8138,'armatures.static_point.transverse_roller_bearings','Armaturen.Statikpunkt.Querrollenlager','armatures.point_statique.guidage_lateral_a_rouleau', 'zzz_Armaturen.Statikpunkt.Querrollenlager', 'rrr_Armaturen.Statikpunkt.Querrollenlager', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8118,8118,'armatures.valve_with_motor.with_remote_control','Armaturen.Ventil_mit_Motor.mit_Fernsteuerung','armatures.soupape_motorisee.avec_commande_a_distance', 'zzz_Armaturen.Ventil_mit_Motor.mit_Fernsteuerung', 'rrr_Armaturen.Ventil_mit_Motor.mit_Fernsteuerung', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8119,8119,'armatures.valve_with_motor.without_remote_control','Armaturen.Ventil_mit_Motor.ohne_Fernsteuerung','armatures.soupape_motorisee.sans_commande_a_distance', 'zzz_Armaturen.Ventil_mit_Motor.ohne_Fernsteuerung', 'rrr_Armaturen.Ventil_mit_Motor.ohne_Fernsteuerung', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8117,8117,'armatures.valve_without_motor','Armaturen.Ventil_ohne_Motor','armatures.soupape_non_motorisee', 'zzz_Armaturen.Ventil_ohne_Motor', 'rrr_Armaturen.Ventil_ohne_Motor', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8109,8109,'network.leak_detection_transmitter','Netz.Leckortung_Endbuechse','reseau.detection_de_fuites_boite_terminale', 'zzz_Netz.Leckortung_Endbuechse', 'rrr_Netz.Leckortung_Endbuechse', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.pipe_point_normal_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8108,8108,'network.leak_detection_receiver','Netz.Leckortung_Messbuechse','reseau.boite_de_mesure_et_detection_de_fuites', 'zzz_Netz.Leckortung_Messbuechse', 'rrr_Netz.Leckortung_Messbuechse', '', '', '', '', '', 'true');
  ALTER TABLE tdh_od.pipe_point_normal ADD CONSTRAINT fkey_vl_pipe_point_normal_kind FOREIGN KEY (kind)
  REFERENCES tdh_vl.pipe_point_normal_kind (code) MATCH SIMPLE
  ON UPDATE RESTRICT ON DELETE RESTRICT;
@@ -645,6 +647,8 @@ ALTER TABLE tdh_vl.pipe_point_feed_category ADD CONSTRAINT pkey_tdh_vl_pipe_poin
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 ALTER TABLE tdh_od.structure ADD COLUMN fk_owner varchar(16);
 ALTER TABLE tdh_od.structure ADD CONSTRAINT rel_structure_owner FOREIGN KEY (fk_owner) REFERENCES tdh_od.organisation(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE tdh_od.structure ADD COLUMN fk_construction_company varchar(16);
+ALTER TABLE tdh_od.structure ADD CONSTRAINT rel_structure_construction_company FOREIGN KEY (fk_construction_company) REFERENCES tdh_od.organisation(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
 CREATE TABLE tdh_vl.structure_horizontal_positioning () INHERITS (tdh_vl.value_list_base);
 ALTER TABLE tdh_vl.structure_horizontal_positioning ADD CONSTRAINT pkey_tdh_vl_structure_horizontal_positioning_code PRIMARY KEY (code);
  INSERT INTO tdh_vl.structure_horizontal_positioning (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8207,8207,'accurate','genau','precis', 'preciso', 'precisa', '', '', '', '', '', 'true');
@@ -744,6 +748,8 @@ ALTER TABLE tdh_vl.structure_condition ADD CONSTRAINT pkey_tdh_vl_structure_cond
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 ALTER TABLE tdh_od.trench ADD COLUMN fk_owner varchar(16);
 ALTER TABLE tdh_od.trench ADD CONSTRAINT rel_trench_owner FOREIGN KEY (fk_owner) REFERENCES tdh_od.organisation(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE tdh_od.trench ADD COLUMN fk_construction_company varchar(16);
+ALTER TABLE tdh_od.trench ADD CONSTRAINT rel_trench_construction_company FOREIGN KEY (fk_construction_company) REFERENCES tdh_od.organisation(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
 CREATE TABLE tdh_vl.trench_horizontal_positioning () INHERITS (tdh_vl.value_list_base);
 ALTER TABLE tdh_vl.trench_horizontal_positioning ADD CONSTRAINT pkey_tdh_vl_trench_horizontal_positioning_code PRIMARY KEY (code);
  INSERT INTO tdh_vl.trench_horizontal_positioning (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (8296,8296,'accurate','genau','precis', 'preciso', 'precisa', '', '', '', '', '', 'true');

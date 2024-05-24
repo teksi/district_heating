@@ -114,7 +114,7 @@ COMMENT ON COLUMN tdh_od.pipe_point.obj_id IS 'INTERLIS STANDARD OID (with Postf
 --ALTER TABLE tdh_od.pipe_point ADD COLUMN geometry_geometry geometry('POINT', :SRID);
 -- CREATE INDEX in_tdh_pipe_point_geometry_geometry ON tdh_od.pipe_point USING gist (geometry_geometry );
 -- COMMENT ON COLUMN tdh_od.pipe_point.geometry_geometry IS '';
-ALTER TABLE tdh_od.pipe_point ADD COLUMN geometry3d3d_geometry geometry('POINTZ', :SRID);
+ALTER TABLE tdh_od.pipe_point ADD COLUMN geometry3d_geometry geometry('POINTZ', :SRID);
 CREATE INDEX in_tdh_pipe_point_geometry3d_geometry ON tdh_od.pipe_point USING gist (geometry3d_geometry );
 COMMENT ON COLUMN tdh_od.pipe_point.geometry3d_geometry IS '';
  ALTER TABLE tdh_od.pipe_point ADD COLUMN symbolori  decimal(4,1) ;

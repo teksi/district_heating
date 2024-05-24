@@ -51,6 +51,7 @@ ALTER TABLE tdh_sys.dictionary_od_table ADD CONSTRAINT unq_tdh_is_dictonary_name
 
 DROP TYPE IF EXISTS tdh_od.plantype;
 CREATE TYPE tdh_od.plantype AS ENUM ('Leitungskataster','Werkinformation', 'GEP_Verband', 'GEP_Traegerschaft', 'PAA', 'SAA', 'kein_Plantyp_definiert');
+
 CREATE TABLE tdh_sys.dictionary_od_field (
     id serial NOT NULL,
     class_id integer,

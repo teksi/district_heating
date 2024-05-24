@@ -316,6 +316,29 @@ FOR EACH ROW EXECUTE PROCEDURE
  tdh_sys.update_last_modified();
 
 -------
+-- corresponding structure_line table
+CREATE TABLE tdh_od.structure_line
+(
+   id uuid NOT NULL DEFAULT uuid_generate_v4(),
+   CONSTRAINT pkey_tdh_od_structure_line_id PRIMARY KEY (id)
+);
+-- ALTER TABLE tdh_od.structure_line ADD COLUMN geometry_geometry geometry('COMPOUNDCURVE', :SRID);
+-- COMMENT ON COLUMN tdh_od.structure_line._geometry IS '';
+--CREATE INDEX in_tdh_structure_line_geometry_geometry ON tdh_od.structure_line USING gist (geometry_geometry );
+ALTER TABLE tdh_od.structure_line ADD COLUMN geometry3d_geometry geometry('COMPOUNDCURVEZ', :SRID);
+CREATE INDEX in_tdh_structure_line_geometry3d_geometry ON tdh_od.structure_line USING gist (geometry3d_geometry );
+-------
+CREATE TRIGGER
+update_last_modified_structure_line
+BEFORE UPDATE OR INSERT ON
+ tdh_od.structure_line
+FOR EACH ROW EXECUTE PROCEDURE
+ tdh_sys.update_last_modified();
+
+-------
+ALTER TABLE tdh_od.structure_line ADD COLUMN fk_structure varchar(16);
+ALTER TABLE tdh_od.structure_line ADD CONSTRAINT rel_structure_line_structure FOREIGN KEY (fk_structure) REFERENCES tdh_od.structure(obj_id) ON UPDATE CASCADE ON DELETE CASCADE;
+
 -------
 CREATE TABLE tdh_od.trench
 (
@@ -387,6 +410,30 @@ FOR EACH ROW EXECUTE PROCEDURE
  tdh_sys.update_last_modified();
 
 -------
+-- corresponding trench_line table
+CREATE TABLE tdh_od.trench_line
+(
+   id uuid NOT NULL DEFAULT uuid_generate_v4(),
+   CONSTRAINT pkey_tdh_od_trench_line_id PRIMARY KEY (id)
+);
+-- ALTER TABLE tdh_od.trench_line ADD COLUMN geometry_geometry geometry('COMPOUNDCURVE', :SRID);
+-- COMMENT ON COLUMN tdh_od.trench_line._geometry IS '';
+--CREATE INDEX in_tdh_trench_line_geometry_geometry ON tdh_od.trench_line USING gist (geometry_geometry );
+ALTER TABLE tdh_od.trench_line ADD COLUMN geometry3d_geometry geometry('COMPOUNDCURVEZ', :SRID);
+CREATE INDEX in_tdh_trench_line_geometry3d_geometry ON tdh_od.trench_line USING gist (geometry3d_geometry );
+
+-------
+CREATE TRIGGER
+update_last_modified_trench_line
+BEFORE UPDATE OR INSERT ON
+ tdh_od.trench_line
+FOR EACH ROW EXECUTE PROCEDURE
+ tdh_sys.update_last_modified();
+
+-------
+
+ALTER TABLE tdh_od.trench_line ADD COLUMN fk_trench varchar(16);
+ALTER TABLE tdh_od.trench_line ADD CONSTRAINT rel_trench_line_trench FOREIGN KEY (fk_trench) REFERENCES tdh_od.trench(obj_id) ON UPDATE CASCADE ON DELETE CASCADE;
 -------
 CREATE TABLE tdh_od.trench_point
 (

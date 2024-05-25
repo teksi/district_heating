@@ -1,7 +1,7 @@
------- This file generates the VSA-DSS database (Modul fernwirkkabel (2020)) in en on QQIS
------- Rename classes for integration in specific TEKSI module based on this convention: https://github.com/orgs/teksi/discussions/100#discussioncomment-9058690
+------ This file generates the postgres database (Modul fernwirkkabel (based on SIA405_FERNWIRKKABEL_3D_2015_LV95 (Version 18.04.2018) in en for QQIS
+------ Rename classes for integration in specific TEKSI module based on this convention: https://github.com/orgs/teksi/discussions/100#discussioncomment-9058690  
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
------- version 10.04.2024 15:48:59
+------ version 25.05.2024 22:31:03
 ------ with 3D coordinates
 BEGIN;
 
@@ -20,9 +20,12 @@ COMMENT ON COLUMN tdh_od.sia405cc_cable_point.obj_id IS 'INTERLIS STANDARD OID (
  ALTER TABLE tdh_od.sia405cc_cable_point ADD COLUMN name_number text;
  ALTER TABLE tdh_od.sia405cc_cable_point ADD CONSTRAINT _name_number_length_max_40 CHECK(char_length(name_number)<=40);
 COMMENT ON COLUMN tdh_od.sia405cc_cable_point.name_number IS '';
-ALTER TABLE tdh_od.sia405cc_cable_point ADD COLUMN geometry_geometry geometry('POINT', 2056);
-CREATE INDEX in_tdh_sia405cc_cable_point_geometry_geometry ON tdh_od.sia405cc_cable_point USING gist (geometry_geometry );
-COMMENT ON COLUMN tdh_od.sia405cc_cable_point.geometry_geometry IS '';
+--ALTER TABLE tdh_od.sia405cc_cable_point ADD COLUMN geometry_geometry geometry('POINT', :SRID);
+-- CREATE INDEX in_tdh_sia405cc_cable_point_geometry_geometry ON tdh_od.sia405cc_cable_point USING gist (geometry_geometry );
+-- COMMENT ON COLUMN tdh_od.sia405cc_cable_point.geometry_geometry IS '';
+ALTER TABLE tdh_od.sia405cc_cable_point ADD COLUMN geometry3d_geometry geometry('POINTZ', :SRID);
+CREATE INDEX in_tdh_sia405cc_cable_point_geometry3d_geometry ON tdh_od.sia405cc_cable_point USING gist (geometry3d_geometry );
+COMMENT ON COLUMN tdh_od.sia405cc_cable_point.geometry3d_geometry IS '';
  ALTER TABLE tdh_od.sia405cc_cable_point ADD COLUMN kind  integer ;
 COMMENT ON COLUMN tdh_od.sia405cc_cable_point.kind IS '';
  ALTER TABLE tdh_od.sia405cc_cable_point ADD COLUMN horizontal_positioning  integer ;
@@ -48,8 +51,8 @@ COMMENT ON COLUMN tdh_od.sia405cc_cable_point.dimension1 IS '';
  ALTER TABLE tdh_od.sia405cc_cable_point ADD COLUMN dimension2  smallint ;
 COMMENT ON COLUMN tdh_od.sia405cc_cable_point.dimension2 IS '';
  ALTER TABLE tdh_od.sia405cc_cable_point ADD COLUMN altitude_lower_edge  decimal(7,3) ;
-COMMENT ON COLUMN tdh_od.sia405cc_cable_point.altitude_lower_edge IS '';
-ALTER TABLE tdh_od.sia405cc_cable_point ADD COLUMN symbolori_geometry geometry('POINT', 2056);
+COMMENT ON COLUMN tdh_od.sia405cc_cable_point.altitude_lower_edge IS ' / Höhe Unterkante';
+ALTER TABLE tdh_od.sia405cc_cable_point ADD COLUMN symbolori_geometry geometry('POINT', :SRID);
 CREATE INDEX in_tdh_sia405cc_cable_point_symbolori_geometry ON tdh_od.sia405cc_cable_point USING gist (symbolori_geometry );
 COMMENT ON COLUMN tdh_od.sia405cc_cable_point.symbolori_geometry IS 'Default: 90 degree / Default: 90 Grad / Default: 90 degre';
  ALTER TABLE tdh_od.sia405cc_cable_point ADD COLUMN depth  smallint ;
@@ -84,13 +87,13 @@ COMMENT ON COLUMN tdh_od.sia405cc_cable.obj_id IS 'INTERLIS STANDARD OID (with P
  ALTER TABLE tdh_od.sia405cc_cable ADD COLUMN name_number text;
  ALTER TABLE tdh_od.sia405cc_cable ADD CONSTRAINT _name_number_length_max_40 CHECK(char_length(name_number)<=40);
 COMMENT ON COLUMN tdh_od.sia405cc_cable.name_number IS ' / z.B. Kabelpunktanfang_Kabelpunkteende / xxx_z.B. Point_cableanfang_Point_cableeende';
-ALTER TABLE tdh_od.sia405cc_cable ADD COLUMN geometry_geometry geometry('COMPOUNDCURVE', 2056);
-CREATE INDEX in_tdh_cable_geometry_geometry ON tdh_od.sia405cc_cable USING gist (geometry_geometry );
-COMMENT ON COLUMN tdh_od.sia405cc_cable.geometry_geometry IS '';
+-- ALTER TABLE tdh_od.sia405cc_cable ADD COLUMN geometry_geometry geometry('COMPOUNDCURVE', :SRID);
+-- CREATE INDEX in_tdh_cable_geometry_geometry ON tdh_od.sia405cc_cable USING gist (geometry_geometry );
+-- COMMENT ON COLUMN tdh_od.sia405cc_cable.geometry_geometry IS '';
  ALTER TABLE tdh_od.sia405cc_cable ADD COLUMN function  integer ;
 COMMENT ON COLUMN tdh_od.sia405cc_cable.function IS '';
  ALTER TABLE tdh_od.sia405cc_cable ADD COLUMN cable_type  integer ;
-COMMENT ON COLUMN tdh_od.sia405cc_cable.cable_type IS 'sia405cc_cable type / Kabelart / Genre de sia405cc_cable';
+COMMENT ON COLUMN tdh_od.sia405cc_cable.cable_type IS 'Cable type / Kabelart / Genre de cable';
  ALTER TABLE tdh_od.sia405cc_cable ADD COLUMN horizontal_positioning  integer ;
 COMMENT ON COLUMN tdh_od.sia405cc_cable.horizontal_positioning IS '';
  ALTER TABLE tdh_od.sia405cc_cable ADD COLUMN status  integer ;
@@ -107,7 +110,7 @@ COMMENT ON COLUMN tdh_od.sia405cc_cable.condition IS '';
 COMMENT ON COLUMN tdh_od.sia405cc_cable.remark IS '';
  ALTER TABLE tdh_od.sia405cc_cable ADD COLUMN width  smallint ;
 COMMENT ON COLUMN tdh_od.sia405cc_cable.width IS '';
-ALTER TABLE tdh_od.sia405cc_cable ADD COLUMN geometry3d_geometry geometry('COMPOUNDCURVEZ', 2056);
+ALTER TABLE tdh_od.sia405cc_cable ADD COLUMN geometry3d_geometry geometry('COMPOUNDCURVEZ', :SRID);
 CREATE INDEX in_tdh_cable_geometry3d_geometry ON tdh_od.sia405cc_cable USING gist (geometry3d_geometry );
 COMMENT ON COLUMN tdh_od.sia405cc_cable.geometry3d_geometry IS '';
  ALTER TABLE tdh_od.sia405cc_cable ADD COLUMN elevation_determination  integer ;
@@ -135,7 +138,7 @@ ALTER TABLE tdh_od.sia405cc_cable_point ADD CONSTRAINT rel_sia405cc_cable_point_
 CREATE TABLE tdh_vl.sia405cc_cable_point_kind () INHERITS (tdh_vl.value_list_base);
 ALTER TABLE tdh_vl.sia405cc_cable_point_kind ADD CONSTRAINT pkey_tdh_vl_sia405cc_cable_point_kind_code PRIMARY KEY (code);
  INSERT INTO tdh_vl.sia405cc_cable_point_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (9385,9385,'cable_sleeve','Kabelmuffe','manchon_cable', 'manicotto_del_cavo', 'manson_de_cablu', '', '', '', '', '', 'true');
- INSERT INTO tdh_vl.sia405cc_cable_point_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (9388,9388,'sia405cc_cable_point','Kabelpunkt','point_de_cable', 'punto_cavo', 'punct_de_cablu', '', '', '', '', '', 'true');
+ INSERT INTO tdh_vl.sia405cc_cable_point_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (9388,9388,'cable_point','Kabelpunkt','point_de_cable', 'punto_cavo', 'punct_de_cablu', '', '', '', '', '', 'true');
  INSERT INTO tdh_vl.sia405cc_cable_point_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (9386,9386,'cable_manhole','Kabelschacht','chambre_cable', '', '', '', '', '', '', '', 'true');
  INSERT INTO tdh_vl.sia405cc_cable_point_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (9387,9387,'cabine','Kabine','cabine', 'cabina', 'cabina', '', '', '', '', '', 'true');
  INSERT INTO tdh_vl.sia405cc_cable_point_kind (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, active) VALUES (9384,9384,'unknown','unbekannt','inconnue', 'sconosciuto', 'necunoscuta', '', '', '', '', '', 'true');

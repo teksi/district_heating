@@ -1,6 +1,6 @@
 ------ This file generates the postgres database (Modul fernwaerme (based on SIA405_FERNWAERME_3D_2015_LV95 (Version 20.10.2021) in en for QQIS
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
------- version 23.05.2024 21:40:04
+------ version 25.05.2024 22:05:41
 ------ with 3D coordinates
 BEGIN;
 
@@ -323,10 +323,12 @@ CREATE TABLE tdh_od.structure_line
    CONSTRAINT pkey_tdh_od_structure_line_id PRIMARY KEY (id)
 );
 -- ALTER TABLE tdh_od.structure_line ADD COLUMN geometry_geometry geometry('COMPOUNDCURVE', :SRID);
--- COMMENT ON COLUMN tdh_od.structure_line._geometry IS '';
+-- COMMENT ON COLUMN tdh_od.structure_line.geometry_geometry IS '';
 --CREATE INDEX in_tdh_structure_line_geometry_geometry ON tdh_od.structure_line USING gist (geometry_geometry );
 ALTER TABLE tdh_od.structure_line ADD COLUMN geometry3d_geometry geometry('COMPOUNDCURVEZ', :SRID);
 CREATE INDEX in_tdh_structure_line_geometry3d_geometry ON tdh_od.structure_line USING gist (geometry3d_geometry );
+ALTER TABLE tdh_od.structure_line ADD COLUMN last_modification TIMESTAMP without time zone DEFAULT now();
+COMMENT ON COLUMN tdh_od.structure_line.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
 -------
 CREATE TRIGGER
 update_last_modified_structure_line
@@ -336,6 +338,7 @@ FOR EACH ROW EXECUTE PROCEDURE
  tdh_sys.update_last_modified();
 
 -------
+
 ALTER TABLE tdh_od.structure_line ADD COLUMN fk_structure varchar(16);
 ALTER TABLE tdh_od.structure_line ADD CONSTRAINT rel_structure_line_structure FOREIGN KEY (fk_structure) REFERENCES tdh_od.structure(obj_id) ON UPDATE CASCADE ON DELETE CASCADE;
 
@@ -417,11 +420,12 @@ CREATE TABLE tdh_od.trench_line
    CONSTRAINT pkey_tdh_od_trench_line_id PRIMARY KEY (id)
 );
 -- ALTER TABLE tdh_od.trench_line ADD COLUMN geometry_geometry geometry('COMPOUNDCURVE', :SRID);
--- COMMENT ON COLUMN tdh_od.trench_line._geometry IS '';
+-- COMMENT ON COLUMN tdh_od.trench_line.geometry_geometry IS '';
 --CREATE INDEX in_tdh_trench_line_geometry_geometry ON tdh_od.trench_line USING gist (geometry_geometry );
 ALTER TABLE tdh_od.trench_line ADD COLUMN geometry3d_geometry geometry('COMPOUNDCURVEZ', :SRID);
 CREATE INDEX in_tdh_trench_line_geometry3d_geometry ON tdh_od.trench_line USING gist (geometry3d_geometry );
-
+ALTER TABLE tdh_od.trench_line ADD COLUMN last_modification TIMESTAMP without time zone DEFAULT now();
+COMMENT ON COLUMN tdh_od.trench_line.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
 -------
 CREATE TRIGGER
 update_last_modified_trench_line
@@ -434,6 +438,7 @@ FOR EACH ROW EXECUTE PROCEDURE
 
 ALTER TABLE tdh_od.trench_line ADD COLUMN fk_trench varchar(16);
 ALTER TABLE tdh_od.trench_line ADD CONSTRAINT rel_trench_line_trench FOREIGN KEY (fk_trench) REFERENCES tdh_od.trench(obj_id) ON UPDATE CASCADE ON DELETE CASCADE;
+
 -------
 CREATE TABLE tdh_od.trench_point
 (

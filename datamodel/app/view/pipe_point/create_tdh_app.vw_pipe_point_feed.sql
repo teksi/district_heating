@@ -1,0 +1,33 @@
+CREATE OR REPLACE VIEW tdh_app.vw_pipe_point_feed AS
+ SELECT pipe_point.obj_id,
+    pipe_point.geometry3d_geometry,
+    pipe_point.symbolori,
+    pipe_point.horizontal_positioning,
+    pipe_point.altitude1,
+    pipe_point.altitude2,
+    pipe_point.elevation_determination,
+--    pipe_point.owner,
+    pipe_point.remark,
+    pipe_point.last_modification,
+    pipe_point.fk_dataowner,
+    pipe_point.fk_provider,
+ --   pipe_point.fk_hydraulic_node,
+ --   pipe_point.fk_static_node,
+    pipe_point.fk_owner,
+    pipe_point_feed.kind,
+    pipe_point_feed.power_output_ordered,
+    pipe_point_feed.power_output_installed,
+    pipe_point_feed.aperture_value,
+    pipe_point_feed.q_subscribed,
+    pipe_point_feed.category,
+    pipe_point_feed.start_year,
+    pipe_point_feed.reconstruction,
+    pipe_point_feed.pressure,
+    pipe_point_feed.flow_temperature,
+    pipe_point_feed.return_flow_temperature,
+    pipe_point_feed.heated_volume,
+    pipe_point_feed.heat_consumption,
+    pipe_point_feed.power_output
+   FROM tdh_od.pipe_point
+     LEFT JOIN tdh_od.pipe_point_feed ON pipe_point_feed.obj_id::text = pipe_point.obj_id::text
+	 WHERE pipe_point_feed.kind BETWEEN 8156 AND 8159;

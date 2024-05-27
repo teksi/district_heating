@@ -1,5 +1,5 @@
 ------ This file generates the postgres database (Modul fernwirkkabel (based on SIA405_FERNWIRKKABEL_3D_2015_LV95 (Version 18.04.2018) in en for QQIS
------- Rename classes for integration in specific TEKSI module based on this convention: https://github.com/orgs/teksi/discussions/100#discussioncomment-9058690  
+------ Rename classes for integration in specific TEKSI module based on this convention: https://github.com/orgs/teksi/discussions/100#discussioncomment-9058690
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
 ------ version 25.05.2024 22:31:03
 ------ with 3D coordinates

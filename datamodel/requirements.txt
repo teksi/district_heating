@@ -1,0 +1,2 @@
+pirogue>=2.1.0
+pyyaml

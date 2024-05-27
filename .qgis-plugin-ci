@@ -1,0 +1,7 @@
+plugin_path: plugin/teksi_district_heating
+github_organization_slug: TEKSI
+project_slug: district_heating
+
+transifex_organization: teksi
+transifex_project: tdh-plugin
+transifex_resource: tdh-plugin

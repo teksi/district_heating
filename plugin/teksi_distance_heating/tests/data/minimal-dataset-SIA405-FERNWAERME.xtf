@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<TRANSFER xmlns="http://www.interlis.ch/INTERLIS2.3">
+	<HEADERSECTION VERSION="2.3"
+	               SENDER="UNKNOWN">
+		<MODELS>
+			<MODEL NAME="SIA405_FERNWAERME_2015_LV95_LV95"
+			       URI="http://www.infogrips.ch"
+			       VERSION=""/>
+		</MODELS>
+		<ALIAS>
+			<ENTRIES FOR="SIA405_FERNWAERME_2015_LV95_LV95">
+      </ENTRIES>
+		</ALIAS>
+		<COMMENT>
+      dataset manually generated 8.5.2024
+    </COMMENT>
+	</HEADERSECTION>
+	<DATASECTION>
+		<SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme BID="BASKET1">
+			<SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme.Bauwerk TID="ch000000ST000001">
+				<OBJ_ID>ch000000ST000001</OBJ_ID>
+				<Metaattribute>
+					<SIA405_Base_LV95.Metaattribute>
+						<Datenherr>ch20p3q400001497</Datenherr>
+						<Datenlieferant>ch20p3q400001497</Datenlieferant>
+						<Letzte_Aenderung>20240506</Letzte_Aenderung>
+					</SIA405_Base_LV95.Metaattribute>
+				</Metaattribute>
+				<Name_Nummer>ch000000RE000001</Name_Nummer>
+				<Lagebestimmung>genau</Lagebestimmung>
+				<Status>in_Betrieb</Status>
+				<Netzgebiet>Test</Netzgebiet>
+				<Art>Spezialbauwerk</Art>
+				<Bauwerkueberdeckung>1.40</Bauwerkueberdeckung>
+				<Eigentuemer>ch20p3q400001497</Eigentuemer>
+				<Bauunternehmung>ch20p3q400001497</Bauunternehmung>
+				<Schemahinweis>Schemahinweis einfügen</Schemahinweis>
+				<Letzter_Unterhalt>20240506</Letzter_Unterhalt>
+				<Dokumentation>Testdokumentation</Dokumentation>
+				<Auftrag>001</Auftrag>
+				<KKS>1.04</KKS>
+				<Bemerkung>Testbauwerk</Bemerkung>
+			</SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme.Bauwerk>
+			<SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme.Trasse TID="ch000000TR000001">
+				<OBJ_ID>ch000000TR000001</OBJ_ID>
+				<Metaattribute>
+					<SIA405_Base_LV95.Metaattribute>
+						<Datenherr>ch20p3q400001497</Datenherr>
+						<Datenlieferant>ch20p3q400001497</Datenlieferant>
+						<Letzte_Aenderung>20240506</Letzte_Aenderung>
+					</SIA405_Base_LV95.Metaattribute>
+				</Metaattribute>
+				<!-- <Letzte_Aenderung>20240506</Letzte_Aenderung>
+				<DatenherrRef REF="ch20p3q400001497"/>
+				<DatenlieferantRef REF="ch20p3q400001497"/> -->
+				<Name_Nummer>ch000000RE000001</Name_Nummer>
+				<Geometrie>
+					<SURFACE>
+						<BOUNDARY>
+							<POLYLINE>
+								<COORD>
+									<C1>2646380.000</C1>
+									<C2>1139775.000</C2>
+								</COORD>
+								<COORD>
+									<C1>2646350.000</C1>
+									<C2>1139745.000</C2>
+								</COORD>
+								<COORD>
+									<C1>2646340.000</C1>
+									<C2>1139755.000</C2>
+								</COORD>
+								<COORD>
+									<C1>2646370.000</C1>
+									<C2>1139785.000</C2>
+								</COORD>
+								<COORD>
+									<C1>2646380.000</C1>
+									<C2>1139775.000</C2>
+								</COORD>
+							</POLYLINE>
+						</BOUNDARY>
+					</SURFACE>
+				</Geometrie>
+				<Lagebestimmung>genau</Lagebestimmung>
+				<Status>in_Betrieb</Status>
+				<Trassetyp>begehbarer_Kanal</Trassetyp>
+				<Trassebreite>2400</Trassebreite>
+				<Einbaujahr>1976</Einbaujahr>
+				<Eigentuemer>ch20p3q400001497</Eigentuemer>
+				<Bauunternehmung>ch20p3q400001497</Bauunternehmung>
+				<Reparatur>20100506</Reparatur>
+				<Dokumentation>Testdokumentation</Dokumentation>
+				<Auftrag>002</Auftrag>
+				<Bemerkung>Testtrasse</Bemerkung>
+			</SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme.Trasse>
+			<SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme.Leitungsabschnitt TID="ch000000PS000001">
+				<OBJ_ID>ch000000PS000001</OBJ_ID>
+				<Metaattribute>
+					<SIA405_Base_LV95.Metaattribute>
+						<Datenherr>ch20p3q400001497</Datenherr>
+						<Datenlieferant>ch20p3q400001497</Datenlieferant>
+						<Letzte_Aenderung>20240506</Letzte_Aenderung>
+					</SIA405_Base_LV95.Metaattribute>
+				</Metaattribute>
+				<!-- 				<Letzte_Aenderung>20240506</Letzte_Aenderung>
+				<DatenherrRef REF="ch20p3q400001497"/>
+				<DatenlieferantRef REF="ch20p3q400001497"/> -->
+				<Name_Nummer>PS1</Name_Nummer>
+				<Geometrie>
+					<POLYLINE>
+						<COORD>
+							<C1>2646497.500</C1>
+							<C2>1139902.200</C2>
+						</COORD>
+						<COORD>
+							<C1>2646410.000</C1>
+							<C2>1139809.000</C2>
+						</COORD>
+					</POLYLINE>
+				</Geometrie>
+				<Lagebestimmung>genau</Lagebestimmung>
+				<Status>in_Betrieb</Status>
+				<Funktion>Transportleitung</Funktion>
+				<Temperatur>90</Temperatur>
+				<Nenndruck>7.2</Nenndruck> <!-- Druck; -->
+				<Betriebsdruck>7.2</Betriebsdruck> <!-- MANDATORY Druck; -->
+				<Isolationsstaerke>300</Isolationsstaerke> <!-- MANDATORY 0 .. 9999 [Units.mm]; -->
+				<DurchmesserInnen>400</DurchmesserInnen>
+				<DurchmesserAussen>430</DurchmesserAussen>
+				<Nennweite>425</Nennweite>
+				<Laenge1>13430</Laenge1> <!-- MANDATORY 0 .. 999999 [Units.mm];  !! Laenge_abgewickelt-->
+				<Laenge2>13435</Laenge2> <!-- MANDATORY 0 .. 999999 [Units.mm];  !! Laenge_berechnet -->
+				<Rohrfabrikat>Herstellername</Rohrfabrikat> <!-- MANDATORY TEXT*40; -->
+				<Rohrqualitaet>Stahl_37</Rohrqualitaet>
+				<Einbaujahr>1990</Einbaujahr>
+				<Eigentuemer>ch20p3q400001497</Eigentuemer>
+				<Rohrltg_unternehmung>ch20p3q400001497</Rohrltg_unternehmung>
+				<Dokumentation>Testdokumentation</Dokumentation>
+				<Auftrag>003</Auftrag>
+				<Bemerkung>Test Leitungsabschnitt</Bemerkung>
+			</SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme.Leitungsabschnitt>
+			<SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme.Leitungspunkt_normal TID="ch000000PN000001">
+				<OBJ_ID>ch000000PN000001</OBJ_ID>
+				<Metaattribute>
+					<SIA405_Base_LV95.Metaattribute>
+						<Datenherr>ch20p3q400001497</Datenherr>
+						<Datenlieferant>ch20p3q400001497</Datenlieferant>
+						<Letzte_Aenderung>20240506</Letzte_Aenderung>
+					</SIA405_Base_LV95.Metaattribute>
+				</Metaattribute>
+				<!-- 				<Letzte_Aenderung>20240506</Letzte_Aenderung>
+				<DatenherrRef REF="ch20p3q400001497"/>
+				<DatenlieferantRef REF="ch20p3q400001497"/> -->
+				<Geometrie>
+					<COORD>
+						<C1>2745874.445</C1>
+						<C2>1267494.562</C2>
+					</COORD>
+				</Geometrie>
+				<SymbolOri>90.0</SymbolOri>
+				<Lagebestimmung>genau</Lagebestimmung>
+				<Hoehe1>447.510</Hoehe1>
+				<Hoehe1>447.200</Hoehe1>
+				<Hoehenbestimmung>genau</Hoehenbestimmung>
+				<Eigentuemer>ch20p3q400001497</Eigentuemer>
+				<Bemerkung>Test Leitungspunkt_normal</Bemerkung>
+				<Art>Armaturen.Leitungspunkt.Geometriepunkt</Art>
+			</SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme.Leitungspunkt_normal>
+			<SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme.Leitungspunkt_Einspeisung TID="ch000000PF000002">
+				<OBJ_ID>ch000000PF000002</OBJ_ID>
+				<Metaattribute>
+					<SIA405_Base_LV95.Metaattribute>
+						<Datenherr>ch20p3q400001497</Datenherr>
+						<Datenlieferant>ch20p3q400001497</Datenlieferant>
+						<Letzte_Aenderung>20240506</Letzte_Aenderung>
+					</SIA405_Base_LV95.Metaattribute>
+				</Metaattribute>
+				<!-- 				<Letzte_Aenderung>20240506</Letzte_Aenderung>
+				<DatenherrRef REF="ch20p3q400001497"/>
+				<DatenlieferantRef REF="ch20p3q400001497"/> -->
+				<Geometrie>
+					<COORD>
+						<C1>2745874.445</C1>
+						<C2>1267494.562</C2>
+					</COORD>
+				</Geometrie>
+				<SymbolOri>90.0</SymbolOri>
+				<Lagebestimmung>genau</Lagebestimmung>
+				<Hoehe1>447.510</Hoehe1>
+				<Hoehe1>447.200</Hoehe1>
+				<Hoehenbestimmung>genau</Hoehenbestimmung>
+				<Eigentuemer>ch20p3q400001497</Eigentuemer>
+				<Bemerkung>Test Leitungspunkt_normal</Bemerkung>
+				<Art>Netzeinspeisung</Art>
+				<Leistung_abonniert>2.3</Leistung_abonniert>
+				<Leistung_installiert>3.0</Leistung_installiert>
+				<Blendenwert>3.5</Blendenwert>
+				<Q_abonniert>12.2</Q_abonniert>
+				<Kategorie>MFH</Kategorie>
+				<Inbetriebsetzung>1990</Inbetriebsetzung>
+				<Umbau>2014</Umbau>
+				<Druck>5.2</Druck>
+				<Vorlauftemperatur>70</Vorlauftemperatur>
+				<Ruecklauftemperatur>48</Ruecklauftemperatur>
+				<Geheiztes_Volumen>456</Geheiztes_Volumen>
+				<Waermeverbrauch>45676</Waermeverbrauch>
+				<Leistung>45676</Leistung>
+			</SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme.Leitungspunkt_Einspeisung>
+		</SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme>
+	</DATASECTION>
+</TRANSFER>

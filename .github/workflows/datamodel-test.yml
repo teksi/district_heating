@@ -39,19 +39,19 @@ jobs:
           --build-arg RUN_TEST=True \
           --build-arg PSYCOPG_VERSION=${{ matrix.psycopg-version }} \
           -f datamodel/.docker/Dockerfile \
-          --tag teksi/distance_heating:unstable .
+          --tag teksi/district_heating:unstable .
 
       - name: Initialize container
         run: |
-          docker run -d -p 5432:5432 --name teksi-distance_heating teksi/distance_heating:unstable
-          docker exec teksi-distance_heating init_db.sh wait
+          docker run -d -p 5432:5432 --name teksi-district_heating teksi/district_heating:unstable
+          docker exec teksi-district_heating init_db.sh wait
 
       - name: Run tests
-        run:  docker exec teksi-distance_heating pytest datamodel
+        run:  docker exec teksi-district_heating pytest datamodel
 
       - name: Docker logs
         if: failure()
-        run: docker logs teksi-distance_heating
+        run: docker logs teksi-district_heating
 
   static-tests:
     name: Run static tests on datamodel

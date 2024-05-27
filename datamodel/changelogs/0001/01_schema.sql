@@ -1,0 +1,5 @@
+
+CREATE SCHEMA tdh_sys;
+CREATE SCHEMA tdh_vl;
+CREATE SCHEMA tdh_od;
+CREATE SCHEMA tdh_cfg;

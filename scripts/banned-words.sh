@@ -8,6 +8,8 @@ declare -a EXCLUDES=()
 
 KEYWORDS[0]="qgep"
 HINTS[0]="No mention of QGEP"
+KEYWORDS[1]="wastewater"
+HINTS[1]="No mention of wastewater"
 
 RES=0
 DIR=$(git rev-parse --show-toplevel)

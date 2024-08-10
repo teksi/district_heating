@@ -67,7 +67,6 @@ def create_app(
     #    if tdh_xx_extra:
     #        tdh_xx_extra = safe_load(open(tdh_xx_extra))
 
-
     run_sql_file("view/vw_dictionary_value_list.sql", pg_service, variables)
 
     defaults = {"view_schema": "tdh_app", "pg_service": pg_service}
@@ -109,7 +108,7 @@ def create_app(
     # )
 
     # additional views to be created with simple sql
-    
+
     # run_sql_file("view/vw_file.sql", pg_service, variables)
 
     # MultipleInheritance(

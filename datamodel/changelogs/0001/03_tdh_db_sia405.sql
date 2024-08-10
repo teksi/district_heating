@@ -1,6 +1,6 @@
 ------ This file generates the postgres database (Modul fernwaerme (based on SIA405_FERNWAERME_3D_2015_LV95 (Version 20.10.2021) in en for QQIS
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
------- version 25.05.2024 22:05:41
+------ version 30.05.2024 21:01:35
 ------ with 3D coordinates
 BEGIN;
 
@@ -336,7 +336,6 @@ BEFORE UPDATE OR INSERT ON
  tdh_od.structure_line
 FOR EACH ROW EXECUTE PROCEDURE
  tdh_sys.update_last_modified();
-
 -------
 
 ALTER TABLE tdh_od.structure_line ADD COLUMN fk_structure varchar(16);
@@ -433,7 +432,6 @@ BEFORE UPDATE OR INSERT ON
  tdh_od.trench_line
 FOR EACH ROW EXECUTE PROCEDURE
  tdh_sys.update_last_modified();
-
 -------
 
 ALTER TABLE tdh_od.trench_line ADD COLUMN fk_trench varchar(16);
@@ -500,9 +498,10 @@ FOR EACH ROW EXECUTE PROCEDURE
 
 -------
 ------------ Relationships and Value Tables ----------- ;
--- Relations to classes hydraulic_line_section and static_line_section that are not yet supported commented out
+-- Class tdh_od.hydraulic_line_section is not yet supported and therefore relation is commented out
 -- ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_hydraulic_line_section varchar(16);
 -- ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_pipe_section_hydraulic_line_section FOREIGN KEY (fk_hydraulic_line_section) REFERENCES tdh_od.hydraulic_line_section(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
+-- Class tdh_od.static_line_section is not yet supported and therefore relation is commented out
 -- ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_static_line_section varchar(16);
 -- ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_pipe_section_static_line_section FOREIGN KEY (fk_static_line_section) REFERENCES tdh_od.static_line_section(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_owner varchar(16);
@@ -591,9 +590,10 @@ ALTER TABLE tdh_vl.pipe_section_pipeline_quality ADD CONSTRAINT pkey_tdh_vl_pipe
  ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT fkey_vl_pipe_section_pipeline_quality FOREIGN KEY (pipeline_quality)
  REFERENCES tdh_vl.pipe_section_pipeline_quality (code) MATCH SIMPLE
  ON UPDATE RESTRICT ON DELETE RESTRICT;
- -- Relations to classes hydraulic_node and static_node that are not yet supported commented out
+-- Class tdh_od.hydraulic_node is not yet supported and therefore relation is commented out
 -- ALTER TABLE tdh_od.pipe_point ADD COLUMN fk_hydraulic_node varchar(16);
 -- ALTER TABLE tdh_od.pipe_point ADD CONSTRAINT rel_pipe_point_hydraulic_node FOREIGN KEY (fk_hydraulic_node) REFERENCES tdh_od.hydraulic_node(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
+-- Class tdh_od.static_node is not yet supported and therefore relation is commented out
 -- ALTER TABLE tdh_od.pipe_point ADD COLUMN fk_static_node varchar(16);
 -- ALTER TABLE tdh_od.pipe_point ADD CONSTRAINT rel_pipe_point_static_node FOREIGN KEY (fk_static_node) REFERENCES tdh_od.static_node(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE tdh_od.pipe_point ADD COLUMN fk_owner varchar(16);
@@ -895,19 +895,18 @@ ALTER TABLE tdh_vl.trench_point_elevation_determination ADD CONSTRAINT pkey_tdh_
  REFERENCES tdh_vl.trench_point_elevation_determination (code) MATCH SIMPLE
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 
-
 --------- Relations to class organisation for dataowner and provider (new 3.11.2014);
 
-ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_od_pipe_section_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_od_pipe_section_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.pipe_point ADD CONSTRAINT rel_od_pipe_point_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.pipe_point ADD CONSTRAINT rel_od_pipe_point_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.structure ADD CONSTRAINT rel_od_structure_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.structure ADD CONSTRAINT rel_od_structure_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.trench ADD CONSTRAINT rel_od_trench_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.trench ADD CONSTRAINT rel_od_trench_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.trench_point ADD CONSTRAINT rel_od_trench_point_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id);
-ALTER TABLE tdh_od.trench_point ADD CONSTRAINT rel_od_trench_point_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id);
+ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_od_pipe_section_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_od_pipe_section_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE tdh_od.pipe_point ADD CONSTRAINT rel_od_pipe_point_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE tdh_od.pipe_point ADD CONSTRAINT rel_od_pipe_point_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE tdh_od.structure ADD CONSTRAINT rel_od_structure_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE tdh_od.structure ADD CONSTRAINT rel_od_structure_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE tdh_od.trench ADD CONSTRAINT rel_od_trench_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE tdh_od.trench ADD CONSTRAINT rel_od_trench_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE tdh_od.trench_point ADD CONSTRAINT rel_od_trench_point_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE tdh_od.trench_point ADD CONSTRAINT rel_od_trench_point_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id) DEFERRABLE INITIALLY DEFERRED;
 
 ------ Indexes on identifiers
 

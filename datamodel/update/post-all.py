@@ -14,7 +14,7 @@ from view.create_views import create_views
 
 class CreateViews(DeltaPy):
     def run(self):
-        # tdh_wastewater_structure_extra = self.variables.get("tdh_wastewater_structure_extra", None)
+        # tdh_xxx_structure_extra = self.variables.get("tdh_xxx_structure_extra", None)
         # tdh_reach_extra = self.variables.get("tdh_reach_extra", None)
 
         if not self.variables.get("SRID"):
@@ -24,7 +24,7 @@ class CreateViews(DeltaPy):
         create_views(
             srid=self.variables.get("SRID"),
             pg_service=self.pg_service,
-            # tdh_wastewater_structure_extra=tdh_wastewater_structure_extra,
+            # tdh_xxx_structure_extra=tdh_xxx_structure_extra,
             # tdh_reach_extra=tdh_reach_extra,
         )
 

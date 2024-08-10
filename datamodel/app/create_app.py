@@ -12,7 +12,7 @@ except ImportError:
 from pirogue import SingleInheritance
 
 # from view.vw_tdh_reach import vw_tdh_reach
-# from view.vw_tdh_wastewater_structure import vw_tdh_wastewater_structure
+# from view.vw_tdh_xxx_structure import vw_tdh_xxx_structure
 
 
 def run_sql_file(file_path: str, pg_service: str, variables: dict = None):
@@ -148,7 +148,7 @@ if __name__ == "__main__":
         "-s", "--srid", help="SRID EPSG code, defaults to 2056", type=int, default=2056
     )
     # parser.add_argument(
-    # "--tdh_wastewater_structure_extra",
+    # "--tdh_xxx_structure_extra",
     # help="YAML definition file path for additions to vw_tdh_xxx_structure view",
     # )
     # parser.add_argument(
@@ -169,5 +169,5 @@ if __name__ == "__main__":
         args.pg_service,
         drop_schema=args.drop_schema,
         # tdh_reach_extra=args.tdh_reach_extra,
-        # tdh_xxx_structure_extra=args.tdh_wastewater_structure_extra,
+        # tdh_xxx_structure_extra=args.tdh_xxx_structure_extra,
     )

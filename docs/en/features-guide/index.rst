@@ -1,9 +1,9 @@
-TEKSI wastewater (TWW)
+TEKSI district heating (TDH)
 ============================================
 
-TEKSI wastewater and general wastewater management plan (GWMP) is a selection of tools and a database implementation that allows you to:
+TEKSI district heating is a selection of tools and a database implementation that allows you to:
 
-* manage and map your sewer network data with all its components in compliance with Swiss standards
+* manage and map your district heating network data with all its components in compliance with Swiss standards
 * indicate the characteristics of networks objects in the form of attributes such as diameter, material, depth, damages, construction year, etc.
 * produce plans and extract statistics from the database such as network values, total length of pipes, identification of future interventions, etc.
 * export geodata in compliance with Swiss standards
@@ -13,22 +13,21 @@ Main features
 
 **Network objects**
 
-Creation, information and management of network elements according to the VSA-DSS model:
+Creation, information and management of network elements according to the swiss SIA 405 model:
 
-* Wastewater structures
-* Special structures
-* Primary collectors
-* Secondary collectors (ex : private connection)
-* Catchments
-* GEP mesures
-* Maintenances
-* Network inspection (VSA-DSS model extension VSA-KEK)
+* District heating installations
+* Network elements
+* Pipes
+* Trenches
 
 **Viewing and editing**
 
 A preconfigured QGIS project including the symbology, the forms and the relation between the objets is provided.
 
-The editing can be done directly using the QGIS natives tools and the TWW complementary toolbox (ex : inversion of the direction of the pipes and its related altitudes).
+The editing can be done directly using the QGIS natives tools and the TDH complementary toolbox (ex : inversion of the direction of the pipes and its related altitudes).
+
+More to come
+------------
 
 **Files**
 
@@ -63,10 +62,3 @@ Network topology management:
 **Historisation**
 
 * Modifications history viewer and possibility to roll back
-
-More to come
-------------
-
-* Automatic integration of pipe inspection according to Wincan VX and VSA-DSS KEK format
-* GEP mesures
-* Log Cards (log_card, bio_ecol_assessment and catchment_area_totals)

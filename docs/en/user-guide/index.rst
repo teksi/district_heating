@@ -1,6 +1,6 @@
 .. _user-guide:
 
-TWW User Guide
+TDH User Guide
 ===============
 
 This represents a guide on how to collect data in TDH (digitizing), edit existing data.

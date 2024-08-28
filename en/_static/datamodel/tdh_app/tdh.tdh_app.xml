@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?><database name="tdh" schema="tdh_app" type="PostgreSQL - 14.13 (Debian 14.13-1.pgdg110+1)">
+   <tables>
+      <table name="sys_dictionary_value_list" numRows="0" remarks="" schema="tdh_app" type="VIEW" viewSql=" SELECT p.relname AS vl_name,&#10;    vl.code,&#10;    vl.vsacode,&#10;    vl.value_en,&#10;    vl.value_de,&#10;    vl.value_fr,&#10;    vl.value_it,&#10;    vl.value_ro,&#10;    vl.abbr_en,&#10;    vl.abbr_de,&#10;    vl.abbr_fr,&#10;    vl.abbr_it,&#10;    vl.abbr_ro,&#10;    vl.active&#10;   FROM tdh_vl.value_list_base vl,&#10;    pg_class p&#10;  WHERE (vl.tableoid = p.oid);">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="vl_name" nullable="true" remarks="" size="2147483647" type="name" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="code" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="vsacode" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="value_en" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="value_de" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="value_fr" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="value_it" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="value_ro" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="abbr_en" nullable="true" remarks="" size="3" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="abbr_de" nullable="true" remarks="" size="3" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="abbr_fr" nullable="true" remarks="" size="3" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="abbr_it" nullable="true" remarks="" size="3" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="abbr_ro" nullable="true" remarks="" size="3" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="active" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+      </table>
+      <table name="vw_pipe_point_feed" numRows="0" remarks="" schema="tdh_app" type="VIEW" viewSql=" SELECT pipe_point_feed.obj_id,&#10;    pipe_point_feed.aperture_value,&#10;    pipe_point_feed.category,&#10;    pipe_point_feed.flow_temperature,&#10;    pipe_point_feed.heat_consumption,&#10;    pipe_point_feed.heated_volume,&#10;    pipe_point_feed.kind,&#10;    pipe_point_feed.power_output,&#10;    pipe_point_feed.power_output_installed,&#10;    pipe_point_feed.power_output_ordered,&#10;    pipe_point_feed.pressure,&#10;    pipe_point_feed.q_subscribed,&#10;    pipe_point_feed.return_flow_temperature,&#10;    pipe_point_feed.year_of_commissioning,&#10;    pipe_point_feed.year_of_reconstruction,&#10;    pipe_point.altitude1,&#10;    pipe_point.altitude2,&#10;    pipe_point.elevation_determination,&#10;    pipe_point.fk_dataowner,&#10;    pipe_point.fk_owner,&#10;    pipe_point.fk_provider,&#10;    pipe_point.geometry3d_geometry,&#10;    pipe_point.horizontal_positioning,&#10;    pipe_point.last_modification,&#10;    pipe_point.remark,&#10;    pipe_point.symbolori&#10;   FROM (tdh_od.pipe_point_feed&#10;     LEFT JOIN tdh_od.pipe_point ON (((pipe_point.obj_id)::text = (pipe_point_feed.obj_id)::text)));">
+         <column autoUpdated="false" defaultValue="tdh_sys.generate_oid('tdh_od'::text, 'pipe_point_feed'::text)" digits="0" id="0" name="obj_id" nullable="true" remarks="" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="aperture_value" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="category" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="flow_temperature" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="heat_consumption" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="heated_volume" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="kind" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="power_output" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="power_output_installed" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="power_output_ordered" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="pressure" nullable="true" remarks="" size="5" type="int2" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="11" name="q_subscribed" nullable="true" remarks="" size="7" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="return_flow_temperature" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="year_of_commissioning" nullable="true" remarks="" size="5" type="int2" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="year_of_reconstruction" nullable="true" remarks="" size="5" type="int2" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="15" name="altitude1" nullable="true" remarks="" size="7" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="16" name="altitude2" nullable="true" remarks="" size="7" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="elevation_determination" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="fk_dataowner" nullable="true" remarks="" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="19" name="fk_owner" nullable="true" remarks="" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="20" name="fk_provider" nullable="true" remarks="" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="21" name="geometry3d_geometry" nullable="true" remarks="" size="2147483647" type="geometry" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="22" name="horizontal_positioning" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="23" name="last_modification" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="24" name="remark" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="1" id="25" name="symbolori" nullable="true" remarks="" size="4" type="numeric" typeCode="2"/>
+      </table>
+      <table name="vw_pipe_point_normal" numRows="0" remarks="" schema="tdh_app" type="VIEW" viewSql=" SELECT pipe_point_normal.obj_id,&#10;    pipe_point_normal.armature_setting,&#10;    pipe_point_normal.kind,&#10;    pipe_point_normal.material,&#10;    pipe_point.altitude1,&#10;    pipe_point.altitude2,&#10;    pipe_point.elevation_determination,&#10;    pipe_point.fk_dataowner,&#10;    pipe_point.fk_owner,&#10;    pipe_point.fk_provider,&#10;    pipe_point.geometry3d_geometry,&#10;    pipe_point.horizontal_positioning,&#10;    pipe_point.last_modification,&#10;    pipe_point.remark,&#10;    pipe_point.symbolori&#10;   FROM (tdh_od.pipe_point_normal&#10;     LEFT JOIN tdh_od.pipe_point ON (((pipe_point.obj_id)::text = (pipe_point_normal.obj_id)::text)));">
+         <column autoUpdated="false" defaultValue="tdh_sys.generate_oid('tdh_od'::text, 'pipe_point_normal'::text)" digits="0" id="0" name="obj_id" nullable="true" remarks="" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="armature_setting" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="kind" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="material" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="4" name="altitude1" nullable="true" remarks="" size="7" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="5" name="altitude2" nullable="true" remarks="" size="7" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="elevation_determination" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="fk_dataowner" nullable="true" remarks="" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="fk_owner" nullable="true" remarks="" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="fk_provider" nullable="true" remarks="" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="geometry3d_geometry" nullable="true" remarks="" size="2147483647" type="geometry" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="horizontal_positioning" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="12" name="last_modification" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="remark" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="1" id="14" name="symbolori" nullable="true" remarks="" size="4" type="numeric" typeCode="2"/>
+      </table>
+   </tables>
+   <routines>
+      <routine dataAccess="MODIFIES" deterministic="false" name="ft_vw_pipe_point_feed_delete()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[BEGIN
+  DELETE FROM tdh_od.pipe_point_feed WHERE obj_id = OLD.obj_id;
+  DELETE FROM tdh_od.pipe_point WHERE obj_id = OLD.obj_id;
+RETURN NULL;
+END;]]></definition>
+         <parameters>
+            <parameter mode="IN"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="ft_vw_pipe_point_feed_insert()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[BEGIN
+INSERT INTO tdh_od.pipe_point (
+        obj_id
+      , altitude1
+      , altitude2
+      , elevation_determination
+      , fk_dataowner
+      , fk_owner
+      , fk_provider
+      , geometry3d_geometry
+      , horizontal_positioning
+      , last_modification
+      , remark
+      , symbolori
+    ) VALUES (
+        COALESCE( NEW.obj_id, tdh_sys.generate_oid('tdh_od'::text, 'pipe_point_feed'::text) )
+      , NEW.altitude1
+      , NEW.altitude2
+      , NEW.elevation_determination
+      , NEW.fk_dataowner
+      , NEW.fk_owner
+      , NEW.fk_provider
+      , NEW.geometry3d_geometry
+      , NEW.horizontal_positioning
+      , NEW.last_modification
+      , NEW.remark
+      , NEW.symbolori
+    ) RETURNING obj_id INTO NEW.obj_id;
+
+
+INSERT INTO tdh_od.pipe_point_feed (
+        obj_id
+      , aperture_value
+      , category
+      , flow_temperature
+      , heat_consumption
+      , heated_volume
+      , kind
+      , power_output
+      , power_output_installed
+      , power_output_ordered
+      , pressure
+      , q_subscribed
+      , return_flow_temperature
+      , year_of_commissioning
+      , year_of_reconstruction
+    ) VALUES (
+        NEW.obj_id
+      , NEW.aperture_value
+      , NEW.category
+      , NEW.flow_temperature
+      , NEW.heat_consumption
+      , NEW.heated_volume
+      , NEW.kind
+      , NEW.power_output
+      , NEW.power_output_installed
+      , NEW.power_output_ordered
+      , NEW.pressure
+      , NEW.q_subscribed
+      , NEW.return_flow_temperature
+      , NEW.year_of_commissioning
+      , NEW.year_of_reconstruction
+    );
+
+RETURN NEW;
+END;]]></definition>
+         <parameters>
+            <parameter mode="IN"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="ft_vw_pipe_point_feed_update()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[BEGIN
+UPDATE tdh_od.pipe_point SET
+      altitude1 = NEW.altitude1
+      , altitude2 = NEW.altitude2
+      , elevation_determination = NEW.elevation_determination
+      , fk_dataowner = NEW.fk_dataowner
+      , fk_owner = NEW.fk_owner
+      , fk_provider = NEW.fk_provider
+      , geometry3d_geometry = NEW.geometry3d_geometry
+      , horizontal_positioning = NEW.horizontal_positioning
+      , last_modification = NEW.last_modification
+      , remark = NEW.remark
+      , symbolori = NEW.symbolori
+    WHERE obj_id = OLD.obj_id;
+
+UPDATE tdh_od.pipe_point_feed SET
+      obj_id = NEW.obj_id
+      , aperture_value = NEW.aperture_value
+      , category = NEW.category
+      , flow_temperature = NEW.flow_temperature
+      , heat_consumption = NEW.heat_consumption
+      , heated_volume = NEW.heated_volume
+      , kind = NEW.kind
+      , power_output = NEW.power_output
+      , power_output_installed = NEW.power_output_installed
+      , power_output_ordered = NEW.power_output_ordered
+      , pressure = NEW.pressure
+      , q_subscribed = NEW.q_subscribed
+      , return_flow_temperature = NEW.return_flow_temperature
+      , year_of_commissioning = NEW.year_of_commissioning
+      , year_of_reconstruction = NEW.year_of_reconstruction
+    WHERE obj_id = OLD.obj_id;
+RETURN NEW;
+END;]]></definition>
+         <parameters>
+            <parameter mode="IN"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="ft_vw_pipe_point_normal_delete()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[BEGIN
+  DELETE FROM tdh_od.pipe_point_normal WHERE obj_id = OLD.obj_id;
+  DELETE FROM tdh_od.pipe_point WHERE obj_id = OLD.obj_id;
+RETURN NULL;
+END;]]></definition>
+         <parameters>
+            <parameter mode="IN"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="ft_vw_pipe_point_normal_insert()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[BEGIN
+INSERT INTO tdh_od.pipe_point (
+        obj_id
+      , altitude1
+      , altitude2
+      , elevation_determination
+      , fk_dataowner
+      , fk_owner
+      , fk_provider
+      , geometry3d_geometry
+      , horizontal_positioning
+      , last_modification
+      , remark
+      , symbolori
+    ) VALUES (
+        COALESCE( NEW.obj_id, tdh_sys.generate_oid('tdh_od'::text, 'pipe_point_normal'::text) )
+      , NEW.altitude1
+      , NEW.altitude2
+      , NEW.elevation_determination
+      , NEW.fk_dataowner
+      , NEW.fk_owner
+      , NEW.fk_provider
+      , NEW.geometry3d_geometry
+      , NEW.horizontal_positioning
+      , NEW.last_modification
+      , NEW.remark
+      , NEW.symbolori
+    ) RETURNING obj_id INTO NEW.obj_id;
+
+
+INSERT INTO tdh_od.pipe_point_normal (
+        obj_id
+      , armature_setting
+      , kind
+      , material
+    ) VALUES (
+        NEW.obj_id
+      , NEW.armature_setting
+      , NEW.kind
+      , NEW.material
+    );
+
+RETURN NEW;
+END;]]></definition>
+         <parameters>
+            <parameter mode="IN"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="ft_vw_pipe_point_normal_update()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[BEGIN
+UPDATE tdh_od.pipe_point SET
+      altitude1 = NEW.altitude1
+      , altitude2 = NEW.altitude2
+      , elevation_determination = NEW.elevation_determination
+      , fk_dataowner = NEW.fk_dataowner
+      , fk_owner = NEW.fk_owner
+      , fk_provider = NEW.fk_provider
+      , geometry3d_geometry = NEW.geometry3d_geometry
+      , horizontal_positioning = NEW.horizontal_positioning
+      , last_modification = NEW.last_modification
+      , remark = NEW.remark
+      , symbolori = NEW.symbolori
+    WHERE obj_id = OLD.obj_id;
+
+UPDATE tdh_od.pipe_point_normal SET
+      obj_id = NEW.obj_id
+      , armature_setting = NEW.armature_setting
+      , kind = NEW.kind
+      , material = NEW.material
+    WHERE obj_id = OLD.obj_id;
+RETURN NEW;
+END;]]></definition>
+         <parameters>
+            <parameter mode="IN"/>
+         </parameters>
+      </routine>
+   </routines>
+</database>

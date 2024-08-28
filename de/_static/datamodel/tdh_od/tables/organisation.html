@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>organisation - tdh.tdh_od</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon.png">
+        <!-- Bootstrap 3.3.5 -->
+        <link rel="stylesheet" href="../bower/admin-lte/bootstrap/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="../bower/font-awesome/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="../bower/ionicons/css/ionicons.min.css">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="../bower/datatables.net-bs/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="../bower/datatables.net-buttons-bs/css/buttons.bootstrap.min.css">
+        <!-- Code Mirror -->
+        <link rel="stylesheet" href="../bower/codemirror/codemirror.css">
+        <!-- Fonts -->
+        <link href='../fonts/indieflower/indie-flower.css' rel='stylesheet' type='text/css'>
+        <link href='../fonts/source-sans-pro/source-sans-pro.css' rel='stylesheet' type='text/css'>
+
+        <!-- Theme style -->
+        <link rel="stylesheet" href="../bower/admin-lte/dist/css/AdminLTE.min.css">
+        <!-- Salvattore -->
+        <link rel="stylesheet" href="../bower/salvattore/salvattore.css">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+           folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="../bower/admin-lte/dist/css/skins/_all-skins.min.css">
+        <!-- SchemaSpy -->
+        <link rel="stylesheet" href="../schemaSpy.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="../bower/html5shiv/html5shiv.min.js"></script>
+        <script src="../bower/respond/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+    <body class="hold-transition skin-blue layout-top-nav">
+        <div class="wrapper">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a href="../../index.html" class="navbar-brand"><b>tdh</b></a><span class="navbar-brand" style="padding-left: 0">.tdh_od</span>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="../index.html">Tables <span class="sr-only">(current)</span></a></li>
+                                <li><a href="../columns.html" title="All of the columns in the schema">Columns</a></li>
+                                <li><a href="../constraints.html" title="Useful for diagnosing error messages that just give constraint name or number">Constraints</a></li>
+                                <li><a href="../relationships.html" title="Diagram of table relationships">Relationships</a></li>
+                                <li><a href="../orphans.html" title="View of tables with neither parents nor children">Orphan&nbsp;Tables</a></li>
+                                <li><a href="../anomalies.html" title="Things that might not be quite right">Anomalies</a></li>
+                                <li><a href="../routines.html" title="Procedures and functions">Routines</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                        <!-- Navbar Right Menu -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </header>
+            <!-- Main content -->
+            <!-- Full Width Column -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>organisation</h1><p><span id="recordNumber">-1</span> rows</p><br />
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                            <h3 id="Columns" class="box-title">Columns</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table
+                                    id="standard_table"
+                                    class="table table-bordered table-striped dataTable"
+                                    role="grid"
+                                    data-paging="true"
+                                    data-page-length="10"
+                                    data-length-change="false">
+                                <thead align='left'>
+                                <tr>
+                                    <th>Column</th>
+                                    <th>Type</th>
+                                    <th>Size</th>
+                                    <th title='Are nulls allowed?'>Nulls</th>
+                                    <th title='Is column automatically updated?'>Auto</th>
+                                    <th title='Default value'>Default</th>
+                                    <th title='Columns in tables that reference this column'>Children</th>
+                                    <th title='Columns in tables that are referenced by this column'>Parents</th>
+                                    <th title='Comments' class="toggle"><span>Comments</span></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="obj_id">obj_id</span></td>
+                                    <td>varchar</td>
+                                    <td>16</td>
+                                    <td title=''></td>
+                                    <td title=''></td>
+                                    <td>tdh_sys.generate_oid(&#39;tdh_od&#39;::text, &#39;organisation&#39;::text)</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="organisation.fk_dataowner references organisation.obj_id via rel_od_organisation_fk_dataowner"><a href='organisation.html'>organisation</a><span class='relatedKey'>.fk_dataowner</span></td>
+                                                <td class="constraint detail">rel_od_organisation_fk_dataowner</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="organisation.fk_provider references organisation.obj_id via rel_od_organisation_fk_dataprovider"><a href='organisation.html'>organisation</a><span class='relatedKey'>.fk_provider</span></td>
+                                                <td class="constraint detail">rel_od_organisation_fk_dataprovider</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="pipe_point.fk_dataowner references organisation.obj_id via rel_od_pipe_point_fk_dataowner"><a href='pipe_point.html'>pipe_point</a><span class='relatedKey'>.fk_dataowner</span></td>
+                                                <td class="constraint detail">rel_od_pipe_point_fk_dataowner</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="pipe_point.fk_owner references organisation.obj_id via rel_pipe_point_owner"><a href='pipe_point.html'>pipe_point</a><span class='relatedKey'>.fk_owner</span></td>
+                                                <td class="constraint detail">rel_pipe_point_owner</td>
+                                                <td class="constraint detail"><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>N</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="pipe_point.fk_provider references organisation.obj_id via rel_od_pipe_point_fk_dataprovider"><a href='pipe_point.html'>pipe_point</a><span class='relatedKey'>.fk_provider</span></td>
+                                                <td class="constraint detail">rel_od_pipe_point_fk_dataprovider</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="pipe_section.fk_dataowner references organisation.obj_id via rel_od_pipe_section_fk_dataowner"><a href='pipe_section.html'>pipe_section</a><span class='relatedKey'>.fk_dataowner</span></td>
+                                                <td class="constraint detail">rel_od_pipe_section_fk_dataowner</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="pipe_section.fk_owner references organisation.obj_id via rel_pipe_section_owner"><a href='pipe_section.html'>pipe_section</a><span class='relatedKey'>.fk_owner</span></td>
+                                                <td class="constraint detail">rel_pipe_section_owner</td>
+                                                <td class="constraint detail"><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>N</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="pipe_section.fk_pipeline_company references organisation.obj_id via rel_pipe_section_pipeline_company"><a href='pipe_section.html'>pipe_section</a><span class='relatedKey'>.fk_pipeline_company</span></td>
+                                                <td class="constraint detail">rel_pipe_section_pipeline_company</td>
+                                                <td class="constraint detail"><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>N</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="pipe_section.fk_provider references organisation.obj_id via rel_od_pipe_section_fk_dataprovider"><a href='pipe_section.html'>pipe_section</a><span class='relatedKey'>.fk_provider</span></td>
+                                                <td class="constraint detail">rel_od_pipe_section_fk_dataprovider</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="sia405cc_cable.fk_dataowner references organisation.obj_id via rel_od_sia405cc_cable_fk_dataowner"><a href='sia405cc_cable.html'>sia405cc_cable</a><span class='relatedKey'>.fk_dataowner</span></td>
+                                                <td class="constraint detail">rel_od_sia405cc_cable_fk_dataowner</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="sia405cc_cable.fk_owner references organisation.obj_id via rel_cable_owner"><a href='sia405cc_cable.html'>sia405cc_cable</a><span class='relatedKey'>.fk_owner</span></td>
+                                                <td class="constraint detail">rel_cable_owner</td>
+                                                <td class="constraint detail"><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>N</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="sia405cc_cable.fk_provider references organisation.obj_id via rel_od_sia405cc_cable_fk_dataprovider"><a href='sia405cc_cable.html'>sia405cc_cable</a><span class='relatedKey'>.fk_provider</span></td>
+                                                <td class="constraint detail">rel_od_sia405cc_cable_fk_dataprovider</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="sia405cc_cable_point.fk_dataowner references organisation.obj_id via rel_od_sia405cc_cable_point_fk_dataowner"><a href='sia405cc_cable_point.html'>sia405cc_cable_point</a><span class='relatedKey'>.fk_dataowner</span></td>
+                                                <td class="constraint detail">rel_od_sia405cc_cable_point_fk_dataowner</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="sia405cc_cable_point.fk_owner references organisation.obj_id via rel_sia405cc_cable_point_owner"><a href='sia405cc_cable_point.html'>sia405cc_cable_point</a><span class='relatedKey'>.fk_owner</span></td>
+                                                <td class="constraint detail">rel_sia405cc_cable_point_owner</td>
+                                                <td class="constraint detail"><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>N</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="sia405cc_cable_point.fk_provider references organisation.obj_id via rel_od_sia405cc_cable_point_fk_dataprovider"><a href='sia405cc_cable_point.html'>sia405cc_cable_point</a><span class='relatedKey'>.fk_provider</span></td>
+                                                <td class="constraint detail">rel_od_sia405cc_cable_point_fk_dataprovider</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="structure.fk_construction_company references organisation.obj_id via rel_structure_construction_company"><a href='structure.html'>structure</a><span class='relatedKey'>.fk_construction_company</span></td>
+                                                <td class="constraint detail">rel_structure_construction_company</td>
+                                                <td class="constraint detail"><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>N</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="structure.fk_dataowner references organisation.obj_id via rel_od_structure_fk_dataowner"><a href='structure.html'>structure</a><span class='relatedKey'>.fk_dataowner</span></td>
+                                                <td class="constraint detail">rel_od_structure_fk_dataowner</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="structure.fk_owner references organisation.obj_id via rel_structure_owner"><a href='structure.html'>structure</a><span class='relatedKey'>.fk_owner</span></td>
+                                                <td class="constraint detail">rel_structure_owner</td>
+                                                <td class="constraint detail"><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>N</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="structure.fk_provider references organisation.obj_id via rel_od_structure_fk_dataprovider"><a href='structure.html'>structure</a><span class='relatedKey'>.fk_provider</span></td>
+                                                <td class="constraint detail">rel_od_structure_fk_dataprovider</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="trench.fk_construction_company references organisation.obj_id via rel_trench_construction_company"><a href='trench.html'>trench</a><span class='relatedKey'>.fk_construction_company</span></td>
+                                                <td class="constraint detail">rel_trench_construction_company</td>
+                                                <td class="constraint detail"><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>N</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="trench.fk_dataowner references organisation.obj_id via rel_od_trench_fk_dataowner"><a href='trench.html'>trench</a><span class='relatedKey'>.fk_dataowner</span></td>
+                                                <td class="constraint detail">rel_od_trench_fk_dataowner</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="trench.fk_owner references organisation.obj_id via rel_trench_owner"><a href='trench.html'>trench</a><span class='relatedKey'>.fk_owner</span></td>
+                                                <td class="constraint detail">rel_trench_owner</td>
+                                                <td class="constraint detail"><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>N</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="trench.fk_provider references organisation.obj_id via rel_od_trench_fk_dataprovider"><a href='trench.html'>trench</a><span class='relatedKey'>.fk_provider</span></td>
+                                                <td class="constraint detail">rel_od_trench_fk_dataprovider</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="trench_point.fk_dataowner references organisation.obj_id via rel_od_trench_point_fk_dataowner"><a href='trench_point.html'>trench_point</a><span class='relatedKey'>.fk_dataowner</span></td>
+                                                <td class="constraint detail">rel_od_trench_point_fk_dataowner</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="trench_point.fk_owner references organisation.obj_id via rel_trench_point_owner"><a href='trench_point.html'>trench_point</a><span class='relatedKey'>.fk_owner</span></td>
+                                                <td class="constraint detail">rel_trench_point_owner</td>
+                                                <td class="constraint detail"><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>N</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="trench_point.fk_provider references organisation.obj_id via rel_od_trench_point_fk_dataprovider"><a href='trench_point.html'>trench_point</a><span class='relatedKey'>.fk_provider</span></td>
+                                                <td class="constraint detail">rel_od_trench_point_fk_dataprovider</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>INTERLIS STANDARD OID (with Postfix/Präfix), see <a href="http://www.interlis.ch">www.interlis.ch</a></p></td>
+                                </tr>
+                                <tr>
+                                    <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="identifier">identifier</span></td>
+                                    <td>text</td>
+                                    <td>2147483647</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>The designation for municipalities is adopted according to the FSO list; for private individuals according to the UID register, if necessary with the addition of the location of the branch if no separate UID exists for it. / Die Bezeichnung für Gemeinden wird gemäss BFS-Liste übernommen; für Private gemäss UID-Register, allenfalls mit Zusatz des Ortes der Filiale, falls keine separate UID dafür besteht. / La désignation pour les communes est reprise selon la liste de l&rsquo;OFS ; pour les particuliers, selon le registre UID, éventuellement avec l&rsquo;ajout du lieu de la filiale s&rsquo;il n&rsquo;existe pas d&rsquo;UID séparé pour celle-ci.</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="identifier_short">identifier_short</span></td>
+                                    <td>text</td>
+                                    <td>2147483647</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>/ Kurzbezeichnung / désignation abrégée</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="municipality_number">municipality_number</span></td>
+                                    <td>int2</td>
+                                    <td>5</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Official number of municipality of federal office for statistics, mandatory for the municipalities. / Offizielle Gemeinde Nummer gemäss Bundesamt für Statistik, bei Gemeinden zwingend, sonst leer lassen. / Numéro officiel de la commune selon l&rsquo;Office fédéral de la statistique, obligatoire pour les communes. Sinon, laissez vide.</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="organisation_type">organisation_type</span></td>
+                                    <td>int4</td>
+                                    <td>10</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="organisation.organisation_type references tdh_vl.organisation_organisation_type.code via fkey_vl_organisation_organisation_type"><a href='../../tdh_vl/tables/organisation_organisation_type.html'>organisation_organisation_type</a><span class='relatedKey'>.code</span></td>
+                                                <td class="constraint detail">fkey_vl_organisation_organisation_type</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td><p>Type of organisatoin / Art der Organisation / Genre d&rsquo;organisation</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="remark">remark</span></td>
+                                    <td>text</td>
+                                    <td>2147483647</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>General remarks / Allgemeine Bemerkungen / Remarques générales</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="status">status</span></td>
+                                    <td>int4</td>
+                                    <td>10</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="organisation.status references tdh_vl.organisation_status.code via fkey_vl_organisation_status"><a href='../../tdh_vl/tables/organisation_status.html'>organisation_status</a><span class='relatedKey'>.code</span></td>
+                                                <td class="constraint detail">fkey_vl_organisation_status</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td><p>yyy_Status der Organisation, damit untergegangende Organisationen nicht einfach gelöscht werden müssen und kontrolliert werden kann, ob noch Beziehungen auf untergegangene Organisationen, z.B. bei Gemeindefusion oder Konkurs einer Firma vorhanden sind / Status der Organisation, damit untergegangende Organisationen nicht einfach gelöscht werden müssen und kontrolliert werden kann, ob noch Beziehungen auf untergegangene Organisationen, z.B. bei Gemeindefusion oder Konkurs einer Firma vorhanden sind / Statut de l&rsquo;organisation, pour que les organisations disparues ne soient pas simplement supprimées et qu&rsquo;il soit possible de contrôler s&rsquo;il existe encore des relations avec les organisations disparues, par exemple en cas de fusion de communes ou de faillite d&rsquo;une société</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="uid">uid</span></td>
+                                    <td>text</td>
+                                    <td>2147483647</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Reference to the company identification of the Federal Office for Statistics (<a href="http://www.uid.admin.ch">www.uid.admin.ch</a>), e.g. CHE123456789 / Referenz zur Unternehmensidentifikation des Bundesamts fuer Statistik (<a href="http://www.uid.admin.ch">www.uid.admin.ch</a>), z.B. CHE123456789 / Référence pour l’identification des entreprises selon l’Office fédéral de la statistique OFS (<a href="http://www.uid.admin.ch">www.uid.admin.ch</a>), par exemple: CHE123456789</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="last_modification">last_modification</span></td>
+                                    <td>timestamp</td>
+                                    <td>29,6</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>now()</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="fk_dataowner">fk_dataowner</span></td>
+                                    <td>varchar</td>
+                                    <td>16</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="organisation.fk_dataowner references organisation.obj_id via rel_od_organisation_fk_dataowner"><a href='organisation.html'>organisation</a><span class='relatedKey'>.obj_id</span></td>
+                                                <td class="constraint detail">rel_od_organisation_fk_dataowner</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td><p>Foreignkey to Metaattribute dataowner (as an organisation) - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l&rsquo;organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="fk_provider">fk_provider</span></td>
+                                    <td>varchar</td>
+                                    <td>16</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="organisation.fk_provider references organisation.obj_id via rel_od_organisation_fk_dataprovider"><a href='organisation.html'>organisation</a><span class='relatedKey'>.obj_id</span></td>
+                                                <td class="constraint detail">rel_od_organisation_fk_dataprovider</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td><p>Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données</p></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-sitemap"></i>
+                            <h3 id="Indexes" class="box-title">Indexes</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table
+                                    id="indexes_table"
+                                    class="table table-bordered table-striped dataTable"
+                                    role="grid"
+                                    data-paging="true"
+                                    data-page-length="10"
+                                    data-length-change="false">
+                                <thead>
+                                <tr>
+                                    <th>Constraint Name</th>
+                                    <th>Type</th>
+                                    <th>Sort</th>
+                                    <th>Column(s)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey'></i> pkey_tdh_od_organisation_obj_id</td>
+                                    <td>Primary key</td>
+                                    <td><span title='Ascending'>Asc</span></td>
+                                    <td>obj_id</td>
+                                </tr>
+                                <tr>
+                                    <td class='uniqueKey' title='Unique Key'><i class='icon ion-key iconkey'></i> in_od_organisation_identifier</td>
+                                    <td>Must be unique</td>
+                                    <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
+                                    <td>identifier + fk_dataowner</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div><!-- /.box-body -->
+                    </div>
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-sitemap"></i>
+                            <h3 class="box-title">Check Constraints</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table
+                                    id="check_table"
+                                    class="table table-bordered table-striped dataTable"
+                                    role="grid"
+                                    data-paging="true"
+                                    data-page-length="10"
+                                    data-length-change="false">
+                                <thead align='left'>
+                                <tr>
+                                    <th>Constraint Name</th>
+                                    <th>Constraint</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>og_identifier_short_length_max_12</td>
+                                    <td>((char_length(identifier_short) &lt;&#61; 12))</td>
+                                </tr>
+                                <tr>
+                                    <td>og_uid_length_max_12</td>
+                                    <td>((char_length(uid) &lt;&#61; 12))</td>
+                                </tr>
+                                <tr>
+                                    <td>og_identifier_length_max_255</td>
+                                    <td>((char_length(identifier) &lt;&#61; 255))</td>
+                                </tr>
+                                <tr>
+                                    <td>og_remark_length_max_255</td>
+                                    <td>((char_length(remark) &lt;&#61; 255))</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-code-fork"></i>
+                            <h3 id="Relationships" class="box-title">Relationships</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="nav-tabs-custom"><!-- Tabs within a box -->
+                                <h5>Close relationships within degrees of separation</h5>
+                                <ul class="nav nav-tabs pull-left ui-sortable-handle">
+                                    <li class="active"><a href="#oneDegreeImg-chart" data-toggle="tab" aria-expanded="true">One</a></li>
+                                </ul>
+                                <div class="tab-content no-padding">
+                                    <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        
+                                        <a name='diagram'><object type="image/svg+xml" id="oneDegreeImg" data="../diagrams/tables/organisation.1degree.svg" class="diagram" border="0" align="left"></object></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.box-body -->
+                    </div>
+                </section>
+                <script>
+                    var config = {
+                        pagination: true
+                    }
+                </script>
+            </div>
+            <!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <div>
+                    <div class="pull-right hidden-xs">
+                        <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
+                        <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
+                    </div>
+                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.2.4</a></strong>
+                </div>
+                <!-- /.container -->
+            </footer>
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- jQuery 2.2.3 -->
+        <script src="../bower/admin-lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <script src="../bower/admin-lte/plugins/jQueryUI/jquery-ui.min.js"></script>
+        <!-- Bootstrap 3.3.5 -->
+        <script src="../bower/admin-lte/bootstrap/js/bootstrap.min.js"></script>
+        <!-- DataTables -->
+        <script src="../bower/datatables.net/jquery.dataTables.min.js"></script>
+        <script src="../bower/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="../bower/datatables.net-buttons/dataTables.buttons.min.js"></script>
+        <script src="../bower/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="../bower/datatables.net-buttons/buttons.html5.min.js"></script>
+        <script src="../bower/datatables.net-buttons/buttons.print.min.js"></script>
+        <script src="../bower/datatables.net-buttons/buttons.colVis.min.js"></script>
+        <!-- SheetJS -->
+        <script src="../bower/js-xlsx/xlsx.full.min.js"></script>
+        <!-- pdfmake -->
+        <script src="../bower/pdfmake/pdfmake.min.js"></script>
+        <script src="../bower/pdfmake/vfs_fonts.js"></script>
+        <!-- SlimScroll -->
+        <script src="../bower/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <!-- FastClick -->
+        <script src="../bower/admin-lte/plugins/fastclick/fastclick.js"></script>
+        <!-- Salvattore -->
+        <script src="../bower/salvattore/salvattore.min.js"></script>
+        <!-- AnchorJS -->
+        <script src="../bower/anchor-js/anchor.min.js"></script>
+        <!-- CodeMirror -->
+        <script src="../bower/codemirror/codemirror.js"></script>
+        <script src="../bower/codemirror/sql.js"></script>
+        <!-- AdminLTE App -->
+        <script src="../bower/admin-lte/dist/js/app.min.js"></script>
+        <script src="table.js"></script>
+        <script src="../schemaSpy.js"></script>
+    </body>
+</html>

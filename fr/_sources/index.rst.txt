@@ -1,7 +1,7 @@
 TEKSI district heating
 ============================================
 
-TEKSI district heating is an open source wastewater management module for QGIS based on SIA 405 Wastewater (pipe cadastre) and Technical specifications and developed closely to the QGIS application.
+TEKSI district heating is an open source district heating management module for QGIS based on SIA 405 Wastewater (pipe cadastre) and Technical specifications and developed closely to the QGIS application.
 
 ..
     Commented out pdf for the moment - needs new code

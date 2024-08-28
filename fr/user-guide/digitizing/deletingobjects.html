@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3.2.6. Deleting objects &mdash; Documentation TDH dev</title>
+  <title>3.2.9. Deleting objects &mdash; Documentation TDH dev</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
 
@@ -22,8 +22,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Recherche" href="../../search.html" />
-    <link rel="next" title="3.2.7. Digitizing Catchment Areas" href="digitizingcatchments.html" />
-    <link rel="prev" title="3.2.5. Digitizing Channels" href="digitizingchannels.html" /> 
+    <link rel="next" title="3.2.10. Importing data" href="importingdata.html" />
+    <link rel="prev" title="3.2.8. Digitizing cable point" href="digitizingcablepoint.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,33 +51,29 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../features-guide/index.html">1. TEKSI Chauffage à distance (TDH)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-guide/index.html">2. TWW Installation Guide</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. TWW User Guide</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. TDH User Guide</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../layerexplanations/index.html">3.1. Overview of TWW</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">3.2. Digitizing in TWW</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">3.2. Digitizing in TDH</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="dataentry.html">3.2.1. Data entry</a></li>
-<li class="toctree-l3"><a class="reference internal" href="digitizingwastewaterstructures.html">3.2.2. Digitizing Wastewater Structures</a></li>
-<li class="toctree-l3"><a class="reference internal" href="digitizingdetailedgeometry.html">3.2.3. Digitizing detailed geometry</a></li>
-<li class="toctree-l3"><a class="reference internal" href="digitizingdrainagechannel.html">3.2.4. Digitizing Detailed Geometry as Drainage Channel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="digitizingchannels.html">3.2.5. Digitizing Channels</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">3.2.6. Deleting objects</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#delete-reach">3.2.6.1. Delete Reach</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#delete-manhole-or-other-wastewater-structure">3.2.6.2. Delete Manhole or other Wastewater Structure</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#delete-wastewater-structure-but-keep-the-wastewater-node-and-the-connections-to-the-wastewater-node">3.2.6.3. Delete Wastewater Structure, but keep the wastewater_node and the connections to the wastewater_node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#delete-cover">3.2.6.4. Delete Cover</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#delete-structure-parts">3.2.6.5. Delete Structure parts</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#delete-detailed-geometries">3.2.6.6. Delete detailed geometries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="digitizingpipepoints.html">3.2.2. Digitizing Pipe Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="digitizingpipesections.html">3.2.3. Digitizing Pipe Sections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="digitizingstructures.html">3.2.4. Digitizing Structures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="digitizingtrench.html">3.2.5. Digitizing Trench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="digitizingtrenchpoint.html">3.2.6. Digitizing Trench point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="digitizingcable.html">3.2.7. Digitizing Cables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="digitizingcablepoint.html">3.2.8. Digitizing cable point</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.2.9. Deleting objects</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#delete-pipe-section">3.2.9.1. Delete Pipe_section</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#delete-pipe-point-normal-or-pipe-point-feed">3.2.9.2. Delete pipe_point_normal or pipe_point_feed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#delete-structure">3.2.9.3. Delete Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#delete-trench-or-trench-point">3.2.9.4. Delete trench or trench_point</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#delete-cable-or-cable-point">3.2.9.5. Delete cable or cable_point</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="digitizingcatchments.html">3.2.7. Digitizing Catchment Areas</a></li>
-<li class="toctree-l3"><a class="reference internal" href="importingdata.html">3.2.8. Importing data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="importingdata.html">3.2.10. Importing data</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../editing/index.html">3.3. Editing in TWW</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../length-profile/index.html">3.4. Length profiles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../network-following/index.html">3.5. Network following tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../plan-plotting/index.html">3.6. Plan plotting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../history/index.html">3.7. History in TWW</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../How-To/index.html">3.8. How To</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../admin-guide/index.html">4. Admin Guide</a></li>
@@ -98,9 +94,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>TWW User Guide</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">3.2. </span>Digitizing in TWW</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">3.2.6. </span>Deleting objects</li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>TDH User Guide</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">3.2. </span>Digitizing in TDH</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.2.9. </span>Deleting objects</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/user-guide/digitizing/deletingobjects.rst.txt" rel="nofollow"> Afficher la source de la page</a>
       </li>
@@ -111,14 +107,12 @@
            <div itemprop="articleBody">
              
   <section id="deleting-objects">
-<h1><span class="section-number">3.2.6. </span>Deleting objects<a class="headerlink" href="#deleting-objects" title="Lien vers cette rubrique"></a></h1>
-<p>You can delete point or line objects (with all associated objects) through the <strong>vw_tww_(wastewater_structure/reach)</strong> layers.
-You can also pick and delete only a specific object (e.g. cover).</p>
-<section id="delete-reach">
-<h2><span class="section-number">3.2.6.1. </span>Delete Reach<a class="headerlink" href="#delete-reach" title="Lien vers cette rubrique"></a></h2>
+<h1><span class="section-number">3.2.9. </span>Deleting objects<a class="headerlink" href="#deleting-objects" title="Lien vers cette rubrique"></a></h1>
+<section id="delete-pipe-section">
+<h2><span class="section-number">3.2.9.1. </span>Delete Pipe_section<a class="headerlink" href="#delete-pipe-section" title="Lien vers cette rubrique"></a></h2>
 <ul class="simple">
-<li><p>Select <strong>vw_tww_reach</strong> and change to edit mode.</p></li>
-<li><p>Select the reach(es) you want to delete. You can click on an object or draw an area.</p></li>
+<li><p>Select the <strong>pipe_section</strong> layer and change to edit mode.</p></li>
+<li><p>Select the pipe_section(s)) you want to delete. You can click on an object or draw an area.</p></li>
 </ul>
 <figure class="align-default">
 <img alt="../../_images/select_tool.jpg" src="../../_images/select_tool.jpg" />
@@ -127,7 +121,7 @@ You can also pick and delete only a specific object (e.g. cover).</p>
 <li><p>Use the top menu <strong>Edit</strong> –&gt; <strong>Delete Selected</strong> to delete.</p></li>
 </ul>
 <figure class="align-default">
-<img alt="../../_images/delete_reach.jpg" src="../../_images/delete_reach.jpg" />
+<img alt="user-guide/digitizing/images/delete_pipe_section.jpg" src="user-guide/digitizing/images/delete_pipe_section.jpg" />
 </figure>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -143,110 +137,42 @@ elsewhere.</p>
 <li><p>Deselect the edit mode and confirm changes to layer. All changes will be saved to database.</p></li>
 </ul>
 <figure class="align-default">
-<img alt="../../_images/delete_reach_confirm.jpg" src="../../_images/delete_reach_confirm.jpg" />
+<img alt="user-guide/digitizing/images/delete_confirm.jpg" src="user-guide/digitizing/images/delete_confirm.jpg" />
 </figure>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Delete reach deletes also all connected structure parts (e.g. dryweather_downspout). The connected channel is only deleted if there is no other wastewater networkelement connected to the channel. If there are two reaches connected to one channel, the channel is only deleted if both reaches are deleted.</p>
-</div>
 </section>
-<section id="delete-manhole-or-other-wastewater-structure">
-<h2><span class="section-number">3.2.6.2. </span>Delete Manhole or other Wastewater Structure<a class="headerlink" href="#delete-manhole-or-other-wastewater-structure" title="Lien vers cette rubrique"></a></h2>
+<section id="delete-pipe-point-normal-or-pipe-point-feed">
+<h2><span class="section-number">3.2.9.2. </span>Delete pipe_point_normal or pipe_point_feed<a class="headerlink" href="#delete-pipe-point-normal-or-pipe-point-feed" title="Lien vers cette rubrique"></a></h2>
 <ul class="simple">
-<li><p>Select <strong>vw_tww_wastewater_structure</strong> and change to edit mode</p></li>
-<li><p>Select the objects (<strong>manholes</strong>, <strong>special structures</strong> etc.) you want to delete</p></li>
+<li><p>Select <strong>vw_pipe_point_normal</strong> or <strong>vw_pipe_point_feed</strong> layer and change to edit mode</p></li>
+<li><p>Select the objects you want to delete</p></li>
 <li><p>Use <strong>Edit</strong> –&gt; <strong>Delete Selected</strong> to delete.</p></li>
 <li><p>Stop the editing mode and confirm changes to layer. All changes will be saved to database.</p></li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Delete wastewater structures deletes also all connected structure parts (cover, access_aid etc) and all connected wastewater nodes. fk_wastewater_networkelement in reachpoints, that where connected to the node, are set to NULL.</p>
-</div>
 </section>
-<section id="delete-wastewater-structure-but-keep-the-wastewater-node-and-the-connections-to-the-wastewater-node">
-<h2><span class="section-number">3.2.6.3. </span>Delete Wastewater Structure, but keep the wastewater_node and the connections to the wastewater_node<a class="headerlink" href="#delete-wastewater-structure-but-keep-the-wastewater-node-and-the-connections-to-the-wastewater-node" title="Lien vers cette rubrique"></a></h2>
-<p>First, you have to kill the connection between wastewater_node and wastewater_structure. Because the fk_wastewater_structure field is not visible in the wastewater_node feature attribut window (this field make no sense in other cases, where the form is also used), you have to follow this way:</p>
+<section id="delete-structure">
+<h2><span class="section-number">3.2.9.3. </span>Delete Structure<a class="headerlink" href="#delete-structure" title="Lien vers cette rubrique"></a></h2>
 <ul class="simple">
-<li><p>Select <strong>vw_tww_wastewater_structure</strong> and change to edit mode</p></li>
-<li><p>Use the <strong>Identify Features</strong> tool to open the form of the manhole you want to delete</p></li>
-<li><p>Switch to Wastewater Nodes tab</p></li>
-<li><p>Select the Node, that should not be deleted</p></li>
-<li><p>Use the button <strong>Unlink selected child record(s)</strong></p></li>
-</ul>
-<figure class="align-default">
-<img alt="../../_images/unlink_childe.jpg" src="../../_images/unlink_childe.jpg" />
-</figure>
-<ul class="simple">
-<li><p>Click <strong>OK</strong> and close the form window</p></li>
-</ul>
-<p>The wastewater node is no no more part of the wastewater_structure</p>
-<ul class="simple">
-<li><p>Select the object (<strong>manhole</strong>, <strong>special structure</strong> etc.) you want to delete</p></li>
+<li><p>Select <strong>structure</strong> layer and change to edit mode</p></li>
+<li><p>Select the objects you want to delete</p></li>
 <li><p>Use <strong>Edit</strong> –&gt; <strong>Delete Selected</strong> to delete.</p></li>
 <li><p>Stop the editing mode and confirm changes to layer. All changes will be saved to database.</p></li>
 </ul>
-<figure class="align-default">
-<img alt="../../_images/keep_node.jpg" src="../../_images/keep_node.jpg" />
-</figure>
 </section>
-<section id="delete-cover">
-<h2><span class="section-number">3.2.6.4. </span>Delete Cover<a class="headerlink" href="#delete-cover" title="Lien vers cette rubrique"></a></h2>
+<section id="delete-trench-or-trench-point">
+<h2><span class="section-number">3.2.9.4. </span>Delete trench or trench_point<a class="headerlink" href="#delete-trench-or-trench-point" title="Lien vers cette rubrique"></a></h2>
 <ul class="simple">
-<li><p>Select <strong>vw_tww_wastewater_structure</strong> and change to edit mode</p></li>
-<li><p>Select the object (<strong>manholes</strong>, <strong>special structures</strong> etc.) from which the cover is to be deleted</p></li>
-<li><p>Use the <strong>Identify Features</strong> tool to open the form</p></li>
-<li><p>Switch to the covers tab</p></li>
-<li><p>Select the cover(s) you want to delete</p></li>
-<li><p>Click the button <strong>delete selected child features</strong> to delete the covers</p></li>
-</ul>
-<figure class="align-default">
-<img alt="../../_images/delete_covers.jpg" src="../../_images/delete_covers.jpg" />
-</figure>
-<ul class="simple">
-<li><p>Click save on the form</p></li>
-<li><p>Deselect the edit mode and confirm changes to layer. All changes will be saved to database.</p></li>
-</ul>
-<p>Second way to delete a cover</p>
-<ul class="simple">
-<li><p>Select the <strong>vw_cover</strong> layer and change to edit mode</p></li>
-<li><p>Select the cover</p></li>
-<li><p>Use <strong>Edit</strong> –&gt; <strong>Delete Selected</strong></p></li>
-<li><p>Stop the editing mode</p></li>
-</ul>
-</section>
-<section id="delete-structure-parts">
-<h2><span class="section-number">3.2.6.5. </span>Delete Structure parts<a class="headerlink" href="#delete-structure-parts" title="Lien vers cette rubrique"></a></h2>
-<ul class="simple">
-<li><p>Select <strong>vw_tww_wastewater_structure</strong> and change to edit mode</p></li>
-<li><p>Select the object (<strong>manholes</strong>, <strong>special structures</strong> etc.) from which a structure part is to be deleted</p></li>
-<li><p>Use the <strong>Identify Features</strong> tool to open the form</p></li>
-<li><p>Switch to the structure parts tab</p></li>
-<li><p>Select the structure part you want to delete</p></li>
-<li><p>Click the red x button to delete the structure parts</p></li>
-<li><p>Click save on the form</p></li>
+<li><p>Select <strong>trench</strong> or <strong>trench_point</strong> layer and change to edit mode</p></li>
+<li><p>Select the objects you want to delete</p></li>
+<li><p>Use <strong>Edit</strong> –&gt; <strong>Delete Selected</strong> to delete.</p></li>
 <li><p>Stop the editing mode and confirm changes to layer. All changes will be saved to database.</p></li>
 </ul>
 </section>
-<section id="delete-detailed-geometries">
-<h2><span class="section-number">3.2.6.6. </span>Delete detailed geometries<a class="headerlink" href="#delete-detailed-geometries" title="Lien vers cette rubrique"></a></h2>
-<div class="admonition attention">
-<p class="admonition-title">Attention</p>
-<p>Deleting features directly from <strong>wastewater_structure</strong> (layergroup Wastewater Structures) will remove the complete wastewater structure from the database and not only the geometry of the wastewater structure!</p>
-</div>
+<section id="delete-cable-or-cable-point">
+<h2><span class="section-number">3.2.9.5. </span>Delete cable or cable_point<a class="headerlink" href="#delete-cable-or-cable-point" title="Lien vers cette rubrique"></a></h2>
 <ul class="simple">
-<li><p>Select layer <strong>wastewater_structure</strong> and change to edit mode</p></li>
-<li><p>Activate the <strong>Delete part</strong> tool from the Advanced digitizing toolbar</p></li>
-</ul>
-<figure class="align-default">
-<img alt="../../_images/delete_part_tool.jpg" src="../../_images/delete_part_tool.jpg" />
-</figure>
-<ul class="simple">
-<li><p>You get a cross-cursor. Click on the part you want to delete (there is no question if you really want… If you click, the part is deleted!)</p></li>
-</ul>
-<figure class="align-default">
-<img alt="../../_images/delete_part_tool2.jpg" src="../../_images/delete_part_tool2.jpg" />
-</figure>
-<ul class="simple">
+<li><p>Select <strong>sia405cc_cable</strong> or <strong>sia405cc_cable_point</strong> layer and change to edit mode</p></li>
+<li><p>Select the objects you want to delete</p></li>
+<li><p>Use <strong>Edit</strong> –&gt; <strong>Delete Selected</strong> to delete.</p></li>
 <li><p>Stop the editing mode and confirm changes to layer. All changes will be saved to database.</p></li>
 </ul>
 </section>
@@ -256,8 +182,8 @@ elsewhere.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
-        <a href="digitizingchannels.html" class="btn btn-neutral float-left" title="3.2.5. Digitizing Channels" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
-        <a href="digitizingcatchments.html" class="btn btn-neutral float-right" title="3.2.7. Digitizing Catchment Areas" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="digitizingcablepoint.html" class="btn btn-neutral float-left" title="3.2.8. Digitizing cable point" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="importingdata.html" class="btn btn-neutral float-right" title="3.2.10. Importing data" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

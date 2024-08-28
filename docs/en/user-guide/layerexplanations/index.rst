@@ -7,6 +7,5 @@ An overview of TWW including the layer explanation
    :maxdepth: 2
 
    overview
-   layerexplanation
    namingconventions
-   twwproject
+   tdhproject

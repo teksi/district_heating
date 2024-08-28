@@ -6,7 +6,7 @@ Database configuration
 
 To tell a workstation, where the database is (on the local system or on a
 network server) you will have to create some files initially on every device on
-which you will have QGIS/TWW running (client). It is not required to do that on the
+which you will have QGIS/TDH running (client). It is not required to do that on the
 server itself.
 
 These instructions depend on your operating system.
@@ -65,17 +65,17 @@ You may have to adapt the variables for your setup.
 
 .. code:: ini
 
-    [pg_tww]
+    [pg_tdh]
     host=localhost
     port=5432
-    dbname=tww
-    user=twwuser
+    dbname=tdh
+    user=tdhuser
 
 To save the password as well on the system you may use the file `pgpass <http://www.postgresql.org/docs/current/static/libpq-pgpass.html>`_.
 
 .. code:: ini
 
-    localhost:5432:*:twwuser:password
+    localhost:5432:*:tdhuser:password
 
 .. note:: If you don't have the database on your local machine replace any
    occurence of ``localhost`` with the network address of your database
@@ -85,11 +85,11 @@ Alternative: put your password directly into the ``pg_service.conf`` (on Windows
 
 .. code:: ini
 
-    [pg_tww]
+    [pg_tdh]
     host=localhost
     port=5432
-    dbname=tww
-    user=twwuser
+    dbname=tdh
+    user=tdhuser
     password=***
 
 Install QGIS
@@ -98,11 +98,11 @@ Install QGIS
 * Minimum requirement 3.4
 
 * We recommend using the latest master build (called qgis-dev on Windows)
-  which often offers a better experience in combination with TWW.
+  which often offers a better experience in combination with TDH.
   For Windows installation, download the `OSGeo4W Installer <http://download.osgeo.org/osgeo4w/osgeo4w-setup-x86_64.exe>`_
   choose *advanced installation* and install qgis-dev.
 
-Install TWW plugin
+Install TDH plugin
 -------------------
 
 Plugin requirements:
@@ -132,58 +132,58 @@ Or for Windows users, directly in QGIS via the Python Console with::
 
   * All
 
-    * Search `TWW`
+    * Search `TDH`
 
     * Click the checkbox next to it
 
 .. figure:: images/001_searchplugin.jpeg
 
-   **Add the TWW plugin**
+   **Add the TDH plugin**
 
 Optional plugin
 ~~~~~~~~~~~~~~~
 
-TWW uses a data historization process. The ``pg history viewer`` `plugin <http://plugins.qgis.org/plugins/pg_history_viewer/>`_ allows you to view the changes made and replay some of them.
+TDH uses a data historization process. The ``pg history viewer`` `plugin <http://plugins.qgis.org/plugins/pg_history_viewer/>`_ allows you to view the changes made and replay some of them.
 
 Install the demo data
 ---------------------
 
-as described `here <https://tww.github.io/docs/installation-guide/database-initialization.html#restore-demo-datamodel>`_
+as described `here <https://tdh.github.io/docs/installation-guide/database-initialization.html#restore-demo-datamodel>`_
 
 Install the demo project
 ------------------------
 
-* Download from https://github.com/TWW/tww/releases/latest the tww.zip
+* Download from https://github.com/TDH/tdh/releases/latest the tdh.zip
 
 * Extract the file
 
-* If you leave the tww_[language].qm files in the same directory as the tww.qgs file and start QGIS with one of these languages, your tww-project will be translated to that langue when you start the project. E.g. you start tww.qgs with a QGIS Installation that is set to German, then the tww.qgs project will appear in German.
+* If you leave the tdh_[language].qm files in the same directory as the tdh.qgs file and start QGIS with one of these languages, your tdh-project will be translated to that langue when you start the project. E.g. you start tdh.qgs with a QGIS Installation that is set to German, then the tdh.qgs project will appear in German.
 
-.. note:: You need to explicitly set the language in QGIS in settings. If QGIS is configured to take the system language, the TWW translation is not loaded.
+.. note:: You need to explicitly set the language in QGIS in settings. If QGIS is configured to take the system language, the TDH translation is not loaded.
 
-.. figure:: images/tww_project_qm_language_files.jpg
+.. figure:: images/tdh_project_qm_language_files.jpg
 
-* Open `project/tww.qgs` with QGIS
+* Open `project/tdh.qgs` with QGIS
 * When you save that project it will keep it's language and it cannot be changed in the same way.
 
 
 If you are a data owner: Add your own OID to the project
 --------------------------------------------------------
 
-* If you are a data owner (Datenherr), you should add your OID data in the table tww_sys.oid_prefixes:
+* If you are a data owner (Datenherr), you should add your OID data in the table tdh_sys.oid_prefixes:
 
 .. figure:: images/oid_prefix.jpg
 
-* Edit ``02_oid_generation.sql`` with your OID if you want it permanently in the TWW project and hand in a pull request
+* Edit ``02_oid_generation.sql`` with your OID if you want it permanently in the TDH project and hand in a pull request
 
-https://github.com/TWW/datamodel/blob/master/02_oid_generation.sql
+https://github.com/TDH/datamodel/blob/master/02_oid_generation.sql
 
 .. code:: sql
 
   -- sample entry for the City of Uster - you need to add an entry for your own organization
-  INSERT INTO tww_sys.oid_prefixes (prefix,organization,active) VALUES ('ch11h8mw','Stadt Uster',TRUE);
-  INSERT INTO tww_sys.oid_prefixes (prefix,organization,active) VALUES ('ch15z36d','SIGE',FALSE);
-  INSERT INTO tww_sys.oid_prefixes (prefix,organization,active) VALUES ('ch13p7mz','Arbon',FALSE);
+  INSERT INTO tdh_sys.oid_prefixes (prefix,organization,active) VALUES ('ch11h8mw','Stadt Uster',TRUE);
+  INSERT INTO tdh_sys.oid_prefixes (prefix,organization,active) VALUES ('ch15z36d','SIGE',FALSE);
+  INSERT INTO tdh_sys.oid_prefixes (prefix,organization,active) VALUES ('ch13p7mz','Arbon',FALSE);
 
 and set the OID you want to use in your project to TRUE.
 
@@ -199,7 +199,7 @@ Working with more than one database
 
 * Create a new database in pgAdmin with a new name, e.g. communityA
 
-* Create a new schema tww in this database (do not choose another name, because all scripts works with the schema-name tww)
+* Create a new schema tdh in this database (do not choose another name, because all scripts works with the schema-name tdh)
 
 * Go further on as described in 1.2 Database initialization
 
@@ -207,15 +207,15 @@ Working with more than one database
 
 .. code:: ini
 
-  [pg_tww]   
+  [pg_tdh]   
   host=localhost   
   port=5432   
-  dbname=tww   
-  user=twwuser
+  dbname=tdh   
+  user=tdhuser
   [pg_communityA]   
   host=localhost     
   port=5432     
   dbname=communityA     
-  user=twwuser
+  user=tdhuser
 
-* Search and replace in the copy of ``tww_en.qgs`` all 'pg_tww' with 'pg_communityA'
+* Search and replace in the copy of ``tdh_en.qgs`` all 'pg_tdh' with 'pg_communityA'

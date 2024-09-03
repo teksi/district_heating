@@ -10,4 +10,3 @@ This represents a guide on how to collect data in TDH (digitizing), edit existin
 
    layerexplanations/index
    digitizing/index
-

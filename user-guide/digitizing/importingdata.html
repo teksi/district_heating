@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3.2.10. Importing data &mdash; TDH dev documentation</title>
+  <title>Importing data &mdash; TDH dev documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
 
@@ -20,9 +20,7 @@
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="3.3. Editing in TWW" href="../editing/index.html" />
-    <link rel="prev" title="3.2.9. Deleting objects" href="deletingobjects.html" /> 
+    <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,32 +45,10 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../features-guide/index.html">1. TEKSI district heating (TDH)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-guide/index.html">2. TDH Installation Guide</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. TDH User Guide</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../layerexplanations/index.html">3.1. Overview of TDH</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">3.2. Digitizing in TDH</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="dataentry.html">3.2.1. Data entry</a></li>
-<li class="toctree-l3"><a class="reference internal" href="digitizingpipepoints.html">3.2.2. Digitizing Pipe Points</a></li>
-<li class="toctree-l3"><a class="reference internal" href="digitizingpipesections.html">3.2.3. Digitizing Pipe Sections</a></li>
-<li class="toctree-l3"><a class="reference internal" href="digitizingstructures.html">3.2.4. Digitizing Structures</a></li>
-<li class="toctree-l3"><a class="reference internal" href="digitizingtrench.html">3.2.5. Digitizing Trench</a></li>
-<li class="toctree-l3"><a class="reference internal" href="digitizingtrenchpoint.html">3.2.6. Digitizing Trench point</a></li>
-<li class="toctree-l3"><a class="reference internal" href="digitizingcable.html">3.2.7. Digitizing Cables</a></li>
-<li class="toctree-l3"><a class="reference internal" href="digitizingcablepoint.html">3.2.8. Digitizing cable point</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deletingobjects.html">3.2.9. Deleting objects</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">3.2.10. Importing data</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#general">3.2.10.1. General</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#example-importing-manholes-from-a-txt-file">3.2.10.2. Example Importing manholes from a TXT-File:</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#example-importing-manholes-with-attributes">3.2.10.3. Example Importing manholes with attributes:</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../editing/index.html">3.3. Editing in TWW</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">3. TDH User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../admin-guide/index.html">4. Admin Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../translation/index.html">5. Translation</a></li>
 </ul>
@@ -91,9 +67,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>TDH User Guide</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">3.2. </span>Digitizing in TDH</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">3.2.10. </span>Importing data</li>
+      <li class="breadcrumb-item active">Importing data</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/user-guide/digitizing/importingdata.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -104,11 +78,11 @@
            <div itemprop="articleBody">
              
   <section id="importing-data">
-<h1><span class="section-number">3.2.10. </span>Importing data<a class="headerlink" href="#importing-data" title="Link to this heading"></a></h1>
+<h1>Importing data<a class="headerlink" href="#importing-data" title="Link to this heading"></a></h1>
 <p>It is quite easy to import data (geometry and attributes) from an external software.
 Here is a general description and a specific example.</p>
 <section id="general">
-<h2><span class="section-number">3.2.10.1. </span>General<a class="headerlink" href="#general" title="Link to this heading"></a></h2>
+<h2>General<a class="headerlink" href="#general" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>You have to add the data you want to import as (vector) layer into the TWW project.</p></li>
 <li><p>The field names of the attributes have to be the same as the field names of the TWW Layer.
@@ -121,7 +95,7 @@ If possible, prefer non limiting standard open formats like geopackage. When usi
 <p>If you want to import new values to existing records (e.g. update the field renovation_necessity of layer vw_tww_reach), you can not copy, because there are not new records. For these job you can work with QGIS fieldcalculator.</p>
 </section>
 <section id="example-importing-manholes-from-a-txt-file">
-<h2><span class="section-number">3.2.10.2. </span>Example Importing manholes from a TXT-File:<a class="headerlink" href="#example-importing-manholes-from-a-txt-file" title="Link to this heading"></a></h2>
+<h2>Example Importing manholes from a TXT-File:<a class="headerlink" href="#example-importing-manholes-from-a-txt-file" title="Link to this heading"></a></h2>
 <p>The pictures were created in QGEP, but the steps are still the same in TWW</p>
 <ul class="simple">
 <li><p>Change the field names to identifier, x, y, co_level</p></li>
@@ -159,7 +133,7 @@ If possible, prefer non limiting standard open formats like geopackage. When usi
 </div>
 </section>
 <section id="example-importing-manholes-with-attributes">
-<h2><span class="section-number">3.2.10.3. </span>Example Importing manholes with attributes:<a class="headerlink" href="#example-importing-manholes-with-attributes" title="Link to this heading"></a></h2>
+<h2>Example Importing manholes with attributes:<a class="headerlink" href="#example-importing-manholes-with-attributes" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Example to add additional attributes</p></li>
 </ul>
@@ -177,10 +151,7 @@ If possible, prefer non limiting standard open formats like geopackage. When usi
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="deletingobjects.html" class="btn btn-neutral float-left" title="3.2.9. Deleting objects" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../editing/index.html" class="btn btn-neutral float-right" title="3.3. Editing in TWW" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

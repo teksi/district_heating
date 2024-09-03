@@ -62,11 +62,10 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#install-qgis">2.4.2. Install QGIS</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#install-tdh-plugin">2.4.3. Install TDH plugin</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#install-the-demo-data">2.4.4. Install the demo data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#install-the-demo-project">2.4.5. Install the demo project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#if-you-are-a-data-owner-add-your-own-oid-to-the-project">2.4.6. If you are a data owner: Add your own OID to the project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#working-with-more-than-one-database">2.4.7. Working with more than one database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-the-demo-data">2.4.3. Install the demo data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-the-demo-project">2.4.4. Install the demo project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#if-you-are-a-data-owner-add-your-own-oid-to-the-project">2.4.5. If you are a data owner: Add your own OID to the project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#working-with-more-than-one-database">2.4.6. Working with more than one database</a></li>
 </ul>
 </li>
 </ul>
@@ -193,55 +192,12 @@ For Windows installation, download the <a class="reference external" href="http:
 choose <em>advanced installation</em> and install qgis-dev.</p></li>
 </ul>
 </section>
-<section id="install-tdh-plugin">
-<h2><span class="section-number">2.4.3. </span>Install TDH plugin<a class="headerlink" href="#install-tdh-plugin" title="Lien vers cette rubrique"></a></h2>
-<p>Plugin requirements:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://pypi.org/project/networkx/">networkx</a> &gt;= 2.1</p></li>
-</ul>
-<p>You can install them on Debian based systems with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">networkx</span>
-<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libqt4</span><span class="o">-</span><span class="n">sql</span><span class="o">-</span><span class="n">psql</span>
-</pre></div>
-</div>
-<p>Or for Windows users, directly in QGIS via the Python Console with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pip</span><span class="p">;</span> <span class="n">pip</span><span class="o">.</span><span class="n">main</span><span class="p">([</span><span class="s2">&quot;install&quot;</span><span class="p">,</span> <span class="s2">&quot;networkx&quot;</span><span class="p">])</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Open QGIS</p></li>
-<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Plugins</span></code></p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">and</span> <span class="pre">Install</span> <span class="pre">Plugins</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Settings</span></code></p>
-<ul>
-<li><p>Enable <code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">also</span> <span class="pre">experimental</span> <span class="pre">plugins</span></code></p></li>
-</ul>
-</li>
-<li><p>Activate the plugin (see image below):</p></li>
-<li><p>All</p>
-<ul>
-<li><p>Search <cite>TDH</cite></p></li>
-<li><p>Click the checkbox next to it</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="align-default" id="id3">
-<img alt="../_images/001_searchplugin.jpeg" src="../_images/001_searchplugin.jpeg" />
-<figcaption>
-<p><span class="caption-text"><strong>Add the TDH plugin</strong></span><a class="headerlink" href="#id3" title="Lien vers cette image"></a></p>
-</figcaption>
-</figure>
-<p>TDH uses a data historization process. The <code class="docutils literal notranslate"><span class="pre">pg</span> <span class="pre">history</span> <span class="pre">viewer</span></code> <a class="reference external" href="http://plugins.qgis.org/plugins/pg_history_viewer/">plugin</a> allows you to view the changes made and replay some of them.</p>
-</section>
 <section id="install-the-demo-data">
-<h2><span class="section-number">2.4.4. </span>Install the demo data<a class="headerlink" href="#install-the-demo-data" title="Lien vers cette rubrique"></a></h2>
+<h2><span class="section-number">2.4.3. </span>Install the demo data<a class="headerlink" href="#install-the-demo-data" title="Lien vers cette rubrique"></a></h2>
 <p>as described <a class="reference external" href="https://tdh.github.io/docs/installation-guide/database-initialization.html#restore-demo-datamodel">here</a></p>
 </section>
 <section id="install-the-demo-project">
-<h2><span class="section-number">2.4.5. </span>Install the demo project<a class="headerlink" href="#install-the-demo-project" title="Lien vers cette rubrique"></a></h2>
+<h2><span class="section-number">2.4.4. </span>Install the demo project<a class="headerlink" href="#install-the-demo-project" title="Lien vers cette rubrique"></a></h2>
 <ul class="simple">
 <li><p>Download from <a class="reference external" href="https://github.com/TDH/tdh/releases/latest">https://github.com/TDH/tdh/releases/latest</a> the tdh.zip</p></li>
 <li><p>Extract the file</p></li>
@@ -260,7 +216,7 @@ choose <em>advanced installation</em> and install qgis-dev.</p></li>
 </ul>
 </section>
 <section id="if-you-are-a-data-owner-add-your-own-oid-to-the-project">
-<h2><span class="section-number">2.4.6. </span>If you are a data owner: Add your own OID to the project<a class="headerlink" href="#if-you-are-a-data-owner-add-your-own-oid-to-the-project" title="Lien vers cette rubrique"></a></h2>
+<h2><span class="section-number">2.4.5. </span>If you are a data owner: Add your own OID to the project<a class="headerlink" href="#if-you-are-a-data-owner-add-your-own-oid-to-the-project" title="Lien vers cette rubrique"></a></h2>
 <ul class="simple">
 <li><p>If you are a data owner (Datenherr), you should add your OID data in the table tdh_sys.oid_prefixes:</p></li>
 </ul>
@@ -288,7 +244,7 @@ choose <em>advanced installation</em> and install qgis-dev.</p></li>
 </div>
 </section>
 <section id="working-with-more-than-one-database">
-<h2><span class="section-number">2.4.7. </span>Working with more than one database<a class="headerlink" href="#working-with-more-than-one-database" title="Lien vers cette rubrique"></a></h2>
+<h2><span class="section-number">2.4.6. </span>Working with more than one database<a class="headerlink" href="#working-with-more-than-one-database" title="Lien vers cette rubrique"></a></h2>
 <ul class="simple">
 <li><p>Create a new database in pgAdmin with a new name, e.g. communityA</p></li>
 <li><p>Create a new schema tdh in this database (do not choose another name, because all scripts works with the schema-name tdh)</p></li>

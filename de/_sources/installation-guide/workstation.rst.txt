@@ -102,48 +102,7 @@ Install QGIS
   For Windows installation, download the `OSGeo4W Installer <http://download.osgeo.org/osgeo4w/osgeo4w-setup-x86_64.exe>`_
   choose *advanced installation* and install qgis-dev.
 
-Install TDH plugin
--------------------
 
-Plugin requirements:
-
-- `networkx <https://pypi.org/project/networkx/>`_ >= 2.1
-
-You can install them on Debian based systems with::
-
- sudo pip install networkx
- sudo apt-get install libqt4-sql-psql
-
-Or for Windows users, directly in QGIS via the Python Console with::
-
- import pip; pip.main(["install", "networkx"])
-
-* Open QGIS
-
-* Go to ``Plugins``
-
-  * ``Manage and Install Plugins``
-
-  * ``Settings``
-
-    * Enable ``Show also experimental plugins``
-
-  * Activate the plugin (see image below):
-
-  * All
-
-    * Search `TDH`
-
-    * Click the checkbox next to it
-
-.. figure:: images/001_searchplugin.jpeg
-
-   **Add the TDH plugin**
-
-Optional plugin
-~~~~~~~~~~~~~~~
-
-TDH uses a data historization process. The ``pg history viewer`` `plugin <http://plugins.qgis.org/plugins/pg_history_viewer/>`_ allows you to view the changes made and replay some of them.
 
 Install the demo data
 ---------------------

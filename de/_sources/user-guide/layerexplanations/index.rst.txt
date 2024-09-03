@@ -6,6 +6,5 @@ An overview of TDH including the layer explanation
 .. toctree::
    :maxdepth: 2
 
-   overview
    namingconventions
    tdhproject

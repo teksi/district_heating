@@ -17,7 +17,7 @@ Now the cursor changes to the digitizing symbol and you can select the location 
 
 Then the **sia405cc_cable_point** form opens and you can start adding data :
 
-.. figure:: images/tdh_sia405cc_cable_point_form.jpg
+.. figure:: images/tdh_sia405cc_cable_point_form.JPG
 
 Select the kind of cable point you want (preselected is 'cabine'):
 

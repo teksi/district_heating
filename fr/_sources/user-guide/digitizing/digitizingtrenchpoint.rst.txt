@@ -12,7 +12,7 @@ Now the cursor changes to the digitizing symbol and you can select the location 
 
 Then the **trench_point** form opens and you can start adding data :
 
-.. figure:: images/tdh_trench_point_form.jpg
+.. figure:: images/tdh_trench_point_form.JPG
 
 Select the kind of trench-point you want (preselected is 'drainage'):
 

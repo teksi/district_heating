@@ -18,7 +18,7 @@ Digitizing pipe_point_normal
 
 * This will make the **vw_pipe_point_normal** feature attributes window appear and you can start adding data:
 
-.. figure:: images/tdh_pipe_point_normal_form.jpg
+.. figure:: images/tdh_pipe_point_normal_form.JPG
 
 Select the kind of the pipe_point_normal you want (preselected is 'NULL') in the dropdown list:
 
@@ -53,7 +53,7 @@ Digitizing pipe_point_feed
 
 * This will make the **vw_pipe_point_feed** feature attributes window appear and you can start adding data:
 
-.. figure:: images/tdh_pipe_point_feed_form.jpg
+.. figure:: images/tdh_pipe_point_feed_form.JPG
 
 Select the kind of the pipe_point_feed you want (preselected is 'NULL') in the dropdown list:
 

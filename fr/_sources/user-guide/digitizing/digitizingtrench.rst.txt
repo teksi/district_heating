@@ -12,7 +12,7 @@ Now the cursor changes to the digitizing symbol and you can select the location 
 
 Then the **trench** form opens and you can start adding data :
 
-.. figure:: images/tdh_trench_form.jpg
+.. figure:: images/tdh_trench_form.JPG
 
 Select the status you want (preselected is 'dead'):
 

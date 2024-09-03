@@ -12,7 +12,7 @@ Now the cursor changes to the digitizing symbol and you can select the location 
 
 Then the **structure** form opens and you can start adding data :
 
-.. figure:: images/tdh_structure_form.jpg
+.. figure:: images/tdh_structure_form.JPG
 
 Select the kind of structure you want (preselected is 'compensator_chamber'):
 

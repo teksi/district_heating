@@ -25,7 +25,7 @@ Digitizing
 
 * You finish digitizing the line by right clicking. This will make the **pipe_section** feature attributes window appear and you can start adding data:
 
-.. figure:: images/tdh_pipe_section_form.jpg
+.. figure:: images/tdh_pipe_section_form.JPG
 
 Select the function of the pipe_section you want (preselected is 'connection_pipe'):
 

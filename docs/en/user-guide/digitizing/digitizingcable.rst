@@ -22,7 +22,7 @@ Digitizing
 
 * You finish digitizing the line by right clicking. This will make the **sia4005cc_cable** feature attributes window appear and you can start adding data:
 
-.. figure:: images/tdh_sia4005cc_cable_form.JPG
+.. figure:: images/tdh_sia405cc_cable_form.JPG
 
 Select the function of the sia4005cc_cable you want (preselected is 'control_cable'):
 

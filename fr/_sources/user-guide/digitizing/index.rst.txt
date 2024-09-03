@@ -10,9 +10,9 @@ This represents a guide on how to correctly collect and digitize data of sewer n
    digitizingpipepoints
    digitizingpipesections
    digitizingstructures
-   digitizingtrench   
+   digitizingtrench
    digitizingtrenchpoint
-   digitizingcable   
-   digitizingcablepoint    
+   digitizingcable
+   digitizingcablepoint
    deletingobjects
    importingdata

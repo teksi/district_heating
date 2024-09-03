@@ -30,7 +30,7 @@ Select the kind of cable point you want (preselected is 'cabine'):
 
 Then add the name_number (this is the attribute that will be displayed on the map).
 
-.. note:: If you do not enter an identifier, TDH will enter the obj_id also as identifier (you can change later). 
+.. note:: If you do not enter an identifier, TDH will enter the obj_id also as identifier (you can change later).
 
 Add other mandatory attributes.
 You can also add attributes in the other sections (Ground observations, Organisations, etc.).

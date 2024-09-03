@@ -37,7 +37,7 @@ Attribute names
 * Prefixes in attribute names
 
 In a view, you find fields from different tables. In easier cases, there are only a subclass and a superclass included. In the tdh-mainlayers there are several sub- und superclasses.
-With the prefix of the attribute name, you know to which table an attribute belongs. The prefix are two letters that belong to a table of the SIA-405 datamodel. 
+With the prefix of the attribute name, you know to which table an attribute belongs. The prefix are two letters that belong to a table of the SIA-405 datamodel.
 The convention is: attributes of the main table have no prefix, all other attributes have a prefix that points to the table they are from. In case of sub- and superclass, the two tables are taken together.
 
 * fk_ fields
@@ -46,4 +46,4 @@ fk_ is not a shortcut for a special table. It stands for foreign key.
 
 * _ fields
 
-Attributes that start with _ (underscore) are calculated fields. You can not find them in the schemas. 
+Attributes that start with _ (underscore) are calculated fields. You can not find them in the schemas.

@@ -153,14 +153,14 @@
         "comments": ""
     },
     {
-        "tableName": "pipe_point_normal",
-        "tableFileName": "pipe_point_normal",
+        "tableName": "pipe_point",
+        "tableFileName": "pipe_point",
         "tableType": "Table",
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>material",
-        "type": "int4",
-        "length": 10,
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>fk_owner",
+        "type": "varchar",
+        "length": 16,
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
@@ -506,15 +506,15 @@
         "tableName": "pipe_point",
         "tableFileName": "pipe_point",
         "tableType": "Table",
-        "keyClass": "",
-        "keyTitle": "",
-        "name": "altitude2",
-        "type": "numeric",
-        "length": 7,
+        "keyClass": "indexedColumn",
+        "keyTitle": "Indexed",
+        "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'><\/i>geometry3d_geometry",
+        "type": "geometry",
+        "length": 2147483647,
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
-        "comments": "<p>yyy_Rohrachse / Rohrachse / axe du tube<\/p>"
+        "comments": ""
     },
     {
         "tableName": "structure",
@@ -671,18 +671,18 @@
         "comments": ""
     },
     {
-        "tableName": "pipe_point",
-        "tableFileName": "pipe_point",
+        "tableName": "pipe_point_normal",
+        "tableFileName": "pipe_point_normal",
         "tableType": "Table",
-        "keyClass": "",
-        "keyTitle": "",
-        "name": "symbolori",
-        "type": "numeric",
-        "length": 4,
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>armature_setting",
+        "type": "int4",
+        "length": 10,
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
-        "comments": "<p>Default: 90 degree<\/p>"
+        "comments": ""
     },
     {
         "tableName": "sia405cc_cable_point",
@@ -727,8 +727,8 @@
         "comments": ""
     },
     {
-        "tableName": "pipe_point",
-        "tableFileName": "pipe_point",
+        "tableName": "pipe_point_normal",
+        "tableFileName": "pipe_point_normal",
         "tableType": "Table",
         "keyClass": "primaryKey",
         "keyTitle": "Primary Key",
@@ -737,7 +737,7 @@
         "length": 16,
         "nullable": "",
         "autoUpdated": "",
-        "defaultValue": "tdh_sys.generate_oid('tdh_od'::text, 'pipe_point'::text)",
+        "defaultValue": "tdh_sys.generate_oid('tdh_od'::text, 'pipe_point_normal'::text)",
         "comments": "<p>INTERLIS STANDARD OID (with Postfix/Präfix), see <a href=\"http://www.interlis.ch\">www.interlis.ch<\/a><\/p>"
     },
     {
@@ -881,14 +881,14 @@
         "comments": "<p>Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE<\/p>"
     },
     {
-        "tableName": "pipe_point",
-        "tableFileName": "pipe_point",
+        "tableName": "pipe_point_normal",
+        "tableFileName": "pipe_point_normal",
         "tableType": "Table",
-        "keyClass": "indexedColumn",
-        "keyTitle": "Indexed",
-        "name": "<i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'><\/i>geometry3d_geometry",
-        "type": "geometry",
-        "length": 2147483647,
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>kind",
+        "type": "int4",
+        "length": 10,
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
@@ -1626,15 +1626,15 @@
         "tableName": "pipe_point",
         "tableFileName": "pipe_point",
         "tableType": "Table",
-        "keyClass": "",
-        "keyTitle": "",
-        "name": "altitude1",
-        "type": "numeric",
-        "length": 7,
-        "nullable": "√",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>obj_id",
+        "type": "varchar",
+        "length": 16,
+        "nullable": "",
         "autoUpdated": "",
-        "defaultValue": "null",
-        "comments": "<p>/ OK Mantelrohr / bord supérieur tube préisolé<\/p>"
+        "defaultValue": "tdh_sys.generate_oid('tdh_od'::text, 'pipe_point'::text)",
+        "comments": "<p>INTERLIS STANDARD OID (with Postfix/Präfix), see <a href=\"http://www.interlis.ch\">www.interlis.ch<\/a><\/p>"
     },
     {
         "tableName": "structure",
@@ -1875,12 +1875,12 @@
         "comments": ""
     },
     {
-        "tableName": "pipe_point",
-        "tableFileName": "pipe_point",
+        "tableName": "pipe_point_normal",
+        "tableFileName": "pipe_point_normal",
         "tableType": "Table",
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>horizontal_positioning",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>material",
         "type": "int4",
         "length": 10,
         "nullable": "√",
@@ -1889,18 +1889,18 @@
         "comments": ""
     },
     {
-        "tableName": "pipe_point_normal",
-        "tableFileName": "pipe_point_normal",
+        "tableName": "pipe_point",
+        "tableFileName": "pipe_point",
         "tableType": "Table",
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>kind",
-        "type": "int4",
-        "length": 10,
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>fk_dataowner",
+        "type": "varchar",
+        "length": 16,
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
-        "comments": ""
+        "comments": "<p>Foreignkey to Metaattribute dataowner (as an organisation) - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l&rsquo;organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe<\/p>"
     },
     {
         "tableName": "organisation",
@@ -2029,18 +2029,18 @@
         "comments": ""
     },
     {
-        "tableName": "pipe_point_normal",
-        "tableFileName": "pipe_point_normal",
+        "tableName": "pipe_point",
+        "tableFileName": "pipe_point",
         "tableType": "Table",
-        "keyClass": "primaryKey",
-        "keyTitle": "Primary Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>obj_id",
-        "type": "varchar",
-        "length": 16,
-        "nullable": "",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "last_modification",
+        "type": "timestamp",
+        "length": 29,
+        "nullable": "√",
         "autoUpdated": "",
-        "defaultValue": "tdh_sys.generate_oid('tdh_od'::text, 'pipe_point_normal'::text)",
-        "comments": "<p>INTERLIS STANDARD OID (with Postfix/Präfix), see <a href=\"http://www.interlis.ch\">www.interlis.ch<\/a><\/p>"
+        "defaultValue": "now()",
+        "comments": "<p>Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE<\/p>"
     },
     {
         "tableName": "trench",
@@ -2146,13 +2146,13 @@
         "tableType": "Table",
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>fk_provider",
-        "type": "varchar",
-        "length": 16,
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>elevation_determination",
+        "type": "int4",
+        "length": 10,
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
-        "comments": "<p>Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l\u2019enregistrement de ces données<\/p>"
+        "comments": ""
     },
     {
         "tableName": "pipe_point",
@@ -2160,13 +2160,13 @@
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
-        "name": "last_modification",
-        "type": "timestamp",
-        "length": 29,
+        "name": "altitude1",
+        "type": "numeric",
+        "length": 7,
         "nullable": "√",
         "autoUpdated": "",
-        "defaultValue": "now()",
-        "comments": "<p>Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE<\/p>"
+        "defaultValue": "null",
+        "comments": "<p>/ OK Mantelrohr / bord supérieur tube préisolé<\/p>"
     },
     {
         "tableName": "sia405cc_cable_point",
@@ -2228,15 +2228,15 @@
         "tableName": "pipe_point",
         "tableFileName": "pipe_point",
         "tableType": "Table",
-        "keyClass": "foreignKey",
-        "keyTitle": "Foreign Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>fk_dataowner",
-        "type": "varchar",
-        "length": 16,
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "altitude2",
+        "type": "numeric",
+        "length": 7,
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
-        "comments": "<p>Foreignkey to Metaattribute dataowner (as an organisation) - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l&rsquo;organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe<\/p>"
+        "comments": "<p>yyy_Rohrachse / Rohrachse / axe du tube<\/p>"
     },
     {
         "tableName": "sia405cc_cable",
@@ -2340,15 +2340,15 @@
         "tableName": "pipe_point",
         "tableFileName": "pipe_point",
         "tableType": "Table",
-        "keyClass": "foreignKey",
-        "keyTitle": "Foreign Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>fk_owner",
-        "type": "varchar",
-        "length": 16,
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "remark",
+        "type": "text",
+        "length": 2147483647,
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
-        "comments": ""
+        "comments": "<p>General remarks<\/p>"
     },
     {
         "tableName": "sia405cc_cable",
@@ -2368,15 +2368,15 @@
         "tableName": "pipe_point",
         "tableFileName": "pipe_point",
         "tableType": "Table",
-        "keyClass": "",
-        "keyTitle": "",
-        "name": "remark",
-        "type": "text",
-        "length": 2147483647,
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>horizontal_positioning",
+        "type": "int4",
+        "length": 10,
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
-        "comments": "<p>General remarks<\/p>"
+        "comments": ""
     },
     {
         "tableName": "trench_point",
@@ -2435,18 +2435,18 @@
         "comments": ""
     },
     {
-        "tableName": "pipe_point_normal",
-        "tableFileName": "pipe_point_normal",
+        "tableName": "pipe_point",
+        "tableFileName": "pipe_point",
         "tableType": "Table",
         "keyClass": "foreignKey",
         "keyTitle": "Foreign Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>armature_setting",
-        "type": "int4",
-        "length": 10,
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>fk_provider",
+        "type": "varchar",
+        "length": 16,
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
-        "comments": ""
+        "comments": "<p>Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l\u2019enregistrement de ces données<\/p>"
     },
     {
         "tableName": "pipe_point_feed",
@@ -2578,15 +2578,15 @@
         "tableName": "pipe_point",
         "tableFileName": "pipe_point",
         "tableType": "Table",
-        "keyClass": "foreignKey",
-        "keyTitle": "Foreign Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>elevation_determination",
-        "type": "int4",
-        "length": 10,
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "symbolori",
+        "type": "numeric",
+        "length": 4,
         "nullable": "√",
         "autoUpdated": "",
         "defaultValue": "null",
-        "comments": ""
+        "comments": "<p>Default: 90 degree<\/p>"
     },
     {
         "tableName": "structure",

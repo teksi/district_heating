@@ -20,11 +20,13 @@ Creation, information and management of network elements according to the swiss 
 * Pipes
 * Trenches
 
+TOOO : INSERT HERE THE chosen parts of the actual datamodel (POC related perimeter)
+
 **Viewing and editing**
 
 A preconfigured QGIS project including the symbology, the forms and the relation between the objets is provided.
 
-The editing can be done directly using the QGIS natives tools and the TDH complementary toolbox (ex : inversion of the direction of the pipes and its related altitudes).
+The editing can be done directly using the QGIS natives tools.
 
 More to come
 ------------
@@ -38,7 +40,7 @@ Documents, pictures and videos can be linked to the network elements.
 Network topology management:
 
 * Topology creation between pipes, structures and catchments
-* Upstream and downstream network tracking tools (water drop)
+* Upstream and downstream network tracking tools
 * Length profiles display
 
 **Mapping and statistics production**
@@ -55,7 +57,6 @@ Network topology management:
 
 **Data export**
 
-* Direct connection with the network simulating software SWMM (Storm Water Management Model)
 * Data export in CAD (dxf) and GIS format (all open data formats)
 * Data export in interlis format
 

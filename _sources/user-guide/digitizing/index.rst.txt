@@ -15,4 +15,3 @@ This represents a guide on how to correctly collect and digitize data of sewer n
    digitizingcable
    digitizingcablepoint
    deletingobjects
-

@@ -7,4 +7,3 @@ An overview of TDH including the layer explanation
    :maxdepth: 2
 
    namingconventions
-

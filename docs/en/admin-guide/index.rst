@@ -9,4 +9,3 @@ This represents a guide on how to administrate the database, install a Virtual m
    datamodel
    pgadmin/index
    security/index
-

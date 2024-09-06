@@ -5,6 +5,8 @@ TDH User Guide
 
 This represents a guide on how to collect data in TDH (digitizing), edit existing data.
 
+.. images:: images/tdh_en_qgis.jpg
+
 .. toctree::
    :maxdepth: 3
 

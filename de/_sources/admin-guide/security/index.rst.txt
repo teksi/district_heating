@@ -14,4 +14,4 @@ The base installation of TDH defines the following group roles :
 
 Data in TDH are stored in 3 schemas with default permissions for all of these users.
 
-.. Note:: The SQL related to these roles is stored `here <https://github.com/TDH/datamodel/blob/master/12_0_roles.sql>`_ and `here <https://github.com/TDH/datamodel/blob/master/12_1_roles.sql>`_
+.. Note:: The SQL related to these roles is stored `here <https://github.com/district_heating/datamodel/blob/master/12_0_roles.sql>`_ and `here <https://github.com/district_heating/datamodel/blob/master/12_1_roles.sql>`_

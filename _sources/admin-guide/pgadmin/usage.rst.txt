@@ -17,6 +17,7 @@ SQL query
  * Clicking the highlighted icon at location *1* opens the SQL Window.
    The SQL icon is active only when you're connected to a database.
  * Clicking the icon at *2* runs the written SQL commands.
+ * More information : <https://www.pgadmin.org/docs/pgadmin4/latest/query_tool.html>
 
 .. _Database dump:
 
@@ -39,3 +40,5 @@ Database dump
  * After running the process, the window in the right bottom shows that everything went ok
 
  .. figure:: images/database-dump-complete4.jpg
+
+ * More information : <https://www.pgadmin.org/docs/pgadmin4/latest/backup_and_restore.html>

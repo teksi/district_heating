@@ -8,7 +8,7 @@ except ImportError:
 
 from .utils import DEFAULT_PG_SERVICE, DbTestBase
 
-TWW_SCHEMAS = ("tdh_sys", "tdh_vl", "tdh_od", "tdh_cfg", "tdh_app")
+TDH_SCHEMAS = ("tdh_sys", "tdh_vl", "tdh_od", "tdh_cfg", "tdh_app")
 PG_SCHEMAS = ("pg_toast", "information_schema", "pg_catalog", "public")
 
 
@@ -23,7 +23,7 @@ class TestSchemas(unittest.TestCase, DbTestBase):
         cls.conn = psycopg.connect(f"service={pgservice}")
 
     def test_list_schemas(self):
-        schemas = ", ".join([f"'{schema}'" for schema in TWW_SCHEMAS + PG_SCHEMAS])
+        schemas = ", ".join([f"'{schema}'" for schema in TDH_SCHEMAS + PG_SCHEMAS])
         list_schemas = f"SELECT schema_name FROM information_schema.schemata WHERE schema_name NOT IN ({schemas});"
         self.check_empty(list_schemas)
 
@@ -32,7 +32,7 @@ class TestSchemas(unittest.TestCase, DbTestBase):
         self.check_empty(list_tables)
 
     def test_data_schemas(self):
-        pg_schemas = ", ".join([f"'{schema}'" for schema in TWW_SCHEMAS + PG_SCHEMAS])
+        pg_schemas = ", ".join([f"'{schema}'" for schema in TDH_SCHEMAS + PG_SCHEMAS])
         list_views = (
             "SELECT * FROM information_schema.tables WHERE table_type = 'VIEW' "
             f"AND table_schema NOT IN ('tdh_app', {pg_schemas})"

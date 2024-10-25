@@ -18,7 +18,7 @@ WITH (
    OIDS = False
 );
 CREATE SEQUENCE tdh_od.seq_pipe_section_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.pipe_section ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','pipe_section');
+ ALTER TABLE tdh_od.pipe_section ALTER COLUMN obj_id SET DEFAULT tdh_app.generate_oid('tdh_od','pipe_section');
 COMMENT ON COLUMN tdh_od.pipe_section.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
  ALTER TABLE tdh_od.pipe_section ADD COLUMN name_number text;
  ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT ps_name_number_length_max_40 CHECK(char_length(name_number)<=40);
@@ -109,7 +109,7 @@ WITH (
    OIDS = False
 );
 CREATE SEQUENCE tdh_od.seq_pipe_point_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.pipe_point ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','pipe_point');
+ ALTER TABLE tdh_od.pipe_point ALTER COLUMN obj_id SET DEFAULT tdh_app.generate_oid('tdh_od','pipe_point');
 COMMENT ON COLUMN tdh_od.pipe_point.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
 --ALTER TABLE tdh_od.pipe_point ADD COLUMN geometry_geometry geometry('POINT', :SRID);
 -- CREATE INDEX in_tdh_pipe_point_geometry_geometry ON tdh_od.pipe_point USING gist (geometry_geometry );
@@ -158,7 +158,7 @@ WITH (
    OIDS = False
 );
 CREATE SEQUENCE tdh_od.seq_pipe_point_normal_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.pipe_point_normal ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','pipe_point_normal');
+ ALTER TABLE tdh_od.pipe_point_normal ALTER COLUMN obj_id SET DEFAULT tdh_app.generate_oid('tdh_od','pipe_point_normal');
 COMMENT ON COLUMN tdh_od.pipe_point_normal.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
  ALTER TABLE tdh_od.pipe_point_normal ADD COLUMN kind  integer ;
 COMMENT ON COLUMN tdh_od.pipe_point_normal.kind IS '';
@@ -185,7 +185,7 @@ WITH (
    OIDS = False
 );
 CREATE SEQUENCE tdh_od.seq_pipe_point_feed_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.pipe_point_feed ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','pipe_point_feed');
+ ALTER TABLE tdh_od.pipe_point_feed ALTER COLUMN obj_id SET DEFAULT tdh_app.generate_oid('tdh_od','pipe_point_feed');
 COMMENT ON COLUMN tdh_od.pipe_point_feed.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
  ALTER TABLE tdh_od.pipe_point_feed ADD COLUMN kind  integer ;
 COMMENT ON COLUMN tdh_od.pipe_point_feed.kind IS '';
@@ -234,7 +234,7 @@ WITH (
    OIDS = False
 );
 CREATE SEQUENCE tdh_od.seq_structure_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.structure ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','structure');
+ ALTER TABLE tdh_od.structure ALTER COLUMN obj_id SET DEFAULT tdh_app.generate_oid('tdh_od','structure');
 COMMENT ON COLUMN tdh_od.structure.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
  ALTER TABLE tdh_od.structure ADD COLUMN name_number text;
  ALTER TABLE tdh_od.structure ADD CONSTRAINT st_name_number_length_max_40 CHECK(char_length(name_number)<=40);
@@ -351,7 +351,7 @@ WITH (
    OIDS = False
 );
 CREATE SEQUENCE tdh_od.seq_trench_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.trench ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','trench');
+ ALTER TABLE tdh_od.trench ALTER COLUMN obj_id SET DEFAULT tdh_app.generate_oid('tdh_od','trench');
 COMMENT ON COLUMN tdh_od.trench.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
  ALTER TABLE tdh_od.trench ADD COLUMN name_number text;
  ALTER TABLE tdh_od.trench ADD CONSTRAINT tr_name_number_length_max_40 CHECK(char_length(name_number)<=40);
@@ -447,7 +447,7 @@ WITH (
    OIDS = False
 );
 CREATE SEQUENCE tdh_od.seq_trench_point_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.trench_point ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','trench_point');
+ ALTER TABLE tdh_od.trench_point ALTER COLUMN obj_id SET DEFAULT tdh_app.generate_oid('tdh_od','trench_point');
 COMMENT ON COLUMN tdh_od.trench_point.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
  ALTER TABLE tdh_od.trench_point ADD COLUMN name_number text;
  ALTER TABLE tdh_od.trench_point ADD CONSTRAINT tp_name_number_length_max_40 CHECK(char_length(name_number)<=40);

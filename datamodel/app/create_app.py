@@ -60,7 +60,7 @@ def create_app(
 
     run_sql_file("functions/oid_functions.sql", pg_service, variables)
     run_sql_file("functions/organisation_functions.sql", pg_service, variables)
-    
+
     # to do add symbology_function and geometry_funcions for TEKSI Distance heating
 
     #    run_sql_file("symbology_functions.sql", pg_service)

@@ -1,6 +1,6 @@
 BEGIN;
 
-------- This has to come after organisation creation otherwise constraints will fail. 
+------- This has to come after organisation creation otherwise constraints will fail.
 ------- Datamedia table using same structure as VSA KEK
 -------
 CREATE TABLE tdh_od.data_media

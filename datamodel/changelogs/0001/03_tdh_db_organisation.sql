@@ -66,12 +66,6 @@ COMMENT ON COLUMN tdh_od.organisation.fk_dataowner IS 'Foreignkey to Metaattribu
  ALTER TABLE tdh_od.organisation ADD COLUMN fk_provider varchar(16);
 COMMENT ON COLUMN tdh_od.organisation.fk_provider IS 'Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données ';
 -------
-CREATE TRIGGER
-update_last_modified_organisation
-BEFORE UPDATE OR INSERT ON
- tdh_od.organisation
-FOR EACH ROW EXECUTE PROCEDURE
- tdh_sys.update_last_modified();
 
 -------
 

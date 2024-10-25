@@ -63,12 +63,6 @@ COMMENT ON COLUMN tdh_od.sia405cc_cable_point.fk_dataowner IS 'Foreignkey to Met
  ALTER TABLE tdh_od.sia405cc_cable_point ADD COLUMN fk_provider varchar(16);
 COMMENT ON COLUMN tdh_od.sia405cc_cable_point.fk_provider IS 'Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données ';
 -------
-CREATE TRIGGER
-update_last_modified_sia405cc_cable_point
-BEFORE UPDATE OR INSERT ON
- tdh_od.sia405cc_cable_point
-FOR EACH ROW EXECUTE PROCEDURE
- tdh_sys.update_last_modified();
 
 -------
 -------
@@ -122,12 +116,6 @@ COMMENT ON COLUMN tdh_od.sia405cc_cable.fk_dataowner IS 'Foreignkey to Metaattri
  ALTER TABLE tdh_od.sia405cc_cable ADD COLUMN fk_provider varchar(16);
 COMMENT ON COLUMN tdh_od.sia405cc_cable.fk_provider IS 'Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données ';
 -------
-CREATE TRIGGER
-update_last_modified_sia405cc_cable
-BEFORE UPDATE OR INSERT ON
- tdh_od.sia405cc_cable
-FOR EACH ROW EXECUTE PROCEDURE
- tdh_sys.update_last_modified();
 
 -------
 ------------ Relationships and Value Tables ----------- ;

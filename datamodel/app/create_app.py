@@ -10,6 +10,7 @@ except ImportError:
     import psycopg2 as psycopg
 
 from pirogue import SingleInheritance
+from triggers.set_defaults_and_triggers import set_defaults_and_triggers
 
 # from view.vw_tdh_reach import vw_tdh_reach
 # from view.vw_tdh_xxx_structure import vw_tdh_xxx_structure
@@ -79,6 +80,8 @@ def create_app(
         "pipe_point_normal": "pipe_point",
         "pipe_point_feed": "pipe_point",
     }
+
+    set_defaults_and_triggers(pg_service, SingleInheritances)
 
     for key in SingleInheritances:
         SingleInheritance(

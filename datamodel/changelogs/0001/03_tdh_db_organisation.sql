@@ -40,7 +40,6 @@ WITH (
    OIDS = False
 );
 CREATE SEQUENCE tdh_od.seq_organisation_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.organisation ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','organisation');
 COMMENT ON COLUMN tdh_od.organisation.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
  ALTER TABLE tdh_od.organisation ADD COLUMN identifier text;
  ALTER TABLE tdh_od.organisation ADD CONSTRAINT og_identifier_length_max_255 CHECK(char_length(identifier)<=255);

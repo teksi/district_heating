@@ -6,7 +6,7 @@
 
 -- Modification of table od_file --> insert fk_data_media
 
--- done in 04_vsa_kek_extension instead
+-- done in 04_tdh_db_data_media_file.sql instead
 --ALTER TABLE tdh_od.file ADD COLUMN fk_data_media character varying(16);
 
 -- ******************************************************************************

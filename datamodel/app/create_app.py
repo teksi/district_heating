@@ -109,7 +109,7 @@ def create_app(
 
     # additional views to be created with simple sql
 
-    # run_sql_file("view/vw_file.sql", pg_service, variables)
+    run_sql_file("view/vw_file.sql", pg_service, variables)
 
     # MultipleInheritance(
     # safe_load(open(cwd / "view/vw_oo_overflow.yaml")),

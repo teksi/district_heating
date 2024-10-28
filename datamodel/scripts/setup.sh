@@ -23,10 +23,11 @@ psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ${DIR}/changelogs/0001/03_tdh_
 
 psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ${DIR}/changelogs/0001/03_tdh_db_sia405.sql -v SRID=$SRID
 
+# Add control cable (Fernwirkkabel)
 psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ${DIR}/changelogs/0001/03_tdh_control_cable_db_sia405.sql -v SRID=$SRID
 
-# Future option Protection tube
-# psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ${DIR}/changelogs/0001/03_tdh_qprotection_tube_db_sia405.sql -v SRID=$SRID
+# Add Protection tube (Schutzrohr)
+psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ${DIR}/changelogs/0001/03_tdh_qprotection_tube_db_sia405.sql -v SRID=$SRID
 
 # psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ${DIR}/changelogs/0001/05_data_model_extensions.sql
 
@@ -35,6 +36,9 @@ psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ${DIR}/changelogs/0001/09_tdh_
 psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ${DIR}/changelogs/0001/09_tdh_organisation_dictionaries.sql -v SRID=$SRID
 
 psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ${DIR}/changelogs/0001/09_tdh_control_cable_dictionaries.sql -v SRID=$SRID
+
+
+psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ${DIR}/changelogs/0001/09_tdh_protection_tube_dictionaries.sql -v SRID=$SRID
 
 #psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f ${DIR}/changelogs/0001/13_import.sql -v SRID=$SRID
 

@@ -96,6 +96,10 @@ ALTER TABLE tdh_vl.sia405pt_protection_tube_status ADD CONSTRAINT pkey_tdh_vl_si
 ALTER TABLE tdh_od.sia405pt_protection_tube ADD CONSTRAINT rel_od_sia405pt_protection_tube_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id) DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE tdh_od.sia405pt_protection_tube ADD CONSTRAINT rel_od_sia405pt_protection_tube_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id) DEFERRABLE INITIALLY DEFERRED;
 
+--------- Extra Relation to class pipe_section of tdh
+ALTER TABLE tdh_od.sia405pt_protection_tube ADD COLUMN fk_pipe_section varchar(16);
+ALTER TABLE tdh_od.sia405pt_protection_tube ADD CONSTRAINT rel_od_sia405pt_protection_tube_fk_pipe_section FOREIGN KEY (fk_pipe_section) REFERENCES tdh_od.pipe_section(obj_id) DEFERRABLE INITIALLY DEFERRED;
+
 ------ Indexes on identifiers
 
  CREATE UNIQUE INDEX in_od_sia405pt_protection_tube_name_number ON tdh_od.sia405pt_protection_tube USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);

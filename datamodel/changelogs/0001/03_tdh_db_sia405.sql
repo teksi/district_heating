@@ -180,7 +180,7 @@ COMMENT ON COLUMN tdh_od.pipe_point_feed.category IS '';
  ALTER TABLE tdh_od.pipe_point_feed ADD COLUMN year_of_commissioning  smallint ;
 COMMENT ON COLUMN tdh_od.pipe_point_feed.year_of_commissioning IS '';
  ALTER TABLE tdh_od.pipe_point_feed ADD COLUMN year_of_reconstruction  smallint ;
-COMMENT ON COLUMN tdh_od.pipe_point_feed.year_of_reconstruction IS '';
+COMMENT ON COLUMN tdh_od.pipe_point_feed.year_of_reconstruction IS 'Year of reconstruction / Jahr des Umbaus / Année de transformation';
  ALTER TABLE tdh_od.pipe_point_feed ADD COLUMN pressure  smallint ;
 COMMENT ON COLUMN tdh_od.pipe_point_feed.pressure IS ' / Primaerer_Konstruktionsdruck (bar_Ue) / pression de construction primaire [bar]';
  ALTER TABLE tdh_od.pipe_point_feed ADD COLUMN flow_temperature  integer ;
@@ -400,6 +400,7 @@ COMMENT ON COLUMN tdh_od.trench_point.name_number IS ' / désignation univoque';
 -- CREATE INDEX in_tdh_trench_point_geometry_geometry ON tdh_od.trench_point USING gist (geometry_geometry );
 -- COMMENT ON COLUMN tdh_od.trench_point.geometry_geometry IS '';
 ALTER TABLE tdh_od.trench_point ADD COLUMN geometry3d_geometry geometry('POINTZ', :SRID);
+COMMENT ON COLUMN tdh_od.trench_point.geometry3d_geometry IS '3D Situation / 3D Lage / 3D Positionnement';
 CREATE INDEX in_tdh_trench_point_geometry3d_geometry ON tdh_od.trench_point USING gist (geometry3d_geometry );
 
  ALTER TABLE tdh_od.trench_point ADD COLUMN horizontal_positioning  integer ;

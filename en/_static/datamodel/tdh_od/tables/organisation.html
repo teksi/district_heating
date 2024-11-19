@@ -193,6 +193,21 @@
                                                 <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                             <tr>
+                                                <td title="sia405pt_protection_tube.fk_dataowner references organisation.obj_id via rel_od_sia405pt_protection_tube_fk_dataowner"><a href='sia405pt_protection_tube.html'>sia405pt_protection_tube</a><span class='relatedKey'>.fk_dataowner</span></td>
+                                                <td class="constraint detail">rel_od_sia405pt_protection_tube_fk_dataowner</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="sia405pt_protection_tube.fk_owner references organisation.obj_id via rel_sia405pt_protection_tube_owner"><a href='sia405pt_protection_tube.html'>sia405pt_protection_tube</a><span class='relatedKey'>.fk_owner</span></td>
+                                                <td class="constraint detail">rel_sia405pt_protection_tube_owner</td>
+                                                <td class="constraint detail"><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>N</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="sia405pt_protection_tube.fk_provider references organisation.obj_id via rel_od_sia405pt_protection_tube_fk_dataprovider"><a href='sia405pt_protection_tube.html'>sia405pt_protection_tube</a><span class='relatedKey'>.fk_provider</span></td>
+                                                <td class="constraint detail">rel_od_sia405pt_protection_tube_fk_dataprovider</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
                                                 <td title="structure.fk_construction_company references organisation.obj_id via rel_structure_construction_company"><a href='structure.html'>structure</a><span class='relatedKey'>.fk_construction_company</span></td>
                                                 <td class="constraint detail">rel_structure_construction_company</td>
                                                 <td class="constraint detail"><span title='Null on delete:&#10;Foreign key to parent set to NULL when parent deleted'>N</span></td>
@@ -516,8 +531,8 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>og_identifier_length_max_255</td>
-                                    <td>((char_length(identifier) &lt;&#61; 255))</td>
+                                    <td>og_identifier_short_length_max_12</td>
+                                    <td>((char_length(identifier_short) &lt;&#61; 12))</td>
                                 </tr>
                                 <tr>
                                     <td>og_uid_length_max_12</td>
@@ -528,8 +543,8 @@
                                     <td>((char_length(remark) &lt;&#61; 255))</td>
                                 </tr>
                                 <tr>
-                                    <td>og_identifier_short_length_max_12</td>
-                                    <td>((char_length(identifier_short) &lt;&#61; 12))</td>
+                                    <td>og_identifier_length_max_255</td>
+                                    <td>((char_length(identifier) &lt;&#61; 255))</td>
                                 </tr>
                                 </tbody>
                             </table>

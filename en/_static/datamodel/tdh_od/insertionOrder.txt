@@ -1,6 +1,7 @@
 organisation
 pipe_point
 trench
+pipe_section
 structure
 structure_line
 trench_line
@@ -8,5 +9,5 @@ pipe_point_feed
 pipe_point_normal
 trench_point
 sia405cc_cable_point
+sia405pt_protection_tube
 sia405cc_cable
-pipe_section

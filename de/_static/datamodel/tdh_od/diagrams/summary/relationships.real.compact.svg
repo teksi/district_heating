@@ -994,43 +994,10 @@
 <polygon fill="black" stroke="black" points="829.5,-2650.99 837.5,-2654.6 833.5,-2651 837.5,-2651 837.5,-2651 837.5,-2651 833.5,-2651 837.5,-2647.4 829.5,-2650.99 829.5,-2650.99"/>
 <ellipse fill="none" stroke="black" cx="826.3" cy="-2650.99" rx="3.2" ry="3.2"/>
 </g>
-<!-- pipe_point_normal -->
-<g id="node6" class="node">
-<title>pipe_point_normal</title>
-<g id="a_node6"><a xlink:href="../../tables/pipe_point_normal.html" xlink:title="pipe_point_normal" target="_top">
-<polygon fill="#ffffff" stroke="transparent" points="1178,-1488 1178,-1616 1333,-1616 1333,-1488 1178,-1488"/>
-<polygon fill="#f5f5f5" stroke="transparent" points="1178.5,-1594 1178.5,-1616 1333.5,-1616 1333.5,-1594 1178.5,-1594"/>
-<polygon fill="none" stroke="black" points="1178.5,-1594 1178.5,-1616 1333.5,-1616 1333.5,-1594 1178.5,-1594"/>
-<text text-anchor="start" x="1183.5" y="-1603.2" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="11.00">pipe_point_normal</text>
-<text text-anchor="start" x="1294.5" y="-1602.2" font-family="Helvetica,sans-Serif" font-size="11.00">[table]</text>
-<polygon fill="none" stroke="black" points="1178.5,-1572 1178.5,-1594 1333.5,-1594 1333.5,-1572 1178.5,-1572"/>
-<image xlink:href="../../images/primaryKeys.png" width="11px" height="12px" preserveAspectRatio="xMinYMin meet" x="1183.5" y="-1589"/>
-<text text-anchor="start" x="1210.5" y="-1580.2" font-family="Helvetica,sans-Serif" font-size="11.00">obj_id</text>
-<polygon fill="none" stroke="black" points="1178.5,-1550 1178.5,-1572 1333.5,-1572 1333.5,-1550 1178.5,-1550"/>
-<image xlink:href="../../images/foreignKeys.png" width="11px" height="12px" preserveAspectRatio="xMinYMin meet" x="1183.5" y="-1567"/>
-<text text-anchor="start" x="1210.5" y="-1558.2" font-family="Helvetica,sans-Serif" font-size="11.00">kind</text>
-<polygon fill="none" stroke="black" points="1178.5,-1528 1178.5,-1550 1333.5,-1550 1333.5,-1528 1178.5,-1528"/>
-<image xlink:href="../../images/foreignKeys.png" width="11px" height="12px" preserveAspectRatio="xMinYMin meet" x="1183.5" y="-1545"/>
-<text text-anchor="start" x="1210.5" y="-1536.2" font-family="Helvetica,sans-Serif" font-size="11.00">armature_setting</text>
-<polygon fill="none" stroke="black" points="1178.5,-1506 1178.5,-1528 1333.5,-1528 1333.5,-1506 1178.5,-1506"/>
-<image xlink:href="../../images/foreignKeys.png" width="11px" height="12px" preserveAspectRatio="xMinYMin meet" x="1183.5" y="-1523"/>
-<text text-anchor="start" x="1210.5" y="-1514.2" font-family="Helvetica,sans-Serif" font-size="11.00">material</text>
-<polygon fill="#ffffff" stroke="transparent" points="1178.5,-1488 1178.5,-1506 1253.5,-1506 1253.5,-1488 1178.5,-1488"/>
-<polygon fill="none" stroke="black" points="1178.5,-1488 1178.5,-1506 1253.5,-1506 1253.5,-1488 1178.5,-1488"/>
-<text text-anchor="start" x="1181.5" y="-1494.2" font-family="Helvetica,sans-Serif" font-size="11.00">&lt; 4</text>
-<polygon fill="#ffffff" stroke="transparent" points="1253.5,-1488 1253.5,-1506 1293.5,-1506 1293.5,-1488 1253.5,-1488"/>
-<polygon fill="none" stroke="black" points="1253.5,-1488 1253.5,-1506 1293.5,-1506 1293.5,-1488 1253.5,-1488"/>
-<text text-anchor="start" x="1283.5" y="-1494.2" font-family="Helvetica,sans-Serif" font-size="11.00"> &#160;</text>
-<polygon fill="#ffffff" stroke="transparent" points="1293.5,-1488 1293.5,-1506 1333.5,-1506 1333.5,-1488 1293.5,-1488"/>
-<polygon fill="none" stroke="black" points="1293.5,-1488 1293.5,-1506 1333.5,-1506 1333.5,-1488 1293.5,-1488"/>
-<text text-anchor="start" x="1323.5" y="-1494.2" font-family="Helvetica,sans-Serif" font-size="11.00"> &#160;</text>
-</a>
-</g>
-</g>
 <!-- pipe_point -->
-<g id="node7" class="node">
+<g id="node6" class="node">
 <title>pipe_point</title>
-<g id="a_node7"><a xlink:href="../../tables/pipe_point.html" xlink:title="pipe_point" target="_top">
+<g id="a_node6"><a xlink:href="../../tables/pipe_point.html" xlink:title="pipe_point" target="_top">
 <polygon fill="#ffffff" stroke="transparent" points="838,-1496 838,-1708 1007,-1708 1007,-1496 838,-1496"/>
 <polygon fill="#f5f5f5" stroke="transparent" points="838.5,-1686 838.5,-1708 1007.5,-1708 1007.5,-1686 838.5,-1686"/>
 <polygon fill="none" stroke="black" points="838.5,-1686 838.5,-1708 1007.5,-1708 1007.5,-1686 838.5,-1686"/>
@@ -1068,6 +1035,120 @@
 <polygon fill="#ffffff" stroke="transparent" points="957.5,-1496 957.5,-1514 1007.5,-1514 1007.5,-1496 957.5,-1496"/>
 <polygon fill="none" stroke="black" points="957.5,-1496 957.5,-1514 1007.5,-1514 1007.5,-1496 957.5,-1496"/>
 <text text-anchor="start" x="988.5" y="-1502.2" font-family="Helvetica,sans-Serif" font-size="11.00">2 &gt;</text>
+</a>
+</g>
+</g>
+<!-- pipe_point&#45;&gt;organisation -->
+<g id="edge6" class="edge">
+<title>pipe_point:w&#45;&gt;organisation:e</title>
+<path fill="none" stroke="black" d="M822.83,-1587.39C717.78,-1593.14 695.32,-1660 582.5,-1660"/>
+<polygon fill="black" stroke="black" points="829.5,-1587.21 837.6,-1590.6 833.5,-1587.11 837.5,-1587 837.5,-1587 837.5,-1587 833.5,-1587.11 837.4,-1583.4 829.5,-1587.21 829.5,-1587.21"/>
+<ellipse fill="none" stroke="black" cx="826.3" cy="-1587.3" rx="3.2" ry="3.2"/>
+</g>
+<!-- pipe_point&#45;&gt;organisation -->
+<g id="edge7" class="edge">
+<title>pipe_point:w&#45;&gt;organisation:e</title>
+<path fill="none" stroke="black" d="M823.08,-1543.55C712.17,-1552.18 702.2,-1660 582.5,-1660"/>
+<polygon fill="black" stroke="black" points="829.51,-1543.3 837.64,-1546.6 833.5,-1543.15 837.5,-1543 837.5,-1543 837.5,-1543 833.5,-1543.15 837.36,-1539.4 829.51,-1543.3 829.51,-1543.3"/>
+<ellipse fill="none" stroke="black" cx="826.31" cy="-1543.43" rx="3.2" ry="3.2"/>
+</g>
+<!-- pipe_point&#45;&gt;organisation -->
+<g id="edge8" class="edge">
+<title>pipe_point:w&#45;&gt;organisation:e</title>
+<path fill="none" stroke="black" d="M822.82,-1565.49C715.27,-1572.81 698.36,-1660 582.5,-1660"/>
+<polygon fill="black" stroke="black" points="829.5,-1565.27 837.62,-1568.6 833.5,-1565.13 837.5,-1565 837.5,-1565 837.5,-1565 833.5,-1565.13 837.38,-1561.4 829.5,-1565.27 829.5,-1565.27"/>
+<ellipse fill="none" stroke="black" cx="826.31" cy="-1565.37" rx="3.2" ry="3.2"/>
+</g>
+<!-- tdh_vl.pipe_point_horizontal_positioning -->
+<g id="node34" class="node">
+<title>tdh_vl.pipe_point_horizontal_positioning</title>
+<g id="a_node34"><a xlink:href="../../../tdh_vl/tables/pipe_point_horizontal_positioning.html" xlink:title="tdh_vl.pipe_point_horizontal_positioning" target="_top">
+<polygon fill="#ffffff" stroke="transparent" points="365.5,-1424 365.5,-1482 649.5,-1482 649.5,-1424 365.5,-1424"/>
+<polygon fill="#f5f5f5" stroke="transparent" points="365.5,-1460 365.5,-1482 649.5,-1482 649.5,-1460 365.5,-1460"/>
+<polygon fill="none" stroke="black" points="365.5,-1460 365.5,-1482 649.5,-1482 649.5,-1460 365.5,-1460"/>
+<text text-anchor="start" x="370.5" y="-1469.2" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="11.00">tdh_vl.pipe_point_horizontal_positioning</text>
+<text text-anchor="start" x="610.5" y="-1468.2" font-family="Helvetica,sans-Serif" font-size="11.00">[table]</text>
+<polygon fill="none" stroke="black" points="365.5,-1442 365.5,-1460 649.5,-1460 649.5,-1442 365.5,-1442"/>
+<text text-anchor="start" x="368.5" y="-1448.2" font-family="Helvetica,sans-Serif" font-size="11.00">...</text>
+<polygon fill="#ffffff" stroke="transparent" points="365.5,-1424 365.5,-1442 482.5,-1442 482.5,-1424 365.5,-1424"/>
+<polygon fill="none" stroke="black" points="365.5,-1424 365.5,-1442 482.5,-1442 482.5,-1424 365.5,-1424"/>
+<text text-anchor="start" x="368.5" y="-1430.2" font-family="Helvetica,sans-Serif" font-size="11.00"> &#160;</text>
+<polygon fill="#ffffff" stroke="transparent" points="482.5,-1424 482.5,-1442 574.5,-1442 574.5,-1424 482.5,-1424"/>
+<polygon fill="none" stroke="black" points="482.5,-1424 482.5,-1442 574.5,-1442 574.5,-1424 482.5,-1424"/>
+<text text-anchor="start" x="537.5" y="-1430.2" font-family="Helvetica,sans-Serif" font-size="11.00">0 rows</text>
+<polygon fill="#ffffff" stroke="transparent" points="574.5,-1424 574.5,-1442 649.5,-1442 649.5,-1424 574.5,-1424"/>
+<polygon fill="none" stroke="black" points="574.5,-1424 574.5,-1442 649.5,-1442 649.5,-1424 574.5,-1424"/>
+<text text-anchor="start" x="630.5" y="-1430.2" font-family="Helvetica,sans-Serif" font-size="11.00">1 &gt;</text>
+</a>
+</g>
+</g>
+<!-- pipe_point&#45;&gt;tdh_vl.pipe_point_horizontal_positioning -->
+<g id="edge9" class="edge">
+<title>pipe_point:w&#45;&gt;tdh_vl.pipe_point_horizontal_positioning:e</title>
+<path fill="none" stroke="black" d="M823.11,-1630.04C751.74,-1619.88 768.22,-1532.08 695,-1493 683.31,-1486.76 670.73,-1481.5 657.81,-1477.05"/>
+<polygon fill="black" stroke="black" points="829.52,-1630.47 837.26,-1634.59 833.51,-1630.73 837.5,-1631 837.5,-1631 837.5,-1631 833.51,-1630.73 837.74,-1627.41 829.52,-1630.47 829.52,-1630.47"/>
+<ellipse fill="none" stroke="black" cx="826.33" cy="-1630.25" rx="3.2" ry="3.2"/>
+</g>
+<!-- tdh_vl.pipe_point_elevation_determination -->
+<g id="node35" class="node">
+<title>tdh_vl.pipe_point_elevation_determination</title>
+<g id="a_node35"><a xlink:href="../../../tdh_vl/tables/pipe_point_elevation_determination.html" xlink:title="tdh_vl.pipe_point_elevation_determination" target="_top">
+<polygon fill="#ffffff" stroke="transparent" points="358,-1345 358,-1403 657,-1403 657,-1345 358,-1345"/>
+<polygon fill="#f5f5f5" stroke="transparent" points="358.5,-1381 358.5,-1403 657.5,-1403 657.5,-1381 358.5,-1381"/>
+<polygon fill="none" stroke="black" points="358.5,-1381 358.5,-1403 657.5,-1403 657.5,-1381 358.5,-1381"/>
+<text text-anchor="start" x="363.5" y="-1390.2" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="11.00">tdh_vl.pipe_point_elevation_determination</text>
+<text text-anchor="start" x="618.5" y="-1389.2" font-family="Helvetica,sans-Serif" font-size="11.00">[table]</text>
+<polygon fill="none" stroke="black" points="358.5,-1363 358.5,-1381 657.5,-1381 657.5,-1363 358.5,-1363"/>
+<text text-anchor="start" x="361.5" y="-1369.2" font-family="Helvetica,sans-Serif" font-size="11.00">...</text>
+<polygon fill="#ffffff" stroke="transparent" points="358.5,-1345 358.5,-1363 483.5,-1363 483.5,-1345 358.5,-1345"/>
+<polygon fill="none" stroke="black" points="358.5,-1345 358.5,-1363 483.5,-1363 483.5,-1345 358.5,-1345"/>
+<text text-anchor="start" x="361.5" y="-1351.2" font-family="Helvetica,sans-Serif" font-size="11.00"> &#160;</text>
+<polygon fill="#ffffff" stroke="transparent" points="483.5,-1345 483.5,-1363 579.5,-1363 579.5,-1345 483.5,-1345"/>
+<polygon fill="none" stroke="black" points="483.5,-1345 483.5,-1363 579.5,-1363 579.5,-1345 483.5,-1345"/>
+<text text-anchor="start" x="542.5" y="-1351.2" font-family="Helvetica,sans-Serif" font-size="11.00">0 rows</text>
+<polygon fill="#ffffff" stroke="transparent" points="579.5,-1345 579.5,-1363 657.5,-1363 657.5,-1345 579.5,-1345"/>
+<polygon fill="none" stroke="black" points="579.5,-1345 579.5,-1363 657.5,-1363 657.5,-1345 579.5,-1345"/>
+<text text-anchor="start" x="638.5" y="-1351.2" font-family="Helvetica,sans-Serif" font-size="11.00">1 &gt;</text>
+</a>
+</g>
+</g>
+<!-- pipe_point&#45;&gt;tdh_vl.pipe_point_elevation_determination -->
+<g id="edge5" class="edge">
+<title>pipe_point:w&#45;&gt;tdh_vl.pipe_point_elevation_determination:e</title>
+<path fill="none" stroke="black" d="M822.79,-1608.06C764.62,-1600.08 765.13,-1542.85 728,-1486 708.75,-1456.53 722.46,-1436.03 695,-1414 685.96,-1406.75 675.91,-1400.73 665.28,-1395.75"/>
+<polygon fill="black" stroke="black" points="829.52,-1608.49 837.27,-1612.59 833.51,-1608.74 837.5,-1609 837.5,-1609 837.5,-1609 833.51,-1608.74 837.73,-1605.41 829.52,-1608.49 829.52,-1608.49"/>
+<ellipse fill="none" stroke="black" cx="826.32" cy="-1608.28" rx="3.2" ry="3.2"/>
+</g>
+<!-- pipe_point_normal -->
+<g id="node7" class="node">
+<title>pipe_point_normal</title>
+<g id="a_node7"><a xlink:href="../../tables/pipe_point_normal.html" xlink:title="pipe_point_normal" target="_top">
+<polygon fill="#ffffff" stroke="transparent" points="1178,-1488 1178,-1616 1333,-1616 1333,-1488 1178,-1488"/>
+<polygon fill="#f5f5f5" stroke="transparent" points="1178.5,-1594 1178.5,-1616 1333.5,-1616 1333.5,-1594 1178.5,-1594"/>
+<polygon fill="none" stroke="black" points="1178.5,-1594 1178.5,-1616 1333.5,-1616 1333.5,-1594 1178.5,-1594"/>
+<text text-anchor="start" x="1183.5" y="-1603.2" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="11.00">pipe_point_normal</text>
+<text text-anchor="start" x="1294.5" y="-1602.2" font-family="Helvetica,sans-Serif" font-size="11.00">[table]</text>
+<polygon fill="none" stroke="black" points="1178.5,-1572 1178.5,-1594 1333.5,-1594 1333.5,-1572 1178.5,-1572"/>
+<image xlink:href="../../images/primaryKeys.png" width="11px" height="12px" preserveAspectRatio="xMinYMin meet" x="1183.5" y="-1589"/>
+<text text-anchor="start" x="1210.5" y="-1580.2" font-family="Helvetica,sans-Serif" font-size="11.00">obj_id</text>
+<polygon fill="none" stroke="black" points="1178.5,-1550 1178.5,-1572 1333.5,-1572 1333.5,-1550 1178.5,-1550"/>
+<image xlink:href="../../images/foreignKeys.png" width="11px" height="12px" preserveAspectRatio="xMinYMin meet" x="1183.5" y="-1567"/>
+<text text-anchor="start" x="1210.5" y="-1558.2" font-family="Helvetica,sans-Serif" font-size="11.00">kind</text>
+<polygon fill="none" stroke="black" points="1178.5,-1528 1178.5,-1550 1333.5,-1550 1333.5,-1528 1178.5,-1528"/>
+<image xlink:href="../../images/foreignKeys.png" width="11px" height="12px" preserveAspectRatio="xMinYMin meet" x="1183.5" y="-1545"/>
+<text text-anchor="start" x="1210.5" y="-1536.2" font-family="Helvetica,sans-Serif" font-size="11.00">armature_setting</text>
+<polygon fill="none" stroke="black" points="1178.5,-1506 1178.5,-1528 1333.5,-1528 1333.5,-1506 1178.5,-1506"/>
+<image xlink:href="../../images/foreignKeys.png" width="11px" height="12px" preserveAspectRatio="xMinYMin meet" x="1183.5" y="-1523"/>
+<text text-anchor="start" x="1210.5" y="-1514.2" font-family="Helvetica,sans-Serif" font-size="11.00">material</text>
+<polygon fill="#ffffff" stroke="transparent" points="1178.5,-1488 1178.5,-1506 1253.5,-1506 1253.5,-1488 1178.5,-1488"/>
+<polygon fill="none" stroke="black" points="1178.5,-1488 1178.5,-1506 1253.5,-1506 1253.5,-1488 1178.5,-1488"/>
+<text text-anchor="start" x="1181.5" y="-1494.2" font-family="Helvetica,sans-Serif" font-size="11.00">&lt; 4</text>
+<polygon fill="#ffffff" stroke="transparent" points="1253.5,-1488 1253.5,-1506 1293.5,-1506 1293.5,-1488 1253.5,-1488"/>
+<polygon fill="none" stroke="black" points="1253.5,-1488 1253.5,-1506 1293.5,-1506 1293.5,-1488 1253.5,-1488"/>
+<text text-anchor="start" x="1283.5" y="-1494.2" font-family="Helvetica,sans-Serif" font-size="11.00"> &#160;</text>
+<polygon fill="#ffffff" stroke="transparent" points="1293.5,-1488 1293.5,-1506 1333.5,-1506 1333.5,-1488 1293.5,-1488"/>
+<polygon fill="none" stroke="black" points="1293.5,-1488 1293.5,-1506 1333.5,-1506 1333.5,-1488 1293.5,-1488"/>
+<text text-anchor="start" x="1323.5" y="-1494.2" font-family="Helvetica,sans-Serif" font-size="11.00"> &#160;</text>
 </a>
 </g>
 </g>
@@ -1168,87 +1249,6 @@
 <path fill="none" stroke="black" d="M1162.84,-1514.58C1129.23,-1501.27 1157.16,-1436.64 1117,-1407 1098.99,-1393.71 1077.59,-1384.59 1055.7,-1378.39"/>
 <polygon fill="black" stroke="black" points="1169.61,-1515.7 1176.91,-1520.55 1173.55,-1516.35 1177.5,-1517 1177.5,-1517 1177.5,-1517 1173.55,-1516.35 1178.09,-1513.45 1169.61,-1515.7 1169.61,-1515.7"/>
 <ellipse fill="none" stroke="black" cx="1166.45" cy="-1515.17" rx="3.2" ry="3.2"/>
-</g>
-<!-- pipe_point&#45;&gt;organisation -->
-<g id="edge6" class="edge">
-<title>pipe_point:w&#45;&gt;organisation:e</title>
-<path fill="none" stroke="black" d="M822.83,-1587.39C717.78,-1593.14 695.32,-1660 582.5,-1660"/>
-<polygon fill="black" stroke="black" points="829.5,-1587.21 837.6,-1590.6 833.5,-1587.11 837.5,-1587 837.5,-1587 837.5,-1587 833.5,-1587.11 837.4,-1583.4 829.5,-1587.21 829.5,-1587.21"/>
-<ellipse fill="none" stroke="black" cx="826.3" cy="-1587.3" rx="3.2" ry="3.2"/>
-</g>
-<!-- pipe_point&#45;&gt;organisation -->
-<g id="edge7" class="edge">
-<title>pipe_point:w&#45;&gt;organisation:e</title>
-<path fill="none" stroke="black" d="M823.08,-1543.55C712.17,-1552.18 702.2,-1660 582.5,-1660"/>
-<polygon fill="black" stroke="black" points="829.51,-1543.3 837.64,-1546.6 833.5,-1543.15 837.5,-1543 837.5,-1543 837.5,-1543 833.5,-1543.15 837.36,-1539.4 829.51,-1543.3 829.51,-1543.3"/>
-<ellipse fill="none" stroke="black" cx="826.31" cy="-1543.43" rx="3.2" ry="3.2"/>
-</g>
-<!-- pipe_point&#45;&gt;organisation -->
-<g id="edge8" class="edge">
-<title>pipe_point:w&#45;&gt;organisation:e</title>
-<path fill="none" stroke="black" d="M822.82,-1565.49C715.27,-1572.81 698.36,-1660 582.5,-1660"/>
-<polygon fill="black" stroke="black" points="829.5,-1565.27 837.62,-1568.6 833.5,-1565.13 837.5,-1565 837.5,-1565 837.5,-1565 833.5,-1565.13 837.38,-1561.4 829.5,-1565.27 829.5,-1565.27"/>
-<ellipse fill="none" stroke="black" cx="826.31" cy="-1565.37" rx="3.2" ry="3.2"/>
-</g>
-<!-- tdh_vl.pipe_point_horizontal_positioning -->
-<g id="node34" class="node">
-<title>tdh_vl.pipe_point_horizontal_positioning</title>
-<g id="a_node34"><a xlink:href="../../../tdh_vl/tables/pipe_point_horizontal_positioning.html" xlink:title="tdh_vl.pipe_point_horizontal_positioning" target="_top">
-<polygon fill="#ffffff" stroke="transparent" points="365.5,-1424 365.5,-1482 649.5,-1482 649.5,-1424 365.5,-1424"/>
-<polygon fill="#f5f5f5" stroke="transparent" points="365.5,-1460 365.5,-1482 649.5,-1482 649.5,-1460 365.5,-1460"/>
-<polygon fill="none" stroke="black" points="365.5,-1460 365.5,-1482 649.5,-1482 649.5,-1460 365.5,-1460"/>
-<text text-anchor="start" x="370.5" y="-1469.2" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="11.00">tdh_vl.pipe_point_horizontal_positioning</text>
-<text text-anchor="start" x="610.5" y="-1468.2" font-family="Helvetica,sans-Serif" font-size="11.00">[table]</text>
-<polygon fill="none" stroke="black" points="365.5,-1442 365.5,-1460 649.5,-1460 649.5,-1442 365.5,-1442"/>
-<text text-anchor="start" x="368.5" y="-1448.2" font-family="Helvetica,sans-Serif" font-size="11.00">...</text>
-<polygon fill="#ffffff" stroke="transparent" points="365.5,-1424 365.5,-1442 482.5,-1442 482.5,-1424 365.5,-1424"/>
-<polygon fill="none" stroke="black" points="365.5,-1424 365.5,-1442 482.5,-1442 482.5,-1424 365.5,-1424"/>
-<text text-anchor="start" x="368.5" y="-1430.2" font-family="Helvetica,sans-Serif" font-size="11.00"> &#160;</text>
-<polygon fill="#ffffff" stroke="transparent" points="482.5,-1424 482.5,-1442 574.5,-1442 574.5,-1424 482.5,-1424"/>
-<polygon fill="none" stroke="black" points="482.5,-1424 482.5,-1442 574.5,-1442 574.5,-1424 482.5,-1424"/>
-<text text-anchor="start" x="537.5" y="-1430.2" font-family="Helvetica,sans-Serif" font-size="11.00">0 rows</text>
-<polygon fill="#ffffff" stroke="transparent" points="574.5,-1424 574.5,-1442 649.5,-1442 649.5,-1424 574.5,-1424"/>
-<polygon fill="none" stroke="black" points="574.5,-1424 574.5,-1442 649.5,-1442 649.5,-1424 574.5,-1424"/>
-<text text-anchor="start" x="630.5" y="-1430.2" font-family="Helvetica,sans-Serif" font-size="11.00">1 &gt;</text>
-</a>
-</g>
-</g>
-<!-- pipe_point&#45;&gt;tdh_vl.pipe_point_horizontal_positioning -->
-<g id="edge9" class="edge">
-<title>pipe_point:w&#45;&gt;tdh_vl.pipe_point_horizontal_positioning:e</title>
-<path fill="none" stroke="black" d="M823.11,-1630.04C751.74,-1619.88 768.22,-1532.08 695,-1493 683.31,-1486.76 670.73,-1481.5 657.81,-1477.05"/>
-<polygon fill="black" stroke="black" points="829.52,-1630.47 837.26,-1634.59 833.51,-1630.73 837.5,-1631 837.5,-1631 837.5,-1631 833.51,-1630.73 837.74,-1627.41 829.52,-1630.47 829.52,-1630.47"/>
-<ellipse fill="none" stroke="black" cx="826.33" cy="-1630.25" rx="3.2" ry="3.2"/>
-</g>
-<!-- tdh_vl.pipe_point_elevation_determination -->
-<g id="node35" class="node">
-<title>tdh_vl.pipe_point_elevation_determination</title>
-<g id="a_node35"><a xlink:href="../../../tdh_vl/tables/pipe_point_elevation_determination.html" xlink:title="tdh_vl.pipe_point_elevation_determination" target="_top">
-<polygon fill="#ffffff" stroke="transparent" points="358,-1345 358,-1403 657,-1403 657,-1345 358,-1345"/>
-<polygon fill="#f5f5f5" stroke="transparent" points="358.5,-1381 358.5,-1403 657.5,-1403 657.5,-1381 358.5,-1381"/>
-<polygon fill="none" stroke="black" points="358.5,-1381 358.5,-1403 657.5,-1403 657.5,-1381 358.5,-1381"/>
-<text text-anchor="start" x="363.5" y="-1390.2" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="11.00">tdh_vl.pipe_point_elevation_determination</text>
-<text text-anchor="start" x="618.5" y="-1389.2" font-family="Helvetica,sans-Serif" font-size="11.00">[table]</text>
-<polygon fill="none" stroke="black" points="358.5,-1363 358.5,-1381 657.5,-1381 657.5,-1363 358.5,-1363"/>
-<text text-anchor="start" x="361.5" y="-1369.2" font-family="Helvetica,sans-Serif" font-size="11.00">...</text>
-<polygon fill="#ffffff" stroke="transparent" points="358.5,-1345 358.5,-1363 483.5,-1363 483.5,-1345 358.5,-1345"/>
-<polygon fill="none" stroke="black" points="358.5,-1345 358.5,-1363 483.5,-1363 483.5,-1345 358.5,-1345"/>
-<text text-anchor="start" x="361.5" y="-1351.2" font-family="Helvetica,sans-Serif" font-size="11.00"> &#160;</text>
-<polygon fill="#ffffff" stroke="transparent" points="483.5,-1345 483.5,-1363 579.5,-1363 579.5,-1345 483.5,-1345"/>
-<polygon fill="none" stroke="black" points="483.5,-1345 483.5,-1363 579.5,-1363 579.5,-1345 483.5,-1345"/>
-<text text-anchor="start" x="542.5" y="-1351.2" font-family="Helvetica,sans-Serif" font-size="11.00">0 rows</text>
-<polygon fill="#ffffff" stroke="transparent" points="579.5,-1345 579.5,-1363 657.5,-1363 657.5,-1345 579.5,-1345"/>
-<polygon fill="none" stroke="black" points="579.5,-1345 579.5,-1363 657.5,-1363 657.5,-1345 579.5,-1345"/>
-<text text-anchor="start" x="638.5" y="-1351.2" font-family="Helvetica,sans-Serif" font-size="11.00">1 &gt;</text>
-</a>
-</g>
-</g>
-<!-- pipe_point&#45;&gt;tdh_vl.pipe_point_elevation_determination -->
-<g id="edge5" class="edge">
-<title>pipe_point:w&#45;&gt;tdh_vl.pipe_point_elevation_determination:e</title>
-<path fill="none" stroke="black" d="M822.79,-1608.06C764.62,-1600.08 765.13,-1542.85 728,-1486 708.75,-1456.53 722.46,-1436.03 695,-1414 685.96,-1406.75 675.91,-1400.73 665.28,-1395.75"/>
-<polygon fill="black" stroke="black" points="829.52,-1608.49 837.27,-1612.59 833.51,-1608.74 837.5,-1609 837.5,-1609 837.5,-1609 833.51,-1608.74 837.73,-1605.41 829.52,-1608.49 829.52,-1608.49"/>
-<ellipse fill="none" stroke="black" cx="826.32" cy="-1608.28" rx="3.2" ry="3.2"/>
 </g>
 <!-- trench_point -->
 <g id="node8" class="node">

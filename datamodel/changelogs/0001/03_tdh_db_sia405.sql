@@ -18,7 +18,6 @@ WITH (
    OIDS = False
 );
 CREATE SEQUENCE tdh_od.seq_pipe_section_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.pipe_section ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','pipe_section');
 COMMENT ON COLUMN tdh_od.pipe_section.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
  ALTER TABLE tdh_od.pipe_section ADD COLUMN name_number text;
  ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT ps_name_number_length_max_40 CHECK(char_length(name_number)<=40);
@@ -91,12 +90,6 @@ COMMENT ON COLUMN tdh_od.pipe_section.fk_dataowner IS 'Foreignkey to Metaattribu
  ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_provider varchar(16);
 COMMENT ON COLUMN tdh_od.pipe_section.fk_provider IS 'Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données ';
 -------
-CREATE TRIGGER
-update_last_modified_pipe_section
-BEFORE UPDATE OR INSERT ON
- tdh_od.pipe_section
-FOR EACH ROW EXECUTE PROCEDURE
- tdh_sys.update_last_modified();
 
 -------
 -------
@@ -109,7 +102,6 @@ WITH (
    OIDS = False
 );
 CREATE SEQUENCE tdh_od.seq_pipe_point_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.pipe_point ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','pipe_point');
 COMMENT ON COLUMN tdh_od.pipe_point.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
 --ALTER TABLE tdh_od.pipe_point ADD COLUMN geometry_geometry geometry('POINT', :SRID);
 -- CREATE INDEX in_tdh_pipe_point_geometry_geometry ON tdh_od.pipe_point USING gist (geometry_geometry );
@@ -140,12 +132,6 @@ COMMENT ON COLUMN tdh_od.pipe_point.fk_dataowner IS 'Foreignkey to Metaattribute
  ALTER TABLE tdh_od.pipe_point ADD COLUMN fk_provider varchar(16);
 COMMENT ON COLUMN tdh_od.pipe_point.fk_provider IS 'Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données ';
 -------
-CREATE TRIGGER
-update_last_modified_pipe_point
-BEFORE UPDATE OR INSERT ON
- tdh_od.pipe_point
-FOR EACH ROW EXECUTE PROCEDURE
- tdh_sys.update_last_modified();
 
 -------
 -------
@@ -158,7 +144,6 @@ WITH (
    OIDS = False
 );
 CREATE SEQUENCE tdh_od.seq_pipe_point_normal_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.pipe_point_normal ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','pipe_point_normal');
 COMMENT ON COLUMN tdh_od.pipe_point_normal.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
  ALTER TABLE tdh_od.pipe_point_normal ADD COLUMN kind  integer ;
 COMMENT ON COLUMN tdh_od.pipe_point_normal.kind IS '';
@@ -167,12 +152,6 @@ COMMENT ON COLUMN tdh_od.pipe_point_normal.armature_setting IS '';
  ALTER TABLE tdh_od.pipe_point_normal ADD COLUMN material  integer ;
 COMMENT ON COLUMN tdh_od.pipe_point_normal.material IS '';
 -------
-CREATE TRIGGER
-update_last_modified_pipe_point_normal
-BEFORE UPDATE OR INSERT ON
- tdh_od.pipe_point_normal
-FOR EACH ROW EXECUTE PROCEDURE
- tdh_sys.update_last_modified_parent("tdh_od.pipe_point");
 
 -------
 -------
@@ -185,7 +164,6 @@ WITH (
    OIDS = False
 );
 CREATE SEQUENCE tdh_od.seq_pipe_point_feed_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.pipe_point_feed ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','pipe_point_feed');
 COMMENT ON COLUMN tdh_od.pipe_point_feed.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
  ALTER TABLE tdh_od.pipe_point_feed ADD COLUMN kind  integer ;
 COMMENT ON COLUMN tdh_od.pipe_point_feed.kind IS '';
@@ -216,13 +194,6 @@ COMMENT ON COLUMN tdh_od.pipe_point_feed.heat_consumption IS 'per year / Pro Jah
  ALTER TABLE tdh_od.pipe_point_feed ADD COLUMN power_output  integer ;
 COMMENT ON COLUMN tdh_od.pipe_point_feed.power_output IS '';
 -------
-CREATE TRIGGER
-update_last_modified_pipe_point_feed
-BEFORE UPDATE OR INSERT ON
- tdh_od.pipe_point_feed
-FOR EACH ROW EXECUTE PROCEDURE
- tdh_sys.update_last_modified_parent("tdh_od.pipe_point");
-
 -------
 -------
 CREATE TABLE tdh_od.structure
@@ -234,7 +205,6 @@ WITH (
    OIDS = False
 );
 CREATE SEQUENCE tdh_od.seq_structure_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.structure ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','structure');
 COMMENT ON COLUMN tdh_od.structure.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
  ALTER TABLE tdh_od.structure ADD COLUMN name_number text;
  ALTER TABLE tdh_od.structure ADD CONSTRAINT st_name_number_length_max_40 CHECK(char_length(name_number)<=40);
@@ -308,12 +278,6 @@ COMMENT ON COLUMN tdh_od.structure.fk_dataowner IS 'Foreignkey to Metaattribute 
  ALTER TABLE tdh_od.structure ADD COLUMN fk_provider varchar(16);
 COMMENT ON COLUMN tdh_od.structure.fk_provider IS 'Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données ';
 -------
-CREATE TRIGGER
-update_last_modified_structure
-BEFORE UPDATE OR INSERT ON
- tdh_od.structure
-FOR EACH ROW EXECUTE PROCEDURE
- tdh_sys.update_last_modified();
 
 -------
 -- corresponding structure_line table
@@ -330,12 +294,6 @@ CREATE INDEX in_tdh_structure_line_geometry3d_geometry ON tdh_od.structure_line 
 ALTER TABLE tdh_od.structure_line ADD COLUMN last_modification TIMESTAMP without time zone DEFAULT now();
 COMMENT ON COLUMN tdh_od.structure_line.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
 -------
-CREATE TRIGGER
-update_last_modified_structure_line
-BEFORE UPDATE OR INSERT ON
- tdh_od.structure_line
-FOR EACH ROW EXECUTE PROCEDURE
- tdh_sys.update_last_modified();
 -------
 
 ALTER TABLE tdh_od.structure_line ADD COLUMN fk_structure varchar(16);
@@ -351,7 +309,6 @@ WITH (
    OIDS = False
 );
 CREATE SEQUENCE tdh_od.seq_trench_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.trench ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','trench');
 COMMENT ON COLUMN tdh_od.trench.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
  ALTER TABLE tdh_od.trench ADD COLUMN name_number text;
  ALTER TABLE tdh_od.trench ADD CONSTRAINT tr_name_number_length_max_40 CHECK(char_length(name_number)<=40);
@@ -404,12 +361,6 @@ COMMENT ON COLUMN tdh_od.trench.fk_dataowner IS 'Foreignkey to Metaattribute dat
  ALTER TABLE tdh_od.trench ADD COLUMN fk_provider varchar(16);
 COMMENT ON COLUMN tdh_od.trench.fk_provider IS 'Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données ';
 -------
-CREATE TRIGGER
-update_last_modified_trench
-BEFORE UPDATE OR INSERT ON
- tdh_od.trench
-FOR EACH ROW EXECUTE PROCEDURE
- tdh_sys.update_last_modified();
 
 -------
 -- corresponding trench_line table
@@ -426,12 +377,6 @@ CREATE INDEX in_tdh_trench_line_geometry3d_geometry ON tdh_od.trench_line USING 
 ALTER TABLE tdh_od.trench_line ADD COLUMN last_modification TIMESTAMP without time zone DEFAULT now();
 COMMENT ON COLUMN tdh_od.trench_line.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
 -------
-CREATE TRIGGER
-update_last_modified_trench_line
-BEFORE UPDATE OR INSERT ON
- tdh_od.trench_line
-FOR EACH ROW EXECUTE PROCEDURE
- tdh_sys.update_last_modified();
 -------
 
 ALTER TABLE tdh_od.trench_line ADD COLUMN fk_trench varchar(16);
@@ -447,7 +392,6 @@ WITH (
    OIDS = False
 );
 CREATE SEQUENCE tdh_od.seq_trench_point_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.trench_point ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','trench_point');
 COMMENT ON COLUMN tdh_od.trench_point.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
  ALTER TABLE tdh_od.trench_point ADD COLUMN name_number text;
  ALTER TABLE tdh_od.trench_point ADD CONSTRAINT tp_name_number_length_max_40 CHECK(char_length(name_number)<=40);
@@ -490,12 +434,6 @@ COMMENT ON COLUMN tdh_od.trench_point.fk_dataowner IS 'Foreignkey to Metaattribu
  ALTER TABLE tdh_od.trench_point ADD COLUMN fk_provider varchar(16);
 COMMENT ON COLUMN tdh_od.trench_point.fk_provider IS 'Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données ';
 -------
-CREATE TRIGGER
-update_last_modified_trench_point
-BEFORE UPDATE OR INSERT ON
- tdh_od.trench_point
-FOR EACH ROW EXECUTE PROCEDURE
- tdh_sys.update_last_modified();
 
 -------
 ------------ Relationships and Value Tables ----------- ;

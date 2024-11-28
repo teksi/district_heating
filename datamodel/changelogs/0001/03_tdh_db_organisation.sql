@@ -40,7 +40,6 @@ WITH (
    OIDS = False
 );
 CREATE SEQUENCE tdh_od.seq_organisation_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
- ALTER TABLE tdh_od.organisation ALTER COLUMN obj_id SET DEFAULT tdh_sys.generate_oid('tdh_od','organisation');
 COMMENT ON COLUMN tdh_od.organisation.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
  ALTER TABLE tdh_od.organisation ADD COLUMN identifier text;
  ALTER TABLE tdh_od.organisation ADD CONSTRAINT og_identifier_length_max_255 CHECK(char_length(identifier)<=255);
@@ -67,12 +66,6 @@ COMMENT ON COLUMN tdh_od.organisation.fk_dataowner IS 'Foreignkey to Metaattribu
  ALTER TABLE tdh_od.organisation ADD COLUMN fk_provider varchar(16);
 COMMENT ON COLUMN tdh_od.organisation.fk_provider IS 'Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données ';
 -------
-CREATE TRIGGER
-update_last_modified_organisation
-BEFORE UPDATE OR INSERT ON
- tdh_od.organisation
-FOR EACH ROW EXECUTE PROCEDURE
- tdh_sys.update_last_modified();
 
 -------
 

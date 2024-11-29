@@ -305,7 +305,7 @@
          <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="dimension1" nullable="true" remarks="" size="5" type="int2" typeCode="5"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="dimension2" nullable="true" remarks="" size="5" type="int2" typeCode="5"/>
          <column autoUpdated="false" defaultValue="null" digits="3" id="14" name="altitude_lower_edge" nullable="true" remarks="/ Höhe Unterkante" size="7" type="numeric" typeCode="2"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="symbolori_geometry" nullable="true" remarks="Default: 90 degree / Default: 90 Grad / Default: 90 degre" size="2147483647" type="geometry" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="1" id="15" name="symbolori" nullable="true" remarks="Default: 90 degree / Default: 90 Grad / Default: 90 degre" size="4" type="numeric" typeCode="2"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="depth" nullable="true" remarks="" size="5" type="int2" typeCode="5"/>
          <column autoUpdated="false" defaultValue="now()" digits="6" id="17" name="last_modification" nullable="true" remarks="Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE" size="29" type="timestamp" typeCode="93"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="fk_dataowner" nullable="true" remarks="Foreignkey to Metaattribute dataowner (as an organisation) - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l'organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe" size="16" type="varchar" typeCode="12">
@@ -327,9 +327,6 @@
          </index>
          <index name="in_tdh_sia405cc_cable_point_geometry3d_geometry" unique="false">
             <column ascending="true" name="geometry3d_geometry"/>
-         </index>
-         <index name="in_tdh_sia405cc_cable_point_symbolori_geometry" unique="false">
-            <column ascending="true" name="symbolori_geometry"/>
          </index>
          <checkConstraint constraint="((char_length(condition) &lt;= 40))" name="_condition_length_max_40"/>
          <checkConstraint constraint="((char_length(name_number) &lt;= 40))" name="_name_number_length_max_40"/>

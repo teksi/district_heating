@@ -10,6 +10,7 @@ except ImportError:
     import psycopg2 as psycopg
 
 from pirogue import SingleInheritance
+from triggers.set_defaults_and_triggers import set_defaults_and_triggers
 
 # from view.vw_tdh_reach import vw_tdh_reach
 # from view.vw_tdh_xxx_structure import vw_tdh_xxx_structure
@@ -58,6 +59,12 @@ def create_app(
 
     run_sql("CREATE SCHEMA tdh_app;", pg_service)
 
+    # Create application functions
+
+    run_sql_file("functions/oid_functions.sql", pg_service, variables)
+    run_sql_file("functions/modification_functions.sql", pg_service)
+    run_sql_file("functions/organisation_functions.sql", pg_service, variables)
+
     # to do add symbology_function and geometry_funcions for TEKSI Distance heating
 
     #    run_sql_file("symbology_functions.sql", pg_service)
@@ -76,6 +83,8 @@ def create_app(
         "pipe_point_normal": "pipe_point",
         "pipe_point_feed": "pipe_point",
     }
+
+    set_defaults_and_triggers(pg_service, SingleInheritances)
 
     for key in SingleInheritances:
         SingleInheritance(
@@ -109,7 +118,7 @@ def create_app(
 
     # additional views to be created with simple sql
 
-    # run_sql_file("view/vw_file.sql", pg_service, variables)
+    run_sql_file("view/vw_file.sql", pg_service, variables)
 
     # MultipleInheritance(
     # safe_load(open(cwd / "view/vw_oo_overflow.yaml")),

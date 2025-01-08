@@ -114,7 +114,7 @@
                                     <td>16</td>
                                     <td title=''></td>
                                     <td title=''></td>
-                                    <td>tdh_sys.generate_oid(&#39;tdh_od&#39;::text, &#39;structure&#39;::text)</td>
+                                    <td>tdh_app.generate_oid(&#39;tdh_od&#39;::text, &#39;structure&#39;::text)</td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
@@ -770,32 +770,32 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>st_mandate_length_max_40</td>
-                                    <td>((char_length(mandate) &lt;&#61; 40))</td>
+                                    <td>st_schema_indication_length_max_40</td>
+                                    <td>((char_length(schema_indication) &lt;&#61; 40))</td>
                                 </tr>
                                 <tr>
-                                    <td>st_documentation_length_max_40</td>
-                                    <td>((char_length(documentation) &lt;&#61; 40))</td>
+                                    <td>st_mandate_length_max_40</td>
+                                    <td>((char_length(mandate) &lt;&#61; 40))</td>
                                 </tr>
                                 <tr>
                                     <td>st_name_number_length_max_40</td>
                                     <td>((char_length(name_number) &lt;&#61; 40))</td>
                                 </tr>
                                 <tr>
-                                    <td>st_network_area_length_max_40</td>
-                                    <td>((char_length(network_area) &lt;&#61; 40))</td>
-                                </tr>
-                                <tr>
                                     <td>st_remark_length_max_80</td>
                                     <td>((char_length(remark) &lt;&#61; 80))</td>
                                 </tr>
                                 <tr>
-                                    <td>st_schema_indication_length_max_40</td>
-                                    <td>((char_length(schema_indication) &lt;&#61; 40))</td>
-                                </tr>
-                                <tr>
                                     <td>st_pps_length_max_40</td>
                                     <td>((char_length(pps) &lt;&#61; 40))</td>
+                                </tr>
+                                <tr>
+                                    <td>st_documentation_length_max_40</td>
+                                    <td>((char_length(documentation) &lt;&#61; 40))</td>
+                                </tr>
+                                <tr>
+                                    <td>st_network_area_length_max_40</td>
+                                    <td>((char_length(network_area) &lt;&#61; 40))</td>
                                 </tr>
                                 </tbody>
                             </table>

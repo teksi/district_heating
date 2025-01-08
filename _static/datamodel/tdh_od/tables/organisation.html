@@ -114,9 +114,29 @@
                                     <td>16</td>
                                     <td title=''></td>
                                     <td title=''></td>
-                                    <td>tdh_sys.generate_oid(&#39;tdh_od&#39;::text, &#39;organisation&#39;::text)</td>
+                                    <td>tdh_app.generate_oid(&#39;tdh_od&#39;::text, &#39;organisation&#39;::text)</td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="data_media.fk_dataowner references organisation.obj_id via rel_od_data_media_fk_dataowner"><a href='data_media.html'>data_media</a><span class='relatedKey'>.fk_dataowner</span></td>
+                                                <td class="constraint detail">rel_od_data_media_fk_dataowner</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="data_media.fk_provider references organisation.obj_id via rel_od_data_media_fk_dataprovider"><a href='data_media.html'>data_media</a><span class='relatedKey'>.fk_provider</span></td>
+                                                <td class="constraint detail">rel_od_data_media_fk_dataprovider</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="file.fk_dataowner references organisation.obj_id via rel_od_file_fk_dataowner"><a href='file.html'>file</a><span class='relatedKey'>.fk_dataowner</span></td>
+                                                <td class="constraint detail">rel_od_file_fk_dataowner</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="file.fk_provider references organisation.obj_id via rel_od_file_fk_dataprovider"><a href='file.html'>file</a><span class='relatedKey'>.fk_provider</span></td>
+                                                <td class="constraint detail">rel_od_file_fk_dataprovider</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
                                             <tr>
                                                 <td title="organisation.fk_dataowner references organisation.obj_id via rel_od_organisation_fk_dataowner"><a href='organisation.html'>organisation</a><span class='relatedKey'>.fk_dataowner</span></td>
                                                 <td class="constraint detail">rel_od_organisation_fk_dataowner</td>
@@ -531,16 +551,16 @@
                                 </thead>
                                 <tbody>
                                 <tr>
+                                    <td>og_identifier_short_length_max_12</td>
+                                    <td>((char_length(identifier_short) &lt;&#61; 12))</td>
+                                </tr>
+                                <tr>
                                     <td>og_remark_length_max_255</td>
                                     <td>((char_length(remark) &lt;&#61; 255))</td>
                                 </tr>
                                 <tr>
                                     <td>og_uid_length_max_12</td>
                                     <td>((char_length(uid) &lt;&#61; 12))</td>
-                                </tr>
-                                <tr>
-                                    <td>og_identifier_short_length_max_12</td>
-                                    <td>((char_length(identifier_short) &lt;&#61; 12))</td>
                                 </tr>
                                 <tr>
                                     <td>og_identifier_length_max_255</td>

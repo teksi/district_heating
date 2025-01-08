@@ -1,3 +1,6 @@
+data_media_kind
+file_classname
+file_kind
 organisation_organisation_type
 organisation_status
 pipe_point_elevation_determination

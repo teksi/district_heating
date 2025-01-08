@@ -47,3 +47,6 @@ pipe_point_feed_category
 pipe_point_elevation_determination
 organisation_status
 organisation_organisation_type
+file_kind
+file_classname
+data_media_kind

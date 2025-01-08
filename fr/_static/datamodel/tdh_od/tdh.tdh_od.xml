@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><database name="tdh" schema="tdh_od" type="PostgreSQL - 14.13 (Debian 14.13-1.pgdg110+1)">
    <sequences>
+      <sequence increment="1" name="seq_data_media_oid" startValue="0"/>
+      <sequence increment="1" name="seq_file_oid" startValue="0"/>
       <sequence increment="1" name="seq_organisation_oid" startValue="0"/>
       <sequence increment="1" name="seq_pipe_point_feed_oid" startValue="0"/>
       <sequence increment="1" name="seq_pipe_point_normal_oid" startValue="0"/>
@@ -13,8 +15,78 @@
       <sequence increment="1" name="seq_trench_point_oid" startValue="0"/>
    </sequences>
    <tables>
+      <table name="data_media" remarks="" schema="tdh_od" type="TABLE">
+         <column autoUpdated="false" defaultValue="tdh_app.generate_oid('tdh_od'::text, 'data_media'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12">
+            <child column="fk_data_media" foreignKey="rel_file_data_media" implied="false" onDeleteCascade="false" schema="tdh_od" table="file"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="identifier" nullable="true" remarks="yyy_Name des Datenträgers. Bei elektronischen Datenträgern normalerweise das Volume-Label. Bei einem Server der Servername. Bei analogen Videobändern die Bandnummer. / Name des Datenträgers. Bei elektronischen Datenträgern normalerweise das Volume-Label. Bei einem Server der Servername. Bei analogen Videobändern die Bandnummer. / Nom du support de données. Pour les supports de données électroniques, normalement le label volume. Pour un serveur, le nom du serveur. Pour des bandes vidéo analogiques, les numéros de bandes." size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="kind" nullable="true" remarks="Describes the type of data media / Beschreibt die Art des Datenträgers / Décrit le genre de support de données" size="10" type="int4" typeCode="4">
+            <parent column="code" foreignKey="fkey_vl_data_media_kind" implied="false" onDeleteCascade="false" schema="tdh_vl" table="data_media_kind"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="location" nullable="true" remarks="Location of the data medium / Ort, wo sich der Datenträger befindet / Emplacement du support de données" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="path" nullable="true" remarks="Access path to the data carrier. e.g. DVD drive -&gt; D: , server -&gt; //server/videos, hard disk -&gt; c:/videos . For web servers -&gt; URI (URL). Empty for an analog video tape / Zugriffspfad zum Datenträger. z.B. DVD-Laufwerk -&gt; D: , Server -&gt; //server/videos, Harddisk -&gt; c:/videos . Bei Webserver eine URI (URL). Bei einem analogen Videoband leer / Chemin d’accès au support de données, p. ex. lecteur DVD -&gt; D: , - serveur -&gt; //server/videos , disque dur -&gt; c:/videos , serveur_web -&gt; URI(URL). Pour une bande vidéo analogique: vide" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="remark" nullable="true" remarks="General remarks / Bemerkungen zum Datenträger / Remarques concernant le support de données" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="6" name="last_modification" nullable="true" remarks="Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="fk_dataowner" nullable="true" remarks="Foreignkey to Metaattribute dataowner (as an organisation) - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l'organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe" size="16" type="varchar" typeCode="12">
+            <parent column="obj_id" foreignKey="rel_od_data_media_fk_dataowner" implied="false" onDeleteCascade="false" schema="tdh_od" table="organisation"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="fk_provider" nullable="true" remarks="Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données" size="16" type="varchar" typeCode="12">
+            <parent column="obj_id" foreignKey="rel_od_data_media_fk_dataprovider" implied="false" onDeleteCascade="false" schema="tdh_od" table="organisation"/>
+         </column>
+         <primaryKey column="obj_id" sequenceNumberInPK="1"/>
+         <index name="pkey_tdh_od_data_media_obj_id" unique="true">
+            <column ascending="true" name="obj_id"/>
+         </index>
+         <index name="in_od_data_media_identifier" unique="true">
+            <column ascending="true" name="identifier"/>
+            <column ascending="true" name="fk_dataowner"/>
+         </index>
+         <checkConstraint constraint="((char_length(identifier) &lt;= 60))" name="vo_identifier_length_max_60"/>
+         <checkConstraint constraint="((char_length(location) &lt;= 50))" name="vo_location_length_max_50"/>
+         <checkConstraint constraint="((char_length(path) &lt;= 1023))" name="vo_path_length_max_1023"/>
+         <checkConstraint constraint="((char_length(remark) &lt;= 80))" name="vo_remark_length_max_80"/>
+      </table>
+      <table name="file" remarks="" schema="tdh_od" type="TABLE">
+         <column autoUpdated="false" defaultValue="tdh_app.generate_oid('tdh_od'::text, 'file'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="classname" nullable="true" remarks="Specifies the classname of the VSA-DSS data model to which the file belongs. In principle, all classes are possible. In the context of sewer television recordings, mainly channel, manhole damage, channel damage and examination. / Gibt an, zu welcher Klasse des VSA-DSS-Datenmodells die Datei gehört. Grundsätzlich alle Klassen möglich. Im Rahmen der Kanalfernsehaufnahmen hauptsächlich Kanal, Normschachtschaden, Kanalschaden und Untersuchung. / Indique à quelle classe du modèle de données de VSA-SDEE appartient le fichier. Toutes les classes sont possible. Surtout CANALISATION, DOMMAGE_CHAMBRE_STANDARD, DOMMAGE_CANALISATION, EXAMEN." size="10" type="int4" typeCode="4">
+            <parent column="code" foreignKey="fkey_vl_file_classname" implied="false" onDeleteCascade="false" schema="tdh_vl" table="file_classname"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="identifier" nullable="true" remarks="yyy_Name der Datei mit Dateiendung. Z.B video_01.mpg oder haltung_01.ipf / Name der Datei mit Dateiendung. Z.B video_01.mpg oder haltung_01.ipf / Nom du fichier avec terminaison du fichier. P. ex. video_01.mpg ou canalisation_01.ipf" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="kind" nullable="true" remarks="yyy_Beschreibt die Art der Datei. Für analoge Videos auf Bändern ist der Typ &quot;Video&quot; einzusetzen. Die Bezeichnung wird dann gleich gesetzt wie die Bezeichnung des Videobandes. / Beschreibt die Art der Datei. Für analoge Videos auf Bändern ist der Typ &quot;Video&quot; einzusetzen. Die Bezeichnung wird dann gleich gesetzt wie die Bezeichnung des Videobandes. / Décrit le type de fichier. Pour les vidéos analo-giques sur bandes, le type « vidéo » doit être entré. La désignation sera ensuite la même que celle de la bande vidéo." size="10" type="int4" typeCode="4">
+            <parent column="code" foreignKey="fkey_vl_file_kind" implied="false" onDeleteCascade="false" schema="tdh_vl" table="file_kind"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="object" nullable="true" remarks="yyy_Objekt-ID (OID) des Datensatzes zu dem die Datei gehört / Objekt-ID (OID) des Datensatzes zu dem die Datei gehört / Identification de l’ensemble de données auquel le fichier appartient (OID)" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="path_relative" nullable="true" remarks="yyy_Zusätzlicher Relativer Pfad, wo die Datei auf dem Datenträger zu finden ist. Z.B. DVD_01. / Zusätzlicher Relativer Pfad, wo die Datei auf dem Datenträger zu finden ist. Z.B. DVD_01. / Accès relatif supplémentaire à l’emplacement du fichier sur le support de données. P. ex. DVD_01" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="remark" nullable="true" remarks="General remarks / Allgemeine Bemerkungen / Remarques générales" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="7" name="last_modification" nullable="true" remarks="Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="fk_dataowner" nullable="true" remarks="Foreignkey to Metaattribute dataowner (as an organisation) - this is the person or body who is allowed to delete, change or maintain this object / Metaattribut Datenherr ist diejenige Person oder Stelle, die berechtigt ist, diesen Datensatz zu löschen, zu ändern bzw. zu verwalten / Maître des données gestionnaire de données, qui est la personne ou l'organisation autorisée pour gérer, modifier ou supprimer les données de cette table/classe" size="16" type="varchar" typeCode="12">
+            <parent column="obj_id" foreignKey="rel_od_file_fk_dataowner" implied="false" onDeleteCascade="false" schema="tdh_od" table="organisation"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="fk_provider" nullable="true" remarks="Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données" size="16" type="varchar" typeCode="12">
+            <parent column="obj_id" foreignKey="rel_od_file_fk_dataprovider" implied="false" onDeleteCascade="false" schema="tdh_od" table="organisation"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="fk_data_media" nullable="true" remarks="" size="16" type="varchar" typeCode="12">
+            <parent column="obj_id" foreignKey="rel_file_data_media" implied="false" onDeleteCascade="false" schema="tdh_od" table="data_media"/>
+         </column>
+         <primaryKey column="obj_id" sequenceNumberInPK="1"/>
+         <index name="pkey_tdh_od_file_obj_id" unique="true">
+            <column ascending="true" name="obj_id"/>
+         </index>
+         <index name="in_od_file_identifier" unique="true">
+            <column ascending="true" name="identifier"/>
+            <column ascending="true" name="fk_dataowner"/>
+         </index>
+         <checkConstraint constraint="((char_length(identifier) &lt;= 120))" name="fi_identifier_length_max_120"/>
+         <checkConstraint constraint="((char_length(object) &lt;= 16))" name="fi_object_length_max_16"/>
+         <checkConstraint constraint="((char_length(path_relative) &lt;= 200))" name="fi_path_relative_length_max_200"/>
+         <checkConstraint constraint="((char_length(remark) &lt;= 80))" name="fi_remark_length_max_80"/>
+      </table>
       <table name="organisation" remarks="" schema="tdh_od" type="TABLE">
-         <column autoUpdated="false" defaultValue="tdh_sys.generate_oid('tdh_od'::text, 'organisation'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12">
+         <column autoUpdated="false" defaultValue="tdh_app.generate_oid('tdh_od'::text, 'organisation'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12">
+            <child column="fk_dataowner" foreignKey="rel_od_data_media_fk_dataowner" implied="false" onDeleteCascade="false" schema="tdh_od" table="data_media"/>
+            <child column="fk_provider" foreignKey="rel_od_data_media_fk_dataprovider" implied="false" onDeleteCascade="false" schema="tdh_od" table="data_media"/>
+            <child column="fk_dataowner" foreignKey="rel_od_file_fk_dataowner" implied="false" onDeleteCascade="false" schema="tdh_od" table="file"/>
+            <child column="fk_provider" foreignKey="rel_od_file_fk_dataprovider" implied="false" onDeleteCascade="false" schema="tdh_od" table="file"/>
             <child column="fk_dataowner" foreignKey="rel_od_organisation_fk_dataowner" implied="false" onDeleteCascade="false" schema="tdh_od" table="organisation"/>
             <child column="fk_provider" foreignKey="rel_od_organisation_fk_dataprovider" implied="false" onDeleteCascade="false" schema="tdh_od" table="organisation"/>
             <child column="fk_dataowner" foreignKey="rel_od_pipe_point_fk_dataowner" implied="false" onDeleteCascade="false" schema="tdh_od" table="pipe_point"/>
@@ -77,7 +149,7 @@
          <checkConstraint constraint="((char_length(uid) &lt;= 12))" name="og_uid_length_max_12"/>
       </table>
       <table name="pipe_point" remarks="" schema="tdh_od" type="TABLE">
-         <column autoUpdated="false" defaultValue="tdh_sys.generate_oid('tdh_od'::text, 'pipe_point'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12">
+         <column autoUpdated="false" defaultValue="tdh_app.generate_oid('tdh_od'::text, 'pipe_point'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12">
             <child column="obj_id" foreignKey="oorel_od_pipe_point_feed_pipe_point" implied="false" onDeleteCascade="true" schema="tdh_od" table="pipe_point_feed"/>
             <child column="obj_id" foreignKey="oorel_od_pipe_point_normal_pipe_point" implied="false" onDeleteCascade="true" schema="tdh_od" table="pipe_point_normal"/>
          </column>
@@ -112,7 +184,7 @@
          <checkConstraint constraint="((char_length(remark) &lt;= 80))" name="pp_remark_length_max_80"/>
       </table>
       <table name="pipe_point_feed" remarks="" schema="tdh_od" type="TABLE">
-         <column autoUpdated="false" defaultValue="tdh_sys.generate_oid('tdh_od'::text, 'pipe_point_feed'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12">
+         <column autoUpdated="false" defaultValue="tdh_app.generate_oid('tdh_od'::text, 'pipe_point_feed'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12">
             <parent column="obj_id" foreignKey="oorel_od_pipe_point_feed_pipe_point" implied="false" onDeleteCascade="true" schema="tdh_od" table="pipe_point"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="kind" nullable="true" remarks="" size="10" type="int4" typeCode="4">
@@ -139,7 +211,7 @@
          </index>
       </table>
       <table name="pipe_point_normal" remarks="" schema="tdh_od" type="TABLE">
-         <column autoUpdated="false" defaultValue="tdh_sys.generate_oid('tdh_od'::text, 'pipe_point_normal'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12">
+         <column autoUpdated="false" defaultValue="tdh_app.generate_oid('tdh_od'::text, 'pipe_point_normal'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12">
             <parent column="obj_id" foreignKey="oorel_od_pipe_point_normal_pipe_point" implied="false" onDeleteCascade="true" schema="tdh_od" table="pipe_point"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="kind" nullable="true" remarks="" size="10" type="int4" typeCode="4">
@@ -157,7 +229,7 @@
          </index>
       </table>
       <table name="pipe_section" remarks="" schema="tdh_od" type="TABLE">
-         <column autoUpdated="false" defaultValue="tdh_sys.generate_oid('tdh_od'::text, 'pipe_section'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12">
+         <column autoUpdated="false" defaultValue="tdh_app.generate_oid('tdh_od'::text, 'pipe_section'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12">
             <child column="fk_pipe_section" foreignKey="rel_od_sia405pt_protection_tube_fk_pipe_section" implied="false" onDeleteCascade="false" schema="tdh_od" table="sia405pt_protection_tube"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name_number" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
@@ -232,7 +304,7 @@
          <checkConstraint constraint="((char_length(remark) &lt;= 80))" name="ps_remark_length_max_80"/>
       </table>
       <table name="sia405cc_cable" remarks="" schema="tdh_od" type="TABLE">
-         <column autoUpdated="false" defaultValue="tdh_sys.generate_oid('tdh_od'::text, 'sia405cc_cable'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="tdh_app.generate_oid('tdh_od'::text, 'sia405cc_cable'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name_number" nullable="true" remarks="/ z.B. Kabelpunktanfang_Kabelpunkteende / xxx_z.B. Point_cableanfang_Point_cableeende" size="2147483647" type="text" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="function" nullable="true" remarks="" size="10" type="int4" typeCode="4">
             <parent column="code" foreignKey="fkey_vl_sia405cc_cable_function" implied="false" onDeleteCascade="false" schema="tdh_vl" table="sia405cc_cable_function"/>
@@ -282,7 +354,7 @@
          <checkConstraint constraint="((char_length(remark) &lt;= 80))" name="_remark_length_max_80"/>
       </table>
       <table name="sia405cc_cable_point" remarks="" schema="tdh_od" type="TABLE">
-         <column autoUpdated="false" defaultValue="tdh_sys.generate_oid('tdh_od'::text, 'sia405cc_cable_point'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="tdh_app.generate_oid('tdh_od'::text, 'sia405cc_cable_point'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name_number" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="geometry3d_geometry" nullable="true" remarks="" size="2147483647" type="geometry" typeCode="1111"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="kind" nullable="true" remarks="" size="10" type="int4" typeCode="4">
@@ -333,7 +405,7 @@
          <checkConstraint constraint="((char_length(remark) &lt;= 80))" name="_remark_length_max_80"/>
       </table>
       <table name="sia405pt_protection_tube" remarks="" schema="tdh_od" type="TABLE">
-         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="tdh_app.generate_oid('tdh_od'::text, 'sia405pt_protection_tube'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name_number" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="material" nullable="true" remarks="" size="10" type="int4" typeCode="4">
             <parent column="code" foreignKey="fkey_vl_sia405pt_protection_tube_material" implied="false" onDeleteCascade="false" schema="tdh_vl" table="sia405pt_protection_tube_material"/>
@@ -382,7 +454,7 @@
          <checkConstraint constraint="((char_length(remark) &lt;= 80))" name="_remark_length_max_80"/>
       </table>
       <table name="structure" remarks="" schema="tdh_od" type="TABLE">
-         <column autoUpdated="false" defaultValue="tdh_sys.generate_oid('tdh_od'::text, 'structure'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12">
+         <column autoUpdated="false" defaultValue="tdh_app.generate_oid('tdh_od'::text, 'structure'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12">
             <child column="fk_structure" foreignKey="rel_structure_line_structure" implied="false" onDeleteCascade="true" schema="tdh_od" table="structure_line"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name_number" nullable="true" remarks="/ z.B. Bauwerksname / par ex. nom de l’ouvrage" size="2147483647" type="text" typeCode="12"/>
@@ -477,7 +549,7 @@
          </index>
       </table>
       <table name="trench" remarks="" schema="tdh_od" type="TABLE">
-         <column autoUpdated="false" defaultValue="tdh_sys.generate_oid('tdh_od'::text, 'trench'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12">
+         <column autoUpdated="false" defaultValue="tdh_app.generate_oid('tdh_od'::text, 'trench'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12">
             <child column="fk_trench" foreignKey="rel_trench_line_trench" implied="false" onDeleteCascade="true" schema="tdh_od" table="trench_line"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name_number" nullable="true" remarks="/ Eindeutige Bezeichnung / désignation univoque" size="2147483647" type="text" typeCode="12"/>
@@ -554,7 +626,7 @@
          </index>
       </table>
       <table name="trench_point" remarks="" schema="tdh_od" type="TABLE">
-         <column autoUpdated="false" defaultValue="tdh_sys.generate_oid('tdh_od'::text, 'trench_point'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="tdh_app.generate_oid('tdh_od'::text, 'trench_point'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name_number" nullable="true" remarks="/ désignation univoque" size="2147483647" type="text" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="geometry3d_geometry" nullable="true" remarks="3D Situation / 3D Lage / 3D Positionnement" size="2147483647" type="geometry" typeCode="1111"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="horizontal_positioning" nullable="true" remarks="" size="10" type="int4" typeCode="4">

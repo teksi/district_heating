@@ -16,8 +16,19 @@
          <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="abbr_ro" nullable="true" remarks="" size="3" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="active" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
       </table>
+      <table name="vw_file" numRows="0" remarks="" schema="tdh_app" type="VIEW" viewSql=" SELECT f.obj_id,&#10;    f.identifier,&#10;    f.kind,&#10;    f.object,&#10;    f.classname,&#10;    COALESCE((dm.path || f.path_relative), f.path_relative) AS _url,&#10;    f.fk_dataowner AS dataowner,&#10;    f.fk_provider AS provider,&#10;    f.remark&#10;   FROM (tdh_od.file f&#10;     LEFT JOIN tdh_od.data_media dm ON (((dm.obj_id)::text = (f.fk_data_media)::text)));">
+         <column autoUpdated="false" defaultValue="tdh_app.generate_oid('tdh_od'::text, 'file'::text)" digits="0" id="0" name="obj_id" nullable="true" remarks="" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="identifier" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="kind" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="object" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="classname" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="_url" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="dataowner" nullable="true" remarks="" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="provider" nullable="true" remarks="" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="remark" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+      </table>
       <table name="vw_pipe_point_feed" numRows="0" remarks="" schema="tdh_app" type="VIEW" viewSql=" SELECT pipe_point_feed.obj_id,&#10;    pipe_point_feed.aperture_value,&#10;    pipe_point_feed.category,&#10;    pipe_point_feed.flow_temperature,&#10;    pipe_point_feed.heat_consumption,&#10;    pipe_point_feed.heated_volume,&#10;    pipe_point_feed.kind,&#10;    pipe_point_feed.power_output,&#10;    pipe_point_feed.power_output_installed,&#10;    pipe_point_feed.power_output_ordered,&#10;    pipe_point_feed.pressure,&#10;    pipe_point_feed.q_subscribed,&#10;    pipe_point_feed.return_flow_temperature,&#10;    pipe_point_feed.year_of_commissioning,&#10;    pipe_point_feed.year_of_reconstruction,&#10;    pipe_point.altitude1,&#10;    pipe_point.altitude2,&#10;    pipe_point.elevation_determination,&#10;    pipe_point.fk_dataowner,&#10;    pipe_point.fk_owner,&#10;    pipe_point.fk_provider,&#10;    pipe_point.geometry3d_geometry,&#10;    pipe_point.horizontal_positioning,&#10;    pipe_point.last_modification,&#10;    pipe_point.remark,&#10;    pipe_point.symbolori&#10;   FROM (tdh_od.pipe_point_feed&#10;     LEFT JOIN tdh_od.pipe_point ON (((pipe_point.obj_id)::text = (pipe_point_feed.obj_id)::text)));">
-         <column autoUpdated="false" defaultValue="tdh_sys.generate_oid('tdh_od'::text, 'pipe_point_feed'::text)" digits="0" id="0" name="obj_id" nullable="true" remarks="" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="tdh_app.generate_oid('tdh_od'::text, 'pipe_point_feed'::text)" digits="0" id="0" name="obj_id" nullable="true" remarks="" size="16" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="aperture_value" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="category" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="flow_temperature" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
@@ -45,7 +56,7 @@
          <column autoUpdated="false" defaultValue="null" digits="1" id="25" name="symbolori" nullable="true" remarks="" size="4" type="numeric" typeCode="2"/>
       </table>
       <table name="vw_pipe_point_normal" numRows="0" remarks="" schema="tdh_app" type="VIEW" viewSql=" SELECT pipe_point_normal.obj_id,&#10;    pipe_point_normal.armature_setting,&#10;    pipe_point_normal.kind,&#10;    pipe_point_normal.material,&#10;    pipe_point.altitude1,&#10;    pipe_point.altitude2,&#10;    pipe_point.elevation_determination,&#10;    pipe_point.fk_dataowner,&#10;    pipe_point.fk_owner,&#10;    pipe_point.fk_provider,&#10;    pipe_point.geometry3d_geometry,&#10;    pipe_point.horizontal_positioning,&#10;    pipe_point.last_modification,&#10;    pipe_point.remark,&#10;    pipe_point.symbolori&#10;   FROM (tdh_od.pipe_point_normal&#10;     LEFT JOIN tdh_od.pipe_point ON (((pipe_point.obj_id)::text = (pipe_point_normal.obj_id)::text)));">
-         <column autoUpdated="false" defaultValue="tdh_sys.generate_oid('tdh_od'::text, 'pipe_point_normal'::text)" digits="0" id="0" name="obj_id" nullable="true" remarks="" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="tdh_app.generate_oid('tdh_od'::text, 'pipe_point_normal'::text)" digits="0" id="0" name="obj_id" nullable="true" remarks="" size="16" type="varchar" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="armature_setting" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="kind" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="material" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
@@ -63,6 +74,57 @@
       </table>
    </tables>
    <routines>
+      <routine dataAccess="MODIFIES" deterministic="false" name="alter_modification_triggers(action_name text)" returnType="void" securityType="DEFINER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[DECLARE
+	schdf text;
+	tbldf text;
+	trig text;
+BEGIN
+IF NOT (action_name ILIKE ANY(ARRAY['ENABLE','DISABLE'])) THEN
+	RAISE NOTICE '% not a valid input',action_name;
+	RETURN;
+ELSE
+	FOR schdf,tbldf, trig IN
+		SELECT
+		c.relnamespace ::regnamespace::text,
+		c.relname,
+		t.tgname
+		FROM   pg_trigger t
+		INNER JOIN pg_class c on t.tgrelid=c.oid
+		INNER JOIN pg_proc p on t.tgfoid=p.oid
+		WHERE p.proname  LIKE 'modification_%'
+		AND p.pronamespace::regnamespace::text = 'tdh_app'
+		LOOP
+			EXECUTE FORMAT('ALTER TABLE %I.%I %s TRIGGER %I',schdf,tbldf,upper(action_name),trig);
+		END LOOP;
+
+	RETURN;
+END IF;
+END;]]></definition>
+         <parameters>
+            <parameter mode="IN" name="action_name" type="text"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="check_modification_enabled()" returnType="boolean" securityType="DEFINER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[DECLARE _disabled_count numeric;
+BEGIN
+  SELECT count(*) into _disabled_count
+		FROM   pg_trigger t
+		INNER JOIN pg_class c on t.tgrelid=c.oid
+		INNER JOIN pg_proc p on t.tgfoid=p.oid
+		WHERE
+		p.proname  LIKE 'modification_%'
+		AND p.pronamespace::regnamespace::text = 'tdh_app'
+
+		AND t.tgenabled = 'D';
+  RETURN _disabled_count=0;
+END;]]></definition>
+         <parameters>
+            <parameter mode="IN"/>
+         </parameters>
+      </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="ft_vw_pipe_point_feed_delete()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
          <comment/>
          <definition language="plpgsql"><![CDATA[BEGIN
@@ -91,7 +153,7 @@ INSERT INTO tdh_od.pipe_point (
       , remark
       , symbolori
     ) VALUES (
-        COALESCE( NEW.obj_id, tdh_sys.generate_oid('tdh_od'::text, 'pipe_point_feed'::text) )
+        COALESCE( NEW.obj_id, tdh_app.generate_oid('tdh_od'::text, 'pipe_point_feed'::text) )
       , NEW.altitude1
       , NEW.altitude2
       , NEW.elevation_determination
@@ -214,7 +276,7 @@ INSERT INTO tdh_od.pipe_point (
       , remark
       , symbolori
     ) VALUES (
-        COALESCE( NEW.obj_id, tdh_sys.generate_oid('tdh_od'::text, 'pipe_point_normal'::text) )
+        COALESCE( NEW.obj_id, tdh_app.generate_oid('tdh_od'::text, 'pipe_point_normal'::text) )
       , NEW.altitude1
       , NEW.altitude2
       , NEW.elevation_determination
@@ -271,6 +333,228 @@ UPDATE tdh_od.pipe_point_normal SET
       , material = NEW.material
     WHERE obj_id = OLD.obj_id;
 RETURN NEW;
+END;]]></definition>
+         <parameters>
+            <parameter mode="IN"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="generate_oid(schema_name text, table_name text)" returnType="text" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[DECLARE
+  myrec_prefix record;
+  myrec_shortcut record;
+  myrec_seq record;
+BEGIN
+  -- first we have to get the OID prefix
+  BEGIN
+    SELECT prefix::text INTO myrec_prefix FROM tdh_sys.oid_prefixes WHERE active = TRUE;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+           RAISE EXCEPTION 'no active record found in table tdh_sys.oid_prefixes';
+        WHEN TOO_MANY_ROWS THEN
+	   RAISE EXCEPTION 'more than one active records found in table tdh_sys.oid_prefixes';
+  END;
+  -- test if prefix is of correct length
+  IF char_length(myrec_prefix.prefix) != 8 THEN
+    RAISE EXCEPTION 'character length of prefix must be 8';
+  END IF;
+  --get table 2char shortcut
+  BEGIN
+    SELECT shortcut_en INTO STRICT myrec_shortcut FROM tdh_sys.dictionary_od_table WHERE tablename = table_name;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RAISE EXCEPTION 'dictionary entry for table % not found', table_name;
+        WHEN TOO_MANY_ROWS THEN
+            RAISE EXCEPTION 'dictonary entry for table % not unique', table_name;
+  END;
+  --get sequence for table
+  EXECUTE format('SELECT nextval(''%1$I.seq_%2$I_oid'') AS seqval', schema_name, table_name) INTO myrec_seq;
+  IF NOT FOUND THEN
+    RAISE EXCEPTION 'sequence for table % not found', table_name;
+  END IF;
+  RETURN myrec_prefix.prefix || myrec_shortcut.shortcut_en || to_char(myrec_seq.seqval,'FM000000');
+END;]]></definition>
+         <parameters>
+            <parameter mode="IN" name="schema_name" type="text"/>
+            <parameter mode="IN" name="table_name" type="text"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="modification_last_modified()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[BEGIN
+ NEW.last_modification := TIMEOFDAY();
+
+ RETURN NEW;
+END;]]></definition>
+         <parameters>
+            <parameter mode="IN"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="modification_last_modified_parent()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[DECLARE
+ table_name TEXT;
+BEGIN
+ table_name = TG_ARGV[0];
+
+ EXECUTE '
+ UPDATE ' || table_name || '
+ SET last_modification = TIMEOFDAY()::timestamp
+ WHERE obj_id = ''' || NEW.obj_id || '''
+';
+ RETURN NEW;
+END;]]></definition>
+         <parameters>
+            <parameter mode="IN"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="set_organisations_active()" returnType="void" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[BEGIN
+UPDATE tdh_od.organisation
+SET tdh_active=TRUE
+WHERE obj_id = ANY(
+/* SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
+FROM tdh_od.hydraulic_node
+UNION */
+/* SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
+FROM tdh_od.hydraulic_line_section
+UNION */
+/* SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
+FROM tdh_od.static_node
+UNION */
+/* SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
+FROM tdh_od.static_line_section
+UNION */
+SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
+FROM tdh_od.pipe_section
+UNION
+SELECT UNNEST(ARRAY[fk_provider,fk_dataowner,fk_owner])
+FROM tdh_od.pipe_point
+UNION
+SELECT UNNEST(ARRAY[fk_provider,fk_dataowner,fk_owner])
+FROM tdh_od.structure
+UNION
+SELECT UNNEST(ARRAY[fk_provider,fk_dataowner,fk_owner])
+FROM tdh_od.trench
+UNION
+SELECT UNNEST(ARRAY[fk_provider,fk_dataowner,fk_owner])
+FROM tdh_od.trench_point
+UNION
+/* SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
+FROM tdh_od.damage_pipe_section
+UNION */
+/* SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
+FROM tdh_od.damage_pipe_point
+UNION */
+/* SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
+FROM tdh_od.damage_structure
+UNION */
+/* SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
+FROM tdh_od.damage_trench
+UNION */
+SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
+FROM tdh_od.organisation
+UNION
+SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
+FROM tdh_od.sia405cc_cable
+UNION
+SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
+FROM tdh_od.sia405cc_cable_point
+UNION
+SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
+FROM tdh_od.sia405pt_protection_tube
+
+);
+END;]]></definition>
+         <parameters>
+            <parameter mode="IN"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="vw_file_delete()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[BEGIN
+    DELETE FROM tdh_od.file WHERE obj_id = OLD.obj_id;
+    RETURN OLD;
+  END;]]></definition>
+         <parameters>
+            <parameter mode="IN"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="vw_file_insert()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[BEGIN
+
+    NEW._url = replace(NEW._url, '\', '/');
+
+    INSERT INTO tdh_od.file(
+      classname,
+      identifier,
+      kind,
+      object,
+      path_relative,
+      fk_dataowner,
+      fk_provider,
+      fk_data_media,
+      remark)
+
+    SELECT
+      NEW.classname,
+      NEW.identifier,
+      NEW.kind,
+      NEW.object,
+      SUBSTRING(NEW._url, LENGTH("path")+1, LENGTH(NEW._url)), -- path_relative,
+      NEW.dataowner, -- fk_dataowner,
+      NEW.provider, -- fk_provider,
+      obj_id, -- fk_data_media
+      NEW.remark
+    FROM tdh_od.data_media
+    WHERE "path" = SUBSTRING(NEW._url FROM 1 FOR LENGTH("path"))
+    ORDER BY LENGTH("path") DESC
+    LIMIT 1;
+
+    -- FOUND is a special variable which is always FALSE at the beginning of a PL/pgsql function and will be set by
+    -- e.g. INSERT to TRUE if at least one row is affected.
+    IF NOT FOUND THEN
+      RAISE WARNING 'Could not insert. File not in repository set in od_data_media!';
+    END IF;
+
+  RETURN NEW;
+END;]]></definition>
+         <parameters>
+            <parameter mode="IN"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="vw_file_update()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[BEGIN
+
+NEW._url = replace(NEW._url, '\', '/');
+
+  UPDATE  tdh_od.file
+    SET
+    classname = NEW.classname,
+    identifier = NEW.identifier,
+    kind = NEW.kind,
+    object = NEW.object,
+    path_relative = SUBSTRING(NEW._url, LENGTH(dm.path)+1, LENGTH(NEW._url)),
+    fk_dataowner = NEW.dataowner,
+    fk_provider = NEW.provider,
+    fk_data_media = dm.id,
+    remark = NEW.remark
+
+FROM (
+  SELECT obj_id as id,
+	path
+	FROM tdh_od.data_media
+	WHERE path = SUBSTRING(NEW._url FROM 1 FOR LENGTH(path))
+	ORDER BY LENGTH(path) DESC
+	LIMIT 1)  dm
+
+WHERE obj_id = OLD.obj_id;
+
+
+  RETURN NEW;
 END;]]></definition>
          <parameters>
             <parameter mode="IN"/>

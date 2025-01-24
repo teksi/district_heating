@@ -1,12 +1,10 @@
-  .. figure:: https://github.com/teksi/Home/blob/master/Ressources/Logos/modules/EN/210910-teksi-waste-logos-en-01.png
+  .. figure:: https://github.com/teksi/Home/blob/master/Ressources/Logos/modules/EN/250106-teksi-heat-logos-en-01_45pp.png
 
-   :scale: 50 %
+   :scale: 30 %
    :loading: embed
    :alt: TEKSI district heating
    :align: left
 
-TEKSI district heating
-============================================
 
 TEKSI district heating is an open source district heating management module for QGIS based on SIA 405 District Heating (pipe cadastre) and Technical specifications and developed closely to the QGIS application.
 

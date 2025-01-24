@@ -1,4 +1,4 @@
-  .. figure:: https://github.com/teksi/Home/blob/master/Ressources/Logos/modules/EN/250106-teksi-heat-logos-en-01_45pp.png
+  .. figure:: https://raw.githubusercontent.com/teksi/Home/refs/heads/master/Ressources/Logos/modules/EN/250106-teksi-heat-logos-en-01_45pp.png
 
    :scale: 30 %
    :loading: embed

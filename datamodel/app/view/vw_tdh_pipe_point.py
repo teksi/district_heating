@@ -56,13 +56,13 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
 
         , {pf_columns}
 
-        , ws._label
-        # , ws._cover_label
-        # , ws._bottom_label
-        # , ws._input_label
-        # , ws._output_label
-        , wn._usage_current AS _channel_usage_current
-        , wn._function_hierarchic AS _channel_function_hierarchic
+        , pp._label
+        # , pp._cover_label
+        # , pp._bottom_label
+        # , pp._input_label
+        # , pp._output_label
+        # , wn._usage_current AS _channel_usage_current
+        # , wn._function_hierarchic AS _channel_function_hierarchic
 
         FROM tdh_od.pipe_point pp
         LEFT JOIN tdh_od.pipe_point_normal pn ON pn.obj_id = pp.obj_id
@@ -87,7 +87,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
                 for table_def in extra_definition.get("joins", {}).values()
             ]
         ),
-        ws_cols=select_columns(
+        pp_cols=select_columns(
             pg_cur=cursor,
             table_schema="tdh_od",
             table_name="pipe_point",
@@ -149,7 +149,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
 
       NEW.identifier = COALESCE(NEW.identifier, NEW.obj_id);
 
-    {insert_ws}
+    {insert_pp}
 
       CASE
         WHEN NEW.pp_type = 'pipe_point_feed' THEN
@@ -157,7 +157,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
     {insert_pf}
 
         -- Special Structure
-        WHEN NEW.ws_type = 'pipe_point_normal' THEN
+        WHEN NEW.pp_type = 'pipe_point_normal' THEN
     {insert_pn}
 
         ELSE
@@ -172,7 +172,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
     CREATE TRIGGER vw_tdh_pipe_point_INSERT INSTEAD OF INSERT ON tww_app.vw_tdh_pipe_point
       FOR EACH ROW EXECUTE PROCEDURE tww_app.ft_vw_tdh_pipe_point_INSERT();
     """.format(
-        insert_ws=insert_command(
+        insert_pp=insert_command(
             pg_cur=cursor,
             table_schema="tdh_od",
             table_name="pipe_point",
@@ -225,7 +225,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
     BEGIN
       # {update_co}
       # {update_sp}
-      {update_ws}
+      {update_pp}
       # {update_wn}
       # {update_ne}
 
@@ -247,7 +247,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
         WHEN NEW.pp_type = 'pipe_point_feed' THEN
           {update_pf}
 
-        WHEN NEW.ws_type = 'pipe_point_normal' THEN
+        WHEN NEW.pp_type = 'pipe_point_normal' THEN
           {update_pn}
 
         ELSE -- do nothing
@@ -316,8 +316,8 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
       FOR EACH ROW EXECUTE PROCEDURE tww_app.ft_vw_tdh_pipe_point_UPDATE();
     """.format(
         srid=srid,
-        literal_delete_on_ws_change="'DELETE FROM tdh_od.%I WHERE obj_id = %L',OLD.ws_type,OLD.obj_id",
-        literal_insert_on_ws_change="'INSERT INTO tdh_od.%I(obj_id) VALUES (%L)',NEW.ws_type,OLD.obj_id",
+        literal_delete_on_pp_change="'DELETE FROM tdh_od.%I WHERE obj_id = %L',OLD.pp_type,OLD.obj_id",
+        literal_insert_on_pp_change="'INSERT INTO tdh_od.%I(obj_id) VALUES (%L)',NEW.pp_type,OLD.obj_id",
         update_pp=update_command(
             pg_cur=cursor,
             table_schema="tdh_od",

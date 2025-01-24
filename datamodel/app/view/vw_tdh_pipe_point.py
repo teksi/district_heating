@@ -57,10 +57,10 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
         , {pf_columns}
 
         , ws._label
-        , ws._cover_label
-        , ws._bottom_label
-        , ws._input_label
-        , ws._output_label
+        # , ws._cover_label
+        # , ws._bottom_label
+        # , ws._input_label
+        # , ws._output_label
         , wn._usage_current AS _channel_usage_current
         , wn._function_hierarchic AS _channel_function_hierarchic
 
@@ -152,37 +152,17 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
     {insert_ws}
 
       CASE
-        WHEN NEW.ws_type = 'manhole' THEN
-        -- Manhole
-    {insert_ma}
+        WHEN NEW.pp_type = 'pipe_point_feed' THEN
+        -- pipe_point_feed
+    {insert_pf}
 
         -- Special Structure
-        WHEN NEW.ws_type = 'special_structure' THEN
-    {insert_ss}
-
-        -- Discharge Point
-        WHEN NEW.ws_type = 'discharge_point' THEN
-    {insert_dp}
-
-        -- Infiltration Installation
-        WHEN NEW.ws_type = 'infiltration_installation' THEN
-    {insert_ii}
+        WHEN NEW.ws_type = 'pipe_point_normal' THEN
+    {insert_pn}
 
         ELSE
-         RAISE NOTICE 'Wastewater structure type not handled by this view (%)', NEW.ws_type; -- ERROR
+         RAISE NOTICE 'Pipe point type not handled by this view (%)', NEW.pp_type; -- ERROR
       END CASE;
-
-    {insert_wn}
-
-      UPDATE tdh_od.pipe_point
-        SET fk_main_wastewater_node = NEW.wn_obj_id
-        WHERE obj_id = NEW.obj_id;
-
-    {insert_vw_cover}
-
-      UPDATE tdh_od.pipe_point
-        SET fk_main_cover = NEW.co_obj_id
-        WHERE obj_id = NEW.obj_id;
 
       RETURN NEW;
     END; $BODY$ LANGUAGE plpgsql VOLATILE;

@@ -1,3 +1,10 @@
+  .. figure:: https://github.com/teksi/Home/blob/master/Ressources/Logos/modules/EN/210910-teksi-waste-logos-en-01.png
+
+   :scale: 50 %
+   :loading: embed
+   :alt: TEKSI district heating
+   :align: left
+
 TEKSI district heating
 ============================================
 

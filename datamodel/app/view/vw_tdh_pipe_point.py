@@ -218,7 +218,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
             indent=6,
             skip_columns=[
                 # "_orientation",
-                ],
+            ],
             remap_columns={"obj_id": "obj_id"},
         ),
         insert_pf=insert_command(
@@ -427,6 +427,4 @@ if __name__ == "__main__":
     srid = args.srid or os.getenv("SRID")
     pg_service = args.pg_service or os.getenv("PGSERVICE")
     extra_definition = safe_load(open(args.extra_definition)) if args.extra_definition else {}
-    vw_tdh_pipe_point(
-        srid=srid, pg_service=pg_service, extra_definition=extra_definition
-    )
+    vw_tdh_pipe_point(srid=srid, pg_service=pg_service, extra_definition=extra_definition)

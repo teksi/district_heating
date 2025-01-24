@@ -223,11 +223,9 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
       dx float;
       dy float;
     BEGIN
-      # {update_co}
+
       # {update_sp}
       {update_pp}
-      # {update_wn}
-      # {update_ne}
 
       IF OLD.pp_type <> NEW.pp_type THEN
         CASE WHEN OLD.pp_type <> 'unknown' THEN

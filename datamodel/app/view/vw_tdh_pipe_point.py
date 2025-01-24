@@ -127,16 +127,16 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
             prefix="ss_",
             remap_columns={},
         ),
-        extra_joins="\n    ".join(
-            [
-                "LEFT JOIN {tbl} {alias} ON {jon}".format(
-                    tbl=table_def["table"],
-                    alias=table_def.get("alias", ""),
-                    jon=table_def["join_on"],
-                )
-                for table_def in extra_definition.get("joins", {}).values()
-            ]
-        ),
+        # extra_joins="\n    ".join(
+            # [
+                # "LEFT JOIN {tbl} {alias} ON {jon}".format(
+                    # tbl=table_def["table"],
+                    # alias=table_def.get("alias", ""),
+                    # jon=table_def["join_on"],
+                # )
+                # for table_def in extra_definition.get("joins", {}).values()
+            # ]
+        # ),
     )
 
     cursor.execute(view_sql)

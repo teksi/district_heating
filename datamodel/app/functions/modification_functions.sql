@@ -1,26 +1,6 @@
------- LAST MODIFIED -----
-CREATE FUNCTION tdh_app.modification_last_modified() RETURNS trigger AS $$
-BEGIN
- NEW.last_modification := TIMEOFDAY();
-
- RETURN NEW;
-END;
-$$ LANGUAGE PLPGSQL;
-
-CREATE FUNCTION tdh_app.modification_last_modified_parent() RETURNS trigger AS $$
-DECLARE
- table_name TEXT;
-BEGIN
- table_name = TG_ARGV[0];
-
- EXECUTE '
- UPDATE ' || table_name || '
- SET last_modification = TIMEOFDAY()::timestamp
- WHERE obj_id = ''' || NEW.obj_id || '''
-';
- RETURN NEW;
-END;
-$$ LANGUAGE PLPGSQL;
+--------------------------------------------------
+-- Alter modification triggers
+--------------------------------------------------
 
 CREATE OR REPLACE FUNCTION tdh_app.alter_modification_triggers(action_name text) RETURNS VOID AS
 $DO$
@@ -53,6 +33,10 @@ END;
 $DO$
 LANGUAGE plpgsql SECURITY DEFINER;
 
+--------------------------------------------------
+-- Check if modification triggers are enabled
+--------------------------------------------------
+
 CREATE OR REPLACE FUNCTION tdh_app.check_modification_enabled() RETURNS BOOL AS
 $DO$
 DECLARE _disabled_count numeric;
@@ -70,3 +54,31 @@ BEGIN
 END;
 $DO$
 LANGUAGE plpgsql SECURITY DEFINER;
+
+
+--------------------------------------------------
+-- LAST MODIFIED
+--------------------------------------------------
+
+CREATE FUNCTION tdh_app.modification_last_modified() RETURNS trigger AS $$
+BEGIN
+ NEW.last_modification := TIMEOFDAY();
+
+ RETURN NEW;
+END;
+$$ LANGUAGE PLPGSQL;
+
+CREATE FUNCTION tdh_app.modification_last_modified_parent() RETURNS trigger AS $$
+DECLARE
+ table_name TEXT;
+BEGIN
+ table_name = TG_ARGV[0];
+
+ EXECUTE '
+ UPDATE ' || table_name || '
+ SET last_modification = TIMEOFDAY()::timestamp
+ WHERE obj_id = ''' || NEW.obj_id || '''
+';
+ RETURN NEW;
+END;
+$$ LANGUAGE PLPGSQL;

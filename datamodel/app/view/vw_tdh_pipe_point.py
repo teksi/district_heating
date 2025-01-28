@@ -56,7 +56,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
 
         , {pf_columns}
 
-        , pp._label
+        # , pp._label
         # , pp._cover_label
         # , pp._bottom_label
         # , pp._input_label
@@ -97,7 +97,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
             skip_columns=[
                 # "name_number",
                 "fk_owner",
-                "_label",
+                # "_label",
                 # "_cover_label",
                 # "_bottom_label",
                 # "_input_label",
@@ -181,7 +181,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
             remove_pkey=False,
             indent=2,
             skip_columns=[
-                "_label",
+                # "_label",
                 # "_cover_label",
                 # "_bottom_label",
                 # "_input_label",
@@ -326,7 +326,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
             skip_columns=[
                 "detail_geometry3d_geometry",
                 "last_modification",
-                "_label",
+                # "_label",
                 # "_cover_label",
                 # "_bottom_label",
                 # "_input_label",

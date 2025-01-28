@@ -117,7 +117,7 @@ def create_app(
     # vw_tdh_xxx(
     # srid, pg_service=pg_service, extra_definition=tdh_xxx_extra
     # )
-    vw_tdh_pipe_point(srid=srid, pg_service=pg_service, extra_definition=extra_definition)
+    vw_tdh_pipe_point(srid=srid, pg_service=pg_service)
 
     # additional views to be created with simple sql
 

@@ -125,6 +125,72 @@ END;]]></definition>
             <parameter mode="IN"/>
          </parameters>
       </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="ft_set_default_values()" returnType="trigger" securityType="DEFINER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[DECLARE
+    sch text;
+    tbl text;
+	col text;
+	ttp text;
+BEGIN
+	FOR sch,tbl,col,ttp IN
+	SELECT
+       t.table_schema,
+	   c.table_name,
+	   c.column_name,
+	   CASE WHEN t.table_type = 'BASE TABLE' then 'TABLE' ELSE t.table_type END
+
+    FROM information_schema.columns c
+	LEFT JOIN information_schema.tables t
+	ON c.table_name = t.table_name
+    and c.table_schema = t.table_schema
+    WHERE c.column_name = NEW.fieldname
+      and ((c.table_schema ='tdh_od'
+	  and t.table_type = 'BASE TABLE')
+	  OR  (c.table_schema ='tdh_app'
+	  and t.table_type = 'VIEW'))
+    LOOP
+        EXECUTE format($$ ALTER %4$s %1$I.%2$I ALTER COLUMN %3$I SET DEFAULT tdh_app.get_default_values('%3$s') $$, sch,tbl,col,ttp);
+    END LOOP;
+	RETURN NEW;
+END;]]></definition>
+         <parameters>
+            <parameter mode="IN"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="ft_unset_default_values()" returnType="trigger" securityType="DEFINER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[DECLARE
+    sch text;
+    tbl text;
+	col text;
+	ttp text;
+BEGIN
+	FOR sch,tbl,col,ttp IN
+	SELECT
+       t.table_schema,
+	   c.table_name,
+	   c.column_name,
+	   CASE WHEN t.table_type = 'BASE TABLE' then 'TABLE' ELSE t.table_type END
+
+    FROM information_schema.columns c
+	LEFT JOIN information_schema.tables t
+	ON c.table_name = t.table_name
+    and c.table_schema = t.table_schema
+    WHERE c.column_name = OLD.fieldname
+      and ((c.table_schema ='tdh_od'
+	  and t.table_type = 'BASE TABLE')
+	  OR  (c.table_schema ='tdh_app'
+	  and t.table_type = 'VIEW'))
+    LOOP
+        EXECUTE format($$ ALTER %4$s %1$I.%2$I ALTER COLUMN %3$I DROP DEFAULT $$, sch,tbl,col,ttp);
+    END LOOP;
+	RETURN NULL;
+END;]]></definition>
+         <parameters>
+            <parameter mode="IN"/>
+         </parameters>
+      </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="ft_vw_pipe_point_feed_delete()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
          <comment/>
          <definition language="plpgsql"><![CDATA[BEGIN
@@ -379,6 +445,24 @@ END;]]></definition>
             <parameter mode="IN" name="table_name" type="text"/>
          </parameters>
       </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="get_default_values(field_name text)" returnType="character varying" securityType="DEFINER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[DECLARE
+    myrec record;
+BEGIN
+  BEGIN
+    SELECT value_obj_id::varchar(16) INTO myrec FROM tdh_od.default_values WHERE fieldname = field_name;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+           RAISE WARNING 'Field name % not found in table tdh_od.default_values. Returning NULL',field_name;
+		   RETURN NULL;
+  END;
+  RETURN myrec.value_obj_id;
+END;]]></definition>
+         <parameters>
+            <parameter mode="IN" name="field_name" type="text"/>
+         </parameters>
+      </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="modification_last_modified()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
          <comment/>
          <definition language="plpgsql"><![CDATA[BEGIN
@@ -408,64 +492,71 @@ END;]]></definition>
             <parameter mode="IN"/>
          </parameters>
       </routine>
-      <routine dataAccess="MODIFIES" deterministic="false" name="set_organisations_active()" returnType="void" securityType="INVOKER" type="FUNCTION">
+      <routine dataAccess="MODIFIES" deterministic="false" name="reset_od_seqval()" returnType="void" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[DECLARE
+
+tbl_name text;
+rgx text;
+BEGIN
+	BEGIN
+	   FOR tbl_name,rgx IN (
+			SELECT dot.tablename,pfx.prefix||dot.shortcut_en
+			FROM information_schema.sequences seq
+			LEFT JOIN tdh_sys.dictionary_od_table dot ON seq.sequence_name = 'seq_'||dot.tablename||'_oid'
+			LEFT JOIN (SELECT prefix  FROM tdh_sys.oid_prefixes WHERE active) pfx on True
+			WHERE seq.sequence_schema = 'tdh_od' AND dot.tablename IS NOT NULL) LOOP
+				EXECUTE FORMAT('SELECT SETVAL(''tdh_od.seq_%1$I_oid'',(SELECT max(seqs) FROM(
+		SELECT RIGHT(obj_id, 6)::int as seqs FROM tdh_od.%1$I WHERE  regexp_match(obj_id, ''%2$s\d{6}$'') IS NOT NULL
+		UNION
+		SELECT last_value as seqs FROM tdh_od.seq_%1$I_oid)foo));',tbl_name,rgx);
+	   END LOOP;
+	END;
+END;]]></definition>
+         <parameters>
+            <parameter mode="IN"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="set_organisations_active(_undo_existing boolean DEFAULT false)" returnType="void" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[DECLARE
+schm text;
+tbl text;
+col text;
+BEGIN
+IF _undo_existing THEN
+	UPDATE tdh_od.organisation
+	SET tdh_active=FALSE;
+ELSE NULL;
+END IF;
+FOR schm,tbl,col IN
+	SELECT   tc.table_schema,
+		tc.table_name,
+		kcu.column_name
+	FROM (SELECT constraint_name FROM information_schema.constraint_column_usage
+	WHERE table_schema='tdh_od'
+		AND table_name='organisation'
+		AND column_name='obj_id'
+		AND constraint_name NOT LIKE'pkey%')ccu
+	INNER JOIN information_schema.key_column_usage AS kcu
+	ON ccu.constraint_name = kcu.constraint_name
+	INNER JOIN information_schema.table_constraints AS tc
+		ON tc.constraint_name = kcu.constraint_name
+LOOP
+	        EXECUTE format($$ UPDATE tdh_od.organisation
+SET tdh_active=TRUE
+WHERE obj_id IN (SELECT DISTINCT %I FROM %I.%I)$$, col,schm,tbl);
+END LOOP;
+END;]]></definition>
+         <parameters>
+            <parameter mode="IN" name="_undo_existing" type="boolean"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="tr_reset_od_seqval()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
          <comment/>
          <definition language="plpgsql"><![CDATA[BEGIN
-UPDATE tdh_od.organisation
-SET tdh_active=TRUE
-WHERE obj_id = ANY(
-/* SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
-FROM tdh_od.hydraulic_node
-UNION */
-/* SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
-FROM tdh_od.hydraulic_line_section
-UNION */
-/* SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
-FROM tdh_od.static_node
-UNION */
-/* SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
-FROM tdh_od.static_line_section
-UNION */
-SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
-FROM tdh_od.pipe_section
-UNION
-SELECT UNNEST(ARRAY[fk_provider,fk_dataowner,fk_owner])
-FROM tdh_od.pipe_point
-UNION
-SELECT UNNEST(ARRAY[fk_provider,fk_dataowner,fk_owner])
-FROM tdh_od.structure
-UNION
-SELECT UNNEST(ARRAY[fk_provider,fk_dataowner,fk_owner])
-FROM tdh_od.trench
-UNION
-SELECT UNNEST(ARRAY[fk_provider,fk_dataowner,fk_owner])
-FROM tdh_od.trench_point
-UNION
-/* SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
-FROM tdh_od.damage_pipe_section
-UNION */
-/* SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
-FROM tdh_od.damage_pipe_point
-UNION */
-/* SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
-FROM tdh_od.damage_structure
-UNION */
-/* SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
-FROM tdh_od.damage_trench
-UNION */
-SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
-FROM tdh_od.organisation
-UNION
-SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
-FROM tdh_od.sia405cc_cable
-UNION
-SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
-FROM tdh_od.sia405cc_cable_point
-UNION
-SELECT UNNEST(ARRAY[fk_provider,fk_dataowner])
-FROM tdh_od.sia405pt_protection_tube
-
-);
+    PERFORM tdh_app.reset_od_seqval();
+    RETURN NULL;
 END;]]></definition>
          <parameters>
             <parameter mode="IN"/>

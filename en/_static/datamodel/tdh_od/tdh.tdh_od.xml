@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><database name="tdh" schema="tdh_od" type="PostgreSQL - 14.13 (Debian 14.13-1.pgdg110+1)">
    <sequences>
+      <sequence increment="1" name="default_values_id_seq" startValue="1"/>
       <sequence increment="1" name="seq_data_media_oid" startValue="0"/>
       <sequence increment="1" name="seq_file_oid" startValue="0"/>
       <sequence increment="1" name="seq_organisation_oid" startValue="0"/>
@@ -45,6 +46,18 @@
          <checkConstraint constraint="((char_length(location) &lt;= 50))" name="vo_location_length_max_50"/>
          <checkConstraint constraint="((char_length(path) &lt;= 1023))" name="vo_path_length_max_1023"/>
          <checkConstraint constraint="((char_length(remark) &lt;= 80))" name="vo_remark_length_max_80"/>
+      </table>
+      <table name="default_values" remarks="" schema="tdh_od" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('tdh_od.default_values_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="fieldname" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="value_obj_id" nullable="true" remarks="" size="16" type="varchar" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="pkey_tdh_sys_default_values_id" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="in_od_default_values_fieldname" unique="true">
+            <column ascending="true" name="fieldname"/>
+         </index>
       </table>
       <table name="file" remarks="" schema="tdh_od" type="TABLE">
          <column autoUpdated="false" defaultValue="tdh_app.generate_oid('tdh_od'::text, 'file'::text)" digits="0" id="0" name="obj_id" nullable="false" remarks="INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch" size="16" type="varchar" typeCode="12"/>

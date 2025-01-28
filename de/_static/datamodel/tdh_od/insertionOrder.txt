@@ -13,3 +13,4 @@ trench_point
 sia405cc_cable_point
 sia405pt_protection_tube
 sia405cc_cable
+default_values

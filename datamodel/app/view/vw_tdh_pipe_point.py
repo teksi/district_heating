@@ -34,7 +34,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
 
     CREATE OR REPLACE VIEW tww_app.vw_tdh_pipe_point AS
      SELECT
-        pp.name_number as name_number,
+        # pp.name_number as name_number,
 
         CASE
           WHEN pn.obj_id IS NOT NULL THEN 'pipe_point_normal'
@@ -95,7 +95,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
             remove_pkey=False,
             indent=4,
             skip_columns=[
-                "name_number",
+                # "name_number",
                 "fk_owner",
                 "_label",
                 # "_cover_label",
@@ -147,8 +147,9 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
     $BODY$
     BEGIN
 
-      NEW.name_number = COALESCE(NEW.name_number, NEW.obj_id);
-
+      # NEW.name_number = COALESCE(NEW.name_number, NEW.obj_id);
+      NEW.obj_id = NEW.obj_id
+      
     {insert_pp}
 
       CASE

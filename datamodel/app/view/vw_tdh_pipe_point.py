@@ -149,7 +149,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
 
       # NEW.name_number = COALESCE(NEW.name_number, NEW.obj_id);
       NEW.obj_id = NEW.obj_id
-      
+
     {insert_pp}
 
       CASE

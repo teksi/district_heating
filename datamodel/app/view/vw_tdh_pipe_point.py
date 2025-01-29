@@ -136,7 +136,6 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
     $BODY$
     BEGIN
 
-      # NEW.name_number = COALESCE(NEW.name_number, NEW.obj_id);
       NEW.obj_id = NEW.obj_id
 
     {insert_pp}
@@ -240,55 +239,6 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
         ELSE -- do nothing
       END CASE;
 
-        # -- Move reach point node as well
-        # UPDATE tdh_od.reach_point RP
-        # SET situation3d_geometry = ST_SetSRID( ST_MakePoint(
-        # ST_X(ST_TRANSLATE(ST_MakePoint(ST_X(RP.situation3d_geometry), ST_Y(RP.situation3d_geometry)), dx, dy )),
-        # ST_Y(ST_TRANSLATE(ST_MakePoint(ST_X(RP.situation3d_geometry), ST_Y(RP.situation3d_geometry)), dx, dy )),
-        # ST_Z(RP.situation3d_geometry)), {srid} )
-        # WHERE obj_id IN
-        # (
-          # SELECT RP.obj_id FROM tdh_od.reach_point RP
-          # LEFT JOIN tdh_od.wastewater_networkelement NE ON RP.fk_wastewater_networkelement = NE.obj_id
-          # WHERE NE.fk_wastewater_structure = NEW.obj_id
-        # );
-
-
-        # -- Move reach(es) as well
-        # UPDATE tdh_od.reach RE
-        # SET progression3d_geometry =
-          # ST_ForceCurve (ST_SetPoint(
-            # ST_CurveToLine (RE.progression3d_geometry ),
-            # 0, -- SetPoint index is 0 based, PointN index is 1 based.
-            # ST_SetSRID( ST_MakePoint(
-                # ST_X(ST_TRANSLATE(ST_MakePoint(ST_X(ST_PointN(RE.progression3d_geometry, 1)), ST_Y(ST_PointN(RE.progression3d_geometry, 1))), dx, dy )),
-                # ST_Y(ST_TRANSLATE(ST_MakePoint(ST_X(ST_PointN(RE.progression3d_geometry, 1)), ST_Y(ST_PointN(RE.progression3d_geometry, 1))), dx, dy )),
-                # ST_Z(ST_PointN(RE.progression3d_geometry, 1))), {srid} )
-          # ) )
-        # WHERE fk_reach_point_from IN
-        # (
-          # SELECT RP.obj_id FROM tdh_od.reach_point RP
-          # LEFT JOIN tdh_od.wastewater_networkelement NE ON RP.fk_wastewater_networkelement = NE.obj_id
-          # WHERE NE.fk_wastewater_structure = NEW.obj_id
-        # );
-
-        # UPDATE tdh_od.reach RE
-        # SET progression3d_geometry =
-          # ST_ForceCurve( ST_SetPoint(
-            # ST_CurveToLine( RE.progression3d_geometry ),
-            # ST_NumPoints(RE.progression3d_geometry) - 1,
-            # ST_SetSRID( ST_MakePoint(
-                # ST_X(ST_TRANSLATE(ST_MakePoint(ST_X(ST_EndPoint(RE.progression3d_geometry)), ST_Y(ST_EndPoint(RE.progression3d_geometry))), dx, dy )),
-                # ST_Y(ST_TRANSLATE(ST_MakePoint(ST_X(ST_EndPoint(RE.progression3d_geometry)), ST_Y(ST_EndPoint(RE.progression3d_geometry))), dx, dy )),
-                # ST_Z(ST_PointN(RE.progression3d_geometry, 1))), {srid} )
-          # ) )
-        # WHERE fk_reach_point_to IN
-        # (
-          # SELECT RP.obj_id FROM tdh_od.reach_point RP
-          # LEFT JOIN tdh_od.wastewater_networkelement NE ON RP.fk_wastewater_networkelement = NE.obj_id
-          # WHERE NE.fk_wastewater_structure = NEW.obj_id
-        # );
-      # END IF;
 
       RETURN NEW;
     END;
@@ -371,8 +321,6 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
 
     extras = """
     ALTER VIEW tdh_app.vw_tdh_pipe_point ALTER obj_id SET DEFAULT tdh_app.generate_oid('tdh_od','pipe_point');
-    # ALTER VIEW tdh_app.vw_tdh_pipe_point ALTER co_obj_id SET DEFAULT tdh_app.generate_oid('tdh_od','cover');
-    # ALTER VIEW tdh_app.vw_tdh_pipe_point ALTER wn_obj_id SET DEFAULT tdh_app.generate_oid('tdh_od','wastewater_node');
     """
     cursor.execute(extras)
 

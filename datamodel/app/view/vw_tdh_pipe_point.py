@@ -57,9 +57,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
 
         FROM tdh_od.pipe_point pp
         LEFT JOIN tdh_od.pipe_point_normal pn ON pn.obj_id = pp.obj_id
-        LEFT JOIN tdh_od.pipe_point_feed pf ON pf.obj_id = pp.obj_id
-        # WHERE '-1'=ALL(ARRAY[ch.obj_id,dt.obj_id,sm.obj_id,wt.obj_id]) IS NULL
-        # AND '-2'=ALL(ARRAY[ch.obj_id,dt.obj_id,sm.obj_id,wt.obj_id]) IS NULL;
+        LEFT JOIN tdh_od.pipe_point_feed pf ON pf.obj_id = pp.obj_id;
 
     """.format(
         srid=srid,

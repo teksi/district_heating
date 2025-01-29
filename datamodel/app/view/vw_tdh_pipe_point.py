@@ -175,7 +175,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
                 # "_bottom_label",
                 # "_input_label",
                 # "_output_label",
-                "situation3d_geometry",
+                "geometry3d_geometry",
             ],
         ),
         insert_pn=insert_command(
@@ -313,7 +313,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
             remove_pkey=False,
             indent=6,
             skip_columns=[
-                "situation3d_geometry",
+                "geometry3d_geometry",
                 "last_modification",
                 # "_label",
                 # "_cover_label",

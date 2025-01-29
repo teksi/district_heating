@@ -102,7 +102,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
                 # "_bottom_label",
                 # "_input_label",
                 # "_output_label",
-                "situation3d_geometry",
+                "geometry3d_geometry",
             ],
         ),
         pn_columns=select_columns(

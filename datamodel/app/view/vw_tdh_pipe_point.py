@@ -136,7 +136,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
     $BODY$
     BEGIN
 
-      NEW.obj_id = NEW.obj_id
+      NEW.obj_id = NEW.obj_id;
 
     {insert_pp}
 
@@ -145,7 +145,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
         -- pipe_point_feed
     {insert_pf}
 
-        -- Special Structure
+        -- pipe_point_normal
         WHEN NEW.pp_type = 'pipe_point_normal' THEN
     {insert_pn}
 

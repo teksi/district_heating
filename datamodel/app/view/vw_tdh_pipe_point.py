@@ -30,9 +30,9 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
     cursor = conn.cursor()
 
     view_sql = """
-    DROP VIEW IF EXISTS tww_app.vw_tdh_pipe_point;
+    DROP VIEW IF EXISTS tdh_app.vw_tdh_pipe_point;
 
-    CREATE OR REPLACE VIEW tww_app.vw_tdh_pipe_point AS
+    CREATE OR REPLACE VIEW tdh_app.vw_tdh_pipe_point AS
      SELECT
 
         CASE
@@ -131,7 +131,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
     cursor.execute(view_sql)
 
     trigger_insert_sql = """
-    CREATE OR REPLACE FUNCTION tww_app.ft_vw_tdh_pipe_point_INSERT()
+    CREATE OR REPLACE FUNCTION tdh_app.ft_vw_tdh_pipe_point_INSERT()
       RETURNS trigger AS
     $BODY$
     BEGIN
@@ -157,10 +157,10 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
       RETURN NEW;
     END; $BODY$ LANGUAGE plpgsql VOLATILE;
 
-    DROP TRIGGER IF EXISTS vw_tdh_pipe_point_INSERT ON tww_app.vw_tdh_pipe_point;
+    DROP TRIGGER IF EXISTS vw_tdh_pipe_point_INSERT ON tdh_app.vw_tdh_pipe_point;
 
-    CREATE TRIGGER vw_tdh_pipe_point_INSERT INSTEAD OF INSERT ON tww_app.vw_tdh_pipe_point
-      FOR EACH ROW EXECUTE PROCEDURE tww_app.ft_vw_tdh_pipe_point_INSERT();
+    CREATE TRIGGER vw_tdh_pipe_point_INSERT INSTEAD OF INSERT ON tdh_app.vw_tdh_pipe_point
+      FOR EACH ROW EXECUTE PROCEDURE tdh_app.ft_vw_tdh_pipe_point_INSERT();
     """.format(
         insert_pp=insert_command(
             pg_cur=cursor,
@@ -206,7 +206,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
     cursor.execute(trigger_insert_sql)
 
     update_trigger_sql = """
-    CREATE OR REPLACE FUNCTION tww_app.ft_vw_tdh_pipe_point_UPDATE()
+    CREATE OR REPLACE FUNCTION tdh_app.ft_vw_tdh_pipe_point_UPDATE()
       RETURNS trigger AS
     $BODY$
     DECLARE
@@ -297,10 +297,10 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
 
 
 
-    DROP TRIGGER IF EXISTS vw_tdh_pipe_point_UPDATE ON tww_app.vw_tdh_pipe_point;
+    DROP TRIGGER IF EXISTS vw_tdh_pipe_point_UPDATE ON tdh_app.vw_tdh_pipe_point;
 
-    CREATE TRIGGER vw_tdh_pipe_point_UPDATE INSTEAD OF UPDATE ON tww_app.vw_tdh_pipe_point
-      FOR EACH ROW EXECUTE PROCEDURE tww_app.ft_vw_tdh_pipe_point_UPDATE();
+    CREATE TRIGGER vw_tdh_pipe_point_UPDATE INSTEAD OF UPDATE ON tdh_app.vw_tdh_pipe_point
+      FOR EACH ROW EXECUTE PROCEDURE tdh_app.ft_vw_tdh_pipe_point_UPDATE();
     """.format(
         srid=srid,
         literal_delete_on_pp_change="'DELETE FROM tdh_od.%I WHERE obj_id = %L',OLD.pp_type,OLD.obj_id",
@@ -352,7 +352,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
     cursor.execute(update_trigger_sql)
 
     trigger_delete_sql = """
-    CREATE OR REPLACE FUNCTION tww_app.ft_vw_tdh_pipe_point_DELETE()
+    CREATE OR REPLACE FUNCTION tdh_app.ft_vw_tdh_pipe_point_DELETE()
       RETURNS trigger AS
     $BODY$
     DECLARE
@@ -361,18 +361,18 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
     RETURN OLD;
     END; $BODY$ LANGUAGE plpgsql VOLATILE;
 
-    DROP TRIGGER IF EXISTS vw_tdh_pipe_point_DELETE ON tww_app.vw_tdh_pipe_point;
+    DROP TRIGGER IF EXISTS vw_tdh_pipe_point_DELETE ON tdh_app.vw_tdh_pipe_point;
 
-    CREATE TRIGGER vw_tdh_pipe_point_DELETE INSTEAD OF DELETE ON tww_app.vw_tdh_pipe_point
-      FOR EACH ROW EXECUTE PROCEDURE tww_app.ft_vw_tdh_pipe_point_DELETE();
+    CREATE TRIGGER vw_tdh_pipe_point_DELETE INSTEAD OF DELETE ON tdh_app.vw_tdh_pipe_point
+      FOR EACH ROW EXECUTE PROCEDURE tdh_app.ft_vw_tdh_pipe_point_DELETE();
     """
 
     cursor.execute(trigger_delete_sql)
 
     extras = """
-    ALTER VIEW tww_app.vw_tdh_pipe_point ALTER obj_id SET DEFAULT tww_app.generate_oid('tdh_od','pipe_point');
-    # ALTER VIEW tww_app.vw_tdh_pipe_point ALTER co_obj_id SET DEFAULT tww_app.generate_oid('tdh_od','cover');
-    # ALTER VIEW tww_app.vw_tdh_pipe_point ALTER wn_obj_id SET DEFAULT tww_app.generate_oid('tdh_od','wastewater_node');
+    ALTER VIEW tdh_app.vw_tdh_pipe_point ALTER obj_id SET DEFAULT tdh_app.generate_oid('tdh_od','pipe_point');
+    # ALTER VIEW tdh_app.vw_tdh_pipe_point ALTER co_obj_id SET DEFAULT tdh_app.generate_oid('tdh_od','cover');
+    # ALTER VIEW tdh_app.vw_tdh_pipe_point ALTER wn_obj_id SET DEFAULT tdh_app.generate_oid('tdh_od','wastewater_node');
     """
     cursor.execute(extras)
 

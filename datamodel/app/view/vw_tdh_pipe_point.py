@@ -34,7 +34,6 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
 
     CREATE OR REPLACE VIEW tww_app.vw_tdh_pipe_point AS
      SELECT
-        # pp.name_number as name_number,
 
         CASE
           WHEN pn.obj_id IS NOT NULL THEN 'pipe_point_normal'
@@ -55,14 +54,6 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
         , {pn_columns}
 
         , {pf_columns}
-
-        # , pp._label
-        # , pp._cover_label
-        # , pp._bottom_label
-        # , pp._input_label
-        # , pp._output_label
-        # , wn._usage_current AS _channel_usage_current
-        # , wn._function_hierarchic AS _channel_function_hierarchic
 
         FROM tdh_od.pipe_point pp
         LEFT JOIN tdh_od.pipe_point_normal pn ON pn.obj_id = pp.obj_id

@@ -252,7 +252,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
     CREATE TRIGGER vw_tdh_pipe_point_UPDATE INSTEAD OF UPDATE ON tdh_app.vw_tdh_pipe_point
       FOR EACH ROW EXECUTE PROCEDURE tdh_app.ft_vw_tdh_pipe_point_UPDATE();
     """.format(
-        srid=srid,
+        # srid=srid,
         literal_delete_on_pp_change="'DELETE FROM tdh_od.%I WHERE obj_id = %L',OLD.pp_type,OLD.obj_id",
         literal_insert_on_pp_change="'INSERT INTO tdh_od.%I(obj_id) VALUES (%L)',NEW.pp_type,OLD.obj_id",
         update_pp=update_command(

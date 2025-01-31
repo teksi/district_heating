@@ -113,7 +113,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
             remove_pkey=True,
             indent=4,
             skip_columns=["kind"],
-            prefix="ss_",
+            prefix="pf_",
             remap_columns={},
         ),
         # extra_joins="\n    ".join(

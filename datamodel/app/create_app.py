@@ -11,6 +11,7 @@ except ImportError:
 
 from pirogue import SingleInheritance
 from triggers.set_defaults_and_triggers import set_defaults_and_triggers
+from view.vw_tdh_pipe_point import vw_tdh_pipe_point
 
 # from view.vw_tdh_reach import vw_tdh_reach
 # from view.vw_tdh_xxx_structure import vw_tdh_xxx_structure
@@ -64,6 +65,7 @@ def create_app(
     run_sql_file("functions/oid_functions.sql", pg_service)
     run_sql_file("functions/modification_functions.sql", pg_service)
     run_sql_file("functions/organisation_functions.sql", pg_service, variables)
+    run_sql_file("functions/meta_functions.sql", pg_service, variables)
 
     # to do add symbology_function and geometry_funcions for TEKSI Distance heating
 
@@ -115,6 +117,7 @@ def create_app(
     # vw_tdh_xxx(
     # srid, pg_service=pg_service, extra_definition=tdh_xxx_extra
     # )
+    vw_tdh_pipe_point(srid=srid, pg_service=pg_service)
 
     # additional views to be created with simple sql
 

@@ -72,6 +72,38 @@
          <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="remark" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="1" id="14" name="symbolori" nullable="true" remarks="" size="4" type="numeric" typeCode="2"/>
       </table>
+      <table name="vw_tdh_pipe_point" numRows="0" remarks="" schema="tdh_app" type="VIEW" viewSql=" SELECT&#10;        CASE&#10;            WHEN (pn.obj_id IS NOT NULL) THEN 'pipe_point_normal'::text&#10;            WHEN (pf.obj_id IS NOT NULL) THEN 'pipe_point_feed'::text&#10;            ELSE 'unknown'::text&#10;        END AS pp_type,&#10;    pn.kind AS pn_kind,&#10;    pf.kind AS pf_kind,&#10;    pp.fk_owner,&#10;    pp.obj_id,&#10;    pp.altitude1,&#10;    pp.altitude2,&#10;    pp.elevation_determination,&#10;    pp.fk_dataowner,&#10;    pp.fk_provider,&#10;    pp.horizontal_positioning,&#10;    pp.last_modification,&#10;    pp.remark,&#10;    pp.symbolori,&#10;    (st_force2d(pp.geometry3d_geometry))::geometry(Point,2056) AS situation3d_geometry,&#10;    pn.armature_setting AS pn_armature_setting,&#10;    pn.material AS pn_material,&#10;    pf.aperture_value AS pf_aperture_value,&#10;    pf.category AS pf_category,&#10;    pf.flow_temperature AS pf_flow_temperature,&#10;    pf.heat_consumption AS pf_heat_consumption,&#10;    pf.heated_volume AS pf_heated_volume,&#10;    pf.power_output AS pf_power_output,&#10;    pf.power_output_installed AS pf_power_output_installed,&#10;    pf.power_output_ordered AS pf_power_output_ordered,&#10;    pf.pressure AS pf_pressure,&#10;    pf.q_subscribed AS pf_q_subscribed,&#10;    pf.return_flow_temperature AS pf_return_flow_temperature,&#10;    pf.year_of_commissioning AS pf_year_of_commissioning,&#10;    pf.year_of_reconstruction AS pf_year_of_reconstruction&#10;   FROM ((tdh_od.pipe_point pp&#10;     LEFT JOIN tdh_od.pipe_point_normal pn ON (((pn.obj_id)::text = (pp.obj_id)::text)))&#10;     LEFT JOIN tdh_od.pipe_point_feed pf ON (((pf.obj_id)::text = (pp.obj_id)::text)));">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="pp_type" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="pn_kind" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="pf_kind" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="fk_owner" nullable="true" remarks="" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="tdh_app.generate_oid('tdh_od'::text, 'pipe_point'::text)" digits="0" id="4" name="obj_id" nullable="true" remarks="" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="5" name="altitude1" nullable="true" remarks="" size="7" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="6" name="altitude2" nullable="true" remarks="" size="7" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="elevation_determination" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="fk_dataowner" nullable="true" remarks="" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="fk_provider" nullable="true" remarks="" size="16" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="horizontal_positioning" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="11" name="last_modification" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="remark" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="1" id="13" name="symbolori" nullable="true" remarks="" size="4" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="situation3d_geometry" nullable="true" remarks="" size="2147483647" type="geometry" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="pn_armature_setting" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="pn_material" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="pf_aperture_value" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="pf_category" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="19" name="pf_flow_temperature" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="20" name="pf_heat_consumption" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="21" name="pf_heated_volume" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="22" name="pf_power_output" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="23" name="pf_power_output_installed" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="24" name="pf_power_output_ordered" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="25" name="pf_pressure" nullable="true" remarks="" size="5" type="int2" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="26" name="pf_q_subscribed" nullable="true" remarks="" size="7" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="27" name="pf_return_flow_temperature" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="28" name="pf_year_of_commissioning" nullable="true" remarks="" size="5" type="int2" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="29" name="pf_year_of_reconstruction" nullable="true" remarks="" size="5" type="int2" typeCode="5"/>
+      </table>
    </tables>
    <routines>
       <routine dataAccess="MODIFIES" deterministic="false" name="alter_modification_triggers(action_name text)" returnType="void" securityType="DEFINER" type="FUNCTION">
@@ -104,6 +136,28 @@ END IF;
 END;]]></definition>
          <parameters>
             <parameter mode="IN" name="action_name" type="text"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="check_all_nulls(rec record, prefix character varying, ignored_postfix text[] DEFAULT ARRAY['obj_id'::text, 'identifier'::text])" returnType="boolean" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[DECLARE
+        rec_jsonb jsonb;
+    BEGIN
+
+	  rec_jsonb := (
+          SELECT jsonb_object_agg(key, to_jsonb(rec)->key)
+          FROM jsonb_object_keys(to_jsonb(rec)) key
+          WHERE LEFT(key, 2) = prefix
+		  AND NOT(ltrim(key, prefix||'_') =ANY(ignored_postfix))
+        );
+
+      -- Check if all remaining values are NULL
+      RETURN jsonb_strip_nulls(rec_jsonb)::text = '{}' OR jsonb_strip_nulls(rec_jsonb)::text IS NULL;
+	  END;]]></definition>
+         <parameters>
+            <parameter mode="IN" name="rec" type="record"/>
+            <parameter mode="IN" name="prefix" type="character varying"/>
+            <parameter mode="IN" name="ignored_postfix" type="text[]"/>
          </parameters>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="check_modification_enabled()" returnType="boolean" securityType="DEFINER" type="FUNCTION">
@@ -400,6 +454,187 @@ UPDATE tdh_od.pipe_point_normal SET
     WHERE obj_id = OLD.obj_id;
 RETURN NEW;
 END;]]></definition>
+         <parameters>
+            <parameter mode="IN"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="ft_vw_tdh_pipe_point_delete()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[DECLARE
+    BEGIN
+      DELETE FROM tdh_od.pipe_point WHERE obj_id = OLD.obj_id;
+    RETURN OLD;
+    END;]]></definition>
+         <parameters>
+            <parameter mode="IN"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="ft_vw_tdh_pipe_point_insert()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[BEGIN
+
+      NEW.obj_id = NEW.obj_id;
+
+    INSERT INTO tdh_od.pipe_point (
+        obj_id
+      , altitude1
+      , altitude2
+      , elevation_determination
+      , fk_dataowner
+      , fk_owner
+      , fk_provider
+      -- , geometry3d_geometry
+      , horizontal_positioning
+      , last_modification
+      , remark
+      , symbolori
+    ) VALUES (
+        NEW.obj_id
+      , NEW.altitude1
+      , NEW.altitude2
+      , NEW.elevation_determination
+      , NEW.fk_dataowner
+      , NEW.fk_owner
+      , NEW.fk_provider
+      -- , NEW.geometry3d_geometry
+      , NEW.horizontal_positioning
+      , NEW.last_modification
+      , NEW.remark
+      , NEW.symbolori
+    );
+
+
+      CASE
+        WHEN NEW.pp_type = 'pipe_point_feed' THEN
+        -- pipe_point_feed
+    INSERT INTO tdh_od.pipe_point_feed (
+            obj_id
+          , aperture_value
+          , category
+          , flow_temperature
+          , heat_consumption
+          , heated_volume
+          , kind
+          , power_output
+          , power_output_installed
+          , power_output_ordered
+          , pressure
+          , q_subscribed
+          , return_flow_temperature
+          , year_of_commissioning
+          , year_of_reconstruction
+        ) VALUES (
+            NEW.obj_id
+          , NEW.pf_aperture_value
+          , NEW.pf_category
+          , NEW.pf_flow_temperature
+          , NEW.pf_heat_consumption
+          , NEW.pf_heated_volume
+          , NEW.pf_kind
+          , NEW.pf_power_output
+          , NEW.pf_power_output_installed
+          , NEW.pf_power_output_ordered
+          , NEW.pf_pressure
+          , NEW.pf_q_subscribed
+          , NEW.pf_return_flow_temperature
+          , NEW.pf_year_of_commissioning
+          , NEW.pf_year_of_reconstruction
+        );
+
+
+        -- pipe_point_normal
+        WHEN NEW.pp_type = 'pipe_point_normal' THEN
+    INSERT INTO tdh_od.pipe_point_normal (
+            obj_id
+          , armature_setting
+          , kind
+          , material
+        ) VALUES (
+            NEW.obj_id
+          , NEW.pn_armature_setting
+          , NEW.pn_kind
+          , NEW.pn_material
+        );
+
+
+        ELSE
+         RAISE NOTICE 'Pipe point type not handled by this view (%)', NEW.pp_type; -- ERROR
+      END CASE;
+
+      RETURN NEW;
+    END;]]></definition>
+         <parameters>
+            <parameter mode="IN"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="ft_vw_tdh_pipe_point_update()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[DECLARE
+      dx float;
+      dy float;
+    BEGIN
+
+      UPDATE tdh_od.pipe_point pp SET
+          obj_id = NEW.obj_id
+          , altitude1 = NEW.altitude1
+          , altitude2 = NEW.altitude2
+          , elevation_determination = NEW.elevation_determination
+          , fk_dataowner = NEW.fk_dataowner
+          , fk_owner = NEW.fk_owner
+          , fk_provider = NEW.fk_provider
+          -- , geometry3d_geometry = NEW.geometry3d_geometry
+          , horizontal_positioning = NEW.horizontal_positioning
+          -- , last_modification = NEW.last_modification
+          , remark = NEW.remark
+          , symbolori = NEW.symbolori
+        WHERE obj_id = OLD.obj_id;
+
+      IF OLD.pp_type <> NEW.pp_type THEN
+        CASE WHEN OLD.pp_type <> 'unknown' THEN
+          BEGIN
+            EXECUTE FORMAT('DELETE FROM tdh_od.%I WHERE obj_id = %L',OLD.pp_type,OLD.obj_id);
+          END;
+        END CASE;
+
+        CASE WHEN NEW.pp_type = ANY(ARRAY['pipe_point_feed','pipe_point_normal']) THEN
+          BEGIN
+            EXECUTE FORMAT('INSERT INTO tdh_od.%I(obj_id) VALUES (%L)',NEW.pp_type,OLD.obj_id);
+          END;
+        END CASE;
+      END IF;
+
+      CASE
+        WHEN NEW.pp_type = 'pipe_point_feed' THEN
+          UPDATE tdh_od.pipe_point_feed pf SET
+          aperture_value = NEW.pf_aperture_value
+          , category = NEW.pf_category
+          , flow_temperature = NEW.pf_flow_temperature
+          , heat_consumption = NEW.pf_heat_consumption
+          , heated_volume = NEW.pf_heated_volume
+          , kind = NEW.pf_kind
+          , power_output = NEW.pf_power_output
+          , power_output_installed = NEW.pf_power_output_installed
+          , power_output_ordered = NEW.pf_power_output_ordered
+          , pressure = NEW.pf_pressure
+          , q_subscribed = NEW.pf_q_subscribed
+          , return_flow_temperature = NEW.pf_return_flow_temperature
+          , year_of_commissioning = NEW.pf_year_of_commissioning
+          , year_of_reconstruction = NEW.pf_year_of_reconstruction
+        WHERE obj_id = OLD.obj_id;
+
+        WHEN NEW.pp_type = 'pipe_point_normal' THEN
+          UPDATE tdh_od.pipe_point_normal pn SET
+          armature_setting = NEW.pn_armature_setting
+          , kind = NEW.pn_kind
+          , material = NEW.pn_material
+        WHERE obj_id = OLD.obj_id;
+
+        ELSE -- do nothing
+      END CASE;
+
+
+      RETURN NEW;
+    END;]]></definition>
          <parameters>
             <parameter mode="IN"/>
          </parameters>

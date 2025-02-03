@@ -826,58 +826,10 @@
 </a>
 </g>
 </g>
-<!-- sia405cc_cable_point_horizontal_positioning -->
-<g id="node18" class="node">
-<title>sia405cc_cable_point_horizontal_positioning</title>
-<g id="a_node18"><a xlink:href="../../tables/sia405cc_cable_point_horizontal_dbbdef40.html" xlink:title="sia405cc_cable_point_horizontal_positioning" target="_top">
-<polygon fill="#ffffff" stroke="transparent" points="22,-13917 22,-14243 327,-14243 327,-13917 22,-13917"/>
-<polygon fill="#f5f5f5" stroke="transparent" points="22.5,-14221 22.5,-14243 327.5,-14243 327.5,-14221 22.5,-14221"/>
-<polygon fill="none" stroke="black" points="22.5,-14221 22.5,-14243 327.5,-14243 327.5,-14221 22.5,-14221"/>
-<text text-anchor="start" x="27.5" y="-14230.2" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="11.00">sia405cc_cable_point_horizontal_positioning</text>
-<text text-anchor="start" x="288.5" y="-14229.2" font-family="Helvetica,sans-Serif" font-size="11.00">[table]</text>
-<polygon fill="none" stroke="black" points="22.5,-14199 22.5,-14221 327.5,-14221 327.5,-14199 22.5,-14199"/>
-<image xlink:href="../../images/primaryKeys.png" width="11px" height="12px" preserveAspectRatio="xMinYMin meet" x="27.5" y="-14216"/>
-<text text-anchor="start" x="54.5" y="-14207.2" font-family="Helvetica,sans-Serif" font-size="11.00">code</text>
-<polygon fill="none" stroke="black" points="22.5,-14177 22.5,-14199 327.5,-14199 327.5,-14177 22.5,-14177"/>
-<text text-anchor="start" x="54.5" y="-14185.2" font-family="Helvetica,sans-Serif" font-size="11.00">vsacode</text>
-<polygon fill="none" stroke="black" points="22.5,-14155 22.5,-14177 327.5,-14177 327.5,-14155 22.5,-14155"/>
-<text text-anchor="start" x="54.5" y="-14163.2" font-family="Helvetica,sans-Serif" font-size="11.00">value_en</text>
-<polygon fill="none" stroke="black" points="22.5,-14133 22.5,-14155 327.5,-14155 327.5,-14133 22.5,-14133"/>
-<text text-anchor="start" x="54.5" y="-14141.2" font-family="Helvetica,sans-Serif" font-size="11.00">value_de</text>
-<polygon fill="none" stroke="black" points="22.5,-14111 22.5,-14133 327.5,-14133 327.5,-14111 22.5,-14111"/>
-<text text-anchor="start" x="54.5" y="-14119.2" font-family="Helvetica,sans-Serif" font-size="11.00">value_fr</text>
-<polygon fill="none" stroke="black" points="22.5,-14089 22.5,-14111 327.5,-14111 327.5,-14089 22.5,-14089"/>
-<text text-anchor="start" x="54.5" y="-14097.2" font-family="Helvetica,sans-Serif" font-size="11.00">value_it</text>
-<polygon fill="none" stroke="black" points="22.5,-14067 22.5,-14089 327.5,-14089 327.5,-14067 22.5,-14067"/>
-<text text-anchor="start" x="54.5" y="-14075.2" font-family="Helvetica,sans-Serif" font-size="11.00">value_ro</text>
-<polygon fill="none" stroke="black" points="22.5,-14045 22.5,-14067 327.5,-14067 327.5,-14045 22.5,-14045"/>
-<text text-anchor="start" x="54.5" y="-14053.2" font-family="Helvetica,sans-Serif" font-size="11.00">abbr_en</text>
-<polygon fill="none" stroke="black" points="22.5,-14023 22.5,-14045 327.5,-14045 327.5,-14023 22.5,-14023"/>
-<text text-anchor="start" x="54.5" y="-14031.2" font-family="Helvetica,sans-Serif" font-size="11.00">abbr_de</text>
-<polygon fill="none" stroke="black" points="22.5,-14001 22.5,-14023 327.5,-14023 327.5,-14001 22.5,-14001"/>
-<text text-anchor="start" x="54.5" y="-14009.2" font-family="Helvetica,sans-Serif" font-size="11.00">abbr_fr</text>
-<polygon fill="none" stroke="black" points="22.5,-13979 22.5,-14001 327.5,-14001 327.5,-13979 22.5,-13979"/>
-<text text-anchor="start" x="54.5" y="-13987.2" font-family="Helvetica,sans-Serif" font-size="11.00">abbr_it</text>
-<polygon fill="none" stroke="black" points="22.5,-13957 22.5,-13979 327.5,-13979 327.5,-13957 22.5,-13957"/>
-<text text-anchor="start" x="54.5" y="-13965.2" font-family="Helvetica,sans-Serif" font-size="11.00">abbr_ro</text>
-<polygon fill="none" stroke="black" points="22.5,-13935 22.5,-13957 327.5,-13957 327.5,-13935 22.5,-13935"/>
-<text text-anchor="start" x="54.5" y="-13943.2" font-family="Helvetica,sans-Serif" font-size="11.00">active</text>
-<polygon fill="#ffffff" stroke="transparent" points="22.5,-13917 22.5,-13935 163.5,-13935 163.5,-13917 22.5,-13917"/>
-<polygon fill="none" stroke="black" points="22.5,-13917 22.5,-13935 163.5,-13935 163.5,-13917 22.5,-13917"/>
-<text text-anchor="start" x="25.5" y="-13923.2" font-family="Helvetica,sans-Serif" font-size="11.00"> &#160;</text>
-<polygon fill="#ffffff" stroke="transparent" points="163.5,-13917 163.5,-13935 240.5,-13935 240.5,-13917 163.5,-13917"/>
-<polygon fill="none" stroke="black" points="163.5,-13917 163.5,-13935 240.5,-13935 240.5,-13917 163.5,-13917"/>
-<text text-anchor="start" x="230.5" y="-13923.2" font-family="Helvetica,sans-Serif" font-size="11.00"> &#160;</text>
-<polygon fill="#ffffff" stroke="transparent" points="240.5,-13917 240.5,-13935 327.5,-13935 327.5,-13917 240.5,-13917"/>
-<polygon fill="none" stroke="black" points="240.5,-13917 240.5,-13935 327.5,-13935 327.5,-13917 240.5,-13917"/>
-<text text-anchor="start" x="308.5" y="-13923.2" font-family="Helvetica,sans-Serif" font-size="11.00">1 &gt;</text>
-</a>
-</g>
-</g>
 <!-- sia405cc_cable_point_status -->
-<g id="node19" class="node">
+<g id="node18" class="node">
 <title>sia405cc_cable_point_status</title>
-<g id="a_node19"><a xlink:href="../../tables/sia405cc_cable_point_status.html" xlink:title="sia405cc_cable_point_status" target="_top">
+<g id="a_node18"><a xlink:href="../../tables/sia405cc_cable_point_status.html" xlink:title="sia405cc_cable_point_status" target="_top">
 <polygon fill="#ffffff" stroke="transparent" points="70,-13223 70,-13549 279,-13549 279,-13223 70,-13223"/>
 <polygon fill="#f5f5f5" stroke="transparent" points="70.5,-13527 70.5,-13549 279.5,-13549 279.5,-13527 70.5,-13527"/>
 <polygon fill="none" stroke="black" points="70.5,-13527 70.5,-13549 279.5,-13549 279.5,-13527 70.5,-13527"/>
@@ -919,6 +871,54 @@
 <polygon fill="#ffffff" stroke="transparent" points="216.5,-13223 216.5,-13241 279.5,-13241 279.5,-13223 216.5,-13223"/>
 <polygon fill="none" stroke="black" points="216.5,-13223 216.5,-13241 279.5,-13241 279.5,-13223 216.5,-13223"/>
 <text text-anchor="start" x="260.5" y="-13229.2" font-family="Helvetica,sans-Serif" font-size="11.00">1 &gt;</text>
+</a>
+</g>
+</g>
+<!-- sia405cc_cable_point_horizontal_positioning -->
+<g id="node19" class="node">
+<title>sia405cc_cable_point_horizontal_positioning</title>
+<g id="a_node19"><a xlink:href="../../tables/sia405cc_cable_point_horizontal_dbbdef40.html" xlink:title="sia405cc_cable_point_horizontal_positioning" target="_top">
+<polygon fill="#ffffff" stroke="transparent" points="22,-13917 22,-14243 327,-14243 327,-13917 22,-13917"/>
+<polygon fill="#f5f5f5" stroke="transparent" points="22.5,-14221 22.5,-14243 327.5,-14243 327.5,-14221 22.5,-14221"/>
+<polygon fill="none" stroke="black" points="22.5,-14221 22.5,-14243 327.5,-14243 327.5,-14221 22.5,-14221"/>
+<text text-anchor="start" x="27.5" y="-14230.2" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="11.00">sia405cc_cable_point_horizontal_positioning</text>
+<text text-anchor="start" x="288.5" y="-14229.2" font-family="Helvetica,sans-Serif" font-size="11.00">[table]</text>
+<polygon fill="none" stroke="black" points="22.5,-14199 22.5,-14221 327.5,-14221 327.5,-14199 22.5,-14199"/>
+<image xlink:href="../../images/primaryKeys.png" width="11px" height="12px" preserveAspectRatio="xMinYMin meet" x="27.5" y="-14216"/>
+<text text-anchor="start" x="54.5" y="-14207.2" font-family="Helvetica,sans-Serif" font-size="11.00">code</text>
+<polygon fill="none" stroke="black" points="22.5,-14177 22.5,-14199 327.5,-14199 327.5,-14177 22.5,-14177"/>
+<text text-anchor="start" x="54.5" y="-14185.2" font-family="Helvetica,sans-Serif" font-size="11.00">vsacode</text>
+<polygon fill="none" stroke="black" points="22.5,-14155 22.5,-14177 327.5,-14177 327.5,-14155 22.5,-14155"/>
+<text text-anchor="start" x="54.5" y="-14163.2" font-family="Helvetica,sans-Serif" font-size="11.00">value_en</text>
+<polygon fill="none" stroke="black" points="22.5,-14133 22.5,-14155 327.5,-14155 327.5,-14133 22.5,-14133"/>
+<text text-anchor="start" x="54.5" y="-14141.2" font-family="Helvetica,sans-Serif" font-size="11.00">value_de</text>
+<polygon fill="none" stroke="black" points="22.5,-14111 22.5,-14133 327.5,-14133 327.5,-14111 22.5,-14111"/>
+<text text-anchor="start" x="54.5" y="-14119.2" font-family="Helvetica,sans-Serif" font-size="11.00">value_fr</text>
+<polygon fill="none" stroke="black" points="22.5,-14089 22.5,-14111 327.5,-14111 327.5,-14089 22.5,-14089"/>
+<text text-anchor="start" x="54.5" y="-14097.2" font-family="Helvetica,sans-Serif" font-size="11.00">value_it</text>
+<polygon fill="none" stroke="black" points="22.5,-14067 22.5,-14089 327.5,-14089 327.5,-14067 22.5,-14067"/>
+<text text-anchor="start" x="54.5" y="-14075.2" font-family="Helvetica,sans-Serif" font-size="11.00">value_ro</text>
+<polygon fill="none" stroke="black" points="22.5,-14045 22.5,-14067 327.5,-14067 327.5,-14045 22.5,-14045"/>
+<text text-anchor="start" x="54.5" y="-14053.2" font-family="Helvetica,sans-Serif" font-size="11.00">abbr_en</text>
+<polygon fill="none" stroke="black" points="22.5,-14023 22.5,-14045 327.5,-14045 327.5,-14023 22.5,-14023"/>
+<text text-anchor="start" x="54.5" y="-14031.2" font-family="Helvetica,sans-Serif" font-size="11.00">abbr_de</text>
+<polygon fill="none" stroke="black" points="22.5,-14001 22.5,-14023 327.5,-14023 327.5,-14001 22.5,-14001"/>
+<text text-anchor="start" x="54.5" y="-14009.2" font-family="Helvetica,sans-Serif" font-size="11.00">abbr_fr</text>
+<polygon fill="none" stroke="black" points="22.5,-13979 22.5,-14001 327.5,-14001 327.5,-13979 22.5,-13979"/>
+<text text-anchor="start" x="54.5" y="-13987.2" font-family="Helvetica,sans-Serif" font-size="11.00">abbr_it</text>
+<polygon fill="none" stroke="black" points="22.5,-13957 22.5,-13979 327.5,-13979 327.5,-13957 22.5,-13957"/>
+<text text-anchor="start" x="54.5" y="-13965.2" font-family="Helvetica,sans-Serif" font-size="11.00">abbr_ro</text>
+<polygon fill="none" stroke="black" points="22.5,-13935 22.5,-13957 327.5,-13957 327.5,-13935 22.5,-13935"/>
+<text text-anchor="start" x="54.5" y="-13943.2" font-family="Helvetica,sans-Serif" font-size="11.00">active</text>
+<polygon fill="#ffffff" stroke="transparent" points="22.5,-13917 22.5,-13935 163.5,-13935 163.5,-13917 22.5,-13917"/>
+<polygon fill="none" stroke="black" points="22.5,-13917 22.5,-13935 163.5,-13935 163.5,-13917 22.5,-13917"/>
+<text text-anchor="start" x="25.5" y="-13923.2" font-family="Helvetica,sans-Serif" font-size="11.00"> &#160;</text>
+<polygon fill="#ffffff" stroke="transparent" points="163.5,-13917 163.5,-13935 240.5,-13935 240.5,-13917 163.5,-13917"/>
+<polygon fill="none" stroke="black" points="163.5,-13917 163.5,-13935 240.5,-13935 240.5,-13917 163.5,-13917"/>
+<text text-anchor="start" x="230.5" y="-13923.2" font-family="Helvetica,sans-Serif" font-size="11.00"> &#160;</text>
+<polygon fill="#ffffff" stroke="transparent" points="240.5,-13917 240.5,-13935 327.5,-13935 327.5,-13917 240.5,-13917"/>
+<polygon fill="none" stroke="black" points="240.5,-13917 240.5,-13935 327.5,-13935 327.5,-13917 240.5,-13917"/>
+<text text-anchor="start" x="308.5" y="-13923.2" font-family="Helvetica,sans-Serif" font-size="11.00">1 &gt;</text>
 </a>
 </g>
 </g>
@@ -2736,19 +2736,19 @@
 <polygon fill="black" stroke="black" points="395.62,-14012.62 402.88,-14017.55 399.56,-14013.31 403.5,-14014 403.5,-14014 403.5,-14014 399.56,-14013.31 404.12,-14010.45 395.62,-14012.62 395.62,-14012.62"/>
 <ellipse fill="none" stroke="black" cx="392.47" cy="-14012.07" rx="3.2" ry="3.2"/>
 </g>
-<!-- tdh_od.sia405cc_cable_point&#45;&gt;sia405cc_cable_point_horizontal_positioning -->
-<g id="edge27" class="edge">
-<title>tdh_od.sia405cc_cable_point:w&#45;&gt;sia405cc_cable_point_horizontal_positioning:e</title>
-<path fill="none" stroke="black" d="M389.1,-14060.39C338.57,-14079.73 398.24,-14210 328.5,-14210"/>
-<polygon fill="black" stroke="black" points="395.61,-14059.31 404.09,-14061.55 399.55,-14058.65 403.5,-14058 403.5,-14058 403.5,-14058 399.55,-14058.65 402.91,-14054.45 395.61,-14059.31 395.61,-14059.31"/>
-<ellipse fill="none" stroke="black" cx="392.45" cy="-14059.83" rx="3.2" ry="3.2"/>
-</g>
 <!-- tdh_od.sia405cc_cable_point&#45;&gt;sia405cc_cable_point_status -->
 <g id="edge29" class="edge">
 <title>tdh_od.sia405cc_cable_point:w&#45;&gt;sia405cc_cable_point_status:e</title>
 <path fill="none" stroke="black" d="M389.25,-13988.95C316.43,-13954.39 398.3,-13636.3 349,-13559 329.67,-13528.69 316.45,-13516 280.5,-13516"/>
 <polygon fill="black" stroke="black" points="395.68,-13990.33 402.75,-13995.52 399.59,-13991.16 403.5,-13992 403.5,-13992 403.5,-13992 399.59,-13991.16 404.25,-13988.48 395.68,-13990.33 395.68,-13990.33"/>
 <ellipse fill="none" stroke="black" cx="392.55" cy="-13989.66" rx="3.2" ry="3.2"/>
+</g>
+<!-- tdh_od.sia405cc_cable_point&#45;&gt;sia405cc_cable_point_horizontal_positioning -->
+<g id="edge27" class="edge">
+<title>tdh_od.sia405cc_cable_point:w&#45;&gt;sia405cc_cable_point_horizontal_positioning:e</title>
+<path fill="none" stroke="black" d="M389.1,-14060.39C338.57,-14079.73 398.24,-14210 328.5,-14210"/>
+<polygon fill="black" stroke="black" points="395.61,-14059.31 404.09,-14061.55 399.55,-14058.65 403.5,-14058 403.5,-14058 403.5,-14058 399.55,-14058.65 402.91,-14054.45 395.61,-14059.31 395.61,-14059.31"/>
+<ellipse fill="none" stroke="black" cx="392.45" cy="-14059.83" rx="3.2" ry="3.2"/>
 </g>
 <!-- tdh_od.sia405cc_cable_point&#45;&gt;sia405cc_cable_point_kind -->
 <g id="edge28" class="edge">

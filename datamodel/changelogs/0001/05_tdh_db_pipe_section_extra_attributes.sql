@@ -28,7 +28,7 @@ ALTER TABLE tdh_vl.pipe_section_mg_trench_type ADD CONSTRAINT pkey_tdh_vl_pipe_s
  ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT fkey_vl_pipe_section_mg_trench_type FOREIGN KEY (mg_trench_type)
  REFERENCES tdh_vl.pipe_section_mg_trench_type (code) MATCH SIMPLE
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-CREATE TABLE tdh_vl.trench_embedding () INHERITS (tdh_vl.value_list_base);
+
 
 --- pipe_section_mg_marking_band
 CREATE TABLE tdh_vl.pipe_section_mg_marking_band () INHERITS (tdh_vl.value_list_base);
@@ -39,5 +39,5 @@ ALTER TABLE tdh_vl.pipe_section_mg_marking_band ADD CONSTRAINT pkey_tdh_vl_pipe_
    ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT fkey_vl_pipe_section_mg_marking_band FOREIGN KEY (mg_trench_type)
  REFERENCES tdh_vl.pipe_section_mg_marking_band (code) MATCH SIMPLE
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-CREATE TABLE tdh_vl.trench_embedding () INHERITS (tdh_vl.value_list_base);
+
  COMMIT;

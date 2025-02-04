@@ -1,6 +1,6 @@
 -- Change type of column -- see https://stackoverflow.com/questions/7162903/how-to-alter-a-columns-data-type-in-a-postgresql-table (version that allows to have already data in db)
 
-ALTER TABLE pipe_section ALTER COLUMN nominal_diameter TYPE integer USING (NULLIF(nominal_diameter, '')::integer);
+ALTER TABLE tdh_od.pipe_section ALTER COLUMN nominal_diameter TYPE integer USING (NULLIF(nominal_diameter, '')::integer);
  /*---------------------------------------------------------------------------------------*/
 /* AJOUT DE LA TABLE DES DIAMETRES NOMINAUX DE CONDUITES () */
 /*---------------------------------------------------------------------------------------*/

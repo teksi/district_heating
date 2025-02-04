@@ -41,7 +41,7 @@ COMMENT ON COLUMN tdh_vl.pipe_section_pipe_dn.diameter_external
 ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT fkey_vl_pipe_section_pipe_dn FOREIGN KEY (nominal_diameter)
  REFERENCES tdh_vl.pipe_section_pipe_dn (code) MATCH SIMPLE
  ON UPDATE RESTRICT ON DELETE RESTRICT;
- 
+
  /*---------------------------------------------------------------------------------------*/
 /* AJOUT DE LISTE DE VALEURS DES DIAMETRES NOMINAUX DE CONDUITES () */
 /*---------------------------------------------------------------------------------------*/

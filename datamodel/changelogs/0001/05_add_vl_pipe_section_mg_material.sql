@@ -1,3 +1,6 @@
+/* Add extra attribute mg_material */
+ALTER TABLE tdh_od.pipe_section ADD COLUMN mg_material integer;
+
 
  /*---------------------------------------------------------------------------------------*/
 /* AJOUT DE LA TABLE DES DIAMETRES NOMINAUX DE CONDUITES () */
@@ -38,7 +41,7 @@ It''s commonly used when referring steel/iron pipes but also for GRP.';
 COMMENT ON COLUMN tdh_vl.pipe_section_mg_material.diameter_outer
     IS 'Commonly used when referring to plastic pipes.';
 
-ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT fkey_vl_pipe_section_mg_material FOREIGN KEY (nominal_diameter)
+ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT fkey_vl_pipe_section_mg_material FOREIGN KEY (mg_material)
  REFERENCES tdh_vl.pipe_section_mg_material (code) MATCH SIMPLE
  ON UPDATE RESTRICT ON DELETE RESTRICT;
 

@@ -14,7 +14,6 @@ ALTER TABLE tdh_vl.pipe_section_mg_material ADD COLUMN diameter        character
 ALTER TABLE tdh_vl.pipe_section_mg_material ADD COLUMN diameter_nominal  smallint;
 ALTER TABLE tdh_vl.pipe_section_mg_material ADD COLUMN diameter_inner numeric(7,3);
 ALTER TABLE tdh_vl.pipe_section_mg_material ADD COLUMN diameter_outer numeric(7,3);
-ALTER TABLE tdh_vl.pipe_section_mg_material ADD COLUMN fk_pipe_quality   integer;
 ALTER TABLE tdh_vl.pipe_section_mg_material ADD CONSTRAINT vl_pipe_section_mg_material_pk PRIMARY KEY (code);
 
 COMMENT ON TABLE tdh_vl.pipe_section_mg_material

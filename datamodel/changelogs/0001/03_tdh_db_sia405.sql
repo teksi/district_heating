@@ -447,7 +447,7 @@ ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_owner varchar(16);
 ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_pipe_section_owner FOREIGN KEY (fk_owner) REFERENCES tdh_od.organisation(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_pipeline_company varchar(16);
 ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_pipe_section_pipeline_company FOREIGN KEY (fk_pipeline_company) REFERENCES tdh_od.organisation(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
-
+CREATE TABLE tdh_vl.pipe_section_horizontal_positioning () INHERITS (tdh_vl.value_list_base);
 ALTER TABLE tdh_vl.pipe_section_horizontal_positioning ADD CONSTRAINT pkey_tdh_vl_pipe_section_horizontal_positioning_code PRIMARY KEY (code);
  INSERT INTO tdh_vl.pipe_section_horizontal_positioning (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, description_en, description_de, description_fr, description_it, description_ro, display_en, display_de, display_fr, display_it, display_ro, active) VALUES (8008,8008,'accurate','genau','precise', 'precisa', 'precisa', '', '', '', '', '', '', '', '', '', '', 'accurate', 'genau', 'précise', '', '', 'true');
  INSERT INTO tdh_vl.pipe_section_horizontal_positioning (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, description_en, description_de, description_fr, description_it, description_ro, display_en, display_de, display_fr, display_it, display_ro, active) VALUES (8006,8006,'unknown','unbekannt','inconnue', 'sconosciuto', 'necunoscuta', '', '', '', '', '', '', '', '', '', '', 'unknown', 'unbekannt', 'inconnue', '', '', 'true');

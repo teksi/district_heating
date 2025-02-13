@@ -91,7 +91,7 @@ COMMENT ON COLUMN tdh_od.pipe_section.fk_dataowner IS 'Foreignkey to Metaattribu
 COMMENT ON COLUMN tdh_od.pipe_section.fk_provider IS 'Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données ';
 -------
 
-	   
+
 -------
 CREATE TABLE tdh_od.pipe_point
 (
@@ -133,8 +133,8 @@ COMMENT ON COLUMN tdh_od.pipe_point.fk_dataowner IS 'Foreignkey to Metaattribute
 COMMENT ON COLUMN tdh_od.pipe_point.fk_provider IS 'Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données ';
 -------
 
-	   
-	   
+
+
 CREATE TABLE tdh_od.pipe_point_normal
 (
    obj_id varchar(16) NOT NULL,
@@ -154,7 +154,7 @@ COMMENT ON COLUMN tdh_od.pipe_point_normal.material IS '';
 -------
 
 -------
-	   
+
 CREATE TABLE tdh_od.pipe_point_feed
 (
    obj_id varchar(16) NOT NULL,
@@ -195,7 +195,7 @@ COMMENT ON COLUMN tdh_od.pipe_point_feed.heat_consumption IS 'per year / Pro Jah
 COMMENT ON COLUMN tdh_od.pipe_point_feed.power_output IS '';
 -------
 -------
-	   
+
 CREATE TABLE tdh_od.structure
 (
    obj_id varchar(16) NOT NULL,
@@ -279,7 +279,7 @@ COMMENT ON COLUMN tdh_od.structure.fk_dataowner IS 'Foreignkey to Metaattribute 
 COMMENT ON COLUMN tdh_od.structure.fk_provider IS 'Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données ';
 -------
 
-	   
+
 -- corresponding structure_line table
 CREATE TABLE tdh_od.structure_line
 (
@@ -294,7 +294,7 @@ CREATE INDEX in_tdh_structure_line_geometry3d_geometry ON tdh_od.structure_line 
 ALTER TABLE tdh_od.structure_line ADD COLUMN last_modification TIMESTAMP without time zone DEFAULT now();
 COMMENT ON COLUMN tdh_od.structure_line.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
 -------
-	   
+
 
 ALTER TABLE tdh_od.structure_line ADD COLUMN fk_structure varchar(16);
 ALTER TABLE tdh_od.structure_line ADD CONSTRAINT rel_structure_line_structure FOREIGN KEY (fk_structure) REFERENCES tdh_od.structure(obj_id) ON UPDATE CASCADE ON DELETE CASCADE;
@@ -362,7 +362,7 @@ COMMENT ON COLUMN tdh_od.trench.fk_dataowner IS 'Foreignkey to Metaattribute dat
 COMMENT ON COLUMN tdh_od.trench.fk_provider IS 'Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données ';
 -------
 
-	   
+
 -- corresponding trench_line table
 CREATE TABLE tdh_od.trench_line
 (
@@ -377,7 +377,7 @@ CREATE INDEX in_tdh_trench_line_geometry3d_geometry ON tdh_od.trench_line USING 
 ALTER TABLE tdh_od.trench_line ADD COLUMN last_modification TIMESTAMP without time zone DEFAULT now();
 COMMENT ON COLUMN tdh_od.trench_line.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
 -------
-	   
+
 
 ALTER TABLE tdh_od.trench_line ADD COLUMN fk_trench varchar(16);
 ALTER TABLE tdh_od.trench_line ADD CONSTRAINT rel_trench_line_trench FOREIGN KEY (fk_trench) REFERENCES tdh_od.trench(obj_id) ON UPDATE CASCADE ON DELETE CASCADE;
@@ -435,7 +435,7 @@ COMMENT ON COLUMN tdh_od.trench_point.fk_dataowner IS 'Foreignkey to Metaattribu
 COMMENT ON COLUMN tdh_od.trench_point.fk_provider IS 'Foreignkey to Metaattribute provider (as an organisation) - this is the person or body who delivered the data / Metaattribut Datenlieferant ist diejenige Person oder Stelle, die die Daten geliefert hat / FOURNISSEUR DES DONNEES Organisation qui crée l’enregistrement de ces données ';
 -------
 
-	   
+
 ------------ Relationships and Value Tables ----------- ;
 -- Class tdh_od.hydraulic_line_section is not yet supported and therefore relation is commented out
 -- ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_hydraulic_line_section varchar(16);
@@ -447,7 +447,7 @@ ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_owner varchar(16);
 ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_pipe_section_owner FOREIGN KEY (fk_owner) REFERENCES tdh_od.organisation(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE tdh_od.pipe_section ADD COLUMN fk_pipeline_company varchar(16);
 ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT rel_pipe_section_pipeline_company FOREIGN KEY (fk_pipeline_company) REFERENCES tdh_od.organisation(obj_id) ON UPDATE CASCADE ON DELETE set null DEFERRABLE INITIALLY DEFERRED;
-																							 
+
 ALTER TABLE tdh_vl.pipe_section_horizontal_positioning ADD CONSTRAINT pkey_tdh_vl_pipe_section_horizontal_positioning_code PRIMARY KEY (code);
  INSERT INTO tdh_vl.pipe_section_horizontal_positioning (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, description_en, description_de, description_fr, description_it, description_ro, display_en, display_de, display_fr, display_it, display_ro, active) VALUES (8008,8008,'accurate','genau','precise', 'precisa', 'precisa', '', '', '', '', '', '', '', '', '', '', 'accurate', 'genau', 'précise', '', '', 'true');
  INSERT INTO tdh_vl.pipe_section_horizontal_positioning (code, vsacode, value_en, value_de, value_fr, value_it, value_ro, abbr_en, abbr_de, abbr_fr, abbr_it, abbr_ro, description_en, description_de, description_fr, description_it, description_ro, display_en, display_de, display_fr, display_it, display_ro, active) VALUES (8006,8006,'unknown','unbekannt','inconnue', 'sconosciuto', 'necunoscuta', '', '', '', '', '', '', '', '', '', '', 'unknown', 'unbekannt', 'inconnue', '', '', 'true');

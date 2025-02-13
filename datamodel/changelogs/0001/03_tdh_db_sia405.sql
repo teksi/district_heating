@@ -400,7 +400,7 @@ COMMENT ON COLUMN tdh_od.trench_point.name_number IS ' / désignation univoque';
 -- CREATE INDEX in_tdh_trench_point_geometry_geometry ON tdh_od.trench_point USING gist (geometry_geometry );
 -- COMMENT ON COLUMN tdh_od.trench_point.geometry_geometry IS '';
 ALTER TABLE tdh_od.trench_point ADD COLUMN geometry3d_geometry geometry('POINTZ', :SRID);
-COMMENT ON COLUMN tdh_od.trench_point IS '3D Situation / 3D Lage / 3D Positionnement';
+COMMENT ON COLUMN tdh_od.trench_point.geometry3d_geometry IS '3D Situation / 3D Lage / 3D Positionnement';
 CREATE INDEX in_tdh_trench_point_geometry3d_geometry ON tdh_od.trench_point USING gist (geometry3d_geometry );
 
  ALTER TABLE tdh_od.trench_point ADD COLUMN horizontal_positioning  integer ;

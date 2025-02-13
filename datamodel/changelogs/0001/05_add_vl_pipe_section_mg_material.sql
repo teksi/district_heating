@@ -178,5 +178,3 @@ INSERT INTO tdh_vl.pipe_section_mg_diameter (code,vsacode,value_en,value_de,valu
 
 -- already adapted
 INSERT INTO tdh_vl.pipe_section_mg_diameter (code,vsacode,value_en,value_de,value_fr,value_it,value_ro,abbr_en,abbr_de,abbr_fr,abbr_it,abbr_ro,description_en, description_de, description_fr, description_it, description_ro, display_en, display_de,display_fr,display_it,display_ro,diameter,diameter_nominal,diameter_inner,diameter_outer,active) VALUES (8301,8301,'unknown','unbekannt','inconnu',NULL,NULL,'UNK','UNB','INC',NULL,NULL,'unknown','unbekannt','inconnu',NULL,NULL,'INC 1000','UNK 1000','UNB 1000','1000',1000,'994.000','1016.000',True);
-
-

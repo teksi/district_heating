@@ -19,7 +19,7 @@ ALTER TABLE tdh_vl.pipe_section_mg_material ADD CONSTRAINT pkey_tdh_vl_pipe_sect
  ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT fkey_vl_pipe_section_mg_material FOREIGN KEY (mg_material)
  REFERENCES tdh_vl.pipe_section_mg_material (code) MATCH SIMPLE
  ON UPDATE RESTRICT ON DELETE RESTRICT;
- 
+
 
 
  /*---------------------------------------------------------------------------------------*/
@@ -77,7 +77,7 @@ ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT fkey_vl_pipe_section_mg_diameter 
 /* AJOUT DE LISTE DE VALEURS DES DIAMETRES NOMINAUX DE CONDUITES () */
 /*---------------------------------------------------------------------------------------*/
 INSERT INTO tdh_vl.pipe_section_mg_diameter (code,vsacode,value_en,value_de,value_fr,value_it,value_ro,abbr_en,abbr_de,abbr_fr,abbr_it,abbr_ro,description_en, description_de, description_fr, description_it, description_ro, display_en, display_de,display_fr,display_it,display_ro,diameter,diameter_nominal,diameter_inner,diameter_outer,active) VALUES (8080,8080,'pre_insulated_metal','Kunststoffverbundmantelrohr','pre_isoles_metal',NULL,NULL,'ST','KMR','AC',NULL,NULL,'Pre-insulated metal','Kunststoffverbundmantelrohr','pré-isolés métal',NULL,NULL,'ST 20','KMR 20', 'AC 20',NULL,NULL,'20',20,'21.600','26.900',True);
--- diameter text statt zahl, diameter_inner / outer in mm? 
+-- diameter text statt zahl, diameter_inner / outer in mm?
 
 INSERT INTO tdh_vl.pipe_section_mg_diameter (code,vsacode,value_en,value_de,value_fr,value_it,value_ro,abbr_en,abbr_de,abbr_fr,abbr_it,abbr_ro,description_en, description_de, description_fr, description_it, description_ro, display_en, display_de,display_fr,display_it,display_ro,diameter,diameter_nominal,diameter_inner,diameter_outer,active) VALUES (8081,8081,'pre_insulated_metal','Kunststoffverbundmantelrohr','pre_isoles_metal',NULL,NULL,'ST','KMR','AC',NULL,NULL,'Pre-insulated metal','Kunststoffverbundmantelrohr','pré-isolés métal',NULL,NULL,'ST 25','KMR 25', 'AC 25',NULL,NULL,'25',25,'28.500','33.700');
 INSERT INTO tdh_vl.pipe_section_mg_diameter (code,vsacode,value_en,value_de,value_fr,value_it,value_ro,abbr_en,abbr_de,abbr_fr,abbr_it,abbr_ro,description_en, description_de, description_fr, description_it, description_ro, display_en, display_de,display_fr,display_it,display_ro,diameter,diameter_nominal,diameter_inner,diameter_outer,active) VALUES (8082,8082,'pre_insulated_metal','Kunststoffverbundmantelrohr','pre_isoles_metal',NULL,NULL,'ST','KMR','AC',NULL,NULL,'Pre-insulated metal','Kunststoffverbundmantelrohr','pré-isolés métal',NULL,NULL,'ST 32','KMR 32', 'AC 32',NULL,NULL,'32',32,'37.200','42.400');

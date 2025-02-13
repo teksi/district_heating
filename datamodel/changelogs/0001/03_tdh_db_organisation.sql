@@ -1,6 +1,6 @@
 ------ This file generates the database class organisation (Modul fernwaerme (2020)) in en on QQIS
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
------- version 10.04.2024 15:47:40
+------ version 13.02.2025
 ------ with 3D coordinates
 BEGIN;
 
@@ -22,6 +22,16 @@ abbr_de character varying(3),
 abbr_fr character varying(3),
 abbr_it character varying(3),
 abbr_ro character varying(3),
+description_en text,
+description_de text,
+description_fr text,
+description_it text,
+description_ro text,
+display_en character varying(100),
+display_de character varying(100),
+display_fr character varying(100),
+display_it character varying(100),
+display_ro character varying(100),
 active boolean,
 CONSTRAINT pkey_tdh_value_list_code PRIMARY KEY (code)
 )

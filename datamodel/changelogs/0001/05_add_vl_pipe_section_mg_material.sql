@@ -58,10 +58,16 @@ Commonly, it should be equivalent to:
 
 COMMENT ON COLUMN tdh_vl.pipe_section_mg_diameter.diameter_nominal
     IS 'The nominal diameter (DN) is a number that represents the approximate interior diameter, in mm.
-It''s commonly used when referring steel/iron pipes but also for GRP.';
+It''s commonly used when referring steel/iron pipes but also for GRP.
+It matches the official attribute pipe_section.diameter_nominal';
+
+
+COMMENT ON COLUMN tdh_vl.pipe_section_mg_diameter.diameter_inner
+    IS 'It matches the official attribute pipe_section.diameter_outer';
 
 COMMENT ON COLUMN tdh_vl.pipe_section_mg_diameter.diameter_outer
-    IS 'Commonly used when referring to plastic pipes.';
+    IS 'Commonly used when referring to plastic pipes.
+It matches the official attribute pipe_section.diameter_outer';
 
 ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT fkey_vl_pipe_section_mg_diameter FOREIGN KEY (mg_diameter)
  REFERENCES tdh_vl.pipe_section_mg_diameter (code) MATCH SIMPLE

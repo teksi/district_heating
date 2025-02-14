@@ -2,7 +2,7 @@
  ALTER TABLE tdh_od.pipe_section ADD COLUMN mg_material  integer ;
 COMMENT ON COLUMN tdh_od.pipe_section.mg_material IS 'Categories of materials Morges / Kategorien Material Morges / Categories des materiaux Morges';
 ALTER TABLE tdh_od.pipe_section ADD COLUMN mg_diameter integer;
-
+COMMENT ON COLUMN tdh_od.pipe_section.mg_diameter IS 'Linked to table of specified (nominal) diameters and material Morges for simplified recording / Verknüpft mit Tabelle der vorgegebenen (Nenn-)weiten und Material Morges zur vereinfachten Erfassung / Lier au tableau des diamètres (nominaux) prescrits et du matériau Morges pour simplifier la saisie';
  /*---------------------------------------------------------------------------------------*/
 /* AJOUT DE LA TABLE DES MATERIAUX () */
 /*---------------------------------------------------------------------------------------*/

@@ -2,13 +2,16 @@ BEGIN;
 
 ------- Extra attributes on pipe_section based on discussion in https://github.com/teksi/district_heating/issues/54 for Morges (mg)
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
------- version 4.2.2025
+------ version 15.2.2025
 
 ------- add extra attributes to pipe_section
  ALTER TABLE tdh_od.pipe_section ADD COLUMN mg_trench_type  integer ;
 COMMENT ON COLUMN tdh_od.pipe_section.mg_trench_type IS '';
  ALTER TABLE tdh_od.pipe_section ADD COLUMN trench_width smallint ;
 COMMENT ON COLUMN tdh_od.pipe_section.trench_width IS '';
+ ALTER TABLE tdh_od.pipe_section ADD COLUMN mg_remark_civil_eng text;
+ ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT ps_mg_remark_civil_eng_length_max_80 CHECK(char_length(mg_remark_civil_eng)<=80);
+COMMENT ON COLUMN tdh_od.pipe_section.mg_remark_civil_eng IS 'Extension Morges - Remarks from civil engineering / Erweiterung Morges - Zusatzbemerkungen Bauingenieur / Extension Morges - Remarques complémentaires ingénieur civil';
  ALTER TABLE tdh_od.pipe_section ADD COLUMN mg_signaling_band  integer ;
 COMMENT ON COLUMN tdh_od.pipe_section.mg_signaling_band IS ' / Les conduites sont marquées par une bande de signalisation de couleur';
 

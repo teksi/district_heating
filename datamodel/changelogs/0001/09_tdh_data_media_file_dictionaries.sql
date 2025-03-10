@@ -1,3 +1,8 @@
+ INSERT INTO tww_sys.dictionary_od_table (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr, name_it, shortcut_it, name_ro, shortcut_ro) VALUES (3754,'file','file','FI','Datei','DA','Fichier','FI','File','NULL','Fi?ier','NULL');
+ INSERT INTO tww_sys.dictionary_od_table (id, tablename, name_en, shortcut_en, name_de, shortcut_de, name_fr, shortcut_fr, name_it, shortcut_it, name_ro, shortcut_ro) VALUES (3776,'data_media','data media','VO','Datenträger','DT','Support données','SO','Supporto dati','NULL','rrr_Datentraeger','NULL');
+
+
+
  INSERT INTO tdh_sys.dictionary_od_values (class_id, attribute_id, value_id, table_name, field_name, value_name, value_name_en, shortcut_en, value_name_de, shortcut_de, value_name_fr, shortcut_fr, value_name_it, shortcut_it, value_name_ro, shortcut_ro, value_description_en, value_description_de, value_description_fr, value_description_it, value_description_ro) VALUES (3754,3764,3819,'file','classname','structure','structure',NULL,'Bauwerk',NULL,'Ouvrage',NULL,'zzz_Bauwerk',NULL,'zzz_Bauwerk',NULL,NULL,NULL,NULL,NULL,NULL);
 /* TODO : Add full dictionnary of tdh classnames
  INSERT INTO tdh_sys.dictionary_od_values (class_id, attribute_id, value_id, table_name, field_name, value_name, value_name_en, shortcut_en, value_name_de, shortcut_de, value_name_fr, shortcut_fr, value_name_it, shortcut_it, value_name_ro, shortcut_ro, value_description_en, value_description_de, value_description_fr, value_description_it, value_description_ro) VALUES (3754,3764,3885,'file','classname','accident','accident',NULL,'Unfall',NULL,'ACCIDENT',NULL,'zzz_Unfall',NULL,'rrr_Unfall',NULL,NULL,NULL,NULL,NULL,NULL); */

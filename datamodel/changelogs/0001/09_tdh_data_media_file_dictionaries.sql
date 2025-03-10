@@ -155,5 +155,3 @@ INSERT INTO tdh_sys.dictionary_od_values (class_id, attribute_id, value_id, tabl
 CREATE UNIQUE INDEX in_dictionary_od_table ON tdh_sys.dictionary_od_table USING btree (tablename ASC NULLS LAST);
 CREATE UNIQUE INDEX in_dictionary_od_field ON tdh_sys.dictionary_od_field USING btree (class_id ASC NULLS LAST, attribute_id ASC NULLS LAST);
 CREATE UNIQUE INDEX in_dictionary_od_values ON tdh_sys.dictionary_od_values USING btree (class_id ASC NULLS LAST, attribute_id ASC NULLS LAST, value_id ASC NULLS LAST);
-
-

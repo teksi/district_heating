@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><database name="tdh" schema="tdh_app" type="PostgreSQL - 14.13 (Debian 14.13-1.pgdg110+1)">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="tdh" schema="tdh_app" type="PostgreSQL - 14.13 (Debian 14.13-1.pgdg110+1)">
    <tables>
       <table name="sys_dictionary_value_list" numRows="0" remarks="" schema="tdh_app" type="VIEW" viewSql=" SELECT p.relname AS vl_name,&#10;    vl.code,&#10;    vl.vsacode,&#10;    vl.value_en,&#10;    vl.value_de,&#10;    vl.value_fr,&#10;    vl.value_it,&#10;    vl.value_ro,&#10;    vl.abbr_en,&#10;    vl.abbr_de,&#10;    vl.abbr_fr,&#10;    vl.abbr_it,&#10;    vl.abbr_ro,&#10;    vl.active&#10;   FROM tdh_vl.value_list_base vl,&#10;    pg_class p&#10;  WHERE (vl.tableoid = p.oid);">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="vl_name" nullable="true" remarks="" size="2147483647" type="name" typeCode="12"/>
@@ -108,52 +109,14 @@
    <routines>
       <routine dataAccess="MODIFIES" deterministic="false" name="alter_modification_triggers(action_name text)" returnType="void" securityType="DEFINER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[DECLARE
-	schdf text;
-	tbldf text;
-	trig text;
-BEGIN
-IF NOT (action_name ILIKE ANY(ARRAY['ENABLE','DISABLE'])) THEN
-	RAISE NOTICE '% not a valid input',action_name;
-	RETURN;
-ELSE
-	FOR schdf,tbldf, trig IN
-		SELECT
-		c.relnamespace ::regnamespace::text,
-		c.relname,
-		t.tgname
-		FROM   pg_trigger t
-		INNER JOIN pg_class c on t.tgrelid=c.oid
-		INNER JOIN pg_proc p on t.tgfoid=p.oid
-		WHERE p.proname  LIKE 'modification_%'
-		AND p.pronamespace::regnamespace::text = 'tdh_app'
-		LOOP
-			EXECUTE FORMAT('ALTER TABLE %I.%I %s TRIGGER %I',schdf,tbldf,upper(action_name),trig);
-		END LOOP;
-
-	RETURN;
-END IF;
-END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN" name="action_name" type="text"/>
          </parameters>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="check_all_nulls(rec record, prefix character varying, ignored_postfix text[] DEFAULT ARRAY['obj_id'::text, 'identifier'::text])" returnType="boolean" securityType="INVOKER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[DECLARE
-        rec_jsonb jsonb;
-    BEGIN
-
-	  rec_jsonb := (
-          SELECT jsonb_object_agg(key, to_jsonb(rec)->key)
-          FROM jsonb_object_keys(to_jsonb(rec)) key
-          WHERE LEFT(key, 2) = prefix
-		  AND NOT(ltrim(key, prefix||'_') =ANY(ignored_postfix))
-        );
-
-      -- Check if all remaining values are NULL
-      RETURN jsonb_strip_nulls(rec_jsonb)::text = '{}' OR jsonb_strip_nulls(rec_jsonb)::text IS NULL;
-	  END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN" name="rec" type="record"/>
             <parameter mode="IN" name="prefix" type="character varying"/>
@@ -162,519 +125,91 @@ END;]]></definition>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="check_modification_enabled()" returnType="boolean" securityType="DEFINER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[DECLARE _disabled_count numeric;
-BEGIN
-  SELECT count(*) into _disabled_count
-		FROM   pg_trigger t
-		INNER JOIN pg_class c on t.tgrelid=c.oid
-		INNER JOIN pg_proc p on t.tgfoid=p.oid
-		WHERE
-		p.proname  LIKE 'modification_%'
-		AND p.pronamespace::regnamespace::text = 'tdh_app'
-
-		AND t.tgenabled = 'D';
-  RETURN _disabled_count=0;
-END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN"/>
          </parameters>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="ft_set_default_values()" returnType="trigger" securityType="DEFINER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[DECLARE
-    sch text;
-    tbl text;
-	col text;
-	ttp text;
-BEGIN
-	FOR sch,tbl,col,ttp IN
-	SELECT
-       t.table_schema,
-	   c.table_name,
-	   c.column_name,
-	   CASE WHEN t.table_type = 'BASE TABLE' then 'TABLE' ELSE t.table_type END
-
-    FROM information_schema.columns c
-	LEFT JOIN information_schema.tables t
-	ON c.table_name = t.table_name
-    and c.table_schema = t.table_schema
-    WHERE c.column_name = NEW.fieldname
-      and ((c.table_schema ='tdh_od'
-	  and t.table_type = 'BASE TABLE')
-	  OR  (c.table_schema ='tdh_app'
-	  and t.table_type = 'VIEW'))
-    LOOP
-        EXECUTE format($$ ALTER %4$s %1$I.%2$I ALTER COLUMN %3$I SET DEFAULT tdh_app.get_default_values('%3$s') $$, sch,tbl,col,ttp);
-    END LOOP;
-	RETURN NEW;
-END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN"/>
          </parameters>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="ft_unset_default_values()" returnType="trigger" securityType="DEFINER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[DECLARE
-    sch text;
-    tbl text;
-	col text;
-	ttp text;
-BEGIN
-	FOR sch,tbl,col,ttp IN
-	SELECT
-       t.table_schema,
-	   c.table_name,
-	   c.column_name,
-	   CASE WHEN t.table_type = 'BASE TABLE' then 'TABLE' ELSE t.table_type END
-
-    FROM information_schema.columns c
-	LEFT JOIN information_schema.tables t
-	ON c.table_name = t.table_name
-    and c.table_schema = t.table_schema
-    WHERE c.column_name = OLD.fieldname
-      and ((c.table_schema ='tdh_od'
-	  and t.table_type = 'BASE TABLE')
-	  OR  (c.table_schema ='tdh_app'
-	  and t.table_type = 'VIEW'))
-    LOOP
-        EXECUTE format($$ ALTER %4$s %1$I.%2$I ALTER COLUMN %3$I DROP DEFAULT $$, sch,tbl,col,ttp);
-    END LOOP;
-	RETURN NULL;
-END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN"/>
          </parameters>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="ft_vw_pipe_point_feed_delete()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  DELETE FROM tdh_od.pipe_point_feed WHERE obj_id = OLD.obj_id;
-  DELETE FROM tdh_od.pipe_point WHERE obj_id = OLD.obj_id;
-RETURN NULL;
-END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN"/>
          </parameters>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="ft_vw_pipe_point_feed_insert()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-INSERT INTO tdh_od.pipe_point (
-        obj_id
-      , altitude1
-      , altitude2
-      , elevation_determination
-      , fk_dataowner
-      , fk_owner
-      , fk_provider
-      , geometry3d_geometry
-      , horizontal_positioning
-      , last_modification
-      , remark
-      , symbolori
-    ) VALUES (
-        COALESCE( NEW.obj_id, tdh_app.generate_oid('tdh_od'::text, 'pipe_point_feed'::text) )
-      , NEW.altitude1
-      , NEW.altitude2
-      , NEW.elevation_determination
-      , NEW.fk_dataowner
-      , NEW.fk_owner
-      , NEW.fk_provider
-      , NEW.geometry3d_geometry
-      , NEW.horizontal_positioning
-      , NEW.last_modification
-      , NEW.remark
-      , NEW.symbolori
-    ) RETURNING obj_id INTO NEW.obj_id;
-
-
-INSERT INTO tdh_od.pipe_point_feed (
-        obj_id
-      , aperture_value
-      , category
-      , flow_temperature
-      , heat_consumption
-      , heated_volume
-      , kind
-      , power_output
-      , power_output_installed
-      , power_output_ordered
-      , pressure
-      , q_subscribed
-      , return_flow_temperature
-      , year_of_commissioning
-      , year_of_reconstruction
-    ) VALUES (
-        NEW.obj_id
-      , NEW.aperture_value
-      , NEW.category
-      , NEW.flow_temperature
-      , NEW.heat_consumption
-      , NEW.heated_volume
-      , NEW.kind
-      , NEW.power_output
-      , NEW.power_output_installed
-      , NEW.power_output_ordered
-      , NEW.pressure
-      , NEW.q_subscribed
-      , NEW.return_flow_temperature
-      , NEW.year_of_commissioning
-      , NEW.year_of_reconstruction
-    );
-
-RETURN NEW;
-END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN"/>
          </parameters>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="ft_vw_pipe_point_feed_update()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-UPDATE tdh_od.pipe_point SET
-      altitude1 = NEW.altitude1
-      , altitude2 = NEW.altitude2
-      , elevation_determination = NEW.elevation_determination
-      , fk_dataowner = NEW.fk_dataowner
-      , fk_owner = NEW.fk_owner
-      , fk_provider = NEW.fk_provider
-      , geometry3d_geometry = NEW.geometry3d_geometry
-      , horizontal_positioning = NEW.horizontal_positioning
-      , last_modification = NEW.last_modification
-      , remark = NEW.remark
-      , symbolori = NEW.symbolori
-    WHERE obj_id = OLD.obj_id;
-
-UPDATE tdh_od.pipe_point_feed SET
-      obj_id = NEW.obj_id
-      , aperture_value = NEW.aperture_value
-      , category = NEW.category
-      , flow_temperature = NEW.flow_temperature
-      , heat_consumption = NEW.heat_consumption
-      , heated_volume = NEW.heated_volume
-      , kind = NEW.kind
-      , power_output = NEW.power_output
-      , power_output_installed = NEW.power_output_installed
-      , power_output_ordered = NEW.power_output_ordered
-      , pressure = NEW.pressure
-      , q_subscribed = NEW.q_subscribed
-      , return_flow_temperature = NEW.return_flow_temperature
-      , year_of_commissioning = NEW.year_of_commissioning
-      , year_of_reconstruction = NEW.year_of_reconstruction
-    WHERE obj_id = OLD.obj_id;
-RETURN NEW;
-END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN"/>
          </parameters>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="ft_vw_pipe_point_normal_delete()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-  DELETE FROM tdh_od.pipe_point_normal WHERE obj_id = OLD.obj_id;
-  DELETE FROM tdh_od.pipe_point WHERE obj_id = OLD.obj_id;
-RETURN NULL;
-END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN"/>
          </parameters>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="ft_vw_pipe_point_normal_insert()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-INSERT INTO tdh_od.pipe_point (
-        obj_id
-      , altitude1
-      , altitude2
-      , elevation_determination
-      , fk_dataowner
-      , fk_owner
-      , fk_provider
-      , geometry3d_geometry
-      , horizontal_positioning
-      , last_modification
-      , remark
-      , symbolori
-    ) VALUES (
-        COALESCE( NEW.obj_id, tdh_app.generate_oid('tdh_od'::text, 'pipe_point_normal'::text) )
-      , NEW.altitude1
-      , NEW.altitude2
-      , NEW.elevation_determination
-      , NEW.fk_dataowner
-      , NEW.fk_owner
-      , NEW.fk_provider
-      , NEW.geometry3d_geometry
-      , NEW.horizontal_positioning
-      , NEW.last_modification
-      , NEW.remark
-      , NEW.symbolori
-    ) RETURNING obj_id INTO NEW.obj_id;
-
-
-INSERT INTO tdh_od.pipe_point_normal (
-        obj_id
-      , armature_setting
-      , kind
-      , material
-    ) VALUES (
-        NEW.obj_id
-      , NEW.armature_setting
-      , NEW.kind
-      , NEW.material
-    );
-
-RETURN NEW;
-END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN"/>
          </parameters>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="ft_vw_pipe_point_normal_update()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-UPDATE tdh_od.pipe_point SET
-      altitude1 = NEW.altitude1
-      , altitude2 = NEW.altitude2
-      , elevation_determination = NEW.elevation_determination
-      , fk_dataowner = NEW.fk_dataowner
-      , fk_owner = NEW.fk_owner
-      , fk_provider = NEW.fk_provider
-      , geometry3d_geometry = NEW.geometry3d_geometry
-      , horizontal_positioning = NEW.horizontal_positioning
-      , last_modification = NEW.last_modification
-      , remark = NEW.remark
-      , symbolori = NEW.symbolori
-    WHERE obj_id = OLD.obj_id;
-
-UPDATE tdh_od.pipe_point_normal SET
-      obj_id = NEW.obj_id
-      , armature_setting = NEW.armature_setting
-      , kind = NEW.kind
-      , material = NEW.material
-    WHERE obj_id = OLD.obj_id;
-RETURN NEW;
-END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN"/>
          </parameters>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="ft_vw_tdh_pipe_point_delete()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[DECLARE
-    BEGIN
-      DELETE FROM tdh_od.pipe_point WHERE obj_id = OLD.obj_id;
-    RETURN OLD;
-    END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN"/>
          </parameters>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="ft_vw_tdh_pipe_point_insert()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-
-      NEW.obj_id = NEW.obj_id;
-
-    INSERT INTO tdh_od.pipe_point (
-        obj_id
-      , altitude1
-      , altitude2
-      , elevation_determination
-      , fk_dataowner
-      , fk_owner
-      , fk_provider
-      -- , geometry3d_geometry
-      , horizontal_positioning
-      , last_modification
-      , remark
-      , symbolori
-    ) VALUES (
-        NEW.obj_id
-      , NEW.altitude1
-      , NEW.altitude2
-      , NEW.elevation_determination
-      , NEW.fk_dataowner
-      , NEW.fk_owner
-      , NEW.fk_provider
-      -- , NEW.geometry3d_geometry
-      , NEW.horizontal_positioning
-      , NEW.last_modification
-      , NEW.remark
-      , NEW.symbolori
-    );
-
-
-      CASE
-        WHEN NEW.pp_type = 'pipe_point_feed' THEN
-        -- pipe_point_feed
-    INSERT INTO tdh_od.pipe_point_feed (
-            obj_id
-          , aperture_value
-          , category
-          , flow_temperature
-          , heat_consumption
-          , heated_volume
-          , kind
-          , power_output
-          , power_output_installed
-          , power_output_ordered
-          , pressure
-          , q_subscribed
-          , return_flow_temperature
-          , year_of_commissioning
-          , year_of_reconstruction
-        ) VALUES (
-            NEW.obj_id
-          , NEW.pf_aperture_value
-          , NEW.pf_category
-          , NEW.pf_flow_temperature
-          , NEW.pf_heat_consumption
-          , NEW.pf_heated_volume
-          , NEW.pf_kind
-          , NEW.pf_power_output
-          , NEW.pf_power_output_installed
-          , NEW.pf_power_output_ordered
-          , NEW.pf_pressure
-          , NEW.pf_q_subscribed
-          , NEW.pf_return_flow_temperature
-          , NEW.pf_year_of_commissioning
-          , NEW.pf_year_of_reconstruction
-        );
-
-
-        -- pipe_point_normal
-        WHEN NEW.pp_type = 'pipe_point_normal' THEN
-    INSERT INTO tdh_od.pipe_point_normal (
-            obj_id
-          , armature_setting
-          , kind
-          , material
-        ) VALUES (
-            NEW.obj_id
-          , NEW.pn_armature_setting
-          , NEW.pn_kind
-          , NEW.pn_material
-        );
-
-
-        ELSE
-         RAISE NOTICE 'Pipe point type not handled by this view (%)', NEW.pp_type; -- ERROR
-      END CASE;
-
-      RETURN NEW;
-    END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN"/>
          </parameters>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="ft_vw_tdh_pipe_point_update()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[DECLARE
-      dx float;
-      dy float;
-    BEGIN
-
-      UPDATE tdh_od.pipe_point pp SET
-          obj_id = NEW.obj_id
-          , altitude1 = NEW.altitude1
-          , altitude2 = NEW.altitude2
-          , elevation_determination = NEW.elevation_determination
-          , fk_dataowner = NEW.fk_dataowner
-          , fk_owner = NEW.fk_owner
-          , fk_provider = NEW.fk_provider
-          -- , geometry3d_geometry = NEW.geometry3d_geometry
-          , horizontal_positioning = NEW.horizontal_positioning
-          -- , last_modification = NEW.last_modification
-          , remark = NEW.remark
-          , symbolori = NEW.symbolori
-        WHERE obj_id = OLD.obj_id;
-
-      IF OLD.pp_type <> NEW.pp_type THEN
-        CASE WHEN OLD.pp_type <> 'unknown' THEN
-          BEGIN
-            EXECUTE FORMAT('DELETE FROM tdh_od.%I WHERE obj_id = %L',OLD.pp_type,OLD.obj_id);
-          END;
-        END CASE;
-
-        CASE WHEN NEW.pp_type = ANY(ARRAY['pipe_point_feed','pipe_point_normal']) THEN
-          BEGIN
-            EXECUTE FORMAT('INSERT INTO tdh_od.%I(obj_id) VALUES (%L)',NEW.pp_type,OLD.obj_id);
-          END;
-        END CASE;
-      END IF;
-
-      CASE
-        WHEN NEW.pp_type = 'pipe_point_feed' THEN
-          UPDATE tdh_od.pipe_point_feed pf SET
-          aperture_value = NEW.pf_aperture_value
-          , category = NEW.pf_category
-          , flow_temperature = NEW.pf_flow_temperature
-          , heat_consumption = NEW.pf_heat_consumption
-          , heated_volume = NEW.pf_heated_volume
-          , kind = NEW.pf_kind
-          , power_output = NEW.pf_power_output
-          , power_output_installed = NEW.pf_power_output_installed
-          , power_output_ordered = NEW.pf_power_output_ordered
-          , pressure = NEW.pf_pressure
-          , q_subscribed = NEW.pf_q_subscribed
-          , return_flow_temperature = NEW.pf_return_flow_temperature
-          , year_of_commissioning = NEW.pf_year_of_commissioning
-          , year_of_reconstruction = NEW.pf_year_of_reconstruction
-        WHERE obj_id = OLD.obj_id;
-
-        WHEN NEW.pp_type = 'pipe_point_normal' THEN
-          UPDATE tdh_od.pipe_point_normal pn SET
-          armature_setting = NEW.pn_armature_setting
-          , kind = NEW.pn_kind
-          , material = NEW.pn_material
-        WHERE obj_id = OLD.obj_id;
-
-        ELSE -- do nothing
-      END CASE;
-
-
-      RETURN NEW;
-    END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN"/>
          </parameters>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="generate_oid(schema_name text, table_name text)" returnType="text" securityType="INVOKER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[DECLARE
-  myrec_prefix record;
-  myrec_shortcut record;
-  myrec_seq record;
-BEGIN
-  -- first we have to get the OID prefix
-  BEGIN
-    SELECT prefix::text INTO myrec_prefix FROM tdh_sys.oid_prefixes WHERE active = TRUE;
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-           RAISE EXCEPTION 'no active record found in table tdh_sys.oid_prefixes';
-        WHEN TOO_MANY_ROWS THEN
-	   RAISE EXCEPTION 'more than one active records found in table tdh_sys.oid_prefixes';
-  END;
-  -- test if prefix is of correct length
-  IF char_length(myrec_prefix.prefix) != 8 THEN
-    RAISE EXCEPTION 'character length of prefix must be 8';
-  END IF;
-  --get table 2char shortcut
-  BEGIN
-    SELECT shortcut_en INTO STRICT myrec_shortcut FROM tdh_sys.dictionary_od_table WHERE tablename = table_name;
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            RAISE EXCEPTION 'dictionary entry for table % not found', table_name;
-        WHEN TOO_MANY_ROWS THEN
-            RAISE EXCEPTION 'dictonary entry for table % not unique', table_name;
-  END;
-  --get sequence for table
-  EXECUTE format('SELECT nextval(''%1$I.seq_%2$I_oid'') AS seqval', schema_name, table_name) INTO myrec_seq;
-  IF NOT FOUND THEN
-    RAISE EXCEPTION 'sequence for table % not found', table_name;
-  END IF;
-  RETURN myrec_prefix.prefix || myrec_shortcut.shortcut_en || to_char(myrec_seq.seqval,'FM000000');
-END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN" name="schema_name" type="text"/>
             <parameter mode="IN" name="table_name" type="text"/>
@@ -682,206 +217,63 @@ END;]]></definition>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="get_default_values(field_name text)" returnType="character varying" securityType="DEFINER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[DECLARE
-    myrec record;
-BEGIN
-  BEGIN
-    SELECT value_obj_id::varchar(16) INTO myrec FROM tdh_od.default_values WHERE fieldname = field_name;
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-           RAISE WARNING 'Field name % not found in table tdh_od.default_values. Returning NULL',field_name;
-		   RETURN NULL;
-  END;
-  RETURN myrec.value_obj_id;
-END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN" name="field_name" type="text"/>
          </parameters>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="modification_last_modified()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
- NEW.last_modification := TIMEOFDAY();
-
- RETURN NEW;
-END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN"/>
          </parameters>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="modification_last_modified_parent()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[DECLARE
- table_name TEXT;
-BEGIN
- table_name = TG_ARGV[0];
-
- EXECUTE '
- UPDATE ' || table_name || '
- SET last_modification = TIMEOFDAY()::timestamp
- WHERE obj_id = ''' || NEW.obj_id || '''
-';
- RETURN NEW;
-END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN"/>
          </parameters>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="reset_od_seqval()" returnType="void" securityType="INVOKER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[DECLARE
-
-tbl_name text;
-rgx text;
-BEGIN
-	BEGIN
-	   FOR tbl_name,rgx IN (
-			SELECT dot.tablename,pfx.prefix||dot.shortcut_en
-			FROM information_schema.sequences seq
-			LEFT JOIN tdh_sys.dictionary_od_table dot ON seq.sequence_name = 'seq_'||dot.tablename||'_oid'
-			LEFT JOIN (SELECT prefix  FROM tdh_sys.oid_prefixes WHERE active) pfx on True
-			WHERE seq.sequence_schema = 'tdh_od' AND dot.tablename IS NOT NULL) LOOP
-				EXECUTE FORMAT('SELECT SETVAL(''tdh_od.seq_%1$I_oid'',(SELECT max(seqs) FROM(
-		SELECT RIGHT(obj_id, 6)::int as seqs FROM tdh_od.%1$I WHERE  regexp_match(obj_id, ''%2$s\d{6}$'') IS NOT NULL
-		UNION
-		SELECT last_value as seqs FROM tdh_od.seq_%1$I_oid)foo));',tbl_name,rgx);
-	   END LOOP;
-	END;
-END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN"/>
          </parameters>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="set_organisations_active(_undo_existing boolean DEFAULT false)" returnType="void" securityType="INVOKER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[DECLARE
-schm text;
-tbl text;
-col text;
-BEGIN
-IF _undo_existing THEN
-	UPDATE tdh_od.organisation
-	SET tdh_active=FALSE;
-ELSE NULL;
-END IF;
-FOR schm,tbl,col IN
-	SELECT   tc.table_schema,
-		tc.table_name,
-		kcu.column_name
-	FROM (SELECT constraint_name FROM information_schema.constraint_column_usage
-	WHERE table_schema='tdh_od'
-		AND table_name='organisation'
-		AND column_name='obj_id'
-		AND constraint_name NOT LIKE'pkey%')ccu
-	INNER JOIN information_schema.key_column_usage AS kcu
-	ON ccu.constraint_name = kcu.constraint_name
-	INNER JOIN information_schema.table_constraints AS tc
-		ON tc.constraint_name = kcu.constraint_name
-LOOP
-	        EXECUTE format($$ UPDATE tdh_od.organisation
-SET tdh_active=TRUE
-WHERE obj_id IN (SELECT DISTINCT %I FROM %I.%I)$$, col,schm,tbl);
-END LOOP;
-END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN" name="_undo_existing" type="boolean"/>
          </parameters>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="tr_reset_od_seqval()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-    PERFORM tdh_app.reset_od_seqval();
-    RETURN NULL;
-END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN"/>
          </parameters>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="vw_file_delete()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-    DELETE FROM tdh_od.file WHERE obj_id = OLD.obj_id;
-    RETURN OLD;
-  END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN"/>
          </parameters>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="vw_file_insert()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-
-    NEW._url = replace(NEW._url, '\', '/');
-
-    INSERT INTO tdh_od.file(
-      classname,
-      identifier,
-      kind,
-      object,
-      path_relative,
-      fk_dataowner,
-      fk_provider,
-      fk_data_media,
-      remark)
-
-    SELECT
-      NEW.classname,
-      NEW.identifier,
-      NEW.kind,
-      NEW.object,
-      SUBSTRING(NEW._url, LENGTH("path")+1, LENGTH(NEW._url)), -- path_relative,
-      NEW.dataowner, -- fk_dataowner,
-      NEW.provider, -- fk_provider,
-      obj_id, -- fk_data_media
-      NEW.remark
-    FROM tdh_od.data_media
-    WHERE "path" = SUBSTRING(NEW._url FROM 1 FOR LENGTH("path"))
-    ORDER BY LENGTH("path") DESC
-    LIMIT 1;
-
-    -- FOUND is a special variable which is always FALSE at the beginning of a PL/pgsql function and will be set by
-    -- e.g. INSERT to TRUE if at least one row is affected.
-    IF NOT FOUND THEN
-      RAISE WARNING 'Could not insert. File not in repository set in od_data_media!';
-    END IF;
-
-  RETURN NEW;
-END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN"/>
          </parameters>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="vw_file_update()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
          <comment/>
-         <definition language="plpgsql"><![CDATA[BEGIN
-
-NEW._url = replace(NEW._url, '\', '/');
-
-  UPDATE  tdh_od.file
-    SET
-    classname = NEW.classname,
-    identifier = NEW.identifier,
-    kind = NEW.kind,
-    object = NEW.object,
-    path_relative = SUBSTRING(NEW._url, LENGTH(dm.path)+1, LENGTH(NEW._url)),
-    fk_dataowner = NEW.dataowner,
-    fk_provider = NEW.provider,
-    fk_data_media = dm.id,
-    remark = NEW.remark
-
-FROM (
-  SELECT obj_id as id,
-	path
-	FROM tdh_od.data_media
-	WHERE path = SUBSTRING(NEW._url FROM 1 FOR LENGTH(path))
-	ORDER BY LENGTH(path) DESC
-	LIMIT 1)  dm
-
-WHERE obj_id = OLD.obj_id;
-
-
-  RETURN NEW;
-END;]]></definition>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
          <parameters>
             <parameter mode="IN"/>
          </parameters>

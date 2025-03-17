@@ -398,6 +398,7 @@ class TestGeometry(unittest.TestCase, DbTestBase):
 # == "01010000A0080800000000000020D6434100000000804F32410000000000C07240"
 # )
 
+
 def test_pipe_point_geometry_sync_on_insert(self):
     # 1. altitude1 200 and no Z
     # INSERT INTO tdh_od.pipe_point (altitude1, geometry3d_geometry) VALUES (200, ST_SetSRID(ST_MakePoint(2600000, 1200000, 'NaN'), 2056) );
@@ -412,6 +413,7 @@ def test_pipe_point_geometry_sync_on_insert(self):
         "01010000A0080800000000000020D6434100000000804F32410000000000006940"
     )
     self.insert_check("pipe_point", row, expected_row)
+
 
 # # 2. bottom level 200 and 555 Z
 # # INSERT INTO tdh_app.vw_xxx_node (bottom_level, situation3d_geometry) VALUES (200, ST_SetSRID(ST_MakePoint(2600000, 1200000, 555), 2056) );

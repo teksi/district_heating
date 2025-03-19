@@ -421,7 +421,7 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td><span id="nominal_diameter">nominal_diameter</span></td>
+                                    <td><span id="diameter_nominal">diameter_nominal</span></td>
                                     <td>text</td>
                                     <td>2147483647</td>
                                     <td title='nullable'>√</td>
@@ -435,7 +435,7 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                         </table>
                                     </td>
-                                    <td><p>yyy_als TEXT, da zum Teil auch Doppelwerte mit Schrägstrich (eg. 1500/800) / als TEXT, da zum Teil auch Doppelwerte mit Schrägstrich (z.B. 1500/800) / comme TEXTE, parcequ&rsquo;on a aussi des valeurs doubles (par example 1500/800)</p></td>
+                                    <td><p>as TEXT, as in some cases double values with slash (eg. 1500/800) / als TEXT, da zum Teil auch Doppelwerte mit Schrägstrich (z.B. 1500/800) / comme TEXTE, parcequ&rsquo;on a aussi des valeurs doubles (par example 1500/800)</p></td>
                                 </tr>
                                 <tr>
                                     <td><span id="length1">length1</span></td>
@@ -760,28 +760,28 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>ps_documentation_length_max_40</td>
-                                    <td>((char_length(documentation) &lt;&#61; 40))</td>
+                                    <td>ps_diameter_nominal_length_max_10</td>
+                                    <td>((char_length(diameter_nominal) &lt;&#61; 10))</td>
                                 </tr>
                                 <tr>
                                     <td>ps_pipe_brand_length_max_40</td>
                                     <td>((char_length(pipe_brand) &lt;&#61; 40))</td>
                                 </tr>
                                 <tr>
-                                    <td>ps_mandate_length_max_40</td>
-                                    <td>((char_length(mandate) &lt;&#61; 40))</td>
+                                    <td>ps_documentation_length_max_40</td>
+                                    <td>((char_length(documentation) &lt;&#61; 40))</td>
                                 </tr>
                                 <tr>
-                                    <td>ps_nominal_diameter_length_max_10</td>
-                                    <td>((char_length(nominal_diameter) &lt;&#61; 10))</td>
+                                    <td>ps_name_number_length_max_40</td>
+                                    <td>((char_length(name_number) &lt;&#61; 40))</td>
                                 </tr>
                                 <tr>
                                     <td>ps_remark_length_max_80</td>
                                     <td>((char_length(remark) &lt;&#61; 80))</td>
                                 </tr>
                                 <tr>
-                                    <td>ps_name_number_length_max_40</td>
-                                    <td>((char_length(name_number) &lt;&#61; 40))</td>
+                                    <td>ps_mandate_length_max_40</td>
+                                    <td>((char_length(mandate) &lt;&#61; 40))</td>
                                 </tr>
                                 </tbody>
                             </table>

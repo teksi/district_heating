@@ -275,7 +275,7 @@
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="diameter_inner" nullable="true" remarks="" size="5" type="int2" typeCode="5"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="diameter_outer" nullable="true" remarks="" size="5" type="int2" typeCode="5"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="nominal_diameter" nullable="true" remarks="yyy_als TEXT, da zum Teil auch Doppelwerte mit Schrägstrich (eg. 1500/800) / als TEXT, da zum Teil auch Doppelwerte mit Schrägstrich (z.B. 1500/800) / comme TEXTE, parcequ'on a aussi des valeurs doubles (par example 1500/800)" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="diameter_nominal" nullable="true" remarks="as TEXT, as in some cases double values with slash (eg. 1500/800) / als TEXT, da zum Teil auch Doppelwerte mit Schrägstrich (z.B. 1500/800) / comme TEXTE, parcequ'on a aussi des valeurs doubles (par example 1500/800)" size="2147483647" type="text" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="length1" nullable="true" remarks="yyy_Laenge_abgewickelt / Laenge_abgewickelt / longueur développée" size="10" type="int4" typeCode="4"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="length2" nullable="true" remarks="yyy_Laenge_berechnet / Laenge_berechnet / longueur calculée" size="10" type="int4" typeCode="4"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="19" name="pipe_brand" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
@@ -310,10 +310,10 @@
          <index name="in_tdh_pipe_section_geometry3d_geometry" unique="false">
             <column ascending="true" name="geometry3d_geometry"/>
          </index>
+         <checkConstraint constraint="((char_length(diameter_nominal) &lt;= 10))" name="ps_diameter_nominal_length_max_10"/>
          <checkConstraint constraint="((char_length(documentation) &lt;= 40))" name="ps_documentation_length_max_40"/>
          <checkConstraint constraint="((char_length(mandate) &lt;= 40))" name="ps_mandate_length_max_40"/>
          <checkConstraint constraint="((char_length(name_number) &lt;= 40))" name="ps_name_number_length_max_40"/>
-         <checkConstraint constraint="((char_length(nominal_diameter) &lt;= 10))" name="ps_nominal_diameter_length_max_10"/>
          <checkConstraint constraint="((char_length(pipe_brand) &lt;= 40))" name="ps_pipe_brand_length_max_40"/>
          <checkConstraint constraint="((char_length(remark) &lt;= 80))" name="ps_remark_length_max_80"/>
       </table>

@@ -299,6 +299,20 @@
          <column autoUpdated="false" defaultValue="null" digits="0" id="29" name="fk_pipeline_company" nullable="true" remarks="" size="16" type="varchar" typeCode="12">
             <parent column="obj_id" foreignKey="rel_pipe_section_pipeline_company" implied="false" onDeleteCascade="false" schema="tdh_od" table="organisation"/>
          </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="30" name="mg_material" nullable="true" remarks="Categories of materials Morges / Kategorien Material Morges / Categories des materiaux Morges" size="10" type="int4" typeCode="4">
+            <parent column="code" foreignKey="fkey_vl_pipe_section_mg_material" implied="false" onDeleteCascade="false" schema="tdh_vl" table="pipe_section_mg_material"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="31" name="mg_diameter" nullable="true" remarks="Linked to table of specified (nominal) diameters and material Morges for simplified recording / Verknüpft mit Tabelle der vorgegebenen (Nenn-)weiten und Material Morges zur vereinfachten Erfassung / Lier au tableau des diamètres (nominaux) prescrits et du matériau Morges pour simplifier la saisie" size="10" type="int4" typeCode="4">
+            <parent column="code" foreignKey="fkey_vl_pipe_section_mg_diameter" implied="false" onDeleteCascade="false" schema="tdh_vl" table="pipe_section_mg_diameter"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="32" name="mg_trench_type" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="code" foreignKey="fkey_vl_pipe_section_mg_trench_type" implied="false" onDeleteCascade="false" schema="tdh_vl" table="pipe_section_mg_trench_type"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="33" name="trench_width" nullable="true" remarks="" size="5" type="int2" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="34" name="mg_remark_civil_eng" nullable="true" remarks="Extension Morges - Remarks from civil engineering / Erweiterung Morges - Zusatzbemerkungen Bauingenieur / Extension Morges - Remarques complémentaires ingénieur civil" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="35" name="mg_signaling_band" nullable="true" remarks="/ Les conduites sont marquées par une bande de signalisation de couleur" size="10" type="int4" typeCode="4">
+            <parent column="code" foreignKey="fkey_vl_pipe_section_mg_signaling_band" implied="false" onDeleteCascade="false" schema="tdh_vl" table="pipe_section_mg_signaling_band"/>
+         </column>
          <primaryKey column="obj_id" sequenceNumberInPK="1"/>
          <index name="pkey_tdh_od_pipe_section_obj_id" unique="true">
             <column ascending="true" name="obj_id"/>
@@ -313,6 +327,7 @@
          <checkConstraint constraint="((char_length(diameter_nominal) &lt;= 10))" name="ps_diameter_nominal_length_max_10"/>
          <checkConstraint constraint="((char_length(documentation) &lt;= 40))" name="ps_documentation_length_max_40"/>
          <checkConstraint constraint="((char_length(mandate) &lt;= 40))" name="ps_mandate_length_max_40"/>
+         <checkConstraint constraint="((char_length(mg_remark_civil_eng) &lt;= 80))" name="ps_mg_remark_civil_eng_length_max_80"/>
          <checkConstraint constraint="((char_length(name_number) &lt;= 40))" name="ps_name_number_length_max_40"/>
          <checkConstraint constraint="((char_length(pipe_brand) &lt;= 40))" name="ps_pipe_brand_length_max_40"/>
          <checkConstraint constraint="((char_length(remark) &lt;= 80))" name="ps_remark_length_max_80"/>

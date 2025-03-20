@@ -8,8 +8,8 @@ pipe_point_normal
 pipe_point_feed
 trench_line
 structure_line
-structure
 pipe_section
+structure
 trench
 data_media
 pipe_point

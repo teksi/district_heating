@@ -250,6 +250,20 @@
             <parameter mode="IN" name="_undo_existing" type="boolean"/>
          </parameters>
       </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="synchronize_altitude1_with_altitude_on_pipe_point()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
+         <parameters>
+            <parameter mode="IN"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="synchronize_altitude_with_altitude_on_sia405cc_cable_point()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
+         <parameters>
+            <parameter mode="IN"/>
+         </parameters>
+      </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="tr_reset_od_seqval()" returnType="trigger" securityType="INVOKER" type="FUNCTION">
          <comment/>
          <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>

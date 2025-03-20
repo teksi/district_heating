@@ -14,7 +14,7 @@
 <g id="node1" class="node">
 <title>tdh_od.pipe_section</title>
 <g id="a_node1"><a xlink:href="../../../tdh_od/tables/pipe_section.html" xlink:title="tdh_od.pipe_section" target="_top">
-<polygon fill="#ffffff" stroke="transparent" points="346,-395 346,-629 538,-629 538,-395 346,-395"/>
+<polygon fill="#ffffff" stroke="transparent" points="346,-307 346,-629 538,-629 538,-307 346,-307"/>
 <polygon fill="#f5f5f5" stroke="transparent" points="346,-607 346,-629 538,-629 538,-607 346,-607"/>
 <polygon fill="none" stroke="black" points="346,-607 346,-629 538,-629 538,-607 346,-607"/>
 <text text-anchor="start" x="351" y="-616.2" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="11.00">tdh_od.pipe_section</text>
@@ -43,18 +43,30 @@
 <polygon fill="none" stroke="black" points="346,-431 346,-453 538,-453 538,-431 346,-431"/>
 <image xlink:href="../../images/foreignKeys.png" width="11px" height="12px" preserveAspectRatio="xMinYMin meet" x="351" y="-448"/>
 <text text-anchor="start" x="369" y="-439.2" font-family="Helvetica,sans-Serif" font-size="11.00">pipeline_quality</text>
-<polygon fill="none" stroke="black" points="346,-413 346,-431 538,-431 538,-413 346,-413"/>
-<text text-anchor="start" x="349" y="-419.2" font-family="Helvetica,sans-Serif" font-size="11.00">...</text>
-<polygon fill="#ffffff" stroke="transparent" points="346,-395 346,-413 538,-413 538,-395 346,-395"/>
-<polygon fill="none" stroke="black" points="346,-395 346,-413 538,-413 538,-395 346,-395"/>
-<polygon fill="#ffffff" stroke="transparent" points="347,-396 347,-412 409,-412 409,-396 347,-396"/>
-<text text-anchor="start" x="349" y="-401.2" font-family="Helvetica,sans-Serif" font-size="11.00">&lt; 8</text>
-<polygon fill="#ffffff" stroke="transparent" points="409,-396 409,-412 488,-412 488,-396 409,-396"/>
-<text text-anchor="start" x="430" y="-401.2" font-family="Helvetica,sans-Serif" font-size="11.00">0 rows</text>
-<polygon fill="#ffffff" stroke="transparent" points="488,-396 488,-412 537,-412 537,-396 488,-396"/>
-<text text-anchor="start" x="527" y="-401.2" font-family="Helvetica,sans-Serif" font-size="11.00"> &#160;</text>
-<polygon fill="black" stroke="black" points="409,-396 409,-412 409,-412 409,-396 409,-396"/>
-<polygon fill="black" stroke="black" points="488,-396 488,-412 488,-412 488,-396 488,-396"/>
+<polygon fill="none" stroke="black" points="346,-409 346,-431 538,-431 538,-409 346,-409"/>
+<image xlink:href="../../images/foreignKeys.png" width="11px" height="12px" preserveAspectRatio="xMinYMin meet" x="351" y="-426"/>
+<text text-anchor="start" x="369" y="-417.2" font-family="Helvetica,sans-Serif" font-size="11.00">mg_material</text>
+<polygon fill="none" stroke="black" points="346,-387 346,-409 538,-409 538,-387 346,-387"/>
+<image xlink:href="../../images/foreignKeys.png" width="11px" height="12px" preserveAspectRatio="xMinYMin meet" x="351" y="-404"/>
+<text text-anchor="start" x="369" y="-395.2" font-family="Helvetica,sans-Serif" font-size="11.00">mg_diameter</text>
+<polygon fill="none" stroke="black" points="346,-365 346,-387 538,-387 538,-365 346,-365"/>
+<image xlink:href="../../images/foreignKeys.png" width="11px" height="12px" preserveAspectRatio="xMinYMin meet" x="351" y="-382"/>
+<text text-anchor="start" x="369" y="-373.2" font-family="Helvetica,sans-Serif" font-size="11.00">mg_trench_type</text>
+<polygon fill="none" stroke="black" points="346,-343 346,-365 538,-365 538,-343 346,-343"/>
+<image xlink:href="../../images/foreignKeys.png" width="11px" height="12px" preserveAspectRatio="xMinYMin meet" x="351" y="-360"/>
+<text text-anchor="start" x="369" y="-351.2" font-family="Helvetica,sans-Serif" font-size="11.00">mg_signaling_band</text>
+<polygon fill="none" stroke="black" points="346,-325 346,-343 538,-343 538,-325 346,-325"/>
+<text text-anchor="start" x="349" y="-331.2" font-family="Helvetica,sans-Serif" font-size="11.00">...</text>
+<polygon fill="#ffffff" stroke="transparent" points="346,-307 346,-325 538,-325 538,-307 346,-307"/>
+<polygon fill="none" stroke="black" points="346,-307 346,-325 538,-325 538,-307 346,-307"/>
+<polygon fill="#ffffff" stroke="transparent" points="347,-308 347,-324 414,-324 414,-308 347,-308"/>
+<text text-anchor="start" x="349" y="-313.2" font-family="Helvetica,sans-Serif" font-size="11.00">&lt; 12</text>
+<polygon fill="#ffffff" stroke="transparent" points="414,-308 414,-324 490,-324 490,-308 414,-308"/>
+<text text-anchor="start" x="433.5" y="-313.2" font-family="Helvetica,sans-Serif" font-size="11.00">0 rows</text>
+<polygon fill="#ffffff" stroke="transparent" points="490,-308 490,-324 537,-324 537,-308 490,-308"/>
+<text text-anchor="start" x="527" y="-313.2" font-family="Helvetica,sans-Serif" font-size="11.00"> &#160;</text>
+<polygon fill="black" stroke="black" points="414,-308 414,-324 414,-324 414,-308 414,-308"/>
+<polygon fill="black" stroke="black" points="490,-308 490,-324 490,-324 490,-308 490,-308"/>
 </a>
 </g>
 </g>

@@ -683,6 +683,128 @@
                                     </td>
                                     <td></td>
                                 </tr>
+                                <tr>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="mg_material">mg_material</span></td>
+                                    <td>int4</td>
+                                    <td>10</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="pipe_section.mg_material references tdh_vl.pipe_section_mg_material.code via fkey_vl_pipe_section_mg_material"><a href='../../tdh_vl/tables/pipe_section_mg_material.html'>pipe_section_mg_material</a><span class='relatedKey'>.code</span></td>
+                                                <td class="constraint detail">fkey_vl_pipe_section_mg_material</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td><p>Categories of materials Morges / Kategorien Material Morges / Categories des materiaux Morges</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="mg_diameter">mg_diameter</span></td>
+                                    <td>int4</td>
+                                    <td>10</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="pipe_section.mg_diameter references tdh_vl.pipe_section_mg_diameter.code via fkey_vl_pipe_section_mg_diameter"><a href='../../tdh_vl/tables/pipe_section_mg_diameter.html'>pipe_section_mg_diameter</a><span class='relatedKey'>.code</span></td>
+                                                <td class="constraint detail">fkey_vl_pipe_section_mg_diameter</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td><p>Linked to table of specified (nominal) diameters and material Morges for simplified recording / Verknüpft mit Tabelle der vorgegebenen (Nenn-)weiten und Material Morges zur vereinfachten Erfassung / Lier au tableau des diamètres (nominaux) prescrits et du matériau Morges pour simplifier la saisie</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="mg_trench_type">mg_trench_type</span></td>
+                                    <td>int4</td>
+                                    <td>10</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="pipe_section.mg_trench_type references tdh_vl.pipe_section_mg_trench_type.code via fkey_vl_pipe_section_mg_trench_type"><a href='../../tdh_vl/tables/pipe_section_mg_trench_type.html'>pipe_section_mg_trench_type</a><span class='relatedKey'>.code</span></td>
+                                                <td class="constraint detail">fkey_vl_pipe_section_mg_trench_type</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="trench_width">trench_width</span></td>
+                                    <td>int2</td>
+                                    <td>5</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="mg_remark_civil_eng">mg_remark_civil_eng</span></td>
+                                    <td>text</td>
+                                    <td>2147483647</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Extension Morges - Remarks from civil engineering / Erweiterung Morges - Zusatzbemerkungen Bauingenieur / Extension Morges - Remarques complémentaires ingénieur civil</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="mg_signaling_band">mg_signaling_band</span></td>
+                                    <td>int4</td>
+                                    <td>10</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="pipe_section.mg_signaling_band references tdh_vl.pipe_section_mg_signaling_band.code via fkey_vl_pipe_section_mg_signaling_band"><a href='../../tdh_vl/tables/pipe_section_mg_signaling_band.html'>pipe_section_mg_signaling_band</a><span class='relatedKey'>.code</span></td>
+                                                <td class="constraint detail">fkey_vl_pipe_section_mg_signaling_band</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td><p>/ Les conduites sont marquées par une bande de signalisation de couleur</p></td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -760,28 +882,32 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>ps_diameter_nominal_length_max_10</td>
-                                    <td>((char_length(diameter_nominal) &lt;&#61; 10))</td>
-                                </tr>
-                                <tr>
                                     <td>ps_pipe_brand_length_max_40</td>
                                     <td>((char_length(pipe_brand) &lt;&#61; 40))</td>
                                 </tr>
                                 <tr>
-                                    <td>ps_documentation_length_max_40</td>
-                                    <td>((char_length(documentation) &lt;&#61; 40))</td>
-                                </tr>
-                                <tr>
-                                    <td>ps_name_number_length_max_40</td>
-                                    <td>((char_length(name_number) &lt;&#61; 40))</td>
+                                    <td>ps_mandate_length_max_40</td>
+                                    <td>((char_length(mandate) &lt;&#61; 40))</td>
                                 </tr>
                                 <tr>
                                     <td>ps_remark_length_max_80</td>
                                     <td>((char_length(remark) &lt;&#61; 80))</td>
                                 </tr>
                                 <tr>
-                                    <td>ps_mandate_length_max_40</td>
-                                    <td>((char_length(mandate) &lt;&#61; 40))</td>
+                                    <td>ps_diameter_nominal_length_max_10</td>
+                                    <td>((char_length(diameter_nominal) &lt;&#61; 10))</td>
+                                </tr>
+                                <tr>
+                                    <td>ps_mg_remark_civil_eng_length_max_80</td>
+                                    <td>((char_length(mg_remark_civil_eng) &lt;&#61; 80))</td>
+                                </tr>
+                                <tr>
+                                    <td>ps_name_number_length_max_40</td>
+                                    <td>((char_length(name_number) &lt;&#61; 40))</td>
+                                </tr>
+                                <tr>
+                                    <td>ps_documentation_length_max_40</td>
+                                    <td>((char_length(documentation) &lt;&#61; 40))</td>
                                 </tr>
                                 </tbody>
                             </table>

@@ -2,8 +2,8 @@ organisation
 pipe_point
 data_media
 trench
-pipe_section
 structure
+pipe_section
 structure_line
 trench_line
 pipe_point_feed

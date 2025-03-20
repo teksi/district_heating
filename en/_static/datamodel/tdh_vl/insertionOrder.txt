@@ -15,6 +15,10 @@ pipe_section_fluent
 pipe_section_function
 pipe_section_horizontal_positioning
 pipe_section_insulation_kind
+pipe_section_mg_diameter
+pipe_section_mg_material
+pipe_section_mg_signaling_band
+pipe_section_mg_trench_type
 pipe_section_pipe_type
 pipe_section_pipeline_quality
 pipe_section_status

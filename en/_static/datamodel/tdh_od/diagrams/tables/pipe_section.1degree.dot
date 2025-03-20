@@ -9,6 +9,10 @@ digraph "oneDegreeRelationshipsDiagram" {
   "pipe_section":"function":w -> "tdh_vl.pipe_section_function":"code":e [arrowhead=none dir=back arrowtail=crowodot];
   "pipe_section":"horizontal_positioning":w -> "tdh_vl.pipe_section_horizontal_positioning":"code":e [arrowhead=none dir=back arrowtail=crowodot];
   "pipe_section":"insulation_kind":w -> "tdh_vl.pipe_section_insulation_kind":"code":e [arrowhead=none dir=back arrowtail=crowodot];
+  "pipe_section":"mg_diameter":w -> "tdh_vl.pipe_section_mg_diameter":"code":e [arrowhead=none dir=back arrowtail=crowodot];
+  "pipe_section":"mg_material":w -> "tdh_vl.pipe_section_mg_material":"code":e [arrowhead=none dir=back arrowtail=crowodot];
+  "pipe_section":"mg_signaling_band":w -> "tdh_vl.pipe_section_mg_signaling_band":"code":e [arrowhead=none dir=back arrowtail=crowodot];
+  "pipe_section":"mg_trench_type":w -> "tdh_vl.pipe_section_mg_trench_type":"code":e [arrowhead=none dir=back arrowtail=crowodot];
   "pipe_section":"pipe_type":w -> "tdh_vl.pipe_section_pipe_type":"code":e [arrowhead=none dir=back arrowtail=crowodot];
   "pipe_section":"pipeline_quality":w -> "tdh_vl.pipe_section_pipeline_quality":"code":e [arrowhead=none dir=back arrowtail=crowodot];
   "pipe_section":"status":w -> "tdh_vl.pipe_section_status":"code":e [arrowhead=none dir=back arrowtail=crowodot];
@@ -67,7 +71,13 @@ digraph "oneDegreeRelationshipsDiagram" {
       <TR><TD PORT="fk_provider" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="../../images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="165" HEIGHT="16">fk_provider</TD></TR></TABLE></TD><TD PORT="fk_provider.type" ALIGN="LEFT">varchar[16]</TD></TR>
       <TR><TD PORT="fk_owner" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="../../images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="165" HEIGHT="16">fk_owner</TD></TR></TABLE></TD><TD PORT="fk_owner.type" ALIGN="LEFT">varchar[16]</TD></TR>
       <TR><TD PORT="fk_pipeline_company" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="../../images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="165" HEIGHT="16">fk_pipeline_company</TD></TR></TABLE></TD><TD PORT="fk_pipeline_company.type" ALIGN="LEFT">varchar[16]</TD></TR>
-      <TR><TD ALIGN="LEFT" CELLPADDING="0" BGCOLOR="#ffffff" COLSPAN="4" ><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 12</TD><VR/><TD ALIGN="CENTER" BGCOLOR="#ffffff">  </TD><VR/><TD ALIGN="RIGHT" BGCOLOR="#ffffff">1 &gt;</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="mg_material" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="../../images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="165" HEIGHT="16">mg_material</TD></TR></TABLE></TD><TD PORT="mg_material.type" ALIGN="LEFT">int4[10]</TD></TR>
+      <TR><TD PORT="mg_diameter" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="../../images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="165" HEIGHT="16">mg_diameter</TD></TR></TABLE></TD><TD PORT="mg_diameter.type" ALIGN="LEFT">int4[10]</TD></TR>
+      <TR><TD PORT="mg_trench_type" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="../../images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="165" HEIGHT="16">mg_trench_type</TD></TR></TABLE></TD><TD PORT="mg_trench_type.type" ALIGN="LEFT">int4[10]</TD></TR>
+      <TR><TD PORT="trench_width" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="165" HEIGHT="16">trench_width</TD></TR></TABLE></TD><TD PORT="trench_width.type" ALIGN="LEFT">int2[5]</TD></TR>
+      <TR><TD PORT="mg_remark_civil_eng" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="165" HEIGHT="16">mg_remark_civil_eng</TD></TR></TABLE></TD><TD PORT="mg_remark_civil_eng.type" ALIGN="LEFT">text[2147483647]</TD></TR>
+      <TR><TD PORT="mg_signaling_band" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="../../images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="165" HEIGHT="16">mg_signaling_band</TD></TR></TABLE></TD><TD PORT="mg_signaling_band.type" ALIGN="LEFT">int4[10]</TD></TR>
+      <TR><TD ALIGN="LEFT" CELLPADDING="0" BGCOLOR="#ffffff" COLSPAN="4" ><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 16</TD><VR/><TD ALIGN="CENTER" BGCOLOR="#ffffff">  </TD><VR/><TD ALIGN="RIGHT" BGCOLOR="#ffffff">1 &gt;</TD></TR></TABLE></TD></TR>
     </TABLE>>
     URL="../../tables/pipe_section.html"
     target="_top"
@@ -148,6 +158,50 @@ digraph "oneDegreeRelationshipsDiagram" {
     URL="../../../tdh_vl/tables/pipe_section_insulation_kind.html"
     target="_top"
     tooltip="tdh_vl.pipe_section_insulation_kind"
+  ];
+  "tdh_vl.pipe_section_mg_diameter" [
+   label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="242" HEIGHT="16"><B>tdh_vl.pipe_section_mg_diameter</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
+      <TR><TD ALIGN="LEFT" CELLPADDING="0" BGCOLOR="#ffffff" COLSPAN="3" ><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><VR/><TD ALIGN="CENTER" BGCOLOR="#ffffff">0 rows</TD><VR/><TD ALIGN="RIGHT" BGCOLOR="#ffffff">1 &gt;</TD></TR></TABLE></TD></TR>
+    </TABLE>>
+    URL="../../../tdh_vl/tables/pipe_section_mg_diameter.html"
+    target="_top"
+    tooltip="tdh_vl.pipe_section_mg_diameter"
+  ];
+  "tdh_vl.pipe_section_mg_material" [
+   label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="237" HEIGHT="16"><B>tdh_vl.pipe_section_mg_material</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
+      <TR><TD ALIGN="LEFT" CELLPADDING="0" BGCOLOR="#ffffff" COLSPAN="3" ><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><VR/><TD ALIGN="CENTER" BGCOLOR="#ffffff">0 rows</TD><VR/><TD ALIGN="RIGHT" BGCOLOR="#ffffff">1 &gt;</TD></TR></TABLE></TD></TR>
+    </TABLE>>
+    URL="../../../tdh_vl/tables/pipe_section_mg_material.html"
+    target="_top"
+    tooltip="tdh_vl.pipe_section_mg_material"
+  ];
+  "tdh_vl.pipe_section_mg_signaling_band" [
+   label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="286" HEIGHT="16"><B>tdh_vl.pipe_section_mg_signaling_band</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
+      <TR><TD ALIGN="LEFT" CELLPADDING="0" BGCOLOR="#ffffff" COLSPAN="3" ><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><VR/><TD ALIGN="CENTER" BGCOLOR="#ffffff">0 rows</TD><VR/><TD ALIGN="RIGHT" BGCOLOR="#ffffff">1 &gt;</TD></TR></TABLE></TD></TR>
+    </TABLE>>
+    URL="../../../tdh_vl/tables/pipe_section_mg_signaling_band.html"
+    target="_top"
+    tooltip="tdh_vl.pipe_section_mg_signaling_band"
+  ];
+  "tdh_vl.pipe_section_mg_trench_type" [
+   label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="263" HEIGHT="16"><B>tdh_vl.pipe_section_mg_trench_type</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
+      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
+      <TR><TD ALIGN="LEFT" CELLPADDING="0" BGCOLOR="#ffffff" COLSPAN="3" ><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">  </TD><VR/><TD ALIGN="CENTER" BGCOLOR="#ffffff">0 rows</TD><VR/><TD ALIGN="RIGHT" BGCOLOR="#ffffff">1 &gt;</TD></TR></TABLE></TD></TR>
+    </TABLE>>
+    URL="../../../tdh_vl/tables/pipe_section_mg_trench_type.html"
+    target="_top"
+    tooltip="tdh_vl.pipe_section_mg_trench_type"
   ];
   "tdh_vl.pipe_section_pipe_type" [
    label=<

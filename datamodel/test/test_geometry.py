@@ -399,15 +399,15 @@ class TestGeometry(unittest.TestCase, DbTestBase):
 
     def test_pipe_point_geometry_sync_on_insert(self):
         # 1. altitude1 200 and no Z
-        # INSERT INTO tdh_app.vw_pipe_point (altitude1, situation3d_geometry) VALUES (200, ST_SetSRID(ST_MakePoint(2600000, 1200000, 'NaN'), 2056) );
+        # INSERT INTO tdh_app.vw_pipe_point (altitude1, geometry3d_geometry) VALUES (200, ST_SetSRID(ST_MakePoint(2600000, 1200000, 'NaN'), 2056) );
         row = {
             "altitude1": "200.000",
-            "situation3d_geometry": "01010000A0080800000000000020D6434100000000804F3241000000000000F87F",
+            "geometry3d_geometry": "01010000A0080800000000000020D6434100000000804F3241000000000000F87F",
         }
         expected_row = copy.deepcopy(row)
         # bottom_level 200 overwrites Z (NaN) results in: ST_SetSRID(ST_MakePoint(2600000, 1200000, 200), 2056)
         expected_row["bottom_level"] = "200.000"
-        expected_row["situation3d_geometry"] = (
+        expected_row["geometry3d_geometry"] = (
             "01010000A0080800000000000020D6434100000000804F32410000000000006940"
         )
         self.insert_check("vw_tdh_pipe_point", row, expected_row)

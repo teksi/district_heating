@@ -401,7 +401,7 @@ class TestGeometry(unittest.TestCase, DbTestBase):
         # 1. altitude1 200 and no Z
         # INSERT INTO tdh_app.vw_tdh_pipe_point (altitude1, geometry3d_geometry) VALUES (200, ST_SetSRID(ST_MakePoint(2600000, 1200000, 'NaN'), 2056) );
         row = {
-            "type": "pipe_point_normal", # added type, to not create hint
+            "type": "pipe_point_normal",  # added type, to not create hint
             "altitude1": "200.000",
             "geometry3d_geometry": "01010000A0080800000000000020D6434100000000804F3241000000000000F87F",
         }

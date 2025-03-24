@@ -49,7 +49,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
 
         , {pp_cols}
 
-        , ST_Force2D(geometry3d_geometry)::geometry(Point, {srid}) AS situation3d_geometry
+        # , geometry3d_geometry::geometry(PointZ, {srid}) AS situation3d_geometry
 
         , {pn_columns}
 
@@ -91,7 +91,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
                 # "_bottom_label",
                 # "_input_label",
                 # "_output_label",
-                "geometry3d_geometry",
+                # "geometry3d_geometry",
             ],
         ),
         pn_columns=select_columns(
@@ -174,7 +174,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
                 # "_bottom_label",
                 # "_input_label",
                 # "_output_label",
-                "geometry3d_geometry",
+                # "geometry3d_geometry",
             ],
         ),
         insert_pn=insert_command(
@@ -263,7 +263,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
             remove_pkey=False,
             indent=6,
             skip_columns=[
-                "geometry3d_geometry",
+                # "geometry3d_geometry",
                 "last_modification",
                 # "_label",
                 # "_cover_label",

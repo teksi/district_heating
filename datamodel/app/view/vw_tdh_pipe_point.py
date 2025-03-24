@@ -49,8 +49,6 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
 
         , {pp_cols}
 
-        # , geometry3d_geometry::geometry(PointZ, {srid}) AS situation3d_geometry
-
         , {pn_columns}
 
         , {pf_columns}

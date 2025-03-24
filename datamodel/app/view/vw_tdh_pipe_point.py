@@ -58,7 +58,7 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
         LEFT JOIN tdh_od.pipe_point_feed pf ON pf.obj_id = pp.obj_id;
 
     """.format(
-        srid=srid,
+        # srid=srid,
         extra_cols="\n    ".join(
             [
                 select_columns(

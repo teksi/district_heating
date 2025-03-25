@@ -11,6 +11,14 @@ on:
     paths:
       - project/**
       - '.github/workflows/project-translation.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - project/**
+      - '.github/workflows/project-translation.yml'
+  schedule:
+    - cron: "30 04 * * *"
   workflow_dispatch:
 
 

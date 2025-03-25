@@ -407,7 +407,7 @@ class TestGeometry(unittest.TestCase, DbTestBase):
         }
         expected_row = copy.deepcopy(row)
         # bottom_level 200 overwrites Z (NaN) results in: ST_SetSRID(ST_MakePoint(2600000, 1200000, 200), 2056)
-        expected_row["bottom_level"] = "200.000"
+        expected_row["altitude1"] = "200.000"
         expected_row["geometry3d_geometry"] = (
             "01010000A0080800000000000020D6434100000000804F32410000000000006940"
         )

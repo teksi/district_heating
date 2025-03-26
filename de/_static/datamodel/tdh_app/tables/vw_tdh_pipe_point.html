@@ -279,6 +279,23 @@
                                     <td></td>
                                 </tr>
                                 <tr>
+                                    <td><span id="geometry3d_geometry">geometry3d_geometry</span></td>
+                                    <td>geometry</td>
+                                    <td>2147483647</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
                                     <td><span id="horizontal_positioning">horizontal_positioning</span></td>
                                     <td>int4</td>
                                     <td>10</td>
@@ -333,23 +350,6 @@
                                     <td><span id="symbolori">symbolori</span></td>
                                     <td>numeric</td>
                                     <td>4,1</td>
-                                    <td title='nullable'>√</td>
-                                    <td title=''></td>
-                                    <td>null</td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                        </table>
-                                    </td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                        </table>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><span id="situation3d_geometry">situation3d_geometry</span></td>
-                                    <td>geometry</td>
-                                    <td>2147483647</td>
                                     <td title='nullable'>√</td>
                                     <td title=''></td>
                                     <td>null</td>
@@ -656,7 +656,7 @@
                             </div>
                         </div>
                         <div class="box-body">
-                            <textarea id="sql-script-codemirror" name="sql-script-codemirror" rows="" style="display: none;">SELECT&#10;        CASE&#10;            WHEN (pn.obj_id IS NOT NULL) THEN &#39;pipe_point_normal&#39;::text&#10;            WHEN (pf.obj_id IS NOT NULL) THEN &#39;pipe_point_feed&#39;::text&#10;            ELSE &#39;unknown&#39;::text&#10;        END AS pp_type,&#10;    pn.kind AS pn_kind,&#10;    pf.kind AS pf_kind,&#10;    pp.fk_owner,&#10;    pp.obj_id,&#10;    pp.altitude1,&#10;    pp.altitude2,&#10;    pp.elevation_determination,&#10;    pp.fk_dataowner,&#10;    pp.fk_provider,&#10;    pp.horizontal_positioning,&#10;    pp.last_modification,&#10;    pp.remark,&#10;    pp.symbolori,&#10;    (st_force2d(pp.geometry3d_geometry))::geometry(Point,2056) AS situation3d_geometry,&#10;    pn.armature_setting AS pn_armature_setting,&#10;    pn.material AS pn_material,&#10;    pf.aperture_value AS pf_aperture_value,&#10;    pf.category AS pf_category,&#10;    pf.flow_temperature AS pf_flow_temperature,&#10;    pf.heat_consumption AS pf_heat_consumption,&#10;    pf.heated_volume AS pf_heated_volume,&#10;    pf.power_output AS pf_power_output,&#10;    pf.power_output_installed AS pf_power_output_installed,&#10;    pf.power_output_ordered AS pf_power_output_ordered,&#10;    pf.pressure AS pf_pressure,&#10;    pf.q_subscribed AS pf_q_subscribed,&#10;    pf.return_flow_temperature AS pf_return_flow_temperature,&#10;    pf.year_of_commissioning AS pf_year_of_commissioning,&#10;    pf.year_of_reconstruction AS pf_year_of_reconstruction&#10;   FROM ((tdh_od.pipe_point pp&#10;     LEFT JOIN tdh_od.pipe_point_normal pn ON (((pn.obj_id)::text &#61; (pp.obj_id)::text)))&#10;     LEFT JOIN tdh_od.pipe_point_feed pf ON (((pf.obj_id)::text &#61; (pp.obj_id)::text)));</textarea>
+                            <textarea id="sql-script-codemirror" name="sql-script-codemirror" rows="" style="display: none;">SELECT&#10;        CASE&#10;            WHEN (pn.obj_id IS NOT NULL) THEN &#39;pipe_point_normal&#39;::text&#10;            WHEN (pf.obj_id IS NOT NULL) THEN &#39;pipe_point_feed&#39;::text&#10;            ELSE &#39;unknown&#39;::text&#10;        END AS pp_type,&#10;    pn.kind AS pn_kind,&#10;    pf.kind AS pf_kind,&#10;    pp.fk_owner,&#10;    pp.obj_id,&#10;    pp.altitude1,&#10;    pp.altitude2,&#10;    pp.elevation_determination,&#10;    pp.fk_dataowner,&#10;    pp.fk_provider,&#10;    pp.geometry3d_geometry,&#10;    pp.horizontal_positioning,&#10;    pp.last_modification,&#10;    pp.remark,&#10;    pp.symbolori,&#10;    pn.armature_setting AS pn_armature_setting,&#10;    pn.material AS pn_material,&#10;    pf.aperture_value AS pf_aperture_value,&#10;    pf.category AS pf_category,&#10;    pf.flow_temperature AS pf_flow_temperature,&#10;    pf.heat_consumption AS pf_heat_consumption,&#10;    pf.heated_volume AS pf_heated_volume,&#10;    pf.power_output AS pf_power_output,&#10;    pf.power_output_installed AS pf_power_output_installed,&#10;    pf.power_output_ordered AS pf_power_output_ordered,&#10;    pf.pressure AS pf_pressure,&#10;    pf.q_subscribed AS pf_q_subscribed,&#10;    pf.return_flow_temperature AS pf_return_flow_temperature,&#10;    pf.year_of_commissioning AS pf_year_of_commissioning,&#10;    pf.year_of_reconstruction AS pf_year_of_reconstruction&#10;   FROM ((tdh_od.pipe_point pp&#10;     LEFT JOIN tdh_od.pipe_point_normal pn ON (((pn.obj_id)::text &#61; (pp.obj_id)::text)))&#10;     LEFT JOIN tdh_od.pipe_point_feed pf ON (((pf.obj_id)::text &#61; (pp.obj_id)::text)));</textarea>
                             <div style="padding-top: 5px;"><hr></div>
                             <div class="box box-solid">
                                 <div class="box-header with-border">

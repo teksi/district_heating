@@ -107,12 +107,12 @@ Install QGIS
 Install the demo data
 ---------------------
 
-as described `here <https://tdh.github.io/docs/installation-guide/database-initialization.html#restore-demo-datamodel>`_
+as described `here <https://teksi.github.io/district_heating/installation-guide/database-initialization.html#restore-demo-datamodel>`_
 
 Install the demo project
 ------------------------
 
-* Download from https://github.com/TDH/tdh/releases/latest the tdh.zip
+* Download from https://github.com/teksi/district_heating/releases/latest the tdh.zip
 
 * Extract the file
 

@@ -23,7 +23,7 @@ class TestViews(unittest.TestCase, DbTestBase):
         row = {
             "remark": "no remark",
             "elevation_determination": 8100,
-            "pp:_type": "pipe_point_normal",
+            "pp_type": "pipe_point_normal",
             "situation3d_geometry": self.execute(
                 "ST_SetSRID(ST_GeomFromText('POINTZ(2600000 1200000 450.01)'), 2056)"
             ),

@@ -1,5 +1,5 @@
-import os
 import decimal
+import os
 import unittest
 
 try:

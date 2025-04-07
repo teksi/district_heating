@@ -1,5 +1,3 @@
-import copy
-import decimal
 import os
 import unittest
 
@@ -7,7 +5,6 @@ try:
     import psycopg
 except ImportError:
     import psycopg2 as psycopg
-    import psycopg2.extras as psycopg_extras
 
 from .utils import DEFAULT_PG_SERVICE, DbTestBase
 
@@ -34,7 +31,11 @@ class TestViews(unittest.TestCase, DbTestBase):
 
         obj_id = self.insert_check("vw_pipe_point", row)
 
-        row = {"remark": "remark added", "elevation_determination": 8101, "identifier": "test_vw_pipe_point"}
+        row = {
+            "remark": "remark added",
+            "elevation_determination": 8101,
+            "identifier": "test_vw_pipe_point",
+        }
 
         self.update_check("vw_reach", row, obj_id)
 

@@ -23,7 +23,7 @@ class TestViews(unittest.TestCase, DbTestBase):
         row = {
             "remark": "no remark",
             "elevation_determination": 8100,
-            "identifier": "20",
+            "pp:_type": "pipe_point_normal",
             "situation3d_geometry": self.execute(
                 "ST_SetSRID(ST_GeomFromText('POINTZ(2600000 1200000 450.01)'), 2056)"
             ),
@@ -34,7 +34,6 @@ class TestViews(unittest.TestCase, DbTestBase):
         row = {
             "remark": "remark added",
             "elevation_determination": 8101,
-            "identifier": "test_vw_tdh_pipe_point",
         }
 
         self.update_check("vw_tdh_pipe_point", row, obj_id)

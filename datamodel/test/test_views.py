@@ -36,7 +36,7 @@ class TestViews(unittest.TestCase, DbTestBase):
         row = {
             "remark": "remark added",
             "elevation_determination": 8101,
-            "altitude1": decimal.Decimal("450.01"),
+            "altitude1": decimal.Decimal("450.010"),
         }
 
         self.update_check("vw_tdh_pipe_point", row, obj_id)

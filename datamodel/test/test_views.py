@@ -19,7 +19,7 @@ class TestViews(unittest.TestCase, DbTestBase):
         pgservice = os.environ.get("PGSERVICE") or DEFAULT_PG_SERVICE
         cls.conn = psycopg.connect(f"service={pgservice}")
 
-    def test_vw_pipe_point(self):
+    def test_vw_tdh_pipe_point(self):
         row = {
             "remark": "no remark",
             "elevation_determination": 8100,
@@ -29,15 +29,15 @@ class TestViews(unittest.TestCase, DbTestBase):
             ),
         }
 
-        obj_id = self.insert_check("vw_pipe_point", row)
+        obj_id = self.insert_check("vw_tdh_pipe_point", row)
 
         row = {
             "remark": "remark added",
             "elevation_determination": 8101,
-            "identifier": "test_vw_pipe_point",
+            "identifier": "test_vw_tdh_pipe_point",
         }
 
-        self.update_check("vw_reach", row, obj_id)
+        self.update_check("vw_tdh_pipe_point", row, obj_id)
 
 
 if __name__ == "__main__":

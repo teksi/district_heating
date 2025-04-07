@@ -24,6 +24,7 @@ class TestViews(unittest.TestCase, DbTestBase):
             "remark": "no remark",
             "elevation_determination": 8100,
             "pp_type": "pipe_point_normal",
+            "altitude1": 450.01,
             "geometry3d_geometry": self.execute(
                 "ST_SetSRID(ST_GeomFromText('POINTZ(2600000 1200000 450.01)'), 2056)"
             ),

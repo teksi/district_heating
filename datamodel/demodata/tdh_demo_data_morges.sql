@@ -50,7 +50,7 @@ INSERT INTO tdh_od.structure (obj_id,name_number,horizontal_positioning,status,k
 INSERT INTO tdh_od.structure (obj_id,name_number,horizontal_positioning,status,kind,installation_year,structure_sur_plus_cover,upper_elevation,geometry3d_geometry)
 	VALUES ('ch24ztmgST000002','ch24ztmgST000002',8207,9469,8227,2023,372.2,3.2,'010A0000A0080800000100000001020000800D0000002CC5A6DF164843418C232507148F31410000000000000000B7C0BB341E48434161208402138F31410000000000000000110D71F01E484341770674E8128F31410000000000000000071A79FD1E4843412C9FDE5F148F314100000000000000004F15DDB51F484341EE45E21F298F314100000000000000004422E5C21F484341A4DE4C972A8F31410000000000000000E9D52F071F4843418FF85CB12A8F314100000000000000005EDA1AB217484341BBFBFDB52B8F31410000000000000000048E65F616484341A5150ED02B8F314100000000000000000E815DE916484341F07CA3582A8F31410000000000000000C685F930164843412DD69F98158F31410000000000000000D078F12316484341753D3521148F314100000000000000002CC5A6DF164843418C232507148F31410000000000000000');
 
-UPDATE tdh_od.structure SET fk_dataowner='ch24ztmgOG000001', fk_provider='ch24ztmgOG000001',fk_owner='ch24ztmgOG000001', network_area='STAP Morges';
+UPDATE tdh_od.structure SET fk_dataowner='ch20p3q400002292', fk_provider='ch20p3q400002292',fk_owner='ch20p3q400002292', network_area='STAP Morges';
 SELECT setval('tdh_od.seq_structure_oid', 3, true);
 
 /*---------------------------------------------------------------------------------------*/
@@ -80,7 +80,7 @@ INSERT INTO tdh_od.pipe_section (obj_id,name_number,horizontal_positioning,statu
 INSERT INTO tdh_od.pipe_section (obj_id,name_number,horizontal_positioning,status,function,pipe_type,fluent,insulation_kind,coating,mg_material,installation_year,mg_trench_type,mg_diameter,mg_signaling_band,geometry3d_geometry)
 	VALUES ('ch24ztmgPS000008','8',8008,9471,8021,8024,8027,8043,8051,9509,2023,9506,8085,9494,'01090000A00808000001000000010200008003000000AE47E1EA4048434133333373388F3141AE47E17A14447740B6F3FD144148434177BE9F1A378F3141AE47E17A144477408716D97E414843412FDD24C6368F3141AE47E17A14447740');
 
-UPDATE tdh_od.pipe_section SET fk_dataowner='ch24ztmgOG000001', fk_provider='ch24ztmgOG000001',fk_owner='ch24ztmgOG000001', remark='STAP Morges';
+UPDATE tdh_od.pipe_section SET fk_dataowner='ch20p3q400002292', fk_provider='ch20p3q400002292',fk_owner='ch20p3q400002292', remark='STAP Morges';
 UPDATE tdh_od.pipe_section SET coating=8046, length1=Round((ST_Length(geometry3d_geometry)*1000)), length2=Round((ST_Length(geometry3d_geometry)*1000));
 
 SELECT setval('tdh_od.seq_pipe_section_oid', 9, true);
@@ -92,7 +92,7 @@ SELECT setval('tdh_od.seq_pipe_section_oid', 9, true);
 INSERT INTO tdh_od.sia405cc_cable (obj_id,name_number,function,cable_type,horizontal_positioning,status,installation_year,sur_plus_cover,elevation_determination,depth,geometry3d_geometry)
 	VALUES ('ch24ztmgCB000001','1',9340,9344,9349,9365,2023,372.2,9361,125,'01090000A008080000010000000102000080050000005EBA493C1F4843416DE7FBA92A8F3141AE47E17A14447740A245B6531F4843416ABC74F32C8F3141AE47E17A14447740C74B37B91F484341A4703D4A2E8F3141AE47E17A1444774083C0CA1141484341A4703DEA388F3141AE47E17A144477408D976E42414843414E621058378F3141AE47E17A14447740');
 
-UPDATE tdh_od.sia405cc_cable SET fk_dataowner='ch24ztmgOG000001', fk_provider='ch24ztmgOG000001',fk_owner='ch24ztmgOG000001';
+UPDATE tdh_od.sia405cc_cable SET fk_dataowner='ch20p3q400002292', fk_provider='ch20p3q400002292',fk_owner='ch20p3q400002292';
 
 /*---------------------------------------------------------------------------------------*/
 /* AJOUT DES POINTS DE CONDUITES ()                                                      */
@@ -122,7 +122,7 @@ INSERT INTO tdh_od.pipe_point (obj_id,horizontal_positioning,elevation_determina
 INSERT INTO tdh_od.pipe_point (obj_id,horizontal_positioning,elevation_determination,altitude1,remark,geometry3d_geometry) VALUES ('ch24ztmgPN000019',8094,8102,372.25,535,'01010000A008080000A8C64BB7344843412B871699348F3141AE47E17A14447740');
 INSERT INTO tdh_od.pipe_point (obj_id,horizontal_positioning,elevation_determination,altitude1,remark,geometry3d_geometry) VALUES ('ch24ztmgPN000020',8094,8102,372.25,536,'01010000A0080800008D976EA2344843411F85EB71358F3141AE47E17A14447740');
 
-UPDATE tdh_od.pipe_point SET fk_dataowner='ch24ztmgOG000001', fk_provider='ch24ztmgOG000001',fk_owner='ch24ztmgOG000001';
+UPDATE tdh_od.pipe_point SET fk_dataowner='ch20p3q400002292', fk_provider='ch20p3q400002292',fk_owner='ch20p3q400002292';
 
 
 
@@ -167,7 +167,7 @@ INSERT INTO tdh_od.sia405cc_cable_point (obj_id,name_number,kind,horizontal_posi
 INSERT INTO tdh_od.sia405cc_cable_point (obj_id,name_number,kind,horizontal_positioning,altitude,elevation_determination,installation_year,geometry3d_geometry) VALUES ('ch24ztmgCI000004',551,9388,9392,372.25,9394,2023,'01010000A0080800005EBA493C1F4843416DE7FBA92A8F3141AE47E17A14447740');
 INSERT INTO tdh_od.sia405cc_cable_point (obj_id,name_number,kind,horizontal_positioning,altitude,elevation_determination,installation_year,geometry3d_geometry) VALUES ('ch24ztmgCI000005',554,9388,9392,372.25,9394,2023,'01010000A00808000083C0CA1141484341A4703DEA388F3141AE47E17A14447740');
 
-UPDATE tdh_od.sia405cc_cable_point SET fk_dataowner='ch24ztmgOG000001', fk_provider='ch24ztmgOG000001',fk_owner='ch24ztmgOG000001';
+UPDATE tdh_od.sia405cc_cable_point SET fk_dataowner='ch20p3q400002292', fk_provider='ch20p3q400002292',fk_owner='ch20p3q400002292';
 SELECT setval('tdh_od.seq_sia405cc_cable_point_oid', 6, true);
 
 /*---------------------------------------------------------------------------------------*/
@@ -176,5 +176,5 @@ SELECT setval('tdh_od.seq_sia405cc_cable_point_oid', 6, true);
 
 INSERT INTO tdh_od.trench (obj_id,name_number,horizontal_positioning,status,trench_type,trench_width,installation_year,embedding,control_system,cable_conduits,depth,geometry3d_geometry) VALUES ('ch24ztmgTR000001',1,8296,8301,8316,200,2023,8323,8327,8337,210,'010A0000A0080800000100000001090000800100000001020000800B0000004422E5C21F484341A4DE4C972A8F314100000000000000006021B2BC1E484341E33867BE2A8F31410000000000000000EE897BD61E484341E65BEE422D8F31410000000000000000529CB6691F48434157F622342F8F3141000000000000000042926872414843419CD3400C3A8F314100000000000000005A1CD8BE41484341EB2B4094378F31410000000000000000C01205C640484341B198E01B378F31410000000000000000C4EE2CB140484341AC0D3AC8378F314100000000000000003CFBB70820484341F1EA57602D8F314100000000000000005601F1D01F484341EE1CFBA32C8F314100000000000000004422E5C21F484341A4DE4C972A8F31410000000000000000');
 
-UPDATE tdh_od.trench SET fk_dataowner='ch24ztmgOG000001', fk_provider='ch24ztmgOG000001',fk_owner='ch24ztmgOG000001';
+UPDATE tdh_od.trench SET fk_dataowner='ch20p3q400002292', fk_provider='ch20p3q400002292',fk_owner='ch20p3q400002292';
 SELECT setval('tdh_od.seq_trench_oid', 2, true);

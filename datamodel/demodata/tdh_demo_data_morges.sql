@@ -24,11 +24,11 @@ SELECT setval('tdh_od.seq_sia405cc_cable_point_oid', 1, true);
 
 INSERT INTO tdh_od.organisation(
 obj_id, identifier, identifier_short, municipality_number, organisation_type, remark, status, uid, last_modification, fk_dataowner, fk_provider)
-VALUES ('ch24ztmgOG000001', 'Morges Energies SA', NULL, NULL, 8606, 'no official obj_id yet', 9047, 'CHE407479717', now() ,NULL ,NULL );
+VALUES ('ch20p3q400002292', 'Morges Energies SA', NULL, NULL, 8606, 'official VSA obj_id', 9047, 'CHE407479717', now() ,NULL ,NULL );
 
 INSERT INTO tdh_od.organisation(
 obj_id, identifier, identifier_short, municipality_number, organisation_type, remark, status, uid, last_modification, fk_dataowner, fk_provider)
-VALUES ('ch20p3q4000000xx', 'ThermorésÔ Nyon SA', NULL, NULL, 8606, 'no official obj_id yet', 9047, 'CHE465878702', now() ,NULL ,NULL );
+VALUES ('ch20p3q400002291', 'ThermorésÔ Nyon SA', NULL, NULL, 8606, 'official VSA obj_id', 9047, 'CHE465878702', now() ,NULL ,NULL );
 
 INSERT INTO tdh_od.organisation(
 obj_id, identifier, identifier_short, municipality_number, organisation_type, remark, status, uid, last_modification, fk_dataowner, fk_provider)
@@ -36,11 +36,11 @@ VALUES ('ch20p3q4000000xy', 'ThermorésÔ SA', NULL, NULL, 8606, 'no official ob
 
 INSERT INTO tdh_od.organisation(
 obj_id, identifier, identifier_short, municipality_number, organisation_type, remark, status, uid, last_modification, fk_dataowner, fk_provider)
-VALUES ('ch24ztmgOG000002', 'Morges', NULL, 5642, 8604, 'no official obj_id yet', 9047, NULL, now() ,NULL ,NULL );
+VALUES ('ch20p3q400002294', 'Morges', NULL, 5642, 8604, 'official VSA obj_id', 9047, NULL, now() ,NULL ,NULL );
 
 INSERT INTO tdh_od.organisation(
 obj_id, identifier, identifier_short, municipality_number, organisation_type, remark, status, uid, last_modification, fk_dataowner, fk_provider)
-VALUES ('ch20p3q4000000xz', 'Nyon', NULL, 5724, 8604, 'no official obj_id yet', 9047, NULL, now() ,NULL ,NULL );
+VALUES ('ch20p3q400002293', 'Nyon', NULL, 5724, 8604, 'official VSA obj_id', 9047, NULL, now() ,NULL ,NULL );
 
 /*---------------------------------------------------------------------------------------*/
 /* AJOUT DES STRUCTURES (station de pompage et chambre) */

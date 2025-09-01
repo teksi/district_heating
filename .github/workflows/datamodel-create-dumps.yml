@@ -26,7 +26,7 @@ jobs:
       COMPOSE_PROFILES: schemaspy
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Docker build
         run: docker compose up -d --build

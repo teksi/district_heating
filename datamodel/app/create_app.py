@@ -7,7 +7,7 @@ from pathlib import Path
 
 import psycopg
 import yaml
-from pirogue import MultipleInheritance, SingleInheritance
+from pirogue import MultipleInheritance #, SingleInheritance
 from pum import HookBase
 from triggers.set_defaults_and_triggers import set_defaults_and_triggers
 from view.vw_tdh_pipe_point import vw_tdh_pipe_point
@@ -83,7 +83,7 @@ class Hook(HookBase):
         self.simple_joins_yaml = self.parameters.get("simple_joins_yaml")
         self.multiple_inherintances = self.parameters.get("multiple_inherintances")
 
-        self.single_inherintances = self.load_yaml(self.cwd / "single_inherintances.yaml")
+        # self.single_inherintances = self.load_yaml(self.cwd / "single_inherintances.yaml")
 
         if self.app_modifications:
             for modification in self.app_modifications:
@@ -102,19 +102,19 @@ Running modification {modification.get('id')}
 
         # Defaults and Triggers
         # Has to be fired before view creation otherwise it won't work and will only fail in CI
-        set_defaults_and_triggers(self._connection, self.single_inherintances)
+        # set_defaults_and_triggers(self._connection, self.single_inherintances)
 
-        for key in self.single_inherintances:
-            logger.info(f"creating view vw_{key}")
-            SingleInheritance(
-                connection=self._connection,
-                parent_table="tdh_od." + self.single_inherintances[key],
-                child_table="tdh_od." + key,
-                view_name="vw_" + key,
-                view_schema="tdh_app",
-                pkey_default_value=True,
-                inner_defaults={"identifier": "obj_id"},
-            ).create()
+        # for key in self.single_inherintances:
+        #     logger.info(f"creating view vw_{key}")
+        #     SingleInheritance(
+        #         connection=self._connection,
+        #         parent_table="tdh_od." + self.single_inherintances[key],
+        #         child_table="tdh_od." + key,
+        #         view_name="vw_" + key,
+        #         view_schema="tdh_app",
+        #         pkey_default_value=True,
+        #         inner_defaults={"identifier": "obj_id"},
+        #     ).create()
 
         for key in self.multiple_inherintances:
             MultipleInheritance(

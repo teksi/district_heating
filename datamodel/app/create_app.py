@@ -78,7 +78,7 @@ class Hook(HookBase):
         #     if entry.get("active")
         # ]
 
-        # self.extra_definitions = self.parameters.get("extra_definitions")
+        self.extra_definitions = self.parameters.get("extra_definitions")
         # self.simple_joins_yaml = self.parameters.get("simple_joins_yaml")
         # self.multiple_inherintances = self.parameters.get("multiple_inherintances")
 
@@ -123,9 +123,9 @@ class Hook(HookBase):
         #         variables=variables_pirogue,
         #     ).create()
 
-        # for key, value in self.extra_definitions.items():
-        #     if value:
-        #         self.extra_definitions[key] = self.abspath / value
+        for key, value in self.extra_definitions.items():
+            if value:
+                self.extra_definitions[key] = self.abspath / value
 
         vw_tdh_pipe_point(
             connection=self._connection,

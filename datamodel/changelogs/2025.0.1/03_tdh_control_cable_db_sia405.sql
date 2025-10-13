@@ -219,4 +219,3 @@ ALTER TABLE tdh_od.sia405cc_cable ADD CONSTRAINT rel_od_sia405cc_cable_fk_datapr
 -- Indexes on identifiers
  CREATE UNIQUE INDEX in_od_sia405cc_cable_point_name_number ON tdh_od.sia405cc_cable_point USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
  CREATE UNIQUE INDEX in_od_sia405cc_cable_name_number ON tdh_od.sia405cc_cable USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
-

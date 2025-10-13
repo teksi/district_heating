@@ -103,5 +103,3 @@ ALTER TABLE tdh_od.sia405pt_protection_tube ADD CONSTRAINT rel_od_sia405pt_prote
 ------ Indexes on identifiers
 
  CREATE UNIQUE INDEX in_od_sia405pt_protection_tube_name_number ON tdh_od.sia405pt_protection_tube USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
-
-

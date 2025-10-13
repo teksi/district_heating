@@ -107,4 +107,3 @@ ALTER TABLE tdh_od.organisation ADD CONSTRAINT rel_od_organisation_fk_dataprovid
 ----- Indexes on identifiers
 
  CREATE UNIQUE INDEX in_od_organisation_identifier ON tdh_od.organisation USING btree (identifier ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
-

@@ -72,32 +72,32 @@ class Hook(HookBase):
         }
         self.execute("CREATE SCHEMA tdh_app;")
         self.run_sql_files_in_folder(self.cwd / "sql_functions")
-        self.app_modifications = [
-            entry
-            for entry in self.parameters.get("modification_repositories")
-            if entry.get("active")
-        ]
+        # self.app_modifications = [
+        #     entry
+        #     for entry in self.parameters.get("modification_repositories")
+        #     if entry.get("active")
+        # ]
 
-        self.extra_definitions = self.parameters.get("extra_definitions")
-        self.simple_joins_yaml = self.parameters.get("simple_joins_yaml")
+        # self.extra_definitions = self.parameters.get("extra_definitions")
+        # self.simple_joins_yaml = self.parameters.get("simple_joins_yaml")
         # self.multiple_inherintances = self.parameters.get("multiple_inherintances")
 
         # self.single_inherintances = self.load_yaml(self.cwd / "single_inherintances.yaml")
 
-        if self.app_modifications:
-            for modification in self.app_modifications:
-                logger.info(
-                    f"""*****
-Running modification {modification.get('id')}
-****
-                """
-                )
-                self.load_modification(
-                    modification_config=modification,
-                )
-        for entry in self.parameters.get("modification_repositories"):
-            if entry.get("reset_vl", False):
-                self.manage_vl(entry)
+#         if self.app_modifications:
+#             for modification in self.app_modifications:
+#                 logger.info(
+#                     f"""*****
+# Running modification {modification.get('id')}
+# ****
+#                 """
+#                 )
+#                 self.load_modification(
+#                     modification_config=modification,
+#                 )
+#         for entry in self.parameters.get("modification_repositories"):
+#             if entry.get("reset_vl", False):
+#                 self.manage_vl(entry)
 
         # Defaults and Triggers
         # Has to be fired before view creation otherwise it won't work and will only fail in CI
@@ -123,9 +123,9 @@ Running modification {modification.get('id')}
         #         variables=variables_pirogue,
         #     ).create()
 
-        for key, value in self.extra_definitions.items():
-            if value:
-                self.extra_definitions[key] = self.abspath / value
+        # for key, value in self.extra_definitions.items():
+        #     if value:
+        #         self.extra_definitions[key] = self.abspath / value
 
         vw_tdh_pipe_point(
             connection=self._connection,
@@ -193,9 +193,9 @@ Running modification {modification.get('id')}
                 if not self.simple_joins_yaml[key]:
                     self.simple_joins_yaml[key] = curr_dir / value
 
-            # for key, value in modification_config.get("multiple_inherintances", {}).items():
-            #     if self.multiple_inherintances[key]:
-            #         self.multiple_inherintances[key] = curr_dir / value
+            for key, value in modification_config.get("multiple_inherintances", {}).items():
+                if self.multiple_inherintances[key]:
+                    self.multiple_inherintances[key] = curr_dir / value
 
     def manage_vl(
         self,

@@ -1,0 +1,10 @@
+variables:
+  myVariable:
+    value: "Hello World"
+    type: literal
+  myNumber:
+    value: 0
+    type: literal
+
+sql_files:
+  - file: 001_demo.sql

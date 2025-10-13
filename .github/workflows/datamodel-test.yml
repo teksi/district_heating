@@ -56,7 +56,7 @@ jobs:
         if: failure()
         run: docker logs teksi-district_heating
 
-        
+
   static-tests:
     name: Run static tests on datamodel
     runs-on: ubuntu-24.04

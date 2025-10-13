@@ -81,7 +81,7 @@ class Hook(HookBase):
 
         self.extra_definitions = self.parameters.get("extra_definitions")
         self.simple_joins_yaml = self.parameters.get("simple_joins_yaml")
-        self.multiple_inherintances = self.parameters.get("multiple_inherintances")
+        # self.multiple_inherintances = self.parameters.get("multiple_inherintances")
 
         # self.single_inherintances = self.load_yaml(self.cwd / "single_inherintances.yaml")
 
@@ -116,13 +116,13 @@ Running modification {modification.get('id')}
         #         inner_defaults={"identifier": "obj_id"},
         #     ).create()
 
-        for key in self.multiple_inherintances:
-            MultipleInheritance(
-                connection=self._connection,
-                definition=self.load_yaml(self.abspath / self.multiple_inherintances[key]),
-                drop=True,
-                variables=variables_pirogue,
-            ).create()
+        # for key in self.multiple_inherintances:
+        #     MultipleInheritance(
+        #         connection=self._connection,
+        #         definition=self.load_yaml(self.abspath / self.multiple_inherintances[key]),
+        #         drop=True,
+        #         variables=variables_pirogue,
+        #     ).create()
 
         for key, value in self.extra_definitions.items():
             if value:
@@ -194,9 +194,9 @@ Running modification {modification.get('id')}
                 if not self.simple_joins_yaml[key]:
                     self.simple_joins_yaml[key] = curr_dir / value
 
-            for key, value in modification_config.get("multiple_inherintances", {}).items():
-                if self.multiple_inherintances[key]:
-                    self.multiple_inherintances[key] = curr_dir / value
+            # for key, value in modification_config.get("multiple_inherintances", {}).items():
+            #     if self.multiple_inherintances[key]:
+            #         self.multiple_inherintances[key] = curr_dir / value
 
     def manage_vl(
         self,

@@ -43,6 +43,10 @@ parameters:
     default: false
     description: load ci modification
 
+  - name: modification_yaml
+    type: path
+    description: yaml file with app modification definitions
+
   - name: lang_code
     type: text
     default: en

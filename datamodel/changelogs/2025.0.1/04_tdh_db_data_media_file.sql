@@ -1,4 +1,4 @@
-BEGIN;
+
 
 ------- This has to come after organisation creation otherwise constraints will fail.
 ------- Datamedia table using same structure as VSA KEK
@@ -134,4 +134,3 @@ ALTER TABLE tdh_od.file ADD CONSTRAINT rel_od_file_fk_dataprovider FOREIGN KEY (
  CREATE UNIQUE INDEX in_od_data_media_identifier ON tdh_od.data_media USING btree (identifier ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
  CREATE UNIQUE INDEX in_od_file_identifier ON tdh_od.file USING btree (identifier ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
 
- COMMIT;

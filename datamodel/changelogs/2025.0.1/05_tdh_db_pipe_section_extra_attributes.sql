@@ -1,5 +1,3 @@
-BEGIN;
-
 ------- Extra attributes on pipe_section based on discussion in https://github.com/teksi/district_heating/issues/54 for Morges (mg)
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
 ------ version 15.2.2025
@@ -43,5 +41,3 @@ ALTER TABLE tdh_vl.pipe_section_mg_signaling_band ADD CONSTRAINT pkey_tdh_vl_pip
  ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT fkey_vl_pipe_section_mg_signaling_band FOREIGN KEY (mg_signaling_band)
  REFERENCES tdh_vl.pipe_section_mg_signaling_band (code) MATCH SIMPLE
  ON UPDATE RESTRICT ON DELETE RESTRICT;
-
- COMMIT;

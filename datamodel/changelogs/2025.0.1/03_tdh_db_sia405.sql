@@ -2,7 +2,6 @@
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
 ------ version 13.02.2025 17:58:04
 ------ with 3D coordinates
-BEGIN;
 
 ---- 03_tdh_db_dss.sql ----------
 
@@ -854,4 +853,3 @@ ALTER TABLE tdh_od.trench_point ADD CONSTRAINT rel_od_trench_point_fk_dataprovid
  CREATE UNIQUE INDEX in_od_trench_name_number ON tdh_od.trench USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
  CREATE UNIQUE INDEX in_od_trench_point_name_number ON tdh_od.trench_point USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
 
-COMMIT;

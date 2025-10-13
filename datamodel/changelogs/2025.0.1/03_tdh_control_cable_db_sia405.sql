@@ -3,9 +3,8 @@
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
 ------ version 30.05.2024 19:47:23
 ------ with 3D coordinates
-BEGIN;
 
--------
+
 CREATE TABLE tdh_od.sia405cc_cable_point
 (
    obj_id varchar(16) NOT NULL,
@@ -210,16 +209,14 @@ ALTER TABLE tdh_vl.sia405cc_cable_elevation_determination ADD CONSTRAINT pkey_td
  ALTER TABLE tdh_od.sia405cc_cable ADD CONSTRAINT fkey_vl_sia405cc_cable_elevation_determination FOREIGN KEY (elevation_determination)
  REFERENCES tdh_vl.sia405cc_cable_elevation_determination (code) MATCH SIMPLE
  ON UPDATE RESTRICT ON DELETE RESTRICT;
---------- Relations to class organisation for dataowner and provider (new 3.11.2014);
 
+-- Relations to class organisation for dataowner and provider (new 3.11.2014);
 ALTER TABLE tdh_od.sia405cc_cable_point ADD CONSTRAINT rel_od_sia405cc_cable_point_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id) DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE tdh_od.sia405cc_cable_point ADD CONSTRAINT rel_od_sia405cc_cable_point_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id) DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE tdh_od.sia405cc_cable ADD CONSTRAINT rel_od_sia405cc_cable_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id) DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE tdh_od.sia405cc_cable ADD CONSTRAINT rel_od_sia405cc_cable_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id) DEFERRABLE INITIALLY DEFERRED;
 
------- Indexes on identifiers
-
+-- Indexes on identifiers
  CREATE UNIQUE INDEX in_od_sia405cc_cable_point_name_number ON tdh_od.sia405cc_cable_point USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
  CREATE UNIQUE INDEX in_od_sia405cc_cable_name_number ON tdh_od.sia405cc_cable USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
 
-COMMIT;

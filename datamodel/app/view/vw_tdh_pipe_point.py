@@ -6,13 +6,10 @@ import argparse
 import os
 
 import psycopg
-import psycopg.sql
 from pirogue.utils import insert_command, select_columns, update_command
 from yaml import safe_load
 
-from .utils.extra_definition_utils import (  # extra_joins,; insert_extra,; update_extra,
-    extra_cols,
-)
+from .utils.extra_definition_utils import extra_cols
 
 
 def vw_tdh_pipe_point(connection: psycopg.Connection, extra_definition: dict = None):
@@ -52,7 +49,6 @@ def vw_tdh_pipe_point(connection: psycopg.Connection, extra_definition: dict = N
         FROM tdh_od.pipe_point pp
         LEFT JOIN tdh_od.pipe_point_normal pn ON pn.obj_id = pp.obj_id
         LEFT JOIN tdh_od.pipe_point_feed pf ON pf.obj_id = pp.obj_id;
-
     """.format(
         extra_cols=(
             ""

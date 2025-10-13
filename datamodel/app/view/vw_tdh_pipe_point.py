@@ -19,7 +19,7 @@ from yaml import safe_load
 
 
 def vw_tdh_pipe_point(
-        connection: psycopg.Connection, srid: psycopg.sql.Literal, extra_definition: dict = None
+    connection: psycopg.Connection, srid: psycopg.sql.Literal, extra_definition: dict = None
 ):
     """
     Creates tdh_pipe_point view
@@ -340,6 +340,4 @@ if __name__ == "__main__":
     srid = psycopg.sql.Literal(args.srid)
     extra_definition = safe_load(open(args.extra_definition)) if args.extra_definition else {}
     with psycopg.connect(f"service={pg_service}") as conn:
-        vw_tdh_pipe_point(
-            connection=conn, srid=srid, extra_definition=extra_definition
-        )
+        vw_tdh_pipe_point(connection=conn, srid=srid, extra_definition=extra_definition)

@@ -7,7 +7,7 @@ from pathlib import Path
 
 import psycopg
 import yaml
-from pirogue import MultipleInheritance  # , SingleInheritance
+# from pirogue import MultipleInheritance, SingleInheritance
 from pum import HookBase
 from view.vw_tdh_pipe_point import vw_tdh_pipe_point
 
@@ -45,9 +45,9 @@ class Hook(HookBase):
 
         self.abspath = self.cwd if not modification_yaml else ""
 
-        variables_pirogue = {
-            "SRID": psycopg.sql.SQL(f"{SRID}")
-        }  # when dropping psycopg2 support, we can use the SRID var directly
+        # variables_pirogue = {
+        #     "SRID": psycopg.sql.SQL(f"{SRID}")
+        # }  # when dropping psycopg2 support, we can use the SRID var directly
         self.variables_sql = {
             "SRID": {
                 "value": SRID,

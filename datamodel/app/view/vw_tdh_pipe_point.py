@@ -10,12 +10,12 @@ import psycopg.sql
 from pirogue.utils import insert_command, select_columns, table_parts, update_command
 from yaml import safe_load
 
-# from .utils.extra_definition_utils import (
-#     extra_cols,
+from .utils.extra_definition_utils import (
+    extra_cols,
 #     extra_joins,
 #     insert_extra,
 #     update_extra,
-# )
+)
 
 
 def vw_tdh_pipe_point(
@@ -59,23 +59,13 @@ def vw_tdh_pipe_point(
         LEFT JOIN tdh_od.pipe_point_feed pf ON pf.obj_id = pp.obj_id;
 
     """.format(
-        extra_cols="\n    ".join(
-            [
-                select_columns(
-                    pg_cur=cursor,
-                    table_schema=table_parts(table_def["table"])[0],
-                    table_name=table_parts(table_def["table"])[1],
-                    skip_columns=table_def.get("skip_columns", []),
-                    remap_columns=table_def.get("remap_columns", {}),
-                    prefix=table_def.get("prefix", None),
-                    table_alias=table_def.get("alias", None),
-                )
-                + ","
-                for table_def in extra_definition.get("joins", {}).values()
-            ]
+        extra_cols=(
+            ""
+            if not extra_definition
+            else extra_cols(connection=connection, extra_definition=extra_definition)
         ),
         pp_cols=select_columns(
-            pg_cur=cursor,
+            connection=connection,
             table_schema="tdh_od",
             table_name="pipe_point",
             table_alias="pp",
@@ -93,7 +83,7 @@ def vw_tdh_pipe_point(
             ],
         ),
         pn_columns=select_columns(
-            pg_cur=cursor,
+            connection=connection,
             table_schema="tdh_od",
             table_name="pipe_point_normal",
             table_alias="pn",
@@ -104,7 +94,7 @@ def vw_tdh_pipe_point(
             remap_columns={},
         ),
         pf_columns=select_columns(
-            pg_cur=cursor,
+            connection=connection,
             table_schema="tdh_od",
             table_name="pipe_point_feed",
             table_alias="pf",
@@ -160,7 +150,7 @@ def vw_tdh_pipe_point(
       FOR EACH ROW EXECUTE PROCEDURE tdh_app.ft_vw_tdh_pipe_point_INSERT();
     """.format(
         insert_pp=insert_command(
-            pg_cur=cursor,
+            connection=connection,
             table_schema="tdh_od",
             table_name="pipe_point",
             table_alias="pp",
@@ -176,7 +166,7 @@ def vw_tdh_pipe_point(
             ],
         ),
         insert_pn=insert_command(
-            pg_cur=cursor,
+            connection=connection,
             table_schema="tdh_od",
             table_name="pipe_point_normal",
             table_alias="pn",
@@ -189,7 +179,7 @@ def vw_tdh_pipe_point(
             remap_columns={"obj_id": "obj_id"},
         ),
         insert_pf=insert_command(
-            pg_cur=cursor,
+            connection=connection,
             table_schema="tdh_od",
             table_name="pipe_point_feed",
             table_alias="pf",
@@ -253,7 +243,7 @@ def vw_tdh_pipe_point(
         literal_delete_on_pp_change="'DELETE FROM tdh_od.%I WHERE obj_id = %L',OLD.pp_type,OLD.obj_id",
         literal_insert_on_pp_change="'INSERT INTO tdh_od.%I(obj_id) VALUES (%L)',NEW.pp_type,OLD.obj_id",
         update_pp=update_command(
-            pg_cur=cursor,
+            connection=connection,
             table_schema="tdh_od",
             table_name="pipe_point",
             table_alias="pp",
@@ -271,7 +261,7 @@ def vw_tdh_pipe_point(
             update_values={},
         ),
         update_pf=update_command(
-            pg_cur=cursor,
+            connection=connection,
             table_schema="tdh_od",
             table_name="pipe_point_feed",
             table_alias="pf",
@@ -284,7 +274,7 @@ def vw_tdh_pipe_point(
             remap_columns={"obj_id": "obj_id"},
         ),
         update_pn=update_command(
-            pg_cur=cursor,
+            connection=connection,
             table_schema="tdh_od",
             table_name="pipe_point_normal",
             table_alias="pn",

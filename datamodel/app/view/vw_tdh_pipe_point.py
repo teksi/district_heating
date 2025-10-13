@@ -5,29 +5,31 @@
 import argparse
 import os
 
-try:
-    import psycopg
-except ImportError:
-    import psycopg2 as psycopg
-
+import psycopg
+import psycopg.sql
 from pirogue.utils import insert_command, select_columns, table_parts, update_command
 from yaml import safe_load
 
+# from .utils.extra_definition_utils import (
+#     extra_cols,
+#     extra_joins,
+#     insert_extra,
+#     update_extra,
+# )
 
-def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict = None):
+
+def vw_tdh_pipe_point(
+        connection: psycopg.Connection, srid: psycopg.sql.Literal, extra_definition: dict = None
+):
     """
     Creates tdh_pipe_point view
     :param srid: EPSG code for geometries
     :param pg_service: the PostgreSQL service name
     :param extra_definition: a dictionary for additional read-only columns
     """
-    if not pg_service:
-        pg_service = os.getenv("PGSERVICE")
-    assert pg_service
     extra_definition = extra_definition or {}
 
-    conn = psycopg.connect(f"service={pg_service}")
-    cursor = conn.cursor()
+    cursor = connection.cursor()
 
     view_sql = """
     DROP VIEW IF EXISTS tdh_app.vw_tdh_pipe_point;
@@ -322,14 +324,11 @@ def vw_tdh_pipe_point(srid: int, pg_service: str = None, extra_definition: dict 
     """
     cursor.execute(extras)
 
-    conn.commit()
-    conn.close()
-
 
 if __name__ == "__main__":
     # create the top-level parser
     parser = argparse.ArgumentParser()
-    parser.add_argument("-s", "--srid", help="EPSG code for SRID")
+    parser.add_argument("-s", "--srid", help="EPSG code for SRID", default=2056)
     parser.add_argument(
         "-e",
         "--extra-definition",
@@ -337,7 +336,10 @@ if __name__ == "__main__":
     )
     parser.add_argument("-p", "--pg_service", help="the PostgreSQL service name")
     args = parser.parse_args()
-    srid = args.srid or os.getenv("SRID")
     pg_service = args.pg_service or os.getenv("PGSERVICE")
+    srid = psycopg.sql.Literal(args.srid)
     extra_definition = safe_load(open(args.extra_definition)) if args.extra_definition else {}
-    vw_tdh_pipe_point(srid=srid, pg_service=pg_service, extra_definition=extra_definition)
+    with psycopg.connect(f"service={pg_service}") as conn:
+        vw_tdh_pipe_point(
+            connection=conn, srid=srid, extra_definition=extra_definition
+        )

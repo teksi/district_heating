@@ -19,12 +19,11 @@ from yaml import safe_load
 
 
 def vw_tdh_pipe_point(
-        connection: psycopg.Connection, srid: psycopg.sql.Literal, extra_definition: dict = None
+        connection: psycopg.Connection, extra_definition: dict = None
 ):
     """
     Creates tdh_pipe_point view
-    :param srid: EPSG code for geometries
-    :param pg_service: the PostgreSQL service name
+    :param connection: a psycopg connection object
     :param extra_definition: a dictionary for additional read-only columns
     """
     extra_definition = extra_definition or {}
@@ -60,7 +59,6 @@ def vw_tdh_pipe_point(
         LEFT JOIN tdh_od.pipe_point_feed pf ON pf.obj_id = pp.obj_id;
 
     """.format(
-        # srid=srid,
         extra_cols="\n    ".join(
             [
                 select_columns(
@@ -252,7 +250,6 @@ def vw_tdh_pipe_point(
     CREATE TRIGGER vw_tdh_pipe_point_UPDATE INSTEAD OF UPDATE ON tdh_app.vw_tdh_pipe_point
       FOR EACH ROW EXECUTE PROCEDURE tdh_app.ft_vw_tdh_pipe_point_UPDATE();
     """.format(
-        # srid=srid,
         literal_delete_on_pp_change="'DELETE FROM tdh_od.%I WHERE obj_id = %L',OLD.pp_type,OLD.obj_id",
         literal_insert_on_pp_change="'INSERT INTO tdh_od.%I(obj_id) VALUES (%L)',NEW.pp_type,OLD.obj_id",
         update_pp=update_command(
@@ -328,7 +325,6 @@ def vw_tdh_pipe_point(
 if __name__ == "__main__":
     # create the top-level parser
     parser = argparse.ArgumentParser()
-    parser.add_argument("-s", "--srid", help="EPSG code for SRID", default=2056)
     parser.add_argument(
         "-e",
         "--extra-definition",
@@ -337,9 +333,10 @@ if __name__ == "__main__":
     parser.add_argument("-p", "--pg_service", help="the PostgreSQL service name")
     args = parser.parse_args()
     pg_service = args.pg_service or os.getenv("PGSERVICE")
-    srid = psycopg.sql.Literal(args.srid)
-    extra_definition = safe_load(open(args.extra_definition)) if args.extra_definition else {}
+    extra_definition = {}
+    if args.extra_definition:
+        with open(args.extra_definition) as f:
+            extra_definition = safe_load(f)
     with psycopg.connect(f"service={pg_service}") as conn:
-        vw_tdh_pipe_point(
-            connection=conn, srid=srid, extra_definition=extra_definition
-        )
+        vw_tdh_pipe_point(connection=conn, extra_definition=extra_definition)
+

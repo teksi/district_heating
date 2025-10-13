@@ -2,6 +2,9 @@ base_configurations:
    - lang_code: en
    - SRID: 2056
 
+extra_definitions:
+  vw_tdh_pipe_point: null
+
 modification_repositories:
   - id: ci
     active: false

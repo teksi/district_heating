@@ -18,9 +18,7 @@ from .utils.extra_definition_utils import (
 )
 
 
-def vw_tdh_pipe_point(
-        connection: psycopg.Connection, extra_definition: dict = None
-):
+def vw_tdh_pipe_point(connection: psycopg.Connection, extra_definition: dict = None):
     """
     Creates tdh_pipe_point view
     :param connection: a psycopg connection object
@@ -329,4 +327,3 @@ if __name__ == "__main__":
             extra_definition = safe_load(f)
     with psycopg.connect(f"service={pg_service}") as conn:
         vw_tdh_pipe_point(connection=conn, extra_definition=extra_definition)
-

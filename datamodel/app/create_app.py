@@ -84,20 +84,20 @@ class Hook(HookBase):
 
         # self.single_inherintances = self.load_yaml(self.cwd / "single_inherintances.yaml")
 
-#         if self.app_modifications:
-#             for modification in self.app_modifications:
-#                 logger.info(
-#                     f"""*****
-# Running modification {modification.get('id')}
-# ****
-#                 """
-#                 )
-#                 self.load_modification(
-#                     modification_config=modification,
-#                 )
-#         for entry in self.parameters.get("modification_repositories"):
-#             if entry.get("reset_vl", False):
-#                 self.manage_vl(entry)
+        #         if self.app_modifications:
+        #             for modification in self.app_modifications:
+        #                 logger.info(
+        #                     f"""*****
+        # Running modification {modification.get('id')}
+        # ****
+        #                 """
+        #                 )
+        #                 self.load_modification(
+        #                     modification_config=modification,
+        #                 )
+        #         for entry in self.parameters.get("modification_repositories"):
+        #             if entry.get("reset_vl", False):
+        #                 self.manage_vl(entry)
 
         # Defaults and Triggers
         # Has to be fired before view creation otherwise it won't work and will only fail in CI

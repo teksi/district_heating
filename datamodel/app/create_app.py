@@ -7,8 +7,7 @@ from pathlib import Path
 
 import psycopg
 import yaml
-
-from pirogue import SingleInheritance #, MultipleInheritance
+from pirogue import SingleInheritance  # , MultipleInheritance
 from pum import HookBase
 from triggers.set_defaults_and_triggers import set_defaults_and_triggers
 from view.vw_tdh_pipe_point import vw_tdh_pipe_point

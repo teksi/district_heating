@@ -36,6 +36,7 @@ jobs:
     env:
       TX_TOKEN: ${{ secrets.TX_TOKEN }}
       COMPOSE_PROFILES: qgis
+      QGIS_TEST_VERSION: '3.44'
 
     steps:
       - name: Checkout code

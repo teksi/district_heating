@@ -21,8 +21,8 @@
 				<OBJ_ID>ch000000ST000001</OBJ_ID>
 				<Metaattribute>
 					<SIA405_Base_LV95.Metaattribute>
-						<Datenherr>ch20p3q400001497</Datenherr>
-						<Datenlieferant>ch20p3q400001497</Datenlieferant>
+						<Datenherr>ch20p3q400002294</Datenherr>
+						<Datenlieferant>ch20p3q400002292</Datenlieferant>
 						<Letzte_Aenderung>20240506</Letzte_Aenderung>
 					</SIA405_Base_LV95.Metaattribute>
 				</Metaattribute>
@@ -32,8 +32,8 @@
 				<Netzgebiet>Test</Netzgebiet>
 				<Art>Spezialbauwerk</Art>
 				<Bauwerkueberdeckung>1.40</Bauwerkueberdeckung>
-				<Eigentuemer>ch20p3q400001497</Eigentuemer>
-				<Bauunternehmung>ch20p3q400001497</Bauunternehmung>
+				<Eigentuemer>ch20p3q400002294</Eigentuemer>
+				<Bauunternehmung>ch20p3q400002292</Bauunternehmung>
 				<Schemahinweis>Schemahinweis einfügen</Schemahinweis>
 				<Letzter_Unterhalt>20240506</Letzter_Unterhalt>
 				<Dokumentation>Testdokumentation</Dokumentation>
@@ -45,14 +45,11 @@
 				<OBJ_ID>ch000000TR000001</OBJ_ID>
 				<Metaattribute>
 					<SIA405_Base_LV95.Metaattribute>
-						<Datenherr>ch20p3q400001497</Datenherr>
-						<Datenlieferant>ch20p3q400001497</Datenlieferant>
+						<Datenherr>ch20p3q400002294</Datenherr>
+						<Datenlieferant>ch20p3q400002292</Datenlieferant>
 						<Letzte_Aenderung>20240506</Letzte_Aenderung>
 					</SIA405_Base_LV95.Metaattribute>
 				</Metaattribute>
-				<!-- <Letzte_Aenderung>20240506</Letzte_Aenderung>
-				<DatenherrRef REF="ch20p3q400001497"/>
-				<DatenlieferantRef REF="ch20p3q400001497"/> -->
 				<Name_Nummer>ch000000RE000001</Name_Nummer>
 				<Geometrie>
 					<SURFACE>
@@ -87,8 +84,8 @@
 				<Trassetyp>begehbarer_Kanal</Trassetyp>
 				<Trassebreite>2400</Trassebreite>
 				<Einbaujahr>1976</Einbaujahr>
-				<Eigentuemer>ch20p3q400001497</Eigentuemer>
-				<Bauunternehmung>ch20p3q400001497</Bauunternehmung>
+				<Eigentuemer>ch20p3q400002294</Eigentuemer>
+				<Bauunternehmung>ch20p3q400002292</Bauunternehmung>
 				<Reparatur>20100506</Reparatur>
 				<Dokumentation>Testdokumentation</Dokumentation>
 				<Auftrag>002</Auftrag>
@@ -98,14 +95,11 @@
 				<OBJ_ID>ch000000PS000001</OBJ_ID>
 				<Metaattribute>
 					<SIA405_Base_LV95.Metaattribute>
-						<Datenherr>ch20p3q400001497</Datenherr>
-						<Datenlieferant>ch20p3q400001497</Datenlieferant>
+						<Datenherr>ch20p3q400002294</Datenherr>
+						<Datenlieferant>ch20p3q400002292</Datenlieferant>
 						<Letzte_Aenderung>20240506</Letzte_Aenderung>
 					</SIA405_Base_LV95.Metaattribute>
 				</Metaattribute>
-				<!-- 				<Letzte_Aenderung>20240506</Letzte_Aenderung>
-				<DatenherrRef REF="ch20p3q400001497"/>
-				<DatenlieferantRef REF="ch20p3q400001497"/> -->
 				<Name_Nummer>PS1</Name_Nummer>
 				<Geometrie>
 					<POLYLINE>
@@ -134,8 +128,8 @@
 				<Rohrfabrikat>Herstellername</Rohrfabrikat> <!-- MANDATORY TEXT*40; -->
 				<Rohrqualitaet>Stahl_37</Rohrqualitaet>
 				<Einbaujahr>1990</Einbaujahr>
-				<Eigentuemer>ch20p3q400001497</Eigentuemer>
-				<Rohrltg_unternehmung>ch20p3q400001497</Rohrltg_unternehmung>
+				<Eigentuemer>ch20p3q400002294</Eigentuemer>
+				<Rohrltg_unternehmung>ch20p3q400002292</Rohrltg_unternehmung>
 				<Dokumentation>Testdokumentation</Dokumentation>
 				<Auftrag>003</Auftrag>
 				<Bemerkung>Test Leitungsabschnitt</Bemerkung>
@@ -144,14 +138,11 @@
 				<OBJ_ID>ch000000PN000001</OBJ_ID>
 				<Metaattribute>
 					<SIA405_Base_LV95.Metaattribute>
-						<Datenherr>ch20p3q400001497</Datenherr>
-						<Datenlieferant>ch20p3q400001497</Datenlieferant>
+						<Datenherr>ch20p3q400002294</Datenherr>
+						<Datenlieferant>ch20p3q400002292</Datenlieferant>
 						<Letzte_Aenderung>20240506</Letzte_Aenderung>
 					</SIA405_Base_LV95.Metaattribute>
 				</Metaattribute>
-				<!-- 				<Letzte_Aenderung>20240506</Letzte_Aenderung>
-				<DatenherrRef REF="ch20p3q400001497"/>
-				<DatenlieferantRef REF="ch20p3q400001497"/> -->
 				<Geometrie>
 					<COORD>
 						<C1>2745874.445</C1>
@@ -163,7 +154,7 @@
 				<Hoehe1>447.510</Hoehe1>
 				<Hoehe1>447.200</Hoehe1>
 				<Hoehenbestimmung>genau</Hoehenbestimmung>
-				<Eigentuemer>ch20p3q400001497</Eigentuemer>
+				<Eigentuemer>ch20p3q400002294</Eigentuemer>
 				<Bemerkung>Test Leitungspunkt_normal</Bemerkung>
 				<Art>Armaturen.Leitungspunkt.Geometriepunkt</Art>
 			</SIA405_FERNWAERME_2015_LV95.SIA405_Fernwaerme.Leitungspunkt_normal>
@@ -171,14 +162,11 @@
 				<OBJ_ID>ch000000PF000002</OBJ_ID>
 				<Metaattribute>
 					<SIA405_Base_LV95.Metaattribute>
-						<Datenherr>ch20p3q400001497</Datenherr>
-						<Datenlieferant>ch20p3q400001497</Datenlieferant>
+						<Datenherr>ch20p3q400002294</Datenherr>
+						<Datenlieferant>ch20p3q400002292</Datenlieferant>
 						<Letzte_Aenderung>20240506</Letzte_Aenderung>
 					</SIA405_Base_LV95.Metaattribute>
 				</Metaattribute>
-				<!-- 				<Letzte_Aenderung>20240506</Letzte_Aenderung>
-				<DatenherrRef REF="ch20p3q400001497"/>
-				<DatenlieferantRef REF="ch20p3q400001497"/> -->
 				<Geometrie>
 					<COORD>
 						<C1>2745874.445</C1>
@@ -190,7 +178,7 @@
 				<Hoehe1>447.510</Hoehe1>
 				<Hoehe1>447.200</Hoehe1>
 				<Hoehenbestimmung>genau</Hoehenbestimmung>
-				<Eigentuemer>ch20p3q400001497</Eigentuemer>
+				<Eigentuemer>ch20p3q400002294</Eigentuemer>
 				<Bemerkung>Test Leitungspunkt_normal</Bemerkung>
 				<Art>Netzeinspeisung</Art>
 				<Leistung_abonniert>2.3</Leistung_abonniert>

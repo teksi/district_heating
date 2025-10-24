@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<database name="tdh" schema="tdh_app" type="PostgreSQL - 14.13 (Debian 14.13-1.pgdg110+1)">
+<database name="tdh" schema="tdh_app" type="PostgreSQL - 16.10">
    <tables>
       <table name="sys_dictionary_value_list" numRows="0" remarks="" schema="tdh_app" type="VIEW" viewSql=" SELECT p.relname AS vl_name,&#10;    vl.code,&#10;    vl.vsacode,&#10;    vl.value_en,&#10;    vl.value_de,&#10;    vl.value_fr,&#10;    vl.value_it,&#10;    vl.value_ro,&#10;    vl.abbr_en,&#10;    vl.abbr_de,&#10;    vl.abbr_fr,&#10;    vl.abbr_it,&#10;    vl.abbr_ro,&#10;    vl.active&#10;   FROM tdh_vl.value_list_base vl,&#10;    pg_class p&#10;  WHERE (vl.tableoid = p.oid);">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="vl_name" nullable="true" remarks="" size="2147483647" type="name" typeCode="12"/>
@@ -114,6 +114,13 @@
             <parameter mode="IN" name="action_name" type="text"/>
          </parameters>
       </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="base36_to_int(base36_str text)" returnType="bigint" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
+         <parameters>
+            <parameter mode="IN" name="base36_str" type="text"/>
+         </parameters>
+      </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="check_all_nulls(rec record, prefix character varying, ignored_postfix text[] DEFAULT ARRAY['obj_id'::text, 'identifier'::text])" returnType="boolean" securityType="INVOKER" type="FUNCTION">
          <comment/>
          <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
@@ -213,6 +220,14 @@
          <parameters>
             <parameter mode="IN" name="schema_name" type="text"/>
             <parameter mode="IN" name="table_name" type="text"/>
+         </parameters>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="generate_oid_postfix(_schema text, _table_name text)" returnType="character varying" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="plpgsql"><![CDATA[Redacted, use --include-routine-definition]]></definition>
+         <parameters>
+            <parameter mode="IN" name="_schema" type="text"/>
+            <parameter mode="IN" name="_table_name" type="text"/>
          </parameters>
       </routine>
       <routine dataAccess="MODIFIES" deterministic="false" name="get_default_values(field_name text)" returnType="character varying" securityType="DEFINER" type="FUNCTION">

@@ -175,15 +175,6 @@
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td><a href="routines/check_all_nulls_rec_record__pre_50854b03.html">check_all_nulls(rec record, prefix character varying, ignored_postfix text[] DEFAULT ARRAY[&#39;obj_id&#39;::text, &#39;identifier&#39;::text])</a></td>
-                                        <td>FUNCTION</td>
-                                        <td>plpgsql</td>
-                                        <td>false</td>
-                                        <td>boolean</td>
-                                        <td>INVOKER</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
                                         <td><a href="routines/alter_modification_triggers_act_51018b9d.html">alter_modification_triggers(action_name text)</a></td>
                                         <td>FUNCTION</td>
                                         <td>plpgsql</td>
@@ -193,11 +184,29 @@
                                         <td></td>
                                     </tr>
                                     <tr>
+                                        <td><a href="routines/check_all_nulls_rec_record__pre_50854b03.html">check_all_nulls(rec record, prefix character varying, ignored_postfix text[] DEFAULT ARRAY[&#39;obj_id&#39;::text, &#39;identifier&#39;::text])</a></td>
+                                        <td>FUNCTION</td>
+                                        <td>plpgsql</td>
+                                        <td>false</td>
+                                        <td>boolean</td>
+                                        <td>INVOKER</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
                                         <td><a href="routines/ft_vw_pipe_point_normal_update__92adc7ef.html">ft_vw_pipe_point_normal_update()</a></td>
                                         <td>FUNCTION</td>
                                         <td>plpgsql</td>
                                         <td>false</td>
                                         <td>trigger</td>
+                                        <td>INVOKER</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="routines/generate_oid_postfix__schema_te_6c4c9ca4.html">generate_oid_postfix(_schema text, _table_name text)</a></td>
+                                        <td>FUNCTION</td>
+                                        <td>plpgsql</td>
+                                        <td>false</td>
+                                        <td>character varying</td>
                                         <td>INVOKER</td>
                                         <td></td>
                                     </tr>
@@ -220,21 +229,21 @@
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td><a href="routines/check_modification_enabled___61170e36.html">check_modification_enabled()</a></td>
-                                        <td>FUNCTION</td>
-                                        <td>plpgsql</td>
-                                        <td>false</td>
-                                        <td>boolean</td>
-                                        <td>DEFINER</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
                                         <td><a href="routines/ft_vw_pipe_point_normal_delete__74b46451.html">ft_vw_pipe_point_normal_delete()</a></td>
                                         <td>FUNCTION</td>
                                         <td>plpgsql</td>
                                         <td>false</td>
                                         <td>trigger</td>
                                         <td>INVOKER</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="routines/check_modification_enabled___61170e36.html">check_modification_enabled()</a></td>
+                                        <td>FUNCTION</td>
+                                        <td>plpgsql</td>
+                                        <td>false</td>
+                                        <td>boolean</td>
+                                        <td>DEFINER</td>
                                         <td></td>
                                     </tr>
                                     <tr>
@@ -261,6 +270,15 @@
                                         <td>plpgsql</td>
                                         <td>false</td>
                                         <td>trigger</td>
+                                        <td>INVOKER</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="routines/base36_to_int_base36_str_text__2c6f9174.html">base36_to_int(base36_str text)</a></td>
+                                        <td>FUNCTION</td>
+                                        <td>plpgsql</td>
+                                        <td>false</td>
+                                        <td>bigint</td>
                                         <td>INVOKER</td>
                                         <td></td>
                                     </tr>

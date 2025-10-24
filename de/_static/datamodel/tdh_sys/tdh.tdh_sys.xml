@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<database name="tdh" schema="tdh_sys" type="PostgreSQL - 14.13 (Debian 14.13-1.pgdg110+1)">
+<database name="tdh" schema="tdh_sys" type="PostgreSQL - 16.10">
    <sequences>
       <sequence increment="1" name="dictionary_od_field_id_seq" startValue="1"/>
       <sequence increment="1" name="dictionary_od_values_id_seq" startValue="1"/>
@@ -128,6 +128,20 @@
             <column ascending="true" name="active"/>
          </index>
          <index name="in_tdh_is_oid_prefixes_id" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="pum_migrations" remarks="version: 1 --  schema_migration table version" schema="tdh_sys" type="TABLE">
+         <column autoUpdated="false" defaultValue="gen_random_uuid()" digits="0" id="0" name="id" nullable="false" remarks="" size="2147483647" type="uuid" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="1" name="date_installed" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="module" nullable="true" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="version" nullable="false" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="4" name="beta_testing" nullable="false" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="changelog_files" nullable="true" remarks="" size="2147483647" type="_text" typeCode="2003"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="parameters" nullable="true" remarks="" size="2147483647" type="jsonb" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="'2025.0'::character varying" digits="0" id="7" name="migration_table_version" nullable="false" remarks="" size="50" type="varchar" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="pum_migrations_pkey" unique="true">
             <column ascending="true" name="id"/>
          </index>
       </table>

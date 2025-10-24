@@ -1,155 +1,281 @@
 #!/usr/bin/env python3
-
+import logging
+import os
+import re
 from argparse import ArgumentParser, BooleanOptionalAction
 from pathlib import Path
-from typing import Optional
 
-try:
-    import psycopg
-except ImportError:
-    import psycopg2 as psycopg
-
-from pirogue import SingleInheritance
+import psycopg
+import yaml
+from pirogue import SingleInheritance  # , MultipleInheritance
+from pum import HookBase
 from triggers.set_defaults_and_triggers import set_defaults_and_triggers
 from view.vw_tdh_pipe_point import vw_tdh_pipe_point
 
-# from view.vw_tdh_reach import vw_tdh_reach
-# from view.vw_tdh_xxx_structure import vw_tdh_xxx_structure
+logger = logging.getLogger(__name__)
 
 
-def run_sql_file(file_path: str, pg_service: str, variables: dict = None):
-    abs_file_path = Path(__file__).parent.resolve() / file_path
-    with open(abs_file_path) as f:
-        sql = f.read()
-    run_sql(sql, pg_service, variables)
+class Hook(HookBase):
+    def run_hook(
+        self,
+        connection: psycopg.Connection,
+        SRID: int = 2056,
+        modification_ci: bool = False,
+        lang_code: str = "en",
+        modification_yaml: Path = None,
+    ):
+        """
+        Creates the schema tdh_app for TEKSI district_heating Module
+        :param SRID: the EPSG code for geometry columns. Overridden by modification_yaml        :param modification_ci: bool of whether to load ci modification. Overridden by modification_yaml
+        :param lang_code: language code for use in modification views. Overridden by modification_yaml
+        :param modification_yaml: Path of yaml containing app parametrisation
+        """
+        self.cwd = Path(__file__).parent.resolve()
+        self._connection = connection
 
+        if modification_yaml:
+            self.parameters = self.load_yaml(modification_yaml)
+            SRID = self.parameters["base_configurations"][0].get("SRID", 2056)
+            lang_code = self.parameters["base_configurations"][0].get("lang_code", "en")
+        else:
+            self.parameters = self.load_yaml(self.cwd / "app_modification.template.yaml")
+            if "modification_repositories" in self.parameters:
+                for entry in self.parameters["modification_repositories"]:
+                    if modification_ci and entry["id"] == "ci":
+                        entry["active"] = True
 
-def run_sql(sql: str, pg_service: str, variables: dict = None):
-    if variables:
-        sql = psycopg.sql.SQL(sql).format(**variables)
-    conn = psycopg.connect(f"service={pg_service}")
-    cursor = conn.cursor()
-    cursor.execute(sql)
-    conn.commit()
-    conn.close()
+        self.abspath = self.cwd if not modification_yaml else ""
 
+        # variables_pirogue = {
+        #     "SRID": psycopg.sql.SQL(f"{SRID}")
+        # }  # when dropping psycopg2 support, we can use the SRID var directly
+        self.variables_sql = {
+            "SRID": {
+                "value": SRID,
+                "type": "number",
+            },
+            "value_lang": {
+                "value": f"value_{lang_code}",
+                "type": "identifier",
+            },
+            "abbr_lang": {
+                "value": f"abbr_{lang_code}",
+                "type": "identifier",
+            },
+            "description_lang": {
+                "value": f"description_{lang_code}",
+                "type": "identifier",
+            },
+            "display_lang": {
+                "value": f"display_{lang_code}",
+                "type": "identifier",
+            },
+        }
+        self.execute("CREATE SCHEMA tdh_app;")
+        self.run_sql_files_in_folder(self.cwd / "sql_functions")
+        # self.app_modifications = [
+        #     entry
+        #     for entry in self.parameters.get("modification_repositories")
+        #     if entry.get("active")
+        # ]
 
-def create_app(
-    srid: int = 2056,
-    pg_service: str = "pg_tdh",
-    drop_schema: Optional[bool] = False,
-    #    tdh_xxx_extra: Optional[Path] = None,
-    #    if several tdh_xx_extra add a line for each view
-):
-    """
-    Creates the schema tdh_app for TEKSI Distance Heating
-    :param srid: the EPSG code for geometry columns
-    :param drop_schema: will drop schema tdh_app if it exists
-    :param pg_service: the PostgreSQL service, if not given it will be determined from environment variable in Pirogue
-    """
+        self.extra_definitions = self.parameters.get("extra_definitions")
+        # self.simple_joins_yaml = self.parameters.get("simple_joins_yaml")
+        # self.multiple_inherintances = self.parameters.get("multiple_inherintances")
 
-    #    :param tdh_xxx_extra: YAML file path of the definition of additional columns for vw_tdh_xxx view
+        self.single_inheritances = self.load_yaml(self.cwd / "single_inheritances.yaml")
 
-    Path(__file__).parent.resolve()
-    variables = {
-        "SRID": psycopg.sql.SQL(f"{srid}")
-    }  # when dropping psycopg2 support, we can use the srid var directly
+        #         if self.app_modifications:
+        #             for modification in self.app_modifications:
+        #                 logger.info(
+        #                     f"""*****
+        # Running modification {modification.get('id')}
+        # ****
+        #                 """
+        #                 )
+        #                 self.load_modification(
+        #                     modification_config=modification,
+        #                 )
+        #         for entry in self.parameters.get("modification_repositories"):
+        #             if entry.get("reset_vl", False):
+        #                 self.manage_vl(entry)
 
-    if drop_schema:
-        run_sql("DROP SCHEMA IF EXISTS tdh_app CASCADE;", pg_service)
+        # Defaults and Triggers
+        # Has to be fired before view creation otherwise it won't work and will only fail in CI
+        set_defaults_and_triggers(self._connection, self.single_inheritances)
 
-    run_sql("CREATE SCHEMA tdh_app;", pg_service)
+        for key in self.single_inheritances:
+            logger.info(f"creating view vw_{key}")
+            SingleInheritance(
+                connection=self._connection,
+                parent_table="tdh_od." + self.single_inheritances[key],
+                child_table="tdh_od." + key,
+                view_name="vw_" + key,
+                view_schema="tdh_app",
+                pkey_default_value=True,
+                inner_defaults={"identifier": "obj_id"},
+            ).create()
 
-    # Create application functions
+        # for key in self.multiple_inherintances:
+        #     MultipleInheritance(
+        #         connection=self._connection,
+        #         definition=self.load_yaml(self.abspath / self.multiple_inherintances[key]),
+        #         drop=True,
+        #         variables=variables_pirogue,
+        #     ).create()
 
-    run_sql_file("functions/oid_functions.sql", pg_service)
-    run_sql_file("functions/modification_functions.sql", pg_service)
-    run_sql_file("functions/organisation_functions.sql", pg_service, variables)
-    run_sql_file("functions/meta_functions.sql", pg_service, variables)
+        for key, value in self.extra_definitions.items():
+            if value:
+                self.extra_definitions[key] = self.abspath / value
 
-    # to do add symbology_function for TEKSI Distance heating
+        vw_tdh_pipe_point(
+            connection=self._connection,
+            extra_definition=(
+                self.load_yaml(self.extra_definitions["vw_tdh_pipe_point"])
+                if self.extra_definitions.get("vw_tdh_pipe_point")
+                else {}
+            ),
+        )
 
-    #    run_sql_file("symbology_functions.sql", pg_service)
-    run_sql_file("functions/geometry_functions.sql", pg_service, variables)
+        sql_directories = [
+            "view/varia",
+        ]
 
-    # open YAML files
-    #    if tdh_xx_extra:
-    #        tdh_xx_extra = safe_load(open(tdh_xx_extra))
+        for directory in sql_directories:
+            abs_dir = self.cwd / directory
+            self.run_sql_files_in_folder(abs_dir)
 
-    run_sql_file("view/vw_dictionary_value_list.sql", pg_service, variables)
+        # run post_all
+        self.run_sql_files_in_folder(self.cwd / "post_all")
 
-    defaults = {"view_schema": "tdh_app", "pg_service": pg_service}
+    @staticmethod
+    def load_yaml(file: Path) -> dict[str]:
+        """Safely loads a YAML file and ensures it returns a dictionary."""
+        file = Path(file)
+        if not file.exists():
+            raise FileNotFoundError(f"The file {file} does not exist.")
 
-    SingleInheritances = {
-        # subclasse of pipe_point (Leitungspunkt)
-        "pipe_point_normal": "pipe_point",
-        "pipe_point_feed": "pipe_point",
-    }
+        logger.info(f"loading yaml {file}")
+        with open(file) as f:
+            data = yaml.safe_load(f)
+            return data if isinstance(data, dict) else {}
 
-    set_defaults_and_triggers(pg_service, SingleInheritances)
+    def load_modification(
+        self,
+        modification_config: set = None,
+    ):
+        """
+        initializes the tdh app schema for usage of a modification
+        Args:
+            modification_config: modification configuration set
+        """
 
-    for key in SingleInheritances:
-        SingleInheritance(
-            "tdh_od." + SingleInheritances[key],
-            "tdh_od." + key,
-            view_name="vw_" + key,
-            pkey_default_value=True,
-            inner_defaults={"identifier": "obj_id"},
-            **defaults,
-        ).create()
+        # load definitions from config
+        template_path = modification_config.get("template", None)
+        if template_path:
+            curr_dir = self.abspath / os.path.dirname(template_path)
+            modification_config = self.load_yaml(self.abspath / template_path)
+        else:
+            curr_dir = ""
 
-    # MultipleInheritance configuration - add  a block for each MultipleInheritance
+        ext_variables = modification_config.get("variables", {})
+        sql_vars = self.parse_variables(ext_variables)
 
-    # MultipleInheritance(
-    # safe_load(open(cwd / "view/vw_maintenance_event.yaml")),
-    # create_joins=True,
-    # drop=True,
-    # variables=variables,
-    # pg_service=pg_service,
-    # ).create()
+        for sql_file in modification_config.get("sql_files", None):
+            file_name = curr_dir / sql_file.get("file")
+            self.run_sql_file(file_name, sql_vars)
 
-    # MultipleInheritance(
-    # safe_load(open(cwd / "view/vw_damage.yaml")),
-    # drop=True,
-    # pg_service=pg_service,
-    # ).create()
+        if template_path:
+            for key, value in modification_config.get("extra_definitions", {}).items():
+                if not self.extra_definitions[key]:
+                    self.extra_definitions[key] = curr_dir / value
 
-    # vw_tdh_xxx(
-    # srid, pg_service=pg_service, extra_definition=tdh_xxx_extra
-    # )
-    vw_tdh_pipe_point(srid=srid, pg_service=pg_service)
+            for key, value in modification_config.get("simple_joins_yaml", {}).items():
+                if not self.simple_joins_yaml[key]:
+                    self.simple_joins_yaml[key] = curr_dir / value
 
-    # additional views to be created with simple sql
+            for key, value in modification_config.get("multiple_inherintances", {}).items():
+                if self.multiple_inherintances[key]:
+                    self.multiple_inherintances[key] = curr_dir / value
 
-    run_sql_file("view/vw_file.sql", pg_service, variables)
+    def manage_vl(
+        self,
+        config: set = None,
+    ):
+        """
+        manages activation/deactivation of tdh value list of a modification
+        Args:
+            config:  configuration set
+        """
 
-    # MultipleInheritance(
-    # safe_load(open(cwd / "view/vw_oo_overflow.yaml")),
-    # create_joins=True,
-    # variables=variables,
-    # pg_service=pg_service,
-    # drop=True,
-    # ).create()
+        # load definitions from config
+        template_path = config.get("template", None)
+        is_active = config.get("active", False)
+        sql_vars = {"activate": {"value": is_active, "type": "literal"}}
+        sql_vars = self.parse_variables(sql_vars)
+        if template_path:
+            curr_dir = os.path.dirname(template_path)
+            config = self.load_yaml(template_path)
+        else:
+            curr_dir = ""
 
-    # Recreate network views
-    # run_sql_file("view/network/vw_network_node.sql", pg_service, variables)
-    # run_sql_file("view/network/vw_network_segment.sql", pg_service, variables)
+        for sql_file in config.get("reset_vl_files", None):
+            file_name = curr_dir / sql_file.get("file")
+            self.run_sql_file(file_name, sql_vars)
 
-    # Recreate extension views
-    # to do add extensions if necessary
-    # run_sql_file("swmm_views/02_vw_swmm_junctions.sql", pg_service, variables)
+    def run_sql_file(self, file_path: str, variables: dict = None):
+        with open(file_path) as f:
+            sql = f.read()
+        self.run_sql(sql, variables)
 
-    # SimpleJoins configuration - add  a block for each SimpleJoins
+    def run_sql(self, sql: str, variables: dict = None):
+        if variables is None:
+            variables = {}
+        if (
+            re.search(r"\{[A-Za-z-_]+\}", sql) and variables
+        ):  # avoid formatting if no variables are present
+            try:
+                sql = psycopg.sql.SQL(sql).format(**variables).as_string(self._connection)
 
-    # SimpleJoins(safe_load(open(cwd / "view/export/vw_export_reach.yaml")), pg_service).create()
-    # SimpleJoins(
-    # safe_load(open(cwd / "view/export/vw_export_xxx_structure.yaml")),
-    # pg_service,
-    # ).create()
+            except IndexError:
+                logger.critical(sql)
+                raise
+        self.execute(sql)
 
-    # run_sql_file("triggers/network.sql", pg_service)
+    def run_sql_files_in_folder(self, directory: str):
+        files = os.listdir(directory)
+        files.sort()
+        sql_vars = self.parse_variables(self.variables_sql)
+        for file in files:
+            filename = os.fsdecode(file)
+            if filename.lower().endswith(".sql"):
+                logger.info(f"Running {filename}")
+                self.run_sql_file(os.path.join(directory, filename), sql_vars)
 
-    run_sql_file("tdh_app_roles.sql", pg_service, variables)
+    def parse_variables(self, variables: dict) -> dict:
+        """Parse variables based on their defined types in the YAML."""
+        formatted_vars = {}
+
+        for key, meta in variables.items():
+            if isinstance(meta, dict) and "value" in meta and "type" in meta:
+                value, var_type = meta["value"], meta["type"].lower()
+
+                if var_type == "number":  # Directly insert SQL without escaping
+                    if isinstance(value, float) or isinstance(value, int):
+                        formatted_vars[key] = psycopg.sql.SQL(f"{value}")
+                    else:  # avoid injection
+                        raise ValueError(f"Value '{value}' is not float or int.")
+                elif var_type == "identifier":  # Table/Column names
+                    if not re.match(r"^[a-zA-Z_][a-zA-Z0-9_]*$", value):  # avoid injection
+                        raise ValueError(f"Identifier '{value}' contains invalid characters.")
+                    formatted_vars[key] = psycopg.sql.Identifier(value)
+                elif var_type == "literal":  # String/Number literals
+                    formatted_vars[key] = psycopg.sql.Literal(value)
+                else:
+                    raise ValueError(f"Unknown type '{var_type}' for variable '{key}'")
+            else:
+                raise ValueError(f"Unknown type '{var_type}' for variable '{key}'.")
+        return formatted_vars
 
 
 if __name__ == "__main__":
@@ -158,14 +284,6 @@ if __name__ == "__main__":
     parser.add_argument(
         "-s", "--srid", help="SRID EPSG code, defaults to 2056", type=int, default=2056
     )
-    # parser.add_argument(
-    # "--tdh_xxx_structure_extra",
-    # help="YAML definition file path for additions to vw_tdh_xxx_structure view",
-    # )
-    # parser.add_argument(
-    # "--tdh_reach_extra",
-    # help="YAML definition file path for additions to vw_tdh_reach view",
-    # )
     parser.add_argument(
         "-d",
         "--drop-schema",
@@ -173,12 +291,32 @@ if __name__ == "__main__":
         default=False,
         action=BooleanOptionalAction,
     )
+    parser.add_argument(
+        "-c",
+        "--modification_ci",
+        action="store_true",
+        default=False,
+        help="load ci modification",
+    )
+    parser.add_argument(
+        "-l",
+        "--lang_code",
+        help="language code",
+        type=str,
+        default="en",
+        choices=["en", "fr", "de", "it", "ro"],
+    )
+    parser.add_argument("-m", "--modification_yaml", help="path to modification yaml", type=Path)
     args = parser.parse_args()
 
-    create_app(
-        args.srid,
-        args.pg_service,
-        drop_schema=args.drop_schema,
-        # tdh_reach_extra=args.tdh_reach_extra,
-        # tdh_xxx_structure_extra=args.tdh_xxx_structure_extra,
-    )
+    with psycopg.connect(service=args.pg_service) as connection:
+        if args.drop_schema:
+            connection.execute("DROP SCHEMA IF EXISTS tdh_app CASCADE;")
+        hook = Hook()
+        hook.run_hook(
+            connection=connection,
+            SRID=args.srid,
+            modification_ci=args.modification_ci,
+            modification_yaml=args.modification_yaml,
+            lang_code=args.lang_code,
+        )

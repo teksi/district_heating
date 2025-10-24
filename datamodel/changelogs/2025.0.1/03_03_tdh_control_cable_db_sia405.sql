@@ -3,9 +3,8 @@
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
 ------ version 30.05.2024 19:47:23
 ------ with 3D coordinates
-BEGIN;
 
--------
+
 CREATE TABLE tdh_od.sia405cc_cable_point
 (
    obj_id varchar(16) NOT NULL,
@@ -19,10 +18,10 @@ COMMENT ON COLUMN tdh_od.sia405cc_cable_point.obj_id IS 'INTERLIS STANDARD OID (
  ALTER TABLE tdh_od.sia405cc_cable_point ADD COLUMN name_number text;
  ALTER TABLE tdh_od.sia405cc_cable_point ADD CONSTRAINT _name_number_length_max_40 CHECK(char_length(name_number)<=40);
 COMMENT ON COLUMN tdh_od.sia405cc_cable_point.name_number IS '';
---ALTER TABLE tdh_od.sia405cc_cable_point ADD COLUMN geometry_geometry geometry('POINT', :SRID);
+--ALTER TABLE tdh_od.sia405cc_cable_point ADD COLUMN geometry_geometry geometry('POINT', {SRID});
 -- CREATE INDEX in_tdh_sia405cc_cable_point_geometry_geometry ON tdh_od.sia405cc_cable_point USING gist (geometry_geometry );
 -- COMMENT ON COLUMN tdh_od.sia405cc_cable_point.geometry_geometry IS '';
-ALTER TABLE tdh_od.sia405cc_cable_point ADD COLUMN geometry3d_geometry geometry('POINTZ', :SRID);
+ALTER TABLE tdh_od.sia405cc_cable_point ADD COLUMN geometry3d_geometry geometry('POINTZ', {SRID});
 CREATE INDEX in_tdh_sia405cc_cable_point_geometry3d_geometry ON tdh_od.sia405cc_cable_point USING gist (geometry3d_geometry );
 COMMENT ON COLUMN tdh_od.sia405cc_cable_point.geometry3d_geometry IS '';
  ALTER TABLE tdh_od.sia405cc_cable_point ADD COLUMN kind  integer ;
@@ -78,7 +77,7 @@ COMMENT ON COLUMN tdh_od.sia405cc_cable.obj_id IS 'INTERLIS STANDARD OID (with P
  ALTER TABLE tdh_od.sia405cc_cable ADD COLUMN name_number text;
  ALTER TABLE tdh_od.sia405cc_cable ADD CONSTRAINT _name_number_length_max_40 CHECK(char_length(name_number)<=40);
 COMMENT ON COLUMN tdh_od.sia405cc_cable.name_number IS ' / z.B. Kabelpunktanfang_Kabelpunkteende / xxx_z.B. Point_cableanfang_Point_cableeende';
--- ALTER TABLE tdh_od.sia405cc_cable ADD COLUMN geometry_geometry geometry('COMPOUNDCURVE', :SRID);
+-- ALTER TABLE tdh_od.sia405cc_cable ADD COLUMN geometry_geometry geometry('COMPOUNDCURVE', {SRID});
 -- CREATE INDEX in_tdh_sia405cc_cable_geometry_geometry ON tdh_od.sia405cc_cable USING gist (geometry_geometry );
 -- COMMENT ON COLUMN tdh_od.sia405cc_cable.geometry_geometry IS '';
  ALTER TABLE tdh_od.sia405cc_cable ADD COLUMN function  integer ;
@@ -101,7 +100,7 @@ COMMENT ON COLUMN tdh_od.sia405cc_cable.condition IS '';
 COMMENT ON COLUMN tdh_od.sia405cc_cable.remark IS '';
  ALTER TABLE tdh_od.sia405cc_cable ADD COLUMN width  smallint ;
 COMMENT ON COLUMN tdh_od.sia405cc_cable.width IS '';
-ALTER TABLE tdh_od.sia405cc_cable ADD COLUMN geometry3d_geometry geometry('COMPOUNDCURVEZ', :SRID);
+ALTER TABLE tdh_od.sia405cc_cable ADD COLUMN geometry3d_geometry geometry('COMPOUNDCURVEZ', {SRID});
 CREATE INDEX in_tdh_sia405cc_cable_geometry3d_geometry ON tdh_od.sia405cc_cable USING gist (geometry3d_geometry );
 COMMENT ON COLUMN tdh_od.sia405cc_cable.geometry3d_geometry IS '';
  ALTER TABLE tdh_od.sia405cc_cable ADD COLUMN elevation_determination  integer ;
@@ -210,16 +209,13 @@ ALTER TABLE tdh_vl.sia405cc_cable_elevation_determination ADD CONSTRAINT pkey_td
  ALTER TABLE tdh_od.sia405cc_cable ADD CONSTRAINT fkey_vl_sia405cc_cable_elevation_determination FOREIGN KEY (elevation_determination)
  REFERENCES tdh_vl.sia405cc_cable_elevation_determination (code) MATCH SIMPLE
  ON UPDATE RESTRICT ON DELETE RESTRICT;
---------- Relations to class organisation for dataowner and provider (new 3.11.2014);
 
+-- Relations to class organisation for dataowner and provider (new 3.11.2014);
 ALTER TABLE tdh_od.sia405cc_cable_point ADD CONSTRAINT rel_od_sia405cc_cable_point_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id) DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE tdh_od.sia405cc_cable_point ADD CONSTRAINT rel_od_sia405cc_cable_point_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id) DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE tdh_od.sia405cc_cable ADD CONSTRAINT rel_od_sia405cc_cable_fk_dataowner FOREIGN KEY (fk_dataowner) REFERENCES tdh_od.organisation(obj_id) DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE tdh_od.sia405cc_cable ADD CONSTRAINT rel_od_sia405cc_cable_fk_dataprovider FOREIGN KEY (fk_provider) REFERENCES tdh_od.organisation(obj_id) DEFERRABLE INITIALLY DEFERRED;
 
------- Indexes on identifiers
-
+-- Indexes on identifiers
  CREATE UNIQUE INDEX in_od_sia405cc_cable_point_name_number ON tdh_od.sia405cc_cable_point USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
  CREATE UNIQUE INDEX in_od_sia405cc_cable_name_number ON tdh_od.sia405cc_cable USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
-
-COMMIT;

@@ -1,0 +1,67 @@
+
+pum:
+  migration_table_schema: tdh_sys
+  minimum_version: 1.1.13
+
+roles:
+  - name: tdh_viewer
+    description: Role for users who can view the tdh data.
+    permissions:
+      - type: read
+        schemas: [tdh_od, tdh_vl, tdh_sys, tdh_app]
+
+  - name: tdh_user
+    description: Role for users who can view and edit the tdh data.
+    inherit: tdh_viewer
+    permissions:
+      - type: write
+        schemas: [tdh_od]
+
+  - name: tdh_manager
+    description: Role for users who can view and edit the tdh data, and manage the tdh application.
+    inherit: tdh_user
+    permissions:
+      - type: write
+        schemas: [tdh_vl]
+
+  - name: tdh_sysadmin
+    description: Role for system administrators who can manage the tdh application and its configuration.
+    inherit: tdh_manager
+    permissions:
+      - type: write
+        schemas: [tdh_sys]
+
+
+parameters:
+  - name: SRID
+    type: integer
+    default: 2056
+    description: Coordinate Reference System (CRS) to use for the data. This is used for the geometry column in the database. Default is 2056 (CH1903+ / LV95).
+
+  - name: modification_ci
+    type: boolean
+    default: false
+    description: load ci modification
+
+  - name: modification_yaml
+    type: path
+    description: yaml file with app modification definitions
+
+  - name: lang_code
+    type: text
+    default: en
+    description: language code for the creation of custom views
+
+dependencies:
+  - name: pirogue
+    minimum_version: 3.0.0
+
+migration_hooks:
+  pre:
+    - code: DROP SCHEMA IF EXISTS tdh_app CASCADE;
+  post:
+    - file: app/create_app.py
+
+demo_data:
+   - name: Morges Demo
+     file: demo_data/tdh_demo_data_morges.sql

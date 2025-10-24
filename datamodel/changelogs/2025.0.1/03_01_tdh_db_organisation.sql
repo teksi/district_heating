@@ -2,10 +2,8 @@
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
 ------ version 13.02.2025
 ------ with 3D coordinates
-BEGIN;
 
 ---- 03_tdh_db_organisation.sql ----------
-
 ---------------------------
 
 CREATE TABLE tdh_vl.value_list_base
@@ -109,5 +107,3 @@ ALTER TABLE tdh_od.organisation ADD CONSTRAINT rel_od_organisation_fk_dataprovid
 ----- Indexes on identifiers
 
  CREATE UNIQUE INDEX in_od_organisation_identifier ON tdh_od.organisation USING btree (identifier ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
-
- COMMIT;

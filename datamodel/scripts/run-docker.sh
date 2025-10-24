@@ -24,7 +24,7 @@ while getopts 'bdp:' opt; do
 
     p)
       echo "Overriding PG port to ${OPTARG}"
-      TDH_PG_PORT=${OPTARG}
+      tdh_PG_PORT=${OPTARG}
       ;;
 
 
@@ -41,8 +41,8 @@ if [[ $BUILD -eq 1 ]]; then
 fi
 
 docker rm -f teksi-district_heating
-docker run -d -p ${TDH_PG_PORT}:5432 -v $(pwd):/src  --name teksi-district_heating teksi/district_heating -c log_statement=all
-docker exec teksi-district_heating init_db.sh wait
+docker run -d -p ${tdh_PG_PORT}:5432 -v $(pwd):/src  --name teksi-district_heating teksi/district_heating -c log_statement=all
+docker exec teksi-district_heating run-pum.sh wait
 if [[ $DEMO_DATA -eq 1 ]]; then
-  docker exec teksi-district_heating init_db.sh build -d
+  docker exec teksi-district_heating run-pum.sh build -d
 fi

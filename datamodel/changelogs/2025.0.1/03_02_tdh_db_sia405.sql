@@ -2,7 +2,6 @@
 ------ For questions etc. please contact Stefan Burckhardt stefan.burckhardt@sjib.ch
 ------ version 13.02.2025 17:58:04
 ------ with 3D coordinates
-BEGIN;
 
 ---- 03_tdh_db_dss.sql ----------
 
@@ -22,10 +21,10 @@ COMMENT ON COLUMN tdh_od.pipe_section.obj_id IS 'INTERLIS STANDARD OID (with Pos
  ALTER TABLE tdh_od.pipe_section ADD COLUMN name_number text;
  ALTER TABLE tdh_od.pipe_section ADD CONSTRAINT ps_name_number_length_max_40 CHECK(char_length(name_number)<=40);
 COMMENT ON COLUMN tdh_od.pipe_section.name_number IS '';
--- ALTER TABLE tdh_od.pipe_section ADD COLUMN geometry_geometry geometry('COMPOUNDCURVE', :SRID);
+-- ALTER TABLE tdh_od.pipe_section ADD COLUMN geometry_geometry geometry('COMPOUNDCURVE', {SRID});
 -- CREATE INDEX in_tdh_pipe_section_geometry_geometry ON tdh_od.pipe_section USING gist (geometry_geometry );
 -- COMMENT ON COLUMN tdh_od.pipe_section.geometry_geometry IS ' / avec points d’appuis en coordonnées nationales [mm]';
-ALTER TABLE tdh_od.pipe_section ADD COLUMN geometry3d_geometry geometry('COMPOUNDCURVEZ', :SRID);
+ALTER TABLE tdh_od.pipe_section ADD COLUMN geometry3d_geometry geometry('COMPOUNDCURVEZ', {SRID});
 CREATE INDEX in_tdh_pipe_section_geometry3d_geometry ON tdh_od.pipe_section USING gist (geometry3d_geometry );
 COMMENT ON COLUMN tdh_od.pipe_section.geometry3d_geometry IS '';
  ALTER TABLE tdh_od.pipe_section ADD COLUMN horizontal_positioning  integer ;
@@ -103,10 +102,10 @@ WITH (
 );
 CREATE SEQUENCE tdh_od.seq_pipe_point_oid INCREMENT 1 MINVALUE 0 MAXVALUE 999999 START 0;
 COMMENT ON COLUMN tdh_od.pipe_point.obj_id IS 'INTERLIS STANDARD OID (with Postfix/Präfix), see www.interlis.ch';
---ALTER TABLE tdh_od.pipe_point ADD COLUMN geometry_geometry geometry('POINT', :SRID);
+--ALTER TABLE tdh_od.pipe_point ADD COLUMN geometry_geometry geometry('POINT', {SRID});
 -- CREATE INDEX in_tdh_pipe_point_geometry_geometry ON tdh_od.pipe_point USING gist (geometry_geometry );
 -- COMMENT ON COLUMN tdh_od.pipe_point.geometry_geometry IS '';
-ALTER TABLE tdh_od.pipe_point ADD COLUMN geometry3d_geometry geometry('POINTZ', :SRID);
+ALTER TABLE tdh_od.pipe_point ADD COLUMN geometry3d_geometry geometry('POINTZ', {SRID});
 CREATE INDEX in_tdh_pipe_point_geometry3d_geometry ON tdh_od.pipe_point USING gist (geometry3d_geometry );
 COMMENT ON COLUMN tdh_od.pipe_point.geometry3d_geometry IS '';
  ALTER TABLE tdh_od.pipe_point ADD COLUMN symbolori  decimal(4,1) ;
@@ -209,10 +208,10 @@ COMMENT ON COLUMN tdh_od.structure.obj_id IS 'INTERLIS STANDARD OID (with Postfi
  ALTER TABLE tdh_od.structure ADD COLUMN name_number text;
  ALTER TABLE tdh_od.structure ADD CONSTRAINT st_name_number_length_max_40 CHECK(char_length(name_number)<=40);
 COMMENT ON COLUMN tdh_od.structure.name_number IS ' / z.B. Bauwerksname / par ex. nom de l’ouvrage';
--- ALTER TABLE tdh_od.structure ADD COLUMN geometry_geometry geometry('CURVEPOLYGON', :SRID);
+-- ALTER TABLE tdh_od.structure ADD COLUMN geometry_geometry geometry('CURVEPOLYGON', {SRID});
 -- CREATE INDEX in_tdh_structure_geometry_geometry ON tdh_od.structure USING gist (geometry_geometry );
 -- COMMENT ON COLUMN tdh_od.structure.geometry_geometry IS ' / offener oder geschlossener Linienzug, Stützpunkte in Landeskoordinaten / polyligne ouverte ou fermée avec des points d’appui en coordonnées nationales';
-ALTER TABLE tdh_od.structure ADD COLUMN geometry3d_geometry geometry('CURVEPOLYGONZ', :SRID);
+ALTER TABLE tdh_od.structure ADD COLUMN geometry3d_geometry geometry('CURVEPOLYGONZ', {SRID});
 CREATE INDEX in_tdh_structure_geometry3d_geometry ON tdh_od.structure USING gist (geometry3d_geometry );
 COMMENT ON COLUMN tdh_od.structure.geometry3d_geometry IS 'yyyy_geschlossener Linienzug, Stützpunkte in Landeskoordinaten / geschlossener Linienzug, Stützpunkte in Landeskoordinaten / polyligne fermée avec points d’appui en coordonnées nationales';
  ALTER TABLE tdh_od.structure ADD COLUMN horizontal_positioning  integer ;
@@ -286,10 +285,10 @@ CREATE TABLE tdh_od.structure_line
    id uuid NOT NULL DEFAULT uuid_generate_v4(),
    CONSTRAINT pkey_tdh_od_structure_line_id PRIMARY KEY (id)
 );
--- ALTER TABLE tdh_od.structure_line ADD COLUMN geometry_geometry geometry('COMPOUNDCURVE', :SRID);
+-- ALTER TABLE tdh_od.structure_line ADD COLUMN geometry_geometry geometry('COMPOUNDCURVE', {SRID});
 -- COMMENT ON COLUMN tdh_od.structure_line.geometry_geometry IS '';
 --CREATE INDEX in_tdh_structure_line_geometry_geometry ON tdh_od.structure_line USING gist (geometry_geometry );
-ALTER TABLE tdh_od.structure_line ADD COLUMN geometry3d_geometry geometry('COMPOUNDCURVEZ', :SRID);
+ALTER TABLE tdh_od.structure_line ADD COLUMN geometry3d_geometry geometry('COMPOUNDCURVEZ', {SRID});
 CREATE INDEX in_tdh_structure_line_geometry3d_geometry ON tdh_od.structure_line USING gist (geometry3d_geometry );
 ALTER TABLE tdh_od.structure_line ADD COLUMN last_modification TIMESTAMP without time zone DEFAULT now();
 COMMENT ON COLUMN tdh_od.structure_line.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
@@ -313,10 +312,10 @@ COMMENT ON COLUMN tdh_od.trench.obj_id IS 'INTERLIS STANDARD OID (with Postfix/P
  ALTER TABLE tdh_od.trench ADD COLUMN name_number text;
  ALTER TABLE tdh_od.trench ADD CONSTRAINT tr_name_number_length_max_40 CHECK(char_length(name_number)<=40);
 COMMENT ON COLUMN tdh_od.trench.name_number IS ' / Eindeutige Bezeichnung / désignation univoque';
--- ALTER TABLE tdh_od.trench ADD COLUMN geometry_geometry geometry('CURVEPOLYGON', :SRID);
+-- ALTER TABLE tdh_od.trench ADD COLUMN geometry_geometry geometry('CURVEPOLYGON', {SRID});
 -- CREATE INDEX in_tdh_trench_geometry_geometry ON tdh_od.trench USING gist (geometry_geometry );
 -- COMMENT ON COLUMN tdh_od.trench.geometry_geometry IS 'yyy_offener oder geschlossener Linienzug, Stützpunkte in Landeskoordinaten / offener oder geschlossener Linienzug, Stützpunkte in Landeskoordinaten / polyligne ouverte ou fermée avec des points d’appui en coordonnées nationales';
-ALTER TABLE tdh_od.trench ADD COLUMN geometry3d_geometry geometry('CURVEPOLYGONZ', :SRID);
+ALTER TABLE tdh_od.trench ADD COLUMN geometry3d_geometry geometry('CURVEPOLYGONZ', {SRID});
 CREATE INDEX in_tdh_trench_geometry3d_geometry ON tdh_od.trench USING gist (geometry3d_geometry );
 COMMENT ON COLUMN tdh_od.trench.geometry3d_geometry IS 'yyyy_offener oder geschlossener Linienzug, Stützpunkte in Landeskoordinaten / offener oder geschlossener Linienzug, Stützpunkte in Landeskoordinaten / polyligne fermée ou ouverte avec des points d’appui en coordonnées nationales';
  ALTER TABLE tdh_od.trench ADD COLUMN horizontal_positioning  integer ;
@@ -369,10 +368,10 @@ CREATE TABLE tdh_od.trench_line
    id uuid NOT NULL DEFAULT uuid_generate_v4(),
    CONSTRAINT pkey_tdh_od_trench_line_id PRIMARY KEY (id)
 );
--- ALTER TABLE tdh_od.trench_line ADD COLUMN geometry_geometry geometry('COMPOUNDCURVE', :SRID);
+-- ALTER TABLE tdh_od.trench_line ADD COLUMN geometry_geometry geometry('COMPOUNDCURVE', {SRID});
 -- COMMENT ON COLUMN tdh_od.trench_line.geometry_geometry IS '';
 --CREATE INDEX in_tdh_trench_line_geometry_geometry ON tdh_od.trench_line USING gist (geometry_geometry );
-ALTER TABLE tdh_od.trench_line ADD COLUMN geometry3d_geometry geometry('COMPOUNDCURVEZ', :SRID);
+ALTER TABLE tdh_od.trench_line ADD COLUMN geometry3d_geometry geometry('COMPOUNDCURVEZ', {SRID});
 CREATE INDEX in_tdh_trench_line_geometry3d_geometry ON tdh_od.trench_line USING gist (geometry3d_geometry );
 ALTER TABLE tdh_od.trench_line ADD COLUMN last_modification TIMESTAMP without time zone DEFAULT now();
 COMMENT ON COLUMN tdh_od.trench_line.last_modification IS 'Last modification / Letzte_Aenderung / Derniere_modification: INTERLIS_1_DATE';
@@ -396,10 +395,10 @@ COMMENT ON COLUMN tdh_od.trench_point.obj_id IS 'INTERLIS STANDARD OID (with Pos
  ALTER TABLE tdh_od.trench_point ADD COLUMN name_number text;
  ALTER TABLE tdh_od.trench_point ADD CONSTRAINT tp_name_number_length_max_40 CHECK(char_length(name_number)<=40);
 COMMENT ON COLUMN tdh_od.trench_point.name_number IS ' / désignation univoque';
---ALTER TABLE tdh_od.trench_point ADD COLUMN geometry_geometry geometry('POINT', :SRID);
+--ALTER TABLE tdh_od.trench_point ADD COLUMN geometry_geometry geometry('POINT', {SRID});
 -- CREATE INDEX in_tdh_trench_point_geometry_geometry ON tdh_od.trench_point USING gist (geometry_geometry );
 -- COMMENT ON COLUMN tdh_od.trench_point.geometry_geometry IS '';
-ALTER TABLE tdh_od.trench_point ADD COLUMN geometry3d_geometry geometry('POINTZ', :SRID);
+ALTER TABLE tdh_od.trench_point ADD COLUMN geometry3d_geometry geometry('POINTZ', {SRID});
 COMMENT ON COLUMN tdh_od.trench_point.geometry3d_geometry IS '3D Situation / 3D Lage / 3D Positionnement';
 CREATE INDEX in_tdh_trench_point_geometry3d_geometry ON tdh_od.trench_point USING gist (geometry3d_geometry );
 
@@ -853,5 +852,3 @@ ALTER TABLE tdh_od.trench_point ADD CONSTRAINT rel_od_trench_point_fk_dataprovid
  CREATE UNIQUE INDEX in_od_structure_name_number ON tdh_od.structure USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
  CREATE UNIQUE INDEX in_od_trench_name_number ON tdh_od.trench USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
  CREATE UNIQUE INDEX in_od_trench_point_name_number ON tdh_od.trench_point USING btree (name_number ASC NULLS LAST, fk_dataowner ASC NULLS LAST);
-
-COMMIT;

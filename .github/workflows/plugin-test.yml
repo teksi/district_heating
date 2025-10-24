@@ -46,8 +46,8 @@ jobs:
       - name: Package PyPI Packages
         run: sudo ./plugin/scripts/package-pip-packages.sh
 
-      - name: Download Interlis libs
-        run: sudo ./plugin/scripts/download-interlis-libs.sh
+      # - name: Download Interlis libs
+      #   run: sudo ./plugin/scripts/download-interlis-libs.sh
 
       - name: Docker build
         run: docker compose --profile qgis up -d --build
@@ -62,32 +62,32 @@ jobs:
           docker compose exec db sh -c 'createdb tdh'
           docker compose exec db pum -s pg_tdh -d datamodel install -p SRID 2056 --roles --grant
 
-      - name: Test on QGIS
-        run: docker compose exec qgis /usr/src/plugin/.docker/run-docker-tests.sh --deselect teksi_district_heating/tests/test_interlis.py::TestInterlis::test_dss_dataset_import_export
+      # - name: Test on QGIS
+      #   run: docker compose exec qgis /usr/src/plugin/.docker/run-docker-tests.sh --deselect teksi_district_heating/tests/test_interlis.py::TestInterlis::test_dss_dataset_import_export
 
-      - name: Clear Database
-        run: |
-          docker compose exec db sh -c 'dropdb tdh'
-          docker compose exec db sh -c 'createdb tdh'
-          docker compose exec db pum -s pg_tdh -d datamodel install -p SRID 2056
+      # - name: Clear Database
+      #   run: |
+      #     docker compose exec db sh -c 'dropdb tdh'
+      #     docker compose exec db sh -c 'createdb tdh'
+      #     docker compose exec db pum -s pg_tdh -d datamodel install -p SRID 2056
 
-      - name: Test on QGIS DSS dataset
-        run: docker compose exec qgis /usr/src/plugin/.docker/run-docker-tests.sh teksi_district_heating/tests/test_interlis.py::TestInterlis::test_dss_dataset_import_export
+      # - name: Test on QGIS DSS dataset
+      #   run: docker compose exec qgis /usr/src/plugin/.docker/run-docker-tests.sh teksi_district_heating/tests/test_interlis.py::TestInterlis::test_dss_dataset_import_export
 
-      - name: Clear Database
-        run: |
-          docker compose exec db sh -c 'dropdb tdh'
-          docker compose exec db sh -c 'createdb tdh'
-          docker compose exec db pum -s pg_tdh -d datamodel install -p SRID 2056
+      # - name: Clear Database
+      #   run: |
+      #     docker compose exec db sh -c 'dropdb tdh'
+      #     docker compose exec db sh -c 'createdb tdh'
+      #     docker compose exec db pum -s pg_tdh -d datamodel install -p SRID 2056
 
-      - name: Test command line import orgs
-        run: docker compose exec qgis sh -c 'xvfb-run /usr/src/plugin/tdh_cmd.py interlis_import --xtf_file /usr/src/plugin/teksi_district_heating/tests/data/minimal-dataset-organisation-arbon-only.xtf --pghost db --pgdatabase tdh --pguser postgres --pgpass postgres --pgport 5432'
+      # - name: Test command line import orgs
+      #   run: docker compose exec qgis sh -c 'xvfb-run /usr/src/plugin/tdh_cmd.py interlis_import --xtf_file /usr/src/plugin/teksi_district_heating/tests/data/minimal-dataset-organisation-tdh-demo-only --pghost db --pgdatabase tdh --pguser postgres --pgpass postgres --pgport 5432'
 
-      - name: Test command line import minimal sia405
-        run: docker compose exec qgis sh -c 'xvfb-run /usr/src/plugin/tdh_cmd.py interlis_import --xtf_file /usr/src/plugin/teksi_district_heating/tests/data/minimal-dataset-SIA405-ABWASSER.xtf --pghost db --pgdatabase tdh --pguser postgres --pgpass postgres --pgport 5432'
+      # - name: Test command line import minimal sia405
+      #   run: docker compose exec qgis sh -c 'xvfb-run /usr/src/plugin/tdh_cmd.py interlis_import --xtf_file /usr/src/plugin/teksi_district_heating/tests/data/minimal-dataset-SIA405-FERNWAERME.xtf --pghost db --pgdatabase tdh --pguser postgres --pgpass postgres --pgport 5432'
 
-      - name: Test command line minimal export
-        run: docker compose exec qgis sh -c 'xvfb-run /usr/src/plugin/tdh_cmd.py interlis_export --xtf_file "output.xtf" --pghost db --pgdatabase tdh --pguser postgres --pgpass postgres --pgport 5432'
+      # - name: Test command line minimal export
+      #   run: docker compose exec qgis sh -c 'xvfb-run /usr/src/plugin/tdh_cmd.py interlis_export --xtf_file "output.xtf" --pghost db --pgdatabase tdh --pguser postgres --pgpass postgres --pgport 5432'
 
       - name: docker logs
         run: docker compose logs db

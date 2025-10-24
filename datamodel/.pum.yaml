@@ -62,6 +62,6 @@ migration_hooks:
   post:
     - file: app/create_app.py
 
-# demo_data:
-#   - name: Aletsch
-#     file: demo_data/demo_data_aletsch.sql
+demo_data:
+   - name: Morges Demo
+     file: demo_data/tdh_demo_data_morges.sql

@@ -29,6 +29,7 @@ jobs:
       DOCKER_TAG: teksi/tdh:unstable
       DB_NAME: tdh
       PG_SERVICE: pg_tdh
+      DEMO_DATA: Morges Demo
 
     strategy:
       fail-fast: false
@@ -59,7 +60,7 @@ jobs:
           docker exec pum_db_container sh -c "createdb ${DB_NAME}"
           docker exec pum_db_container \
               pum -vvv -s ${PG_SERVICE} -d datamodel install \
-
+              -p modification_ci ${{ matrix.modification_ci}} \
               -p SRID 2056 --roles --grant
 
       - name: Run tests

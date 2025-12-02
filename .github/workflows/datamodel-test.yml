@@ -25,42 +25,55 @@ jobs:
     name: Run unit tests on datamodel
     runs-on: ubuntu-24.04
 
+    env:
+      DOCKER_TAG: teksi/tdh:unstable
+      DB_NAME: tdh
+      PG_SERVICE: pg_tdh
+      DEMO_DATA: Morges Demo
+
     strategy:
-      fail-fast: true
+      fail-fast: false
+      matrix:
+        include:
+          - modification_ci: true
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
-      - name: Docker build
+      - name: "build dockerfile"
         run: |
-          docker build \
-          --build-arg RUN_TEST=True \
-          -f datamodel/.docker/Dockerfile \
-          --tag teksi/district_heating:unstable .
+          docker build -f datamodel/.docker/Dockerfile \
+            --build-arg RUN_TEST=True \
+            --build-arg DB_NAME=${DB_NAME} \
+            --build-arg PG_SERVICE=${PG_SERVICE} \
+            --build-arg TEST_PACKAGES="${TEST_PACKAGES}" \
+            --tag ${DOCKER_TAG} .
 
       - name: Initialize container
         run: |
-          docker run -d -p 5432:5432 --name teksi-district_heating teksi/district_heating:unstable
-          until docker exec teksi-district_heating pg_isready -U postgres; do
+          docker run -d -p 5432:5432 -v $(pwd):/usr/src --name pum_db_container ${DOCKER_TAG}
+          until docker exec pum_db_container pg_isready -U postgres; do
             echo "Waiting for PostgreSQL to be ready..."
             sleep 2
           done
           # create the database
-          docker exec teksi-district_heating sh -c 'createdb tdh'
-          docker exec teksi-district_heating pum -vvv -s pg_tdh -d datamodel install -p SRID 2056 --roles --grant
+          docker exec pum_db_container sh -c "createdb ${DB_NAME}"
+          docker exec pum_db_container \
+              pum -vvv -s ${PG_SERVICE} -d datamodel install \
+              -p modification_ci ${{ matrix.modification_ci}} \
+              -p SRID 2056 --roles --grant
 
       - name: Run tests
-        run:  docker exec teksi-district_heating pytest datamodel
+        run:  docker exec pum_db_container pytest datamodel
 
       - name: Docker logs
         if: failure()
-        run: docker logs teksi-district_heating
-
+        run: docker logs pum_db_container
 
   static-tests:
     name: Run static tests on datamodel
     runs-on: ubuntu-24.04
 
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     - run: ./datamodel/test/static_tests.sh

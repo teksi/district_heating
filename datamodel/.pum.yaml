@@ -1,7 +1,7 @@
 
 pum:
   migration_table_schema: tdh_sys
-  minimum_version: 1.1.13
+  minimum_version: 1.1.14
 
 roles:
   - name: tdh_viewer

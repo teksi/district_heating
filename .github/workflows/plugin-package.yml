@@ -63,7 +63,7 @@ jobs:
             --asset-path plugin/teksi_district_heating/interlis/bin \
             --transifex-token "${{ secrets.TX_TOKEN }}"
 
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           name: teksi_district_heating_plugin_dev
           path: plugin/teksi_district_heating.0.0.0.zip

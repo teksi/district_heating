@@ -1,21 +1,22 @@
 
 pum:
+  module: tdh
   migration_table_schema: tdh_sys
-  minimum_version: 1.1.14
+  minimum_version: 1.4.2
 
 roles:
   - name: tdh_viewer
     description: Role for users who can view the tdh data.
     permissions:
       - type: read
-        schemas: [tdh_od, tdh_vl, tdh_sys, tdh_app]
+        schemas: [tdh_od, tdh_vl, tdh_sys, tdh_app, tdh_app_pg2ili]
 
   - name: tdh_user
     description: Role for users who can view and edit the tdh data.
     inherit: tdh_viewer
     permissions:
       - type: write
-        schemas: [tdh_od]
+        schemas: [tdh_od, tdh_app_pg2ili]
 
   - name: tdh_manager
     description: Role for users who can view and edit the tdh data, and manage the tdh application.
@@ -42,26 +43,50 @@ parameters:
     type: boolean
     default: false
     description: load ci modification
+    app_only: true
+
+  - name: modification_agxx
+    type: boolean
+    default: false
+    description: enable AG-64/96 app modification
+    app_only: true
+
+  - name: webgis
+    type: boolean
+    default: false
+    description: enable WebGIS app modification
+    app_only: true
 
   - name: modification_yaml
     type: path
     description: yaml file with app modification definitions
+    app_only: true
 
   - name: lang_code
     type: text
     default: en
     description: language code for the creation of custom views
+    app_only: true
+    values: [en, de, fr, it]
 
 dependencies:
   - name: pirogue
     minimum_version: 3.0.0
 
-migration_hooks:
-  pre:
+application:
+  drop:
     - code: DROP SCHEMA IF EXISTS tdh_app CASCADE;
-  post:
+    - code: DROP SCHEMA IF EXISTS tdh_app_pg2ili CASCADE;
+  create:
     - file: app/create_app.py
 
+uninstall:
+  - code: DROP SCHEMA IF EXISTS tdh_od CASCADE;
+  - code: DROP SCHEMA IF EXISTS tdh_vl CASCADE;
+  - code: DROP SCHEMA IF EXISTS tdh_sys CASCADE;
+  - code: DROP SCHEMA IF EXISTS tdh_app CASCADE;
+  - code: DROP SCHEMA IF EXISTS tdh_cfg CASCADE;
+
 demo_data:
-   - name: Morges Demo
-     file: demo_data/tdh_demo_data_morges.sql
+  - name: Morges Demo
+    file: demo_data/demo_data_morges.sql

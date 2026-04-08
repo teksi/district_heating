@@ -88,5 +88,5 @@ uninstall:
   - code: DROP SCHEMA IF EXISTS tdh_cfg CASCADE;
 
 demo_data:
-  - name: Morges Demo
+  - name: Morges-Demo
     file: demo_data/demo_data_morges.sql

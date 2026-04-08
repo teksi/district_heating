@@ -31,7 +31,7 @@ jobs:
     env:
       PGSERVICE: pg_tdh
       DB_NAME: tdh
-      DEMO_DATA: Morges Demo
+      DEMO_DATA: Morges-Demo
       COMPOSE_PROFILES: schemaspy
       COMPOSE_PROJECT_NAME: district_heating
 

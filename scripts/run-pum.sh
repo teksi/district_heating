@@ -46,7 +46,7 @@ DROP ROLE IF EXISTS tdh_sysadmin;"
 #psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f datamodel/roles/roles_create.sql
 #psql "service=${PGSERVICE}" -v ON_ERROR_STOP=1 -f datamodel/roles/roles_grant.sql
 
-pum -v -p pg_tdh -d datamodel install -p SRID 2056 --demo-data Morges Demo
+pum -v -p pg_tdh -d datamodel install -p SRID 2056 --demo-data Morges-Demo
 
 psql -c "DROP SCHEMA IF EXISTS tdh_od CASCADE;\
 DROP SCHEMA IF EXISTS tdh_sys CASCADE;\
@@ -54,4 +54,4 @@ DROP SCHEMA IF EXISTS tdh_vl CASCADE;\
 DROP SCHEMA IF EXISTS tdh_cfg CASCADE;\
 DROP SCHEMA IF EXISTS tdh_app CASCADE;\
 
-pum -v -p pg_tdh -d datamodel install -p SRID 2056 --demo-data Morges Demo
+pum -v -p pg_tdh -d datamodel install -p SRID 2056 --demo-data Morges-Demo

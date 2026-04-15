@@ -4,7 +4,7 @@ A pilot project as proof of concept was done in 2024 to test, how a new module D
 
 ![tdh](https://github.com/user-attachments/assets/802f9f82-2338-4cb3-ae53-04b15264f881)
 
-![TEKSI district heating Module](https://github.com/teksi/Home/blob/master/Ressources/Logos/modules/EN/250106-teksi-heat-logos-en-01_45pp.png?raw=true)
+![TEKSI district heating Module](https://github.com/teksi/Home/blob/main/Ressources/Logos/modules/EN/250106-teksi-heat-logos-en-01_45pp.png?raw=true)
 
 ## Welcome to the TEKSI district Module GitHub Home page 👋
 TEKSI district heating module (project name: TDH) is a selection of tools and a database implementation that allows you to:

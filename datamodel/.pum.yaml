@@ -45,12 +45,6 @@ parameters:
     description: load ci modification
     app_only: true
 
-  - name: modification_agxx
-    type: boolean
-    default: false
-    description: enable AG-64/96 app modification
-    app_only: true
-
   - name: webgis
     type: boolean
     default: false
@@ -76,7 +70,6 @@ dependencies:
 application:
   drop:
     - code: DROP SCHEMA IF EXISTS tdh_app CASCADE;
-    - code: DROP SCHEMA IF EXISTS tdh_app_pg2ili CASCADE;
   create:
     - file: app/create_app.py
 

@@ -45,6 +45,11 @@ parameters:
     description: load ci modification
     app_only: true
 
+  - name: webgis
+    type: boolean
+    default: false
+    description: enable WebGIS app modification
+    app_only: true
 
   - name: modification_yaml
     type: path

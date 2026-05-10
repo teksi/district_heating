@@ -9,14 +9,14 @@ roles:
     description: Role for users who can view the tdh data.
     permissions:
       - type: read
-        schemas: [tdh_od, tdh_vl, tdh_sys, tdh_app, tdh_app_pg2ili]
+        schemas: [tdh_od, tdh_vl, tdh_sys, tdh_app]
 
   - name: tdh_user
     description: Role for users who can view and edit the tdh data.
     inherit: tdh_viewer
     permissions:
       - type: write
-        schemas: [tdh_od, tdh_app_pg2ili]
+        schemas: [tdh_od]
 
   - name: tdh_manager
     description: Role for users who can view and edit the tdh data, and manage the tdh application.

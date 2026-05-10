@@ -6,27 +6,27 @@ pum:
 
 roles:
   - name: tdh_viewer
-    description: Role for users who can view the tdh data.
+    description: Role for users who can view the TDH data.
     permissions:
       - type: read
         schemas: [tdh_od, tdh_vl, tdh_sys, tdh_app]
 
   - name: tdh_user
-    description: Role for users who can view and edit the tdh data.
+    description: Role for users who can view and edit the TDH data.
     inherit: tdh_viewer
     permissions:
       - type: write
         schemas: [tdh_od]
 
   - name: tdh_manager
-    description: Role for users who can view and edit the tdh data, and manage the tdh application.
+    description: Role for users who can view and edit the TDH data, and manage the TDH application.
     inherit: tdh_user
     permissions:
       - type: write
         schemas: [tdh_vl]
 
   - name: tdh_sysadmin
-    description: Role for system administrators who can manage the tdh application and its configuration.
+    description: Role for system administrators who can manage the TDH application and its configuration.
     inherit: tdh_manager
     permissions:
       - type: write
@@ -45,11 +45,6 @@ parameters:
     description: load ci modification
     app_only: true
 
-  - name: webgis
-    type: boolean
-    default: false
-    description: enable WebGIS app modification
-    app_only: true
 
   - name: modification_yaml
     type: path

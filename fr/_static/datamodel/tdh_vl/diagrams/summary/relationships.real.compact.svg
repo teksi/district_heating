@@ -1441,37 +1441,10 @@
 </a>
 </g>
 </g>
-<!-- pipe_section_function -->
-<g id="node54" class="node">
-<title>pipe_section_function</title>
-<g id="a_node54"><a xlink:href="../../tables/pipe_section_function.html" xlink:title="pipe_section_function" target="_top">
-<polygon fill="#ffffff" stroke="transparent" points="748.5,-1317 748.5,-1397 953.5,-1397 953.5,-1317 748.5,-1317"/>
-<polygon fill="#f5f5f5" stroke="transparent" points="749,-1375 749,-1397 954,-1397 954,-1375 749,-1375"/>
-<polygon fill="none" stroke="black" points="749,-1375 749,-1397 954,-1397 954,-1375 749,-1375"/>
-<text text-anchor="start" x="754" y="-1384.2" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="11.00">pipe_section_function</text>
-<text text-anchor="start" x="912" y="-1383.2" font-family="Helvetica,sans-Serif" font-size="11.00">[table]</text>
-<polygon fill="none" stroke="black" points="749,-1353 749,-1375 954,-1375 954,-1353 749,-1353"/>
-<image xlink:href="../../images/primaryKeys.png" width="11px" height="12px" preserveAspectRatio="xMinYMin meet" x="754" y="-1370"/>
-<text text-anchor="start" x="782" y="-1361.2" font-family="Helvetica,sans-Serif" font-size="11.00">code</text>
-<polygon fill="none" stroke="black" points="749,-1335 749,-1353 954,-1353 954,-1335 749,-1335"/>
-<text text-anchor="start" x="752" y="-1341.2" font-family="Helvetica,sans-Serif" font-size="11.00">...</text>
-<polygon fill="#ffffff" stroke="transparent" points="749,-1317 749,-1335 954,-1335 954,-1317 749,-1317"/>
-<polygon fill="none" stroke="black" points="749,-1317 749,-1335 954,-1335 954,-1317 749,-1317"/>
-<polygon fill="#ffffff" stroke="transparent" points="750,-1318 750,-1334 814,-1334 814,-1318 750,-1318"/>
-<text text-anchor="start" x="752" y="-1323.2" font-family="Helvetica,sans-Serif" font-size="11.00"> &#160;</text>
-<polygon fill="#ffffff" stroke="transparent" points="814,-1318 814,-1334 878,-1334 878,-1318 814,-1318"/>
-<text text-anchor="start" x="842" y="-1323.2" font-family="Helvetica,sans-Serif" font-size="11.00"> &#160;</text>
-<polygon fill="#ffffff" stroke="transparent" points="878,-1318 878,-1334 953,-1334 953,-1318 878,-1318"/>
-<text text-anchor="start" x="931" y="-1323.2" font-family="Helvetica,sans-Serif" font-size="11.00">1 &gt;</text>
-<polygon fill="black" stroke="black" points="814,-1318 814,-1334 814,-1334 814,-1318 814,-1318"/>
-<polygon fill="black" stroke="black" points="878,-1318 878,-1334 878,-1334 878,-1318 878,-1318"/>
-</a>
-</g>
-</g>
 <!-- pipe_point_normal_kind -->
-<g id="node55" class="node">
+<g id="node54" class="node">
 <title>pipe_point_normal_kind</title>
-<g id="a_node55"><a xlink:href="../../tables/pipe_point_normal_kind.html" xlink:title="pipe_point_normal_kind" target="_top">
+<g id="a_node54"><a xlink:href="../../tables/pipe_point_normal_kind.html" xlink:title="pipe_point_normal_kind" target="_top">
 <polygon fill="#ffffff" stroke="transparent" points="55.5,-610 55.5,-690 274.5,-690 274.5,-610 55.5,-610"/>
 <polygon fill="#f5f5f5" stroke="transparent" points="56,-668 56,-690 275,-690 275,-668 56,-668"/>
 <polygon fill="none" stroke="black" points="56,-668 56,-690 275,-690 275,-668 56,-668"/>
@@ -1492,6 +1465,33 @@
 <text text-anchor="start" x="252" y="-616.2" font-family="Helvetica,sans-Serif" font-size="11.00">1 &gt;</text>
 <polygon fill="black" stroke="black" points="126,-611 126,-627 126,-627 126,-611 126,-611"/>
 <polygon fill="black" stroke="black" points="194,-611 194,-627 194,-627 194,-611 194,-611"/>
+</a>
+</g>
+</g>
+<!-- pipe_section_function -->
+<g id="node55" class="node">
+<title>pipe_section_function</title>
+<g id="a_node55"><a xlink:href="../../tables/pipe_section_function.html" xlink:title="pipe_section_function" target="_top">
+<polygon fill="#ffffff" stroke="transparent" points="748.5,-1317 748.5,-1397 953.5,-1397 953.5,-1317 748.5,-1317"/>
+<polygon fill="#f5f5f5" stroke="transparent" points="749,-1375 749,-1397 954,-1397 954,-1375 749,-1375"/>
+<polygon fill="none" stroke="black" points="749,-1375 749,-1397 954,-1397 954,-1375 749,-1375"/>
+<text text-anchor="start" x="754" y="-1384.2" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="11.00">pipe_section_function</text>
+<text text-anchor="start" x="912" y="-1383.2" font-family="Helvetica,sans-Serif" font-size="11.00">[table]</text>
+<polygon fill="none" stroke="black" points="749,-1353 749,-1375 954,-1375 954,-1353 749,-1353"/>
+<image xlink:href="../../images/primaryKeys.png" width="11px" height="12px" preserveAspectRatio="xMinYMin meet" x="754" y="-1370"/>
+<text text-anchor="start" x="782" y="-1361.2" font-family="Helvetica,sans-Serif" font-size="11.00">code</text>
+<polygon fill="none" stroke="black" points="749,-1335 749,-1353 954,-1353 954,-1335 749,-1335"/>
+<text text-anchor="start" x="752" y="-1341.2" font-family="Helvetica,sans-Serif" font-size="11.00">...</text>
+<polygon fill="#ffffff" stroke="transparent" points="749,-1317 749,-1335 954,-1335 954,-1317 749,-1317"/>
+<polygon fill="none" stroke="black" points="749,-1317 749,-1335 954,-1335 954,-1317 749,-1317"/>
+<polygon fill="#ffffff" stroke="transparent" points="750,-1318 750,-1334 814,-1334 814,-1318 750,-1318"/>
+<text text-anchor="start" x="752" y="-1323.2" font-family="Helvetica,sans-Serif" font-size="11.00"> &#160;</text>
+<polygon fill="#ffffff" stroke="transparent" points="814,-1318 814,-1334 878,-1334 878,-1318 814,-1318"/>
+<text text-anchor="start" x="842" y="-1323.2" font-family="Helvetica,sans-Serif" font-size="11.00"> &#160;</text>
+<polygon fill="#ffffff" stroke="transparent" points="878,-1318 878,-1334 953,-1334 953,-1318 878,-1318"/>
+<text text-anchor="start" x="931" y="-1323.2" font-family="Helvetica,sans-Serif" font-size="11.00">1 &gt;</text>
+<polygon fill="black" stroke="black" points="814,-1318 814,-1334 814,-1334 814,-1318 814,-1318"/>
+<polygon fill="black" stroke="black" points="878,-1318 878,-1334 878,-1334 878,-1318 878,-1318"/>
 </a>
 </g>
 </g>
